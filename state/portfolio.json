@@ -1,0 +1,18 @@
+{
+  "cash": 7919.72,
+  "positions": [
+    {
+      "ticker": "META",
+      "asset_type": "stock",
+      "shares": 4,
+      "entry_price": 520.07,
+      "entry_date": "2026-03-28",
+      "agent": "sentiment",
+      "mode": "simulated"
+    }
+  ],
+  "nav": 10000.00,
+  "inception_date": "2026-03-28",
+  "last_updated": "2026-03-28T17:37:00",
+  "high_water_mark": 10000.00
+}

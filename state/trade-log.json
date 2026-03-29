@@ -1,0 +1,39 @@
+{
+  "trades": [
+    {
+      "id": 1,
+      "date": "2026-03-28",
+      "session": "premarket",
+      "action": "buy",
+      "ticker": "META",
+      "asset_type": "stock",
+      "shares": 4,
+      "price": 520.07,
+      "total_cost": 2080.28,
+      "agent": "sentiment",
+      "thesis": "Extreme fear (F&G 14, VIX >31) + unusual call options volume 68% above avg + 42 analyst Buy ratings avg target $838. Mean-reversion setup ahead of Q1 earnings.",
+      "mode": "simulated"
+    }
+  ],
+  "decisions": [
+    {
+      "date": "2026-03-28",
+      "session": "premarket",
+      "decision": "buy",
+      "ticker": "META",
+      "agent": "sentiment",
+      "reasoning": "META scored highest on composite PM framework (7.85/10). Extreme fear + institutional call accumulation + Q1 earnings catalyst in 4 weeks. Best asymmetric risk/reward among 5 recommendations.",
+      "agents_reviewed": {
+        "macro": {"ticker": "GLD", "conviction": 8, "considered": true, "rejection_reason": "Strong thesis but META's sentiment inflection offers tighter catalyst timeline"},
+        "crypto": {"ticker": "IBIT", "conviction": 7, "considered": true, "rejection_reason": "Lowest conviction, longer timeframe (60-90 days)"},
+        "quant": {"ticker": "XOM", "conviction": 8, "considered": true, "rejection_reason": "Chasing at ATH with RSI 76 overbought — risky for Day 1"},
+        "sentiment": {"ticker": "META", "conviction": 8, "considered": true, "rejection_reason": null},
+        "contrarian": {"ticker": "U", "conviction": 8, "considered": true, "rejection_reason": "Close second but 13% pop yesterday raises near-term pullback risk"}
+      }
+    }
+  ],
+  "total_trades": 1,
+  "total_buys": 1,
+  "total_sells": 0,
+  "total_passes": 0
+}

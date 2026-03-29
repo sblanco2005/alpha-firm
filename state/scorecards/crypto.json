@@ -1,0 +1,22 @@
+{
+  "agent_id": "crypto",
+  "generated": "2026-03-28",
+  "overall": {
+    "total_recommendations": 1,
+    "wins": 0,
+    "losses": 0,
+    "partial": 0,
+    "tracking": 1,
+    "win_rate": null,
+    "avg_return_at_horizon": null,
+    "avg_peak_return": null
+  },
+  "conviction_calibration": {},
+  "by_asset_type": {},
+  "recent_picks": [],
+  "patterns": {
+    "strengths": "Insufficient data — need 5+ evaluated picks for pattern analysis.",
+    "weaknesses": "Insufficient data.",
+    "adjustment": "Continue current approach. Scorecard will populate after checkpoints are evaluated."
+  }
+}

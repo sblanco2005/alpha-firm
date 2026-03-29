@@ -1,0 +1,125 @@
+{
+  "recommendations": [
+    {
+      "id": "macro-2026-03-28",
+      "agent_id": "macro",
+      "date": "2026-03-28",
+      "session": "premarket",
+      "ticker": "GLD",
+      "asset_type": "etf",
+      "entry_price": 414.70,
+      "target_return_pct": 12,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Stagflationary macro regime favors gold; pullback from $5200 highs, Iran conflict driving safe-haven demand",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
+        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
+        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
+        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
+        "horizon": { "date": "2026-05-09", "price": null, "return_pct": null }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-03-28",
+      "agent_id": "crypto",
+      "date": "2026-03-28",
+      "session": "premarket",
+      "ticker": "IBIT",
+      "asset_type": "etf",
+      "entry_price": 37.40,
+      "target_return_pct": 17,
+      "horizon_days": 60,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "BTC spot ETF at $66K, institutional inflows reversing, regulatory tailwinds building",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
+        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
+        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
+        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
+        "horizon": { "date": "2026-06-19", "price": null, "return_pct": null }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-03-28",
+      "agent_id": "quant",
+      "date": "2026-03-28",
+      "session": "premarket",
+      "ticker": "XOM",
+      "asset_type": "stock",
+      "entry_price": 170.99,
+      "target_return_pct": 10,
+      "horizon_days": 20,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Strongest stock in strongest sector, Morgan Stanley upgrade to $172, Brent at $112, RSI overbought risk",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
+        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
+        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
+        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
+        "horizon": { "date": "2026-04-25", "price": null, "return_pct": null }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-03-28",
+      "agent_id": "sentiment",
+      "date": "2026-03-28",
+      "session": "premarket",
+      "ticker": "META",
+      "asset_type": "stock",
+      "entry_price": 520.07,
+      "target_return_pct": 15,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": true,
+      "thesis_summary": "Extreme fear (F&G 14), unusual call volume 68% above avg, 42 analyst Buy ratings avg target $838",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
+        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
+        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
+        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
+        "horizon": { "date": "2026-05-09", "price": null, "return_pct": null }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-03-28",
+      "agent_id": "contrarian",
+      "date": "2026-03-28",
+      "session": "premarket",
+      "ticker": "U",
+      "asset_type": "stock",
+      "entry_price": 19.18,
+      "target_return_pct": 40,
+      "horizon_days": 90,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Unity turnaround under new CEO, Q1 blowout, Vector AI growing 70%, 63% off highs, 8.3% short interest",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
+        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
+        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
+        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
+        "horizon": { "date": "2026-07-24", "price": null, "return_pct": null }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    }
+  ],
+  "last_evaluated": "2026-03-28"
+}
