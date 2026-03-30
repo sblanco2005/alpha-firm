@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 
 const INITIAL_CAPITAL = 10000;
 const REWARD_SPLIT = 0.20;
-const API_BASE = "http://localhost:3001/api";
+const API_BASE = "/api";
 
 const AGENTS = [
   { id: "macro", name: "Macro Strategist", icon: "\u{1F30D}", color: "#00d4aa" },
@@ -30,6 +30,7 @@ export default function App() {
   const [tradeLog, setTradeLog] = useState({ trades: [], decisions: [] });
   const [dailyState, setDailyState] = useState({ date: todayStr(), checks: 0, bought: false });
   const [agentRecs, setAgentRecs] = useState({});
+  const [cronStatus, setCronStatus] = useState({ date: null, runs: [] });
   const [activeTab, setActiveTab] = useState("dashboard");
   const [lastRefresh, setLastRefresh] = useState(null);
   const [error, setError] = useState(null);
@@ -37,18 +38,20 @@ export default function App() {
   const refresh = useCallback(async () => {
     setError(null);
     try {
-      const [p, l, t, d, recs] = await Promise.all([
+      const [p, l, t, d, recs, cron] = await Promise.all([
         fetchJSON("/portfolio"),
         fetchJSON("/leaderboard"),
         fetchJSON("/trade-log"),
         fetchJSON("/daily-state"),
         fetchJSON("/recommendations"),
+        fetchJSON("/cron-status"),
       ]);
       if (p) setPortfolio(p);
       if (l) setLeaderboard(l);
       if (t) setTradeLog(t);
       if (d) setDailyState(d);
       if (recs) setAgentRecs(recs);
+      if (cron) setCronStatus(cron);
       setLastRefresh(new Date().toLocaleTimeString());
     } catch (e) {
       setError("Cannot connect to API server. Run: node server.js");
@@ -73,6 +76,7 @@ export default function App() {
     { id: "dashboard", label: "Dashboard", icon: "\u25C9" },
     { id: "agents", label: "Analysts", icon: "\u{1F465}" },
     { id: "portfolio", label: "Portfolio", icon: "\u{1F4BC}" },
+    { id: "cron", label: "Cron Monitor", icon: "\u23F0" },
     { id: "log", label: "Activity", icon: "\u{1F4CB}" },
   ];
 
@@ -105,6 +109,14 @@ export default function App() {
               {totalPnL >= 0 ? "+" : ""}${totalPnL.toFixed(2)} ({totalPnLPct.toFixed(1)}%)
             </div>
           </div>
+          {portfolio.prices_updated_at && (
+            <div style={{ textAlign: "right" }}>
+              <div style={{ color: "#666", fontSize: 13, letterSpacing: 1 }}>LIVE</div>
+              <div style={{ color: "#00d4aa", fontSize: 11 }}>
+                {new Date(portfolio.prices_updated_at).toLocaleTimeString()}
+              </div>
+            </div>
+          )}
           <button onClick={refresh} style={{
             background: "#1a1a2e", color: "#00d4aa", border: "1px solid #2a2a3e",
             padding: "6px 12px", borderRadius: 4, cursor: "pointer",
@@ -173,7 +185,8 @@ export default function App() {
               <div style={{ color: "#555", fontSize: 13, letterSpacing: 2, marginBottom: 12 }}>LATEST RECOMMENDATIONS</div>
               <div style={{ display: "grid", gap: 8 }}>
                 {AGENTS.map((a) => {
-                  const r = agentRecs[a.id];
+                  const raw = agentRecs[a.id];
+                  const r = raw ? (raw.recommendation || raw) : null;
                   return (
                     <div key={a.id} style={{
                       background: "#0f0f1a", border: `1px solid #1a1a2e`,
@@ -182,14 +195,14 @@ export default function App() {
                       <span style={{ fontSize: 26, width: 32 }}>{a.icon}</span>
                       <div style={{ flex: 1 }}>
                         <div style={{ color: a.color, fontWeight: 600, fontSize: 12 }}>{a.name}</div>
-                        {r && r.recommendation ? (
+                        {r && r.ticker ? (
                           <div style={{ fontSize: 11 }}>
-                            <span style={{ color: "#fff", fontWeight: 700 }}>{r.recommendation.ticker || "N/A"}</span>
-                            <span style={{ color: "#555" }}> · {r.recommendation.asset_type || ""} · </span>
-                            <span style={{ color: (r.recommendation.conviction || 0) >= 8 ? "#00d4aa" : (r.recommendation.conviction || 0) >= 6 ? "#eab308" : "#ff4757" }}>
-                              {r.recommendation.conviction || "?"}/10
+                            <span style={{ color: "#fff", fontWeight: 700 }}>{r.ticker || "N/A"}</span>
+                            <span style={{ color: "#555" }}> · {r.asset_type || ""} · </span>
+                            <span style={{ color: (r.conviction || 0) >= 8 ? "#00d4aa" : (r.conviction || 0) >= 6 ? "#eab308" : "#ff4757" }}>
+                              {r.conviction || "?"}/10
                             </span>
-                            {r.recommendation.target_return && <span style={{ color: "#555" }}> · {r.recommendation.target_return}</span>}
+                            {r.target_return && <span style={{ color: "#555" }}> · {r.target_return}</span>}
                           </div>
                         ) : (
                           <div style={{ color: "#333", fontSize: 11 }}>No recommendation yet</div>
@@ -211,15 +224,28 @@ export default function App() {
                     padding: "16px 22px", marginBottom: 8, display: "flex", alignItems: "center", justifyContent: "space-between",
                   }}>
                     <div>
-                      <span style={{ color: "#fff", fontWeight: 700 }}>{pos.ticker}</span>
-                      <span style={{ color: "#555", fontSize: 11 }}> · {pos.shares} shares @ ${pos.entry_price} · {pos.entry_date}</span>
+                      <span style={{ color: "#fff", fontWeight: 700, fontSize: 16 }}>{pos.ticker}</span>
+                      <span style={{ color: "#555", fontSize: 11 }}> · {pos.shares} shares @ ${pos.entry_price}</span>
+                      {pos.current_price != null && (
+                        <span style={{ color: "#888", fontSize: 11 }}> → ${pos.current_price.toFixed(2)}</span>
+                      )}
+                      <span style={{ color: "#444", fontSize: 10 }}> · {pos.entry_date}</span>
                       {pos.agent && <span style={{ color: "#444", fontSize: 10 }}> · via {pos.agent}</span>}
                     </div>
-                    {pos.unrealized_pnl != null && (
-                      <span style={{ color: pos.unrealized_pnl >= 0 ? "#00d4aa" : "#ff4757", fontWeight: 700, fontSize: 12 }}>
-                        {pos.unrealized_pnl >= 0 ? "+" : ""}${pos.unrealized_pnl.toFixed(2)}
-                      </span>
-                    )}
+                    <div style={{ textAlign: "right" }}>
+                      {pos.unrealized_pnl != null ? (
+                        <>
+                          <div style={{ color: pos.unrealized_pnl >= 0 ? "#00d4aa" : "#ff4757", fontWeight: 700, fontSize: 14 }}>
+                            {pos.unrealized_pnl >= 0 ? "+" : ""}${pos.unrealized_pnl.toFixed(2)}
+                          </div>
+                          <div style={{ color: pos.unrealized_pnl_pct >= 0 ? "#00d4aa" : "#ff4757", fontSize: 11 }}>
+                            {pos.unrealized_pnl_pct >= 0 ? "+" : ""}{pos.unrealized_pnl_pct.toFixed(2)}%
+                          </div>
+                        </>
+                      ) : (
+                        <span style={{ color: "#333", fontSize: 11 }}>no price</span>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -231,7 +257,8 @@ export default function App() {
         {activeTab === "agents" && (
           <div style={{ display: "grid", gap: 16 }}>
             {AGENTS.map((a) => {
-              const r = agentRecs[a.id];
+              const raw = agentRecs[a.id];
+              const rec = raw ? (raw.recommendation || raw) : null;
               const score = leaderboard[a.id] || {};
               return (
                 <div key={a.id} style={{
@@ -258,36 +285,36 @@ export default function App() {
                     </div>
                   </div>
 
-                  {r && r.recommendation && (
+                  {rec && rec.ticker && (
                     <div style={{
                       background: "#12121e", border: `1px solid ${a.color}22`, borderRadius: 6, padding: 14,
                     }}>
                       <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
-                        <span style={{ color: "#fff", fontWeight: 700, fontSize: 16 }}>{r.recommendation.ticker}</span>
+                        <span style={{ color: "#fff", fontWeight: 700, fontSize: 16 }}>{rec.ticker}</span>
                         <span style={{
-                          background: (r.recommendation.conviction || 0) >= 8 ? "#00d4aa22" : (r.recommendation.conviction || 0) >= 6 ? "#eab30822" : "#ff475722",
-                          color: (r.recommendation.conviction || 0) >= 8 ? "#00d4aa" : (r.recommendation.conviction || 0) >= 6 ? "#eab308" : "#ff4757",
+                          background: (rec.conviction || 0) >= 8 ? "#00d4aa22" : (rec.conviction || 0) >= 6 ? "#eab30822" : "#ff475722",
+                          color: (rec.conviction || 0) >= 8 ? "#00d4aa" : (rec.conviction || 0) >= 6 ? "#eab308" : "#ff4757",
                           padding: "2px 10px", borderRadius: 12, fontSize: 14, fontWeight: 700,
                         }}>
-                          {r.recommendation.conviction || "?"}/10
+                          {rec.conviction || "?"}/10
                         </span>
                       </div>
                       <div style={{ color: "#ccc", fontSize: 18, lineHeight: 1.6, marginBottom: 8 }}>
-                        {r.recommendation.entry_thesis || r.recommendation.thesis || ""}
+                        {rec.entry_thesis || rec.thesis || ""}
                       </div>
                       <div style={{ display: "flex", gap: 16, fontSize: 14, flexWrap: "wrap" }}>
-                        {r.recommendation.target_return && <span style={{ color: "#00d4aa" }}>Target: {r.recommendation.target_return}</span>}
-                        {r.recommendation.risk && <span style={{ color: "#ff4757" }}>Risk: {r.recommendation.risk}</span>}
-                        <span style={{ color: "#666" }}>{r.recommendation.asset_type}</span>
+                        {rec.target_return && <span style={{ color: "#00d4aa" }}>Target: {rec.target_return}</span>}
+                        {rec.risk && <span style={{ color: "#ff4757" }}>Risk: {rec.risk}</span>}
+                        <span style={{ color: "#666" }}>{rec.asset_type}</span>
                       </div>
                     </div>
                   )}
 
                   {/* Memory entries */}
-                  {r && r.sessions && r.sessions.length > 0 && (
+                  {raw && raw.sessions && raw.sessions.length > 0 && (
                     <div style={{ marginTop: 14 }}>
                       <div style={{ color: "#555", fontSize: 13, letterSpacing: 2, marginBottom: 8 }}>TODAY'S SESSIONS</div>
-                      {r.sessions.map((s, i) => (
+                      {raw.sessions.map((s, i) => (
                         <div key={i} style={{ color: "#444", fontSize: 14, padding: "4px 0", borderBottom: "1px solid #111" }}>
                           <span style={{ color: "#555" }}>[{s.session}]</span> {s.summary || JSON.stringify(s).slice(0, 100)}
                         </div>
@@ -379,6 +406,163 @@ export default function App() {
             )}
           </div>
         )}
+
+        {/* CRON MONITOR */}
+        {activeTab === "cron" && (() => {
+          const SCHEDULE = [
+            { session: "premarket", time: "7:00 AM ET", utc: "11:00 UTC", desc: "Morning pre-market scan" },
+            { session: "midday", time: "12:30 PM ET", utc: "16:30 UTC", desc: "Midday momentum check" },
+            { session: "closing", time: "3:45 PM ET", utc: "19:45 UTC", desc: "Closing bell review" },
+          ];
+          const today = todayStr();
+          const todayRuns = (cronStatus.date === today ? cronStatus.runs : []) || [];
+          const getRunForSession = (s) => { const r = todayRuns.filter(x => x.session === s); return r.length ? r[r.length - 1] : null; };
+          const statusColor = (s) => s === "success" ? "#00d4aa" : s === "failed" ? "#ff4757" : s === "running" ? "#f7931a" : "#333";
+          const statusIcon = (s) => s === "success" ? "\u2714" : s === "failed" ? "\u2718" : s === "running" ? "\u23F3" : "\u25CB";
+          const fmtTime = (iso) => { if (!iso) return "\u2014"; try { return new Date(iso).toLocaleTimeString(); } catch { return iso; } };
+          const fmtDur = (a, b) => { if (!a || !b) return "\u2014"; const ms = new Date(b) - new Date(a); return ms < 60000 ? `${Math.round(ms/1000)}s` : `${Math.floor(ms/60000)}m ${Math.round((ms%60000)/1000)}s`; };
+          const completed = todayRuns.filter(r => r.status === "success").length;
+          const failed = todayRuns.filter(r => r.status === "failed").length;
+          const running = todayRuns.filter(r => r.status === "running").length;
+
+          return (
+            <div>
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginBottom: 24 }}>
+                {[
+                  { label: "SCHEDULED", val: "3 / day", color: "#6366f1" },
+                  { label: "COMPLETED", val: completed, color: "#00d4aa" },
+                  { label: "FAILED", val: failed, color: failed > 0 ? "#ff4757" : "#333" },
+                  { label: "RUNNING", val: running, color: running > 0 ? "#f7931a" : "#333" },
+                ].map(s => (
+                  <div key={s.label} style={{ background: "#0f0f1a", border: "1px solid #1a1a2e", borderRadius: 8, padding: 22 }}>
+                    <div style={{ color: "#555", fontSize: 13, letterSpacing: 2, marginBottom: 6 }}>{s.label}</div>
+                    <div style={{ color: s.color, fontSize: 26, fontWeight: 700 }}>{s.val}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ color: "#555", fontSize: 13, letterSpacing: 2, marginBottom: 12 }}>{"TODAY\u2019S SCHEDULE \u2014 "}{today}</div>
+              <div style={{ display: "grid", gap: 8, marginBottom: 24 }}>
+                {SCHEDULE.map(sched => {
+                  const run = getRunForSession(sched.session);
+                  const status = run ? run.status : "pending";
+                  return (
+                    <div key={sched.session} style={{
+                      background: "#0f0f1a",
+                      border: `1px solid ${status === "failed" ? "#ff475744" : status === "running" ? "#f7931a44" : "#1a1a2e"}`,
+                      borderRadius: 8, padding: "18px 22px", display: "flex", alignItems: "center", gap: 16,
+                    }}>
+                      <div style={{
+                        width: 40, height: 40, borderRadius: "50%",
+                        background: `${statusColor(status)}15`, border: `2px solid ${statusColor(status)}`,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: 18, color: statusColor(status),
+                      }}>
+                        {statusIcon(status)}
+                      </div>
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <span style={{ color: "#fff", fontWeight: 700, fontSize: 14, textTransform: "capitalize" }}>{sched.session}</span>
+                          <span style={{
+                            background: `${statusColor(status)}20`, color: statusColor(status),
+                            padding: "2px 10px", borderRadius: 10, fontSize: 11, fontWeight: 600,
+                            textTransform: "uppercase", letterSpacing: 1,
+                          }}>{status}</span>
+                        </div>
+                        <div style={{ color: "#666", fontSize: 12, marginTop: 4 }}>
+                          {sched.desc} {"\u2014"} <span style={{ color: "#888" }}>{sched.time}</span>{" "}
+                          <span style={{ color: "#444" }}>({sched.utc})</span>
+                        </div>
+                      </div>
+                      <div style={{ textAlign: "right", minWidth: 100 }}>
+                        {run ? (
+                          <>
+                            <div style={{ color: "#888", fontSize: 12 }}>{fmtTime(run.started_at)}</div>
+                            <div style={{ color: "#555", fontSize: 11, marginTop: 2 }}>
+                              {run.finished_at ? fmtDur(run.started_at, run.finished_at) : "in progress..."}
+                            </div>
+                          </>
+                        ) : (
+                          <div style={{ color: "#333", fontSize: 12 }}>not yet</div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {failed > 0 && (
+                <div style={{ marginBottom: 24 }}>
+                  <div style={{ color: "#ff4757", fontSize: 13, letterSpacing: 2, marginBottom: 12 }}>ERRORS</div>
+                  {todayRuns.filter(r => r.status === "failed").map((r, i) => (
+                    <div key={i} style={{
+                      background: "#1a0a0a", border: "1px solid #331111", borderRadius: 8, padding: 16, marginBottom: 8,
+                    }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+                        <span style={{ color: "#ff4757", fontWeight: 700, fontSize: 13, textTransform: "capitalize" }}>{r.session}</span>
+                        <span style={{ color: "#555", fontSize: 12 }}>exit code: {r.exit_code}</span>
+                      </div>
+                      <div style={{ color: "#ff8888", fontSize: 12, fontFamily: "monospace", whiteSpace: "pre-wrap", wordBreak: "break-all" }}>
+                        {r.error || "Unknown error"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div style={{ color: "#555", fontSize: 13, letterSpacing: 2, marginBottom: 12 }}>ALL RUNS TODAY</div>
+              <div style={{ background: "#0f0f1a", border: "1px solid #1a1a2e", borderRadius: 8, overflow: "hidden" }}>
+                {todayRuns.length ? (
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+                    <thead>
+                      <tr style={{ color: "#555", fontSize: 11, letterSpacing: 1 }}>
+                        {["SESSION", "STATUS", "STARTED", "DURATION", "EXIT"].map(h => (
+                          <th key={h} style={{ padding: "12px 14px", textAlign: "left", borderBottom: "1px solid #1a1a2e" }}>{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {todayRuns.map((r, i) => (
+                        <tr key={i} style={{ borderBottom: "1px solid #111" }}>
+                          <td style={{ padding: "10px 14px", color: "#fff", textTransform: "capitalize", fontWeight: 600 }}>{r.session}</td>
+                          <td style={{ padding: "10px 14px" }}>
+                            <span style={{
+                              color: statusColor(r.status), fontWeight: 700,
+                              background: `${statusColor(r.status)}15`, padding: "3px 10px", borderRadius: 8, fontSize: 12,
+                            }}>
+                              {statusIcon(r.status)} {r.status}
+                            </span>
+                          </td>
+                          <td style={{ padding: "10px 14px", color: "#888" }}>{fmtTime(r.started_at)}</td>
+                          <td style={{ padding: "10px 14px", color: "#666" }}>{fmtDur(r.started_at, r.finished_at)}</td>
+                          <td style={{ padding: "10px 14px", color: r.exit_code === 0 ? "#00d4aa" : r.exit_code != null ? "#ff4757" : "#555" }}>
+                            {r.exit_code != null ? r.exit_code : "\u2014"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <div style={{ padding: 28, color: "#333", textAlign: "center" }}>No cron runs today yet. Next run at 7:00 AM ET (Mon-Fri).</div>
+                )}
+              </div>
+
+              <div style={{
+                background: "#0f0f1a", border: "1px solid #1a1a2e", borderRadius: 8, padding: 20, marginTop: 16,
+              }}>
+                <div style={{ color: "#555", fontSize: 13, letterSpacing: 2, marginBottom: 10 }}>CRON CONFIGURATION</div>
+                <div style={{ fontFamily: "monospace", fontSize: 13, lineHeight: 2.2, color: "#888" }}>
+                  <div><span style={{ color: "#6366f1" }}>0 11 * * 1-5</span>{"  premarket   "}<span style={{ color: "#555" }}>7:00 AM ET</span></div>
+                  <div><span style={{ color: "#6366f1" }}>30 16 * * 1-5</span>{" midday      "}<span style={{ color: "#555" }}>12:30 PM ET</span></div>
+                  <div><span style={{ color: "#6366f1" }}>45 19 * * 1-5</span>{" closing     "}<span style={{ color: "#555" }}>3:45 PM ET</span></div>
+                </div>
+                <div style={{ color: "#444", fontSize: 11, marginTop: 10 }}>
+                  Server: UTC | Mon-Fri only | Skips weekends + US holidays
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* LOG — PM decisions */}
         {activeTab === "log" && (

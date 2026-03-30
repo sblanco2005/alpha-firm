@@ -172,6 +172,7 @@ export default function InvestmentFirm() {
   const [loading, setLoading] = useState({});
   const [activeTab, setActiveTab] = useState("dashboard");
   const [log, setLog] = useState([]);
+  const [cronStatus, setCronStatus] = useState({ date: null, runs: [], schedule: [] });
   const [initialized, setInitialized] = useState(false);
 
   const addLog = useCallback((msg) => {
@@ -196,6 +197,8 @@ export default function InvestmentFirm() {
       setAgentScores(s);
       setDailyState(d);
       setCurrentRecs(r);
+      const c = await loadState("firm-cron-status", { date: null, runs: [], schedule: [] });
+      setCronStatus(c);
       setInitialized(true);
     })();
   }, []);
@@ -206,6 +209,20 @@ export default function InvestmentFirm() {
   useEffect(() => { if (initialized) saveState("firm-scores", agentScores); }, [agentScores, initialized]);
   useEffect(() => { if (initialized) saveState("firm-daily", dailyState); }, [dailyState, initialized]);
   useEffect(() => { if (initialized) saveState("firm-recs", currentRecs); }, [currentRecs, initialized]);
+  useEffect(() => { if (initialized) saveState("firm-cron-status", cronStatus); }, [cronStatus, initialized]);
+
+  // Poll cron status from filesystem (reads state/cron-status.json via storage)
+  useEffect(() => {
+    if (!initialized) return;
+    const loadCronFromFile = async () => {
+      try {
+        const r = await window.storage.get("firm-cron-status");
+        if (r) setCronStatus(JSON.parse(r.value));
+      } catch {}
+    };
+    const interval = setInterval(loadCronFromFile, 30000); // every 30s
+    return () => clearInterval(interval);
+  }, [initialized]);
 
   // ─── Run single agent ───
   const runAgent = useCallback(async (agent) => {
@@ -389,6 +406,7 @@ Search for the latest market news, prices, and data relevant to your focus area.
     { id: "dashboard", label: "Dashboard", icon: "◉" },
     { id: "agents", label: "Analysts", icon: "👥" },
     { id: "portfolio", label: "Portfolio", icon: "💼" },
+    { id: "cron", label: "Cron Monitor", icon: "⏰" },
     { id: "log", label: "Activity", icon: "📋" },
   ];
 
@@ -750,6 +768,209 @@ Search for the latest market news, prices, and data relevant to your focus area.
             )}
           </div>
         )}
+
+        {/* ═══ CRON MONITOR ═══ */}
+        {activeTab === "cron" && (() => {
+          const SCHEDULE = [
+            { session: "premarket", time: "7:00 AM ET", utc: "11:00 UTC", desc: "Morning pre-market scan" },
+            { session: "midday", time: "12:30 PM ET", utc: "16:30 UTC", desc: "Midday momentum check" },
+            { session: "closing", time: "3:45 PM ET", utc: "19:45 UTC", desc: "Closing bell review" },
+          ];
+          const today = todayStr();
+          const todayRuns = (cronStatus.date === today ? cronStatus.runs : []) || [];
+
+          const getRunForSession = (session) => {
+            const runs = todayRuns.filter((r) => r.session === session);
+            return runs.length ? runs[runs.length - 1] : null;
+          };
+
+          const statusColor = (status) => {
+            if (status === "success") return "#00d4aa";
+            if (status === "failed") return "#ff4757";
+            if (status === "running") return "#f7931a";
+            return "#333";
+          };
+
+          const statusIcon = (status) => {
+            if (status === "success") return "\u2714";
+            if (status === "failed") return "\u2718";
+            if (status === "running") return "\u23F3";
+            return "\u25CB";
+          };
+
+          const formatTime = (iso) => {
+            if (!iso) return "—";
+            try { return new Date(iso).toLocaleTimeString(); } catch { return iso; }
+          };
+
+          const formatDuration = (start, end) => {
+            if (!start || !end) return "—";
+            try {
+              const ms = new Date(end) - new Date(start);
+              if (ms < 60000) return `${Math.round(ms / 1000)}s`;
+              return `${Math.floor(ms / 60000)}m ${Math.round((ms % 60000) / 1000)}s`;
+            } catch { return "—"; }
+          };
+
+          const completedToday = todayRuns.filter((r) => r.status === "success").length;
+          const failedToday = todayRuns.filter((r) => r.status === "failed").length;
+          const runningNow = todayRuns.filter((r) => r.status === "running").length;
+
+          return (
+            <div>
+              {/* Summary cards */}
+              <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginBottom: 24 }}>
+                {[
+                  { label: "SCHEDULED", val: "3 / day", color: "#6366f1" },
+                  { label: "COMPLETED", val: completedToday, color: "#00d4aa" },
+                  { label: "FAILED", val: failedToday, color: failedToday > 0 ? "#ff4757" : "#333" },
+                  { label: "RUNNING", val: runningNow, color: runningNow > 0 ? "#f7931a" : "#333" },
+                ].map((s) => (
+                  <div key={s.label} style={{ background: "#0f0f1a", border: "1px solid #1a1a2e", borderRadius: 8, padding: 16 }}>
+                    <div style={{ color: "#555", fontSize: 10, letterSpacing: 2, marginBottom: 6 }}>{s.label}</div>
+                    <div style={{ color: s.color, fontSize: 22, fontWeight: 700 }}>{s.val}</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Schedule timeline */}
+              <div style={{ color: "#555", fontSize: 10, letterSpacing: 2, marginBottom: 12 }}>TODAY'S SCHEDULE — {today}</div>
+              <div style={{ display: "grid", gap: 8, marginBottom: 24 }}>
+                {SCHEDULE.map((sched) => {
+                  const run = getRunForSession(sched.session);
+                  const status = run ? run.status : "pending";
+                  return (
+                    <div key={sched.session} style={{
+                      background: "#0f0f1a",
+                      border: `1px solid ${status === "failed" ? "#ff475744" : status === "running" ? "#f7931a44" : "#1a1a2e"}`,
+                      borderRadius: 8, padding: "14px 18px",
+                      display: "flex", alignItems: "center", gap: 16,
+                    }}>
+                      {/* Status indicator */}
+                      <div style={{
+                        width: 36, height: 36, borderRadius: "50%",
+                        background: `${statusColor(status)}15`,
+                        border: `2px solid ${statusColor(status)}`,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        fontSize: 16, color: statusColor(status),
+                        animation: status === "running" ? "pulse 2s infinite" : "none",
+                      }}>
+                        {statusIcon(status)}
+                      </div>
+
+                      {/* Info */}
+                      <div style={{ flex: 1 }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                          <span style={{ color: "#fff", fontWeight: 700, fontSize: 13, textTransform: "capitalize" }}>{sched.session}</span>
+                          <span style={{
+                            background: `${statusColor(status)}20`,
+                            color: statusColor(status),
+                            padding: "2px 8px", borderRadius: 10, fontSize: 10, fontWeight: 600,
+                            textTransform: "uppercase", letterSpacing: 1,
+                          }}>
+                            {status}
+                          </span>
+                        </div>
+                        <div style={{ color: "#666", fontSize: 11, marginTop: 4 }}>
+                          {sched.desc} — <span style={{ color: "#888" }}>{sched.time}</span> <span style={{ color: "#444" }}>({sched.utc})</span>
+                        </div>
+                      </div>
+
+                      {/* Timing */}
+                      <div style={{ textAlign: "right", minWidth: 100 }}>
+                        {run ? (
+                          <>
+                            <div style={{ color: "#888", fontSize: 11 }}>
+                              {formatTime(run.started_at)}
+                            </div>
+                            <div style={{ color: "#555", fontSize: 10, marginTop: 2 }}>
+                              {run.finished_at ? formatDuration(run.started_at, run.finished_at) : "in progress..."}
+                            </div>
+                          </>
+                        ) : (
+                          <div style={{ color: "#333", fontSize: 11 }}>not yet</div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Error details */}
+              {todayRuns.filter((r) => r.status === "failed").length > 0 && (
+                <div style={{ marginBottom: 24 }}>
+                  <div style={{ color: "#ff4757", fontSize: 10, letterSpacing: 2, marginBottom: 12 }}>ERRORS</div>
+                  {todayRuns.filter((r) => r.status === "failed").map((r, i) => (
+                    <div key={i} style={{
+                      background: "#1a0a0a", border: "1px solid #331111", borderRadius: 8, padding: 14, marginBottom: 8,
+                    }}>
+                      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 8 }}>
+                        <span style={{ color: "#ff4757", fontWeight: 700, fontSize: 12, textTransform: "capitalize" }}>{r.session}</span>
+                        <span style={{ color: "#555", fontSize: 11 }}>exit code: {r.exit_code}</span>
+                      </div>
+                      <div style={{ color: "#ff8888", fontSize: 11, fontFamily: "monospace", whiteSpace: "pre-wrap", wordBreak: "break-all" }}>
+                        {r.error || "Unknown error"}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Run history */}
+              <div style={{ color: "#555", fontSize: 10, letterSpacing: 2, marginBottom: 12 }}>ALL RUNS TODAY</div>
+              <div style={{ background: "#0f0f1a", border: "1px solid #1a1a2e", borderRadius: 8, overflow: "hidden" }}>
+                {todayRuns.length ? (
+                  <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+                    <thead>
+                      <tr style={{ color: "#555", fontSize: 10, letterSpacing: 1 }}>
+                        {["SESSION", "STATUS", "STARTED", "DURATION", "EXIT"].map((h) => (
+                          <th key={h} style={{ padding: "10px 12px", textAlign: "left", borderBottom: "1px solid #1a1a2e" }}>{h}</th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {todayRuns.map((r, i) => (
+                        <tr key={i} style={{ borderBottom: "1px solid #111" }}>
+                          <td style={{ padding: "8px 12px", color: "#fff", textTransform: "capitalize", fontWeight: 600 }}>{r.session}</td>
+                          <td style={{ padding: "8px 12px" }}>
+                            <span style={{
+                              color: statusColor(r.status), fontWeight: 700,
+                              background: `${statusColor(r.status)}15`, padding: "2px 8px", borderRadius: 8, fontSize: 11,
+                            }}>
+                              {statusIcon(r.status)} {r.status}
+                            </span>
+                          </td>
+                          <td style={{ padding: "8px 12px", color: "#888" }}>{formatTime(r.started_at)}</td>
+                          <td style={{ padding: "8px 12px", color: "#666" }}>{formatDuration(r.started_at, r.finished_at)}</td>
+                          <td style={{ padding: "8px 12px", color: r.exit_code === 0 ? "#00d4aa" : r.exit_code != null ? "#ff4757" : "#555" }}>
+                            {r.exit_code != null ? r.exit_code : "—"}
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <div style={{ padding: 20, color: "#333", textAlign: "center" }}>No cron runs today yet. Next run at 7:00 AM ET.</div>
+                )}
+              </div>
+
+              {/* Cron config info */}
+              <div style={{
+                background: "#0f0f1a", border: "1px solid #1a1a2e", borderRadius: 8, padding: 16, marginTop: 16,
+              }}>
+                <div style={{ color: "#555", fontSize: 10, letterSpacing: 2, marginBottom: 10 }}>CRON CONFIGURATION</div>
+                <div style={{ fontFamily: "monospace", fontSize: 11, lineHeight: 2, color: "#888" }}>
+                  <div><span style={{ color: "#6366f1" }}>0 11 * * 1-5</span>  premarket  <span style={{ color: "#555" }}>  7:00 AM ET</span></div>
+                  <div><span style={{ color: "#6366f1" }}>30 16 * * 1-5</span> midday     <span style={{ color: "#555" }}> 12:30 PM ET</span></div>
+                  <div><span style={{ color: "#6366f1" }}>45 19 * * 1-5</span> closing    <span style={{ color: "#555" }}>  3:45 PM ET</span></div>
+                </div>
+                <div style={{ color: "#444", fontSize: 10, marginTop: 10 }}>
+                  Server: UTC | Mon-Fri only | Skips weekends + US holidays
+                </div>
+              </div>
+            </div>
+          );
+        })()}
 
         {/* ═══ LOG ═══ */}
         {activeTab === "log" && (

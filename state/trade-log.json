@@ -13,6 +13,20 @@
       "agent": "sentiment",
       "thesis": "Extreme fear (F&G 14, VIX >31) + unusual call options volume 68% above avg + 42 analyst Buy ratings avg target $838. Mean-reversion setup ahead of Q1 earnings.",
       "mode": "simulated"
+    },
+    {
+      "id": 2,
+      "date": "2026-03-30",
+      "session": "premarket",
+      "action": "buy",
+      "ticker": "LOAR",
+      "asset_type": "stock",
+      "shares": 29,
+      "price": 67.14,
+      "total_cost": 1947.06,
+      "agent": "sentiment",
+      "thesis": "Triple-signal confluence: $6.46M insider cluster buying in March, Goldman Sachs conviction list add with $98 target, aerospace/defense narrative accelerating (Trump $1T defense budget, European rearmament). Q1 earnings April 6.",
+      "mode": "simulated"
     }
   ],
   "decisions": [
@@ -30,10 +44,55 @@
         "sentiment": {"ticker": "META", "conviction": 8, "considered": true, "rejection_reason": null},
         "contrarian": {"ticker": "U", "conviction": 8, "considered": true, "rejection_reason": "Close second but 13% pop yesterday raises near-term pullback risk"}
       }
+    },
+    {
+      "date": "2026-03-30",
+      "session": "premarket",
+      "decision": "buy",
+      "ticker": "LOAR",
+      "agent": "sentiment",
+      "reasoning": "LOAR scored highest (8.55/10) on PM framework — clear standout 0.6 pts above #2. Triple sentiment signal: $6.46M insider cluster buy + Goldman Sachs conviction list + defense narrative acceleration. Excellent diversification from META into aerospace/defense. Q1 earnings catalyst in 7 days — insiders buying ahead of earnings is the most reliable sentiment signal.",
+      "agents_reviewed": {
+        "macro": {"ticker": "XLE", "conviction": 8, "considered": true, "rejection_reason": "Strong stagflation thesis but already up 21.6% YTD — some chasing risk"},
+        "crypto": {"ticker": "IBIT", "conviction": 8, "considered": true, "rejection_reason": "Good on-chain signals but longer catalyst timeline (45d)"},
+        "quant": {"ticker": "XLB", "conviction": 7, "considered": true, "rejection_reason": "Lowest conviction of the group, technical breakout without fundamental backing"},
+        "sentiment": {"ticker": "LOAR", "conviction": 8, "considered": true, "rejection_reason": null},
+        "contrarian": {"ticker": "MSFT", "conviction": 8, "considered": true, "rejection_reason": "Compelling Azure thesis but same sector as META — poor portfolio diversification"}
+      }
+    },
+    {
+      "date": "2026-03-30",
+      "session": "midday",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Already bought LOAR in premarket session today (daily buy limit reached). XLE was the top-scoring midday pick (8.50/10) with rare cross-agent confirmation from both Macro (conv 9) and Quant (conv 8) on oil surge thesis. NKE and IBIT also strong at 8.00/10. XLE flagged as top candidate for tomorrow's morning session. No sells warranted — META (2 days, thesis intact) and LOAR (entered today, earnings April 6) both hold.",
+      "agents_reviewed": {
+        "macro": {"ticker": "XLE", "conviction": 9, "considered": true, "rejection_reason": "Top pick but daily buy limit reached"},
+        "crypto": {"ticker": "IBIT", "conviction": 8, "considered": true, "rejection_reason": "Daily buy limit reached"},
+        "quant": {"ticker": "XLE", "conviction": 8, "considered": true, "rejection_reason": "Cross-confirms macro thesis; daily buy limit reached"},
+        "sentiment": {"ticker": "CRWD", "conviction": 7, "considered": true, "rejection_reason": "Lowest conviction, tech overlap with META; daily buy limit reached"},
+        "contrarian": {"ticker": "NKE", "conviction": 8, "considered": true, "rejection_reason": "Compelling earnings play but daily buy limit reached; monitor for tomorrow"}
+      }
+    },
+    {
+      "date": "2026-03-30",
+      "session": "closing",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (LOAR bought premarket). XLE remains consensus #1 pick across 3 sessions — Macro (conv 9) + Quant (conv 8) cross-confirmation on oil surge thesis, WTI closing above $102. NKE compelling contrarian play ahead of tomorrow's earnings. ASTS new sentiment pick with April 10 BlueBird-7 catalyst. LOAR ALERT: Market price appears ~$55-57 vs $67.14 entry — significant discrepancy flagged for investigation; thesis (insider buying, Goldman CL, Q1 earnings Apr 6) still intact. META up ~2% from entry, holding well. No sells executed — LOAR price needs verification before action.",
+      "agents_reviewed": {
+        "macro": {"ticker": "XLE", "conviction": 9, "considered": true, "rejection_reason": "Top pick, 3rd consecutive session; daily buy limit reached. Flag as #1 candidate for tomorrow."},
+        "crypto": {"ticker": "IBIT", "conviction": 7, "considered": true, "rejection_reason": "Conviction reduced from 8 due to ETF outflow reversal and Bitfinex long crowding; daily buy limit reached"},
+        "quant": {"ticker": "XLE", "conviction": 8, "considered": true, "rejection_reason": "Cross-confirms macro XLE thesis at $63.24; daily buy limit reached"},
+        "sentiment": {"ticker": "ASTS", "conviction": 8, "considered": true, "rejection_reason": "New name — BlueBird-7 catalyst April 10; daily buy limit reached"},
+        "contrarian": {"ticker": "NKE", "conviction": 8, "considered": true, "rejection_reason": "Earnings tomorrow — binary event; daily buy limit reached. Monitor outcome for potential morning buy."}
+      }
     }
   ],
-  "total_trades": 1,
-  "total_buys": 1,
+  "total_trades": 2,
+  "total_buys": 2,
   "total_sells": 0,
-  "total_passes": 0
+  "total_passes": 2
 }

@@ -1,5 +1,5 @@
 {
-  "cash": 7919.72,
+  "cash": 5972.66,
   "positions": [
     {
       "ticker": "META",
@@ -9,10 +9,19 @@
       "entry_date": "2026-03-28",
       "agent": "sentiment",
       "mode": "simulated"
+    },
+    {
+      "ticker": "LOAR",
+      "asset_type": "stock",
+      "shares": 29,
+      "entry_price": 67.14,
+      "entry_date": "2026-03-30",
+      "agent": "sentiment",
+      "mode": "simulated"
     }
   ],
   "nav": 10000.00,
   "inception_date": "2026-03-28",
-  "last_updated": "2026-03-28T17:37:00",
-  "high_water_mark": 10000.00
+  "last_updated": "2026-03-30T19:45:01Z",
+  "high_water_mark": 10000
 }

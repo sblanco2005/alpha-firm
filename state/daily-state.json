@@ -1,6 +1,6 @@
 {
-  "date": "2026-03-28",
-  "checks": 1,
+  "date": "2026-03-30",
+  "checks": 3,
   "bought": true,
-  "sessions_completed": ["premarket"]
+  "sessions_completed": ["premarket", "midday", "closing"]
 }

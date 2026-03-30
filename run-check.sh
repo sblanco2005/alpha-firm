@@ -85,7 +85,7 @@ log "Pruning memory files older than 5 days..."
 for agent in macro crypto quant sentiment contrarian; do
     MEMORY_DIR="$SCRIPT_DIR/memory/$agent"
     if [ -d "$MEMORY_DIR" ]; then
-        FILE_COUNT=$(ls -1 "$MEMORY_DIR"/*.json 2>/dev/null | wc -l | tr -d ' ')
+        FILE_COUNT=$(ls -1 "$MEMORY_DIR"/*.json 2>/dev/null | wc -l | tr -d ' ' || true)
         if [ "$FILE_COUNT" -gt 5 ]; then
             ls -1t "$MEMORY_DIR"/*.json | tail -n +6 | while read f; do
                 log "  Pruned: $f"
