@@ -168,6 +168,8 @@ export default function App() {
               {[
                 { label: "CASH", val: `$${(portfolio.cash || 0).toFixed(2)}`, color: "#00d4aa" },
                 { label: "POSITIONS", val: (portfolio.positions || []).length, color: "#6366f1" },
+                { label: "SPY BENCHMARK", val: portfolio.spy_return_pct != null ? `${portfolio.spy_return_pct >= 0 ? "+" : ""}${portfolio.spy_return_pct.toFixed(2)}%` : "\u2014", color: "#888" },
+                { label: "ALPHA", val: portfolio.alpha != null ? `${portfolio.alpha >= 0 ? "+" : ""}${portfolio.alpha.toFixed(2)}%` : "\u2014", color: portfolio.alpha >= 0 ? "#00d4aa" : "#ff4757" },
                 { label: "TOTAL TRADES", val: tradeLog.total_trades || 0, color: "#f7931a" },
                 { label: "BEST ANALYST", val: bestAgent ? `${AGENTS.find(a => a.id === bestAgent[0])?.icon || ""} $${(bestAgent[1].total_pnl || 0).toFixed(0)}` : "\u2014", color: "#eab308" },
               ].map((s) => (
@@ -340,6 +342,11 @@ export default function App() {
                 <div style={{ color: "#444", fontSize: 14, marginTop: 8 }}>
                   Inception: {portfolio.inception_date || "N/A"} · HWM: ${(portfolio.high_water_mark || INITIAL_CAPITAL).toFixed(2)}
                 </div>
+                {portfolio.spy_return_pct != null && (
+                  <div style={{ color: "#888", fontSize: 14, marginTop: 4 }}>
+                    SPY: {portfolio.spy_return_pct >= 0 ? "+" : ""}{portfolio.spy_return_pct.toFixed(2)}% · Alpha: <span style={{ color: portfolio.alpha >= 0 ? "#00d4aa" : "#ff4757" }}>{portfolio.alpha >= 0 ? "+" : ""}{portfolio.alpha.toFixed(2)}%</span>
+                  </div>
+                )}
               </div>
               <div style={{ background: "#0f0f1a", border: "1px solid #1a1a2e", borderRadius: 8, padding: 28 }}>
                 <div style={{ color: "#555", fontSize: 13, letterSpacing: 2, marginBottom: 8 }}>ANALYST LEADERBOARD</div>

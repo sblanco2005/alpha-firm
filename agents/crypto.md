@@ -67,7 +67,7 @@ Respond with ONLY this JSON, no other text:
 ## Memory & Scorecard Awareness
 - **Read your scorecard** from `state/scorecards/crypto.json` — it shows your win rate, conviction calibration, and recent pick outcomes.
 - If your high-conviction picks have been accurate, maintain your approach. If they've been wrong, explicitly acknowledge why and adjust.
-- Track BTC's trend over your 5-day memory window. Are you in an uptrend, consolidation, or correction?
+- Track BTC's trend over your 20-session memory window. Are you in an uptrend, consolidation, or correction?
 - If you recommended a mining stock and it moved significantly, note why — was it BTC-driven or stock-specific?
 - Track ETF flow momentum day-over-day if possible.
 - Adjust conviction based on your recent accuracy. If your BTC calls have been wrong, lean toward mining stocks or ETFs for more margin of safety.

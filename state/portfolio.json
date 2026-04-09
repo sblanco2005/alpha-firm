@@ -1,5 +1,5 @@
 {
-  "cash": 5972.66,
+  "cash": 1776.03,
   "positions": [
     {
       "ticker": "META",
@@ -11,17 +11,63 @@
       "mode": "simulated"
     },
     {
-      "ticker": "LOAR",
+      "ticker": "INTU",
       "asset_type": "stock",
-      "shares": 29,
-      "entry_price": 67.14,
-      "entry_date": "2026-03-30",
-      "agent": "sentiment",
+      "shares": 4,
+      "entry_price": 422.69,
+      "entry_date": "2026-03-31",
+      "agent": "contrarian",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "GLD",
+      "asset_type": "etf",
+      "shares": 3,
+      "entry_price": 430.29,
+      "entry_date": "2026-04-01",
+      "agent": "macro",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "ORCL",
+      "asset_type": "stock",
+      "shares": 6,
+      "entry_price": 149.9,
+      "entry_date": "2026-04-02",
+      "agent": "contrarian",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "DAL",
+      "asset_type": "stock",
+      "shares": 14,
+      "entry_price": 65.7,
+      "entry_date": "2026-04-06",
+      "agent": "contrarian",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "DUK",
+      "asset_type": "stock",
+      "shares": 5,
+      "entry_price": 127.92,
+      "entry_date": "2026-04-07",
+      "agent": "quant",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "PINS",
+      "asset_type": "stock",
+      "shares": 24,
+      "entry_price": 18.5,
+      "entry_date": "2026-04-08",
+      "agent": "contrarian",
       "mode": "simulated"
     }
   ],
-  "nav": 10000.00,
+  "nav": 9994.82,
   "inception_date": "2026-03-28",
-  "last_updated": "2026-03-30T19:45:01Z",
-  "high_water_mark": 10000
+  "last_updated": "2026-04-09T11:00:02Z",
+  "high_water_mark": 10243.88,
+  "spy_inception_price": 555.66
 }

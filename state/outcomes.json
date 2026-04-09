@@ -7,7 +7,7 @@
       "session": "premarket",
       "ticker": "GLD",
       "asset_type": "etf",
-      "entry_price": 414.70,
+      "entry_price": 414.7,
       "target_return_pct": 12,
       "horizon_days": 30,
       "conviction": 8,
@@ -15,13 +15,33 @@
       "thesis_summary": "Stagflationary macro regime favors gold; pullback from $5200 highs, Iran conflict driving safe-haven demand",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-05-09", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 414.58,
+          "return_pct": -0.03
+        },
+        "day_5": {
+          "date": "2026-04-04",
+          "price": 429.41,
+          "return_pct": 3.55
+        },
+        "day_10": {
+          "date": "2026-04-11",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-25",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-09",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 3.55,
       "final_verdict": null
     },
     {
@@ -31,7 +51,7 @@
       "session": "premarket",
       "ticker": "IBIT",
       "asset_type": "etf",
-      "entry_price": 37.40,
+      "entry_price": 37.4,
       "target_return_pct": 17,
       "horizon_days": 60,
       "conviction": 7,
@@ -39,13 +59,33 @@
       "thesis_summary": "BTC spot ETF at $66K, institutional inflows reversing, regulatory tailwinds building",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-06-19", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 41.75,
+          "return_pct": 11.63
+        },
+        "day_5": {
+          "date": "2026-04-04",
+          "price": 37.97,
+          "return_pct": 1.52
+        },
+        "day_10": {
+          "date": "2026-04-11",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-25",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-19",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 11.63,
       "final_verdict": null
     },
     {
@@ -63,13 +103,33 @@
       "thesis_summary": "Strongest stock in strongest sector, Morgan Stanley upgrade to $172, Brent at $112, RSI overbought risk",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-04-25", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 170.58,
+          "return_pct": -0.24
+        },
+        "day_5": {
+          "date": "2026-04-04",
+          "price": 160.41,
+          "return_pct": -6.19
+        },
+        "day_10": {
+          "date": "2026-04-11",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-25",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-25",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -0.24,
       "final_verdict": null
     },
     {
@@ -87,13 +147,33 @@
       "thesis_summary": "Extreme fear (F&G 14), unusual call volume 68% above avg, 42 analyst Buy ratings avg target $838",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-05-09", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 536.38,
+          "return_pct": 3.14
+        },
+        "day_5": {
+          "date": "2026-04-04",
+          "price": 582.24,
+          "return_pct": 11.95
+        },
+        "day_10": {
+          "date": "2026-04-11",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-25",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-09",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 11.95,
       "final_verdict": null
     },
     {
@@ -111,13 +191,33 @@
       "thesis_summary": "Unity turnaround under new CEO, Q1 blowout, Vector AI growing 70%, 63% off highs, 8.3% short interest",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-04", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-11", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-25", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-07-24", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 19.36,
+          "return_pct": 0.94
+        },
+        "day_5": {
+          "date": "2026-04-04",
+          "price": 21.96,
+          "return_pct": 14.49
+        },
+        "day_10": {
+          "date": "2026-04-11",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-25",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-24",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 14.49,
       "final_verdict": null
     },
     {
@@ -135,13 +235,33 @@
       "thesis_summary": "WTI closed above $102 for first time since July 2022; Strait of Hormuz closure structural. XLE broke 52-week high. Stagflation-lite regime confirmed across all 3 sessions.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-05-11", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 61.96,
+          "return_pct": -0.96
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 59.25,
+          "return_pct": -5.29
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-11",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -0.96,
       "final_verdict": null
     },
     {
@@ -159,13 +279,33 @@
       "thesis_summary": "IBIT closed +2.7% from premarket. BTC held $67K. Fear & Greed at 8 (extreme fear). ETF outflow of $296M and Bitfinex long crowding reduce conviction from 8 to 7.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-06-01", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 41.75,
+          "return_pct": 8.67
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 37.97,
+          "return_pct": -1.17
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-01",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 8.67,
       "final_verdict": null
     },
     {
@@ -183,13 +323,33 @@
       "thesis_summary": "5-year consolidation breakout with KST buy signal, Materials #2 sector YTD (+17.9%), 3-year relative downtrend break vs S&P 500.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-04-27", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 49.09,
+          "return_pct": -0.41
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 50.41,
+          "return_pct": 2.27
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 2.27,
       "final_verdict": null
     },
     {
@@ -207,13 +367,33 @@
       "thesis_summary": "XLE confirmed 52-week high breakout, closing at $63.24 above $62.79 intraday high. Energy led all sectors as crude surged 3.84% to $103.47/bbl.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-04-20", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 61.96,
+          "return_pct": -2.02
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 59.25,
+          "return_pct": -6.31
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -2.02,
       "final_verdict": null
     },
     {
@@ -231,13 +411,33 @@
       "thesis_summary": "Triple-signal: $6.46M insider cluster buying in March, Goldman Sachs conviction list add ($98 target), aerospace/defense narrative accelerating with Trump $1T defense budget.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-06-01", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 58.71,
+          "return_pct": -12.56
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 57.04,
+          "return_pct": -15.04
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-01",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -12.56,
       "final_verdict": null
     },
     {
@@ -255,13 +455,33 @@
       "thesis_summary": "CrowdStrike dual analyst upgrades today (Wolfe + Morgan Stanley) after 23% drawdown. Fear/Greed at 10, Charlotte AI AgentWorks launch repositions narrative.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-05-18", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 388.1,
+          "return_pct": 5.01
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 399.12,
+          "return_pct": 7.99
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-18",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 7.99,
       "final_verdict": null
     },
     {
@@ -271,7 +491,7 @@
       "session": "closing",
       "ticker": "ASTS",
       "asset_type": "stock",
-      "entry_price": 80.50,
+      "entry_price": 80.5,
       "target_return_pct": 20,
       "horizon_days": 30,
       "conviction": 8,
@@ -279,13 +499,33 @@
       "thesis_summary": "ASTS BlueBird-7 hard launch April 10 catalyst. Retail sentiment surging (Stocktwits volume +343% YoY). 38% below ATH with near-term binary event.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-05-11", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 82.0,
+          "return_pct": 1.86
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 92.27,
+          "return_pct": 14.62
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-11",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 14.62,
       "final_verdict": null
     },
     {
@@ -295,7 +535,7 @@
       "session": "premarket",
       "ticker": "MSFT",
       "asset_type": "stock",
-      "entry_price": 359.40,
+      "entry_price": 359.4,
       "target_return_pct": 35,
       "horizon_days": 60,
       "conviction": 8,
@@ -303,13 +543,33 @@
       "thesis_summary": "Market punishing MSFT for temporary Azure supply constraint, not demand destruction. 22x forward PE cheapest since 2023, 53/53 analysts Buy at $593 avg target.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-06-22", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 358.44,
+          "return_pct": -0.27
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 373.4,
+          "return_pct": 3.9
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-22",
+          "price": null,
+          "return_pct": null
+        }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 3.9,
       "final_verdict": null
     },
     {
@@ -319,7 +579,7 @@
       "session": "closing",
       "ticker": "NKE",
       "asset_type": "stock",
-      "entry_price": 51.20,
+      "entry_price": 51.2,
       "target_return_pct": 22,
       "horizon_days": 60,
       "conviction": 8,
@@ -327,15 +587,3247 @@
       "thesis_summary": "Nike at 9-year low of $51 ahead of Q3 earnings tomorrow. Bar catastrophically low (EPS $0.28 consensus). CEO Hill turnaround showing traction. Insiders buying. Options pricing 8.6% move.",
       "status": "tracking",
       "checkpoints": {
-        "day_1":  { "date": "2026-03-31", "price": null, "return_pct": null },
-        "day_5":  { "date": "2026-04-06", "price": null, "return_pct": null },
-        "day_10": { "date": "2026-04-13", "price": null, "return_pct": null },
-        "day_20": { "date": "2026-04-27", "price": null, "return_pct": null },
-        "horizon": { "date": "2026-06-22", "price": null, "return_pct": null }
+        "day_1": {
+          "date": "2026-03-31",
+          "price": 51.5,
+          "return_pct": 0.59
+        },
+        "day_5": {
+          "date": "2026-04-06",
+          "price": 44.19,
+          "return_pct": -13.69
+        },
+        "day_10": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-22",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.59,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-03-31",
+      "agent_id": "macro",
+      "date": "2026-03-31",
+      "session": "premarket",
+      "ticker": "XLE",
+      "asset_type": "etf",
+      "entry_price": 61.96,
+      "target_return_pct": 10,
+      "horizon_days": 20,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Stagflation-lite deepening: Fed held 3.5-3.75%, Hormuz structurally disrupted, WTI $102-103. XLE pulling back -0.96% from 52-week high \u2014 constructive consolidation. Q1 energy earnings in April.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-01",
+          "price": 61.53,
+          "return_pct": -0.69
+        },
+        "day_5": {
+          "date": "2026-04-07",
+          "price": 59.68,
+          "return_pct": -3.68
+        },
+        "day_10": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.69,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-03-31",
+      "agent_id": "crypto",
+      "date": "2026-03-31",
+      "session": "closing",
+      "ticker": "IBIT",
+      "asset_type": "etf",
+      "entry_price": 38.0,
+      "target_return_pct": 15,
+      "horizon_days": 45,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Q1 quarter-end rebalancing clears today. IBIT deeply discounted from $71.82 ATH. 5 on-chain bottom signals active. Fear & Greed at 11 historically preceded +18.3% 30-day returns.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-01",
+          "price": 38.3,
+          "return_pct": 0.79
+        },
+        "day_5": {
+          "date": "2026-04-07",
+          "price": 39.52,
+          "return_pct": 4.0
+        },
+        "day_10": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-02",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 4.0,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-03-31",
+      "agent_id": "quant",
+      "date": "2026-03-31",
+      "session": "closing",
+      "ticker": "ETR",
+      "asset_type": "stock",
+      "entry_price": 111.06,
+      "target_return_pct": 8,
+      "horizon_days": 15,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "ETR testing 52-week high ($111.99) for 3rd session. Strong relative strength in risk-off tape (S&P -0.7%, Nasdaq -1.1%). Breakout above $112 opens path to $120 target.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-01",
+          "price": 111.06,
+          "return_pct": 0.0
+        },
+        "day_5": {
+          "date": "2026-04-07",
+          "price": 114.9,
+          "return_pct": 3.46
+        },
+        "day_10": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 3.46,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-03-31",
+      "agent_id": "sentiment",
+      "date": "2026-03-31",
+      "session": "premarket",
+      "ticker": "ASTS",
+      "asset_type": "stock",
+      "entry_price": 82.0,
+      "target_return_pct": 15,
+      "horizon_days": 14,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "BlueBird-7 launch April 10 (10 days away), ~37% below ATH. WSB voted #1 pick for 2026. Extreme Fear backdrop creates contrarian entry for binary catalyst.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-01",
+          "price": 83.69,
+          "return_pct": 2.06
+        },
+        "day_5": {
+          "date": "2026-04-07",
+          "price": 97.9,
+          "return_pct": 19.39
+        },
+        "day_10": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 19.39,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-03-31",
+      "agent_id": "contrarian",
+      "date": "2026-03-31",
+      "session": "premarket",
+      "ticker": "INTU",
+      "asset_type": "stock",
+      "entry_price": 422.69,
+      "target_return_pct": 30,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": true,
+      "thesis_summary": "AI fear overdone \u2014 Intuit revenue grew 41%, Q1/Q2 FY26 beat consensus. CFO terminated 10b5-1 sales, $3.5B buyback signals confidence. April 15 tax deadline + Q3 earnings catalysts.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-01",
+          "price": 429.8,
+          "return_pct": 1.68
+        },
+        "day_5": {
+          "date": "2026-04-07",
+          "price": 417.36,
+          "return_pct": -1.26
+        },
+        "day_10": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-22",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.68,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-03-31-closing",
+      "agent_id": "macro",
+      "date": "2026-03-31",
+      "session": "closing",
+      "ticker": "GLD",
+      "asset_type": "etf",
+      "entry_price": 428.09,
+      "target_return_pct": 10,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Gold is the premier stagflation/geopolitical hedge. 10Y yields snapped back to 4.43%, WTI held $102 despite Iran deal rumors. GLD at $428 sits at intersection of inflation + geopolitical risk premium.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-01",
+          "price": 430.29,
+          "return_pct": 0.51
+        },
+        "day_5": {
+          "date": "2026-04-07",
+          "price": 428.82,
+          "return_pct": 0.17
+        },
+        "day_10": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-12",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.51,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-03-31-closing",
+      "agent_id": "sentiment",
+      "date": "2026-03-31",
+      "session": "closing",
+      "ticker": "MU",
+      "asset_type": "stock",
+      "entry_price": 329.92,
+      "target_return_pct": 20,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "MU crashed 30% from post-earnings peak despite record Q2 ($23.86B revenue, EPS $12.20, +682% YoY). WSB mentions surged 344%. Fear & Greed at 9 \u2014 classic sentiment washout before reversal.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-01",
+          "price": 323.59,
+          "return_pct": -1.92
+        },
+        "day_5": {
+          "date": "2026-04-07",
+          "price": 379.35,
+          "return_pct": 14.98
+        },
+        "day_10": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-12",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 14.98,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-03-31-closing",
+      "agent_id": "contrarian",
+      "date": "2026-03-31",
+      "session": "closing",
+      "ticker": "NKE",
+      "asset_type": "stock",
+      "entry_price": 51.39,
+      "target_return_pct": 37,
+      "horizon_days": 90,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "Nike Q3 confirmed turnaround: NA sales +6% (first positive in 8 quarters), revenue $12.4B beat $11.24B consensus. Market reaction muted (+0.85% AH). Elliott Hill 'Sport Offense' delivering. Running +20%, wholesale +8%.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-01",
+          "price": 48.03,
+          "return_pct": -6.53
+        },
+        "day_5": {
+          "date": "2026-04-07",
+          "price": 44.19,
+          "return_pct": -14.01
+        },
+        "day_10": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-08-04",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -6.53,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-01",
+      "agent_id": "macro",
+      "date": "2026-04-01",
+      "session": "premarket",
+      "ticker": "GLD",
+      "asset_type": "etf",
+      "entry_price": 430.29,
+      "target_return_pct": 12,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": true,
+      "thesis_summary": "Gold structural breakout: DXY broke below 100 (99.82), central bank buying 1000+ tonnes/yr, Trump Iran address tonight as binary catalyst. All-weather macro trade that wins in both peace and escalation scenarios.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 437.82,
+          "return_pct": 1.75
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 431.81,
+          "return_pct": 0.35
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-13",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.75,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-01",
+      "agent_id": "crypto",
+      "date": "2026-04-01",
+      "session": "closing",
+      "ticker": "MSTR",
+      "asset_type": "stock",
+      "entry_price": 123.15,
+      "target_return_pct": 20,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "MSTR closes at $123.15, -1.32% while BTC gained +2.7% \u2014 widening NAV discount to 0.71x. Holds 712,647 BTC (~$48.8B) vs $42.56B market cap. Best crypto risk/reward at the close.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 126.12,
+          "return_pct": 2.41
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 123.72,
+          "return_pct": 0.46
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-13",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 2.41,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-01",
+      "agent_id": "quant",
+      "date": "2026-04-01",
+      "session": "closing",
+      "ticker": "GDXJ",
+      "asset_type": "etf",
+      "entry_price": 125.01,
+      "target_return_pct": 25,
+      "horizon_days": 15,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "GDXJ confirmed breakout at $125.01, +4.14% on 72% above-average volume. GDX +4.36% confirms sector-wide momentum. RSI recovering from oversold with 52-week high at $157.49.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 126.58,
+          "return_pct": 1.26
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 122.91,
+          "return_pct": -1.68
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.26,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-01",
+      "agent_id": "sentiment",
+      "date": "2026-04-01",
+      "session": "premarket",
+      "ticker": "ASTS",
+      "asset_type": "stock",
+      "entry_price": 83.69,
+      "target_return_pct": 15,
+      "horizon_days": 14,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "ASTS BlueBird-7 launch in 9 days (April 10), TELUS equity partnership announced, WSB #1 pick 2026, Fear & Greed at 15. Multi-signal sentiment convergence with hard binary catalyst.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 84.04,
+          "return_pct": 0.42
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 94.81,
+          "return_pct": 13.29
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 13.29,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-01",
+      "agent_id": "contrarian",
+      "date": "2026-04-01",
+      "session": "premarket",
+      "ticker": "TEAM",
+      "asset_type": "stock",
+      "entry_price": 74.75,
+      "target_return_pct": 45,
+      "horizon_days": 70,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Atlassian down 72% from high but business accelerating: revenue +23%, cloud +26%, RPO +44%. AI disruption fear overdone. Q3 earnings April 30 as forcing function. 25 Buy ratings, median $152 target (103% upside).",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 74.75,
+          "return_pct": 0.0
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 68.09,
+          "return_pct": -8.91
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-01",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -8.91,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-01-midday",
+      "agent_id": "macro",
+      "date": "2026-04-01",
+      "session": "midday",
+      "ticker": "GLD",
+      "asset_type": "etf",
+      "entry_price": 438.65,
+      "target_return_pct": 10,
+      "horizon_days": 30,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Gold structural breakout accelerating \u2014 spot gold surged to $4,747, DXY broke below 99.40. Trump Iran address tonight binary catalyst.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 437.82,
+          "return_pct": -0.19
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 431.81,
+          "return_pct": -1.56
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-13",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.19,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-01-midday",
+      "agent_id": "quant",
+      "date": "2026-04-01",
+      "session": "midday",
+      "ticker": "AVGO",
+      "asset_type": "stock",
+      "entry_price": 309.51,
+      "target_return_pct": 8,
+      "horizon_days": 12,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Broadcom surging +3.10% as semiconductors lead rally (SMH +5.76%). RSI 50 with room to run, approaching 50-DMA at $332.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 313.49,
+          "return_pct": 1.29
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 333.97,
+          "return_pct": 7.9
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-17",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 7.9,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-01-midday",
+      "agent_id": "sentiment",
+      "date": "2026-04-01",
+      "session": "midday",
+      "ticker": "RKLB",
+      "asset_type": "stock",
+      "entry_price": 62.0,
+      "target_return_pct": 15,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Rocket Lab WSB #2 pick for 2026, sentiment score 73. F&G 15 creates contrarian window. Revenue +57% YoY guided, Neutron launch mid-2026.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 66.55,
+          "return_pct": 7.34
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 66.32,
+          "return_pct": 6.97
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-13",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 7.34,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-01-midday",
+      "agent_id": "contrarian",
+      "date": "2026-04-01",
+      "session": "midday",
+      "ticker": "PYPL",
+      "asset_type": "stock",
+      "entry_price": 44.01,
+      "target_return_pct": 30,
+      "horizon_days": 90,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "PayPal at $44 is CEO-transition panic overreaction. Venmo revenue grew 20%, cross-border launched to 90 markets, net income +28% YoY. ~10x earnings on $33B revenue fintech.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 44.86,
+          "return_pct": 1.93
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 44.87,
+          "return_pct": 1.95
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-08-05",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.95,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-01-closing",
+      "agent_id": "macro",
+      "date": "2026-04-01",
+      "session": "closing",
+      "ticker": "SLV",
+      "asset_type": "etf",
+      "entry_price": 68.07,
+      "target_return_pct": 15,
+      "horizon_days": 21,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Silver catch-up to gold: SLV surged +7.2% as gold-silver ratio compresses from 100x+ to 64x. Dual structural tailwinds \u2014 stagflation safe-haven plus industrial demand.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 68.12,
+          "return_pct": 0.07
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 65.94,
+          "return_pct": -3.13
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.07,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-01-closing",
+      "agent_id": "sentiment",
+      "date": "2026-04-01",
+      "session": "closing",
+      "ticker": "MU",
+      "asset_type": "stock",
+      "entry_price": 329.92,
+      "target_return_pct": 15,
+      "horizon_days": 21,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "MU post-earnings dip: WSB mentions +344% in 24hrs, -9.92% selloff despite $23.86B revenue beat. 94% analyst bullish, $550 consensus PT. Extreme Fear backdrop.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 340.0,
+          "return_pct": 3.06
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 377.58,
+          "return_pct": 14.45
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 14.45,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-01-closing",
+      "agent_id": "contrarian",
+      "date": "2026-04-01",
+      "session": "closing",
+      "ticker": "NKE",
+      "asset_type": "stock",
+      "entry_price": 48.03,
+      "target_return_pct": 35,
+      "horizon_days": 90,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Nike at 9-year low $48 post-Q3 earnings crash despite NA +6% turnaround. Soft Q4 guidance fully priced. FIFA World Cup 2026 catalyst. 15 Buy ratings, avg target $73.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-02",
+          "price": 44.63,
+          "return_pct": -7.08
+        },
+        "day_5": {
+          "date": "2026-04-08",
+          "price": 42.69,
+          "return_pct": -11.12
+        },
+        "day_10": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-08-05",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -7.08,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-02",
+      "agent_id": "macro",
+      "date": "2026-04-02",
+      "session": "closing",
+      "ticker": "XLE",
+      "asset_type": "etf",
+      "entry_price": 58.71,
+      "target_return_pct": 12,
+      "horizon_days": 14,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "WTI crude surged 6% to $105.57 yet XLE fell to $58.71, creating widening crude-to-equity divergence. April 6 Hormuz deadline is binary catalyst.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-03",
+          "price": 59.25,
+          "return_pct": 0.92
+        },
+        "day_5": {
+          "date": "2026-04-09",
+          "price": 58.05,
+          "return_pct": -1.12
+        },
+        "day_10": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.92,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-02",
+      "agent_id": "crypto",
+      "date": "2026-04-02",
+      "session": "premarket",
+      "ticker": "MSTR",
+      "asset_type": "stock",
+      "entry_price": 121.44,
+      "target_return_pct": 13,
+      "horizon_days": 35,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "BTC pulled back to ~$66,200 on Iran re-escalation but on-chain fundamentals remain bullish: exchange supply at 2018 lows, long-term holders 78% of supply.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-03",
+          "price": 120.23,
+          "return_pct": -1
+        },
+        "day_5": {
+          "date": "2026-04-09",
+          "price": 131.0,
+          "return_pct": 7.87
+        },
+        "day_10": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-21",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 7.87,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-02",
+      "agent_id": "quant",
+      "date": "2026-04-02",
+      "session": "premarket",
+      "ticker": "GDXJ",
+      "asset_type": "etf",
+      "entry_price": 123.77,
+      "target_return_pct": 6,
+      "horizon_days": 12,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "GDXJ junior gold miners in confirmed momentum regime \u2014 gold hit record $4,796/oz today, RSI 39 offering oversold entry into breakout territory.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-03",
+          "price": 122.19,
+          "return_pct": -1.28
+        },
+        "day_5": {
+          "date": "2026-04-09",
+          "price": 131.5,
+          "return_pct": 6.25
+        },
+        "day_10": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 6.25,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-02",
+      "agent_id": "sentiment",
+      "date": "2026-04-02",
+      "session": "closing",
+      "ticker": "RKLB",
+      "asset_type": "stock",
+      "entry_price": 66.55,
+      "target_return_pct": 20,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "RKLB remains #1 WSB trending ticker with 164% mention surge, reinforced by closing Iran war escalation narrative. Fear & Greed at 16 creates coiled-spring setup.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-03",
+          "price": 67.73,
+          "return_pct": 1.77
+        },
+        "day_5": {
+          "date": "2026-04-09",
+          "price": 64.22,
+          "return_pct": -3.5
+        },
+        "day_10": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-14",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.77,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-02",
+      "agent_id": "contrarian",
+      "date": "2026-04-02",
+      "session": "premarket",
+      "ticker": "ORCL",
+      "asset_type": "stock",
+      "entry_price": 149.9,
+      "target_return_pct": 40,
+      "horizon_days": 90,
+      "conviction": 8,
+      "was_executed": true,
+      "thesis_summary": "Oracle down 57% from highs, market conflating capex spend with permanent impairment. 84% OCI growth, $553B RPO backlog, layoff-driven FCF inflection.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-03",
+          "price": 146.38,
+          "return_pct": -2.35
+        },
+        "day_5": {
+          "date": "2026-04-09",
+          "price": 143.94,
+          "return_pct": -3.98
+        },
+        "day_10": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-08-06",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -2.35,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-02-closing",
+      "agent_id": "crypto",
+      "date": "2026-04-02",
+      "session": "closing",
+      "ticker": "IBIT",
+      "asset_type": "etf",
+      "entry_price": 38.48,
+      "target_return_pct": 15,
+      "horizon_days": 45,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "BTC on-chain deeply bullish despite Liberation Day tariff shock: exchange supply at 5.88% (7-year low), whales accumulated 91K BTC in 90 days.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-03",
+          "price": 37.97,
+          "return_pct": -1.33
+        },
+        "day_5": {
+          "date": "2026-04-09",
+          "price": 40.5,
+          "return_pct": 5.25
+        },
+        "day_10": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-04",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 5.25,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-02-closing",
+      "agent_id": "quant",
+      "date": "2026-04-02",
+      "session": "closing",
+      "ticker": "WMT",
+      "asset_type": "stock",
+      "entry_price": 124.74,
+      "target_return_pct": 8,
+      "horizon_days": 18,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Walmart is the top relative strength leader in 2026 defensive rotation, up 13.7% YTD while S&P flat. Breaking above $124.27 resistance with MACD buy signal.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-03",
+          "price": 125.79,
+          "return_pct": 0.84
+        },
+        "day_5": {
+          "date": "2026-04-09",
+          "price": 125.46,
+          "return_pct": 0.58
+        },
+        "day_10": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.84,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-02-closing",
+      "agent_id": "contrarian",
+      "date": "2026-04-02",
+      "session": "closing",
+      "ticker": "ADBE",
+      "asset_type": "stock",
+      "entry_price": 241.37,
+      "target_return_pct": 30,
+      "horizon_days": 60,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "Adobe plunged 30% since January despite posting Q1 revenue $6.4B (+11% YoY), $10.3B TTM FCF, and Firefly AI ARR tripling. CEO departure panic overreaction.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-03",
+          "price": 242.92,
+          "return_pct": 0.64
+        },
+        "day_5": {
+          "date": "2026-04-09",
+          "price": 243.5,
+          "return_pct": 0.88
+        },
+        "day_10": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-25",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.88,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-06",
+      "agent_id": "macro",
+      "date": "2026-04-06",
+      "session": "midday",
+      "ticker": "BNO",
+      "asset_type": "etf",
+      "entry_price": 54.43,
+      "target_return_pct": 10,
+      "horizon_days": 5,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "Hormuz crisis intensifying: Iran rejected ceasefire, Trump extended deadline to Tuesday with strike threats.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 54.45,
+          "return_pct": 0.04
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.04,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-06",
+      "agent_id": "crypto",
+      "date": "2026-04-06",
+      "session": "premarket",
+      "ticker": "MARA",
+      "asset_type": "stock",
+      "entry_price": 17.25,
+      "target_return_pct": 27,
+      "horizon_days": 35,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "MARA received JPMorgan Overweight upgrade (PT $22), on-chain data confirms miner capitulation ending with hashrate down 22%.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 8.78,
+          "return_pct": -49.1
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-25",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -49.1,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-06",
+      "agent_id": "quant",
+      "date": "2026-04-06",
+      "session": "premarket",
+      "ticker": "COST",
+      "asset_type": "stock",
+      "entry_price": 1010.05,
+      "target_return_pct": 6,
+      "horizon_days": 12,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Costco is #1 relative strength leader in Great Rotation \u2014 +18.8% YTD, near 52-week high, defensive rotation accelerating.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 1017.07,
+          "return_pct": 0.7
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.7,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-06",
+      "agent_id": "sentiment",
+      "date": "2026-04-06",
+      "session": "midday",
+      "ticker": "ASTS",
+      "asset_type": "stock",
+      "entry_price": 97.9,
+      "target_return_pct": 12,
+      "horizon_days": 14,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "ASTS up 5.7% midday, VIX collapsed from 44 to 24.54 on Muscat Protocol, BlueBird-7 launch April 10 is 4 days out.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 97.9,
+          "return_pct": 0.0
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-24",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.0,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-06",
+      "agent_id": "contrarian",
+      "date": "2026-04-06",
+      "session": "premarket",
+      "ticker": "DAL",
+      "asset_type": "stock",
+      "entry_price": 65.7,
+      "target_return_pct": 22,
+      "horizon_days": 45,
+      "conviction": 8,
+      "was_executed": true,
+      "thesis_summary": "Delta down ~18% this month on tariff/fuel fears but consensus wrong \u2014 Q1 revenue guidance raised to $15B+, P/E 7.7, earnings April 8.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 67.19,
+          "return_pct": 2.27
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-08",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 2.27,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-06-midday",
+      "agent_id": "crypto",
+      "date": "2026-04-06",
+      "session": "midday",
+      "ticker": "IBIT",
+      "asset_type": "etf",
+      "entry_price": 37.97,
+      "target_return_pct": 8,
+      "horizon_days": 30,
+      "conviction": 6,
+      "was_executed": false,
+      "thesis_summary": "BTC rallying 3-4% to ~$69,700 on Iran ceasefire hopes and $270M short squeeze, reclaiming $69K level.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 39.52,
+          "return_pct": 4.08
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-18",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 4.08,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-06-midday",
+      "agent_id": "quant",
+      "date": "2026-04-06",
+      "session": "midday",
+      "ticker": "SNX",
+      "asset_type": "stock",
+      "entry_price": 190.91,
+      "target_return_pct": 9,
+      "horizon_days": 15,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "TD SYNNEX near 52-week high after blowout Q1 earnings beat, Goldman PT $205, ex-dividend April 15.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 193.11,
+          "return_pct": 1.15
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.15,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-06-midday",
+      "agent_id": "contrarian",
+      "date": "2026-04-06",
+      "session": "midday",
+      "ticker": "RDDT",
+      "asset_type": "stock",
+      "entry_price": 139.16,
+      "target_return_pct": 30,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Reddit down 50% from $283 high despite 70% YoY revenue growth, $530M net income, $1B buyback.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 138.34,
+          "return_pct": -0.59
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-29",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.59,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-06-closing",
+      "agent_id": "macro",
+      "date": "2026-04-06",
+      "session": "closing",
+      "ticker": "BNO",
+      "asset_type": "etf",
+      "entry_price": 54.7,
+      "target_return_pct": 10,
+      "horizon_days": 7,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "Hormuz crisis intensifying into Tuesday deadline: Israel struck South Pars, Iran threatens Bab al-Mandeb closure, rejected ceasefire.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 54.45,
+          "return_pct": -0.46
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.46,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-06-closing",
+      "agent_id": "crypto",
+      "date": "2026-04-06",
+      "session": "closing",
+      "ticker": "MSTR",
+      "asset_type": "stock",
+      "entry_price": 127.27,
+      "target_return_pct": 15,
+      "horizon_days": 30,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "MSTR rallying 6.2% as BTC surges toward $70K; Saylor purchased 4,871 BTC at ~$67.7K avg, bringing holdings to 766,970 BTC.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 126.49,
+          "return_pct": -0.61
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-18",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.61,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-06-closing",
+      "agent_id": "quant",
+      "date": "2026-04-06",
+      "session": "closing",
+      "ticker": "MRVL",
+      "asset_type": "stock",
+      "entry_price": 109.4,
+      "target_return_pct": 7,
+      "horizon_days": 15,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "MRVL at $109.40, 2.2% below 52-week high with +2.14% momentum. Nvidia $2B investment catalyst, 32-analyst Strong Buy.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 87.7,
+          "return_pct": -19.84
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -19.84,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-06-closing",
+      "agent_id": "sentiment",
+      "date": "2026-04-06",
+      "session": "closing",
+      "ticker": "ASTS",
+      "asset_type": "stock",
+      "entry_price": 95.44,
+      "target_return_pct": 15,
+      "horizon_days": 10,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "ASTS closing up 3% to $95.44 on steady accumulation. BlueBird-7 launch 4 days away. WSB #3 pick, analyst PTs $108-$139.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 97.9,
+          "return_pct": 2.58
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 2.58,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-06-closing",
+      "agent_id": "contrarian",
+      "date": "2026-04-06",
+      "session": "closing",
+      "ticker": "NKE",
+      "asset_type": "stock",
+      "entry_price": 44.19,
+      "target_return_pct": 30,
+      "horizon_days": 60,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "Nike most oversold stock, RSI in teens, at $44.19 near 2018 levels. Q3 earnings beat, wholesale +5% YoY, 17.5x fwd P/E, 3.7% div yield.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-07",
+          "price": 44.19,
+          "return_pct": 0.0
+        },
+        "day_5": {
+          "date": "2026-04-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-20",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-04",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-29",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.0,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-07",
+      "agent_id": "macro",
+      "date": "2026-04-07",
+      "session": "premarket",
+      "ticker": "BNO",
+      "asset_type": "etf",
+      "entry_price": 55.05,
+      "target_return_pct": 15,
+      "horizon_days": 14,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Trump's 8pm ET April 7 deadline for Iran to reopen Hormuz expires tonight. Iran rejected 45-day ceasefire. Brent at $111, risk of escalation-driven spike to $130-140.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 54.67,
+          "return_pct": -0.69
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.69,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-07",
+      "agent_id": "crypto",
+      "date": "2026-04-07",
+      "session": "premarket",
+      "ticker": "CIFR",
+      "asset_type": "stock",
+      "entry_price": 12.02,
+      "target_return_pct": 20,
+      "horizon_days": 35,
+      "conviction": 6,
+      "was_executed": false,
+      "thesis_summary": "Cipher Digital (CIFR) JPMorgan Overweight-rated BTC miner pivoting to AI/HPC data centers with $23.45 PT (~48% upside). April 6 BTC ETF inflows of $471M snapped 5-week outflow streak.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 14.01,
+          "return_pct": 16.56
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-26",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 16.56,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-07",
+      "agent_id": "quant",
+      "date": "2026-04-07",
+      "session": "premarket",
+      "ticker": "DUK",
+      "asset_type": "stock",
+      "entry_price": 127.92,
+      "target_return_pct": 7,
+      "horizon_days": 15,
+      "conviction": 8,
+      "was_executed": true,
+      "thesis_summary": "Duke Energy is the cleanest momentum leader in defensive rotation: up 12% YTD, Strong Buy across MAs, MACD positive, RSI mid-range. April 8 tariffs accelerate defensive bid.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 132.85,
+          "return_pct": 3.85
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-28",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 3.85,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-07",
+      "agent_id": "sentiment",
+      "date": "2026-04-07",
+      "session": "premarket",
+      "ticker": "NBIS",
+      "asset_type": "stock",
+      "entry_price": 112.0,
+      "target_return_pct": 25,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Nebius Group (NBIS) sentiment-price dislocation: Reddit panic-sold after supply-constrained earnings miss, sentiment recovered from 35 to 72 but stock still 29% below $157 analyst consensus.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 117.4,
+          "return_pct": 4.82
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-19",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 4.82,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-07",
+      "agent_id": "contrarian",
+      "date": "2026-04-07",
+      "session": "premarket",
+      "ticker": "MDB",
+      "asset_type": "stock",
+      "entry_price": 252.16,
+      "target_return_pct": 35,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "MongoDB down 43% from high after guidance reset. Consumption timing issue, not structural. Revenue grew 22.8% to $2.46B, Atlas 75% of revenue +24% YoY, 29/32 analysts Buy at $354-433.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 255.01,
+          "return_pct": 1.13
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-30",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.13,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-07-midday",
+      "agent_id": "macro",
+      "date": "2026-04-07",
+      "session": "midday",
+      "ticker": "GLD",
+      "asset_type": "etf",
+      "entry_price": 427.83,
+      "target_return_pct": 5,
+      "horizon_days": 14,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Hormuz deadline tonight with no deal \u2014 gold consolidating before breakout on maximum geopolitical escalation.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 431.81,
+          "return_pct": 0.93
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.93,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-07-midday",
+      "agent_id": "crypto",
+      "date": "2026-04-07",
+      "session": "midday",
+      "ticker": "RIOT",
+      "asset_type": "stock",
+      "entry_price": 13.88,
+      "target_return_pct": 25,
+      "horizon_days": 45,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Riot Platforms pivoting to AI/HPC data centers via AMD lease \u2014 $311M contract generating 2.5x mining margins.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 13.52,
+          "return_pct": -2.59
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-09",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -2.59,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-07-midday",
+      "agent_id": "quant",
+      "date": "2026-04-07",
+      "session": "midday",
+      "ticker": "AVGO",
+      "asset_type": "stock",
+      "entry_price": 328.39,
+      "target_return_pct": 15,
+      "horizon_days": 20,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "AVGO reclaiming 200-day SMA on Google TPU + Anthropic AI chip supply deal through 2031.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 333.97,
+          "return_pct": 1.7
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.7,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-07-midday",
+      "agent_id": "sentiment",
+      "date": "2026-04-07",
+      "session": "midday",
+      "ticker": "NCLH",
+      "asset_type": "stock",
+      "entry_price": 18.36,
+      "target_return_pct": 15,
+      "horizon_days": 21,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Norwegian Cruise Line down 5.24% on Iran fears \u2014 peak fear pricing on binary ceasefire event with asymmetric upside.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 19.68,
+          "return_pct": 7.19
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 7.19,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-07-midday",
+      "agent_id": "contrarian",
+      "date": "2026-04-07",
+      "session": "midday",
+      "ticker": "PINS",
+      "asset_type": "stock",
+      "entry_price": 18.22,
+      "target_return_pct": 25,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Pinterest down 54% from highs \u2014 Elliott Management $1B stake at $22.72 conversion price + $3.5B buyback creates asymmetric setup.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 18.25,
+          "return_pct": 0.16
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-30",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.16,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-07-closing",
+      "agent_id": "macro",
+      "date": "2026-04-07",
+      "session": "closing",
+      "ticker": "BNO",
+      "asset_type": "etf",
+      "entry_price": 54.67,
+      "target_return_pct": 15,
+      "horizon_days": 14,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "US struck 50+ targets on Kharg Island ahead of 8pm ET deadline \u2014 Iran halted talks, IRGC threatened to deprive region of oil for years.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 54.67,
+          "return_pct": 0.0
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-27",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.0,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-07-closing",
+      "agent_id": "crypto",
+      "date": "2026-04-07",
+      "session": "closing",
+      "ticker": "CIFR",
+      "asset_type": "stock",
+      "entry_price": 16.5,
+      "target_return_pct": 15,
+      "horizon_days": 30,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Cipher Digital executing HPC/AI pivot with 410 MW hyperscaler capacity \u2014 JPMorgan Overweight with $18 target, 43% upside to consensus.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 14.01,
+          "return_pct": -15.09
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-19",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -15.09,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-07-closing",
+      "agent_id": "quant",
+      "date": "2026-04-07",
+      "session": "closing",
+      "ticker": "OXY",
+      "asset_type": "stock",
+      "entry_price": 62.97,
+      "target_return_pct": 16,
+      "horizon_days": 20,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "OXY cleanest oil proxy in S&P 500 \u2014 up 58.8% YTD, Morgan Stanley $73 target, RSI not overbought unlike XOM.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 62.93,
+          "return_pct": -0.06
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.06,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-07-closing",
+      "agent_id": "sentiment",
+      "date": "2026-04-07",
+      "session": "closing",
+      "ticker": "UNH",
+      "asset_type": "stock",
+      "entry_price": 307.17,
+      "target_return_pct": 18,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "UNH surged +9% on CMS Medicare Advantage +2.48% rate hike \u2014 WSB mentions +1471%, 77% positive sentiment, $70 below analyst target.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 307.73,
+          "return_pct": 0.18
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-19",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.18,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-07-closing",
+      "agent_id": "contrarian",
+      "date": "2026-04-07",
+      "session": "closing",
+      "ticker": "MSFT",
+      "asset_type": "stock",
+      "entry_price": 371.48,
+      "target_return_pct": 25,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "MSFT down 31.7% from ATH at decade-low 22x P/E \u2014 Azure 39% growth, earnings April 28, median analyst target $600.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-08",
+          "price": 375.82,
+          "return_pct": 1.17
+        },
+        "day_5": {
+          "date": "2026-04-14",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-21",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-05",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-29",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 1.17,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-08",
+      "agent_id": "macro",
+      "date": "2026-04-08",
+      "session": "closing",
+      "ticker": "TLT",
+      "asset_type": "etf",
+      "entry_price": 86.87,
+      "target_return_pct": 6,
+      "horizon_days": 30,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "US-Iran ceasefire creating asymmetric setup for long bonds \u2014 oil crashed 17%, disinflationary. TLT faded from $87.49 to $86.87 close.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 86.92,
+          "return_pct": 0.06
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-20",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.06,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-08",
+      "agent_id": "crypto",
+      "date": "2026-04-08",
+      "session": "closing",
+      "ticker": "IBIT",
+      "asset_type": "etf",
+      "entry_price": 40.42,
+      "target_return_pct": 10,
+      "horizon_days": 30,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "BTC surged past $72K on ceasefire, IBIT up 3.8%. Morgan Stanley MSBT ETF launched, validating institutional demand.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 40.5,
+          "return_pct": 0.2
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-20",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.2,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-08",
+      "agent_id": "quant",
+      "date": "2026-04-08",
+      "session": "premarket",
+      "ticker": "UNH",
+      "asset_type": "stock",
+      "entry_price": 307.73,
+      "target_return_pct": 12,
+      "horizon_days": 15,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "UNH surged 9.37% on CMS finalizing 2.5% Medicare Advantage rate increase, RSI resetting from oversold, earnings April 21.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 305.98,
+          "return_pct": -0.57
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.57,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-08",
+      "agent_id": "sentiment",
+      "date": "2026-04-08",
+      "session": "premarket",
+      "ticker": "AVGO",
+      "asset_type": "stock",
+      "entry_price": 326.65,
+      "target_return_pct": 15,
+      "horizon_days": 30,
+      "conviction": 9,
+      "was_executed": false,
+      "thesis_summary": "Broadcom surged 6% on Google TPU + Anthropic chip deals, bullish options flow calls 2:1 puts, WSB buzzing.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 350.63,
+          "return_pct": 7.34
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-20",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 7.34,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-08",
+      "agent_id": "contrarian",
+      "date": "2026-04-08",
+      "session": "premarket",
+      "ticker": "PINS",
+      "asset_type": "stock",
+      "entry_price": 18.5,
+      "target_return_pct": 30,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": true,
+      "thesis_summary": "Pinterest down 54% from highs despite 14% revenue growth, 619M MAUs, 30% EBITDA margins, fwd P/E 11x.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 18.2,
+          "return_pct": -1.62
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-01",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -1.62,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-08-midday",
+      "agent_id": "crypto",
+      "date": "2026-04-08",
+      "session": "midday",
+      "ticker": "MSTR",
+      "asset_type": "stock",
+      "entry_price": 130.0,
+      "target_return_pct": 15,
+      "horizon_days": 45,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Strategy Inc leveraged BTC play as BTC crosses $71.5K on ceasefire. Morgan Stanley launching MSBT (first major bank BTC ETF). MSTR holds 766,970 BTC.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 131.0,
+          "return_pct": 0.77
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-10",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.77,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-08-midday",
+      "agent_id": "quant",
+      "date": "2026-04-08",
+      "session": "midday",
+      "ticker": "UAL",
+      "asset_type": "stock",
+      "entry_price": 98.06,
+      "target_return_pct": 18,
+      "horizon_days": 20,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "UAL surged +9.82% on ceasefire sending oil down 15-17%. No-hedging policy = max elastic upside. RSI 53.91, 2x volume. Path to $119 52wk high.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 100.1,
+          "return_pct": 2.08
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 2.08,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-08-midday",
+      "agent_id": "sentiment",
+      "date": "2026-04-08",
+      "session": "midday",
+      "ticker": "UNH",
+      "asset_type": "stock",
+      "entry_price": 307.08,
+      "target_return_pct": 12,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "CMS finalized 2.48% Medicare Advantage rate hike for 2027. WSB +1471%. Institutional Power Inflow at $301.79. Earnings April 21.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 305.98,
+          "return_pct": -0.36
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-20",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.36,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-08-midday",
+      "agent_id": "contrarian",
+      "date": "2026-04-08",
+      "session": "midday",
+      "ticker": "NCLH",
+      "asset_type": "stock",
+      "entry_price": 20.36,
+      "target_return_pct": 28,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "NCLH down 24% in March on oil fears. Ceasefire sent WTI -18% to $92. 85% booked at record rates. 8.5x fwd P/E with $9.8B revenue.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 20.07,
+          "return_pct": -1.42
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-01",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -1.42,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-08-closing",
+      "agent_id": "quant",
+      "date": "2026-04-08",
+      "session": "closing",
+      "ticker": "TSM",
+      "asset_type": "stock",
+      "entry_price": 364.19,
+      "target_return_pct": 10,
+      "horizon_days": 15,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "TSM surging 5.46% on Iran ceasefire relief rally, removing Taiwan supply chain overhang. Goldman PT $550.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 365.9,
+          "return_pct": 0.47
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-29",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.47,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-08-closing",
+      "agent_id": "sentiment",
+      "date": "2026-04-08",
+      "session": "closing",
+      "ticker": "FLY",
+      "asset_type": "stock",
+      "entry_price": 37.97,
+      "target_return_pct": 15,
+      "horizon_days": 20,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Firefly Aerospace riding SpaceX IPO halo effect \u2014 up 6.73% today, Reddit buzz building, 7/8 analyst Buy ratings.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 35.57,
+          "return_pct": -6.32
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -6.32,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-08-closing",
+      "agent_id": "contrarian",
+      "date": "2026-04-08",
+      "session": "closing",
+      "ticker": "TEAM",
+      "asset_type": "stock",
+      "entry_price": 63.59,
+      "target_return_pct": 35,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Atlassian down 74% from highs on AI fears \u2014 $6B revenue, 20% growth, fwd P/E 12.75x. Q3 earnings May 7 catalyst.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-09",
+          "price": 65.94,
+          "return_pct": 3.7
+        },
+        "day_5": {
+          "date": "2026-04-15",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-22",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-06",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-01",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 3.7,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-04-09",
+      "agent_id": "macro",
+      "date": "2026-04-09",
+      "session": "premarket",
+      "ticker": "IEF",
+      "asset_type": "etf",
+      "entry_price": 95.25,
+      "target_return_pct": 4,
+      "horizon_days": 45,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "US-Iran ceasefire unwinding oil war premium, 7-10yr yields compressing from 4.1% toward 3.85%",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-10",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-23",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-07",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-11",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "crypto-2026-04-09",
+      "agent_id": "crypto",
+      "date": "2026-04-09",
+      "session": "premarket",
+      "ticker": "MSBT",
+      "asset_type": "etf",
+      "entry_price": 21.1,
+      "target_return_pct": 15,
+      "horizon_days": 30,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Morgan Stanley Bitcoin Trust ETF launched April 8, lowest expense ratio, 16K advisor distribution network",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-10",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-23",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-07",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-21",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "quant-2026-04-09",
+      "agent_id": "quant",
+      "date": "2026-04-09",
+      "session": "premarket",
+      "ticker": "UAL",
+      "asset_type": "stock",
+      "entry_price": 91.67,
+      "target_return_pct": 15,
+      "horizon_days": 15,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "UAL surged 14% on oil crash + EPS beat, still 23% below 52-week high, earnings Apr 21-22",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-10",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-23",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-07",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-04-30",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-04-09",
+      "agent_id": "sentiment",
+      "date": "2026-04-09",
+      "session": "premarket",
+      "ticker": "NCLH",
+      "asset_type": "stock",
+      "entry_price": 19.85,
+      "target_return_pct": 20,
+      "horizon_days": 21,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Oil crash benefits cruise lines, Elliott activist restructuring, forward P/E 8.85",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-10",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-23",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-07",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-05-08",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-04-09",
+      "agent_id": "contrarian",
+      "date": "2026-04-09",
+      "session": "premarket",
+      "ticker": "DECK",
+      "asset_type": "stock",
+      "entry_price": 106.35,
+      "target_return_pct": 22,
+      "horizon_days": 60,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Deckers down 53% on Vietnam tariff panic, HOKA still growing 19%, Supreme Court struck down tariffs",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-10",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-04-16",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-04-23",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-05-07",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-02",
+          "price": null,
+          "return_pct": null
+        }
       },
       "peak_return_pct": null,
       "final_verdict": null
     }
   ],
-  "last_evaluated": "2026-03-30"
+  "last_evaluated": "2026-04-07"
 }

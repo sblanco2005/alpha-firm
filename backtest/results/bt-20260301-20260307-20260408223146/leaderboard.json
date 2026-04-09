@@ -1,0 +1,45 @@
+{
+  "agents": {
+    "macro": {
+      "total_pnl": 0,
+      "wins": 0,
+      "losses": 0,
+      "picks": 5,
+      "picks_executed": 0,
+      "reward_earned": 0
+    },
+    "crypto": {
+      "total_pnl": 0,
+      "wins": 0,
+      "losses": 0,
+      "picks": 5,
+      "picks_executed": 0,
+      "reward_earned": 0
+    },
+    "quant": {
+      "total_pnl": 0,
+      "wins": 0,
+      "losses": 0,
+      "picks": 5,
+      "picks_executed": 2,
+      "reward_earned": 0
+    },
+    "sentiment": {
+      "total_pnl": 0,
+      "wins": 0,
+      "losses": 0,
+      "picks": 5,
+      "picks_executed": 0,
+      "reward_earned": 0
+    },
+    "contrarian": {
+      "total_pnl": 0,
+      "wins": 0,
+      "losses": 0,
+      "picks": 5,
+      "picks_executed": 3,
+      "reward_earned": 0
+    }
+  },
+  "last_updated": "2026-03-06T09:30:00Z"
+}

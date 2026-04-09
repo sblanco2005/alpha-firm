@@ -1,0 +1,16 @@
+{
+  "agent_id": "contrarian",
+  "date": "2026-03-04",
+  "session": "morning",
+  "ticker": "MSFT",
+  "asset_type": "stock",
+  "entry_thesis": "Microsoft is down ~25% from its November 2025 peak despite reporting a landmark Q2 FY2026 — $81.3B revenue (+17% YoY), Azure +39%, EPS $4.14 beating estimates by 7%, and $625B RPO backlog (+110% YoY). Market punished it for high CapEx ($29.88B, +89% YoY) but spending IS generating returns. The Great Rotation narrative has consensus fleeing tech, creating maximum pessimism in a world-class compounder at ~23x forward earnings — cheapest in 3 years.",
+  "conviction": 8,
+  "risk": "If CapEx accelerates further without proportional Azure revenue acceleration, market sentiment stays negative and the Great Rotation keeps the stock cheap longer.",
+  "target_return": "25% in 60 trading days",
+  "catalyst": "Q3 FY2026 earnings (April/May 2026) expected to show Azure growth sustaining at 38-40%+, forcing market to re-rate CapEx as growth investment",
+  "current_price": 405.20,
+  "target_return_pct": 25,
+  "horizon_days": 60,
+  "suggested_allocation_pct": 20
+}

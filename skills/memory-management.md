@@ -56,7 +56,7 @@ When an agent starts a session:
 
 1. **List files** in `memory/{agent_id}/` directory
 2. **Sort by filename** (date string sorts correctly) descending
-3. **Load the last 5 files** (or fewer if the agent hasn't been running that long)
+3. **Load the last 20 files** (or fewer if the agent hasn't been running that long)
 4. **Compile a context string** from each day's recommendations and notes
 5. **Pass this context** to the agent as part of their research prompt
 
@@ -94,7 +94,7 @@ During the orchestrator's pre-flight step:
 
 1. List all files in each `memory/{agent_id}/` directory
 2. Sort by date
-3. Delete any files older than 5 days
+3. Delete any files beyond the most recent 20
 4. Log deleted files for audit
 
 ### Pruning Script Logic
@@ -130,7 +130,7 @@ Agents should use their memory to:
 
 | Data | Retention | Location |
 |---|---|---|
-| Agent daily memory | 5 days (auto-pruned) | `memory/{agent_id}/` |
+| Agent daily memory | 20 sessions (auto-pruned) | `memory/{agent_id}/` |
 | Outcome tracking | **Permanent** (never pruned) | `state/outcomes.json` |
 | Agent scorecards | **Permanent** (regenerated daily) | `state/scorecards/` |
 | Trade log | **Permanent** | `state/trade-log.json` |

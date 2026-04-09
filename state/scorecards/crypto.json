@@ -1,22 +1,134 @@
 {
   "agent_id": "crypto",
-  "generated": "2026-03-28",
+  "generated": "2026-04-09",
   "overall": {
-    "total_recommendations": 1,
+    "total_recommendations": 14,
+    "evaluated": 0,
     "wins": 0,
     "losses": 0,
     "partial": 0,
-    "tracking": 1,
+    "tracking": 14,
     "win_rate": null,
     "avg_return_at_horizon": null,
     "avg_peak_return": null
   },
   "conviction_calibration": {},
   "by_asset_type": {},
-  "recent_picks": [],
+  "recent_picks": [
+    {
+      "date": "2026-04-08",
+      "ticker": "IBIT",
+      "conviction": 7,
+      "entry_price": 40.42,
+      "status": "tracking",
+      "current_return_pct": 0.2,
+      "latest_checkpoint": "day_1",
+      "peak_return_pct": 0.2,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-08",
+      "ticker": "MSTR",
+      "conviction": 7,
+      "entry_price": 130.0,
+      "status": "tracking",
+      "current_return_pct": 0.77,
+      "latest_checkpoint": "day_1",
+      "peak_return_pct": 0.77,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-07",
+      "ticker": "CIFR",
+      "conviction": 6,
+      "entry_price": 12.02,
+      "status": "tracking",
+      "current_return_pct": 16.56,
+      "latest_checkpoint": "day_1",
+      "peak_return_pct": 16.56,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-07",
+      "ticker": "RIOT",
+      "conviction": 7,
+      "entry_price": 13.88,
+      "status": "tracking",
+      "current_return_pct": -2.59,
+      "latest_checkpoint": "day_1",
+      "peak_return_pct": -2.59,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-07",
+      "ticker": "CIFR",
+      "conviction": 7,
+      "entry_price": 16.5,
+      "status": "tracking",
+      "current_return_pct": -15.09,
+      "latest_checkpoint": "day_1",
+      "peak_return_pct": -15.09,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-06",
+      "ticker": "MARA",
+      "conviction": 7,
+      "entry_price": 17.25,
+      "status": "tracking",
+      "current_return_pct": -49.1,
+      "latest_checkpoint": "day_1",
+      "peak_return_pct": -49.1,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-06",
+      "ticker": "IBIT",
+      "conviction": 6,
+      "entry_price": 37.97,
+      "status": "tracking",
+      "current_return_pct": 4.08,
+      "latest_checkpoint": "day_1",
+      "peak_return_pct": 4.08,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-06",
+      "ticker": "MSTR",
+      "conviction": 7,
+      "entry_price": 127.27,
+      "status": "tracking",
+      "current_return_pct": -0.61,
+      "latest_checkpoint": "day_1",
+      "peak_return_pct": -0.61,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-02",
+      "ticker": "MSTR",
+      "conviction": 7,
+      "entry_price": 121.44,
+      "status": "tracking",
+      "current_return_pct": 7.87,
+      "latest_checkpoint": "day_5",
+      "peak_return_pct": 7.87,
+      "was_executed": false
+    },
+    {
+      "date": "2026-04-02",
+      "ticker": "IBIT",
+      "conviction": 8,
+      "entry_price": 38.48,
+      "status": "tracking",
+      "current_return_pct": 5.25,
+      "latest_checkpoint": "day_5",
+      "peak_return_pct": 5.25,
+      "was_executed": false
+    }
+  ],
   "patterns": {
-    "strengths": "Insufficient data — need 5+ evaluated picks for pattern analysis.",
-    "weaknesses": "Insufficient data.",
-    "adjustment": "Continue current approach. Scorecard will populate after checkpoints are evaluated."
+    "strengths": "Insufficient evaluated data for patterns",
+    "weaknesses": "Insufficient evaluated data for patterns",
+    "adjustment": "Insufficient evaluated data for patterns"
   }
 }

@@ -1,0 +1,16 @@
+{
+  "agent_id": "crypto",
+  "date": "2026-03-06",
+  "session": "morning",
+  "ticker": "IREN",
+  "asset_type": "stock",
+  "entry_thesis": "IREN (Iris Energy) offers leveraged dual-exposure to both Bitcoin recovery and the AI compute buildout — BTC is consolidating near $69,880 after bouncing from $60K lows, with spot ETF inflows reversing a 5-week outflow streak ($199M single-session inflow, $568M net for the week ending March 6). IREN has a pending catalyst in its NVIDIA GPU expansion order (targeting ~150,000 chips and $3.7B annualized AI cloud revenue), and B. Riley Securities maintained a Buy rating on March 5. Unlike pure-play ETFs, IREN captures both the BTC hashrate premium and AI infrastructure optionality at a discounted multiple versus CoreWeave.",
+  "conviction": 7,
+  "risk": "BTC is down ~$2,843 on the March 6 session suggesting near-term consolidation; if macro risk-off deepens or energy costs spike (WTI near $97/bbl), IREN's mining margins compress and the AI pivot narrative may not sustain the multiple.",
+  "target_return": "18% in 30 days",
+  "catalyst": "B. Riley Buy rating maintained March 5; NVIDIA GPU expansion order announcement imminent; BTC ETF inflow reversal ($568M net weekly inflows) supports BTC recovering toward $73-74K by mid-March, which directly lifts mining stock multiples.",
+  "current_price": 36.50,
+  "target_return_pct": 18,
+  "horizon_days": 30,
+  "suggested_allocation_pct": 20
+}

@@ -1,0 +1,16 @@
+{
+  "agent_id": "macro",
+  "date": "2026-03-02",
+  "session": "morning",
+  "ticker": "XLE",
+  "asset_type": "etf",
+  "entry_thesis": "US-Israel strikes on Iran launched Feb 28 are triggering a structural oil supply shock as Iranian forces threaten Strait of Hormuz closure—through which ~20mb/d flows. Brent crude surged from ~$73 to $100+ trajectory, making the energy sector (XLE) the only major sector in the green YTD and the clearest beneficiary. With the Fed holding rates at 3.5-3.75% and signaling just one cut in 2026 due to Iran-driven inflation risk, higher-for-longer rates further support energy cash flows while the oil shock sustains sector outperformance.",
+  "conviction": 8,
+  "risk": "A rapid diplomatic de-escalation or ceasefire could reverse the oil spike quickly, as much of the XLE premium reflects the Hormuz risk premium.",
+  "target_return": "12% in 30 days",
+  "catalyst": "Continued Strait of Hormuz disruption and IEA March Oil Market Report (mid-March) confirming supply shortfall will accelerate energy sector inflows.",
+  "current_price": 56.50,
+  "target_return_pct": 12,
+  "horizon_days": 30,
+  "suggested_allocation_pct": 25
+}

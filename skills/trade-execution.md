@@ -41,12 +41,76 @@ Search: `"polymarket [topic] odds"` or `"kalshi [topic] price"` via Brave Search
 3. Position doesn't exceed 30% of total portfolio value
 4. Not duplicating an existing position (same ticker)
 5. A real current price was successfully fetched
+6. **Sector concentration check (40% hard cap)** — see below
+7. **Agent dominance check** — see below
+
+### Sector Concentration Gate (40% Hard Cap)
+
+Before executing any buy, verify the trade won't push any single GICS sector above 40% of NAV. This is a **HARD constraint** — no override, no exception.
+
+**Steps:**
+1. Determine the GICS sector for the ticker being bought. Use this mapping for common tickers, or look up via Brave Search if not listed:
+   ```
+   Technology: META, AAPL, MSFT, NVDA, AVGO, ORCL, INTU, PINS, CRM, ADBE, PLTR, CRWD, U, TEAM
+   Financials: JPM, GS, BAC, V, MA, BRK.B, MSTR
+   Healthcare: UNH, JNJ, PFE, LLY, ABBV, MRK
+   Energy: XOM, CVX, XLE, OXY, COP
+   Consumer Discretionary: AMZN, TSLA, NKE, HD, LOW, NCLH
+   Consumer Staples: PG, KO, PEP, WMT, COST
+   Industrials: DAL, UAL, BA, CAT, DE, GE, LOAR, LMT, RTX, FLY
+   Utilities: DUK, NEE, SO, D
+   Real Estate: AMT, PLD, SPG
+   Materials: XLB, NEM, FCX
+   Communication Services: GOOG, GOOGL, DIS, NFLX, T, VZ
+   ETFs: GLD, TLT, IBIT, SPY, QQQ (sector = "ETF-Diversified")
+   Crypto: BTC, ETH, SOL (sector = "Crypto")
+   Prediction: POLY:* (sector = "Prediction")
+   ```
+2. Calculate current sector exposure: for each open position, sum `shares * entry_price` by sector. Divide each sector total by current NAV.
+3. Calculate what the new sector exposure would be after this buy.
+4. If any sector would exceed 40% of NAV after the buy: **BLOCK the trade. Do NOT execute.** Log as a PASS with reason: "Sector concentration cap: [Sector] would be X% of NAV (max 40%)". Move to the next-best recommendation.
+5. This cap applies to **new buys only**. Existing positions that exceed 40% due to price appreciation are noted but not force-sold.
+
+### Agent Dominance Guard Rail (Max 2 Consecutive Buys)
+
+Before executing any buy, check if this would create 3 consecutive buys from the same agent.
+
+**Steps:**
+1. Read `state/trade-log.json`, filter for `action: "buy"`, get the last 2 entries.
+2. If both of the last 2 buys were from the **same agent** as the current recommendation: **deprioritize** that agent's pick. It cannot be selected unless no other recommendation has conviction >= 6.
+3. If deprioritized, move to the next-best recommendation from a different agent.
+4. If no alternative with conviction >= 6 exists, the deprioritized agent may proceed — log: "Dominance guard rail overridden — no alternative with conviction >= 6."
+5. Sells do NOT count — only `action: "buy"` entries.
+
+### VIX-Adjusted Position Sizing
+
+Before calculating position size, fetch current VIX level via Brave Search ("VIX index level today").
+
+| VIX Level | Max Allocation (% of cash) | Rationale |
+|-----------|---------------------------|-----------|
+| VIX <= 25 | 15-30% (normal) | Low volatility, standard sizing |
+| 25 < VIX <= 35 | max 15% | Elevated volatility, reduce exposure |
+| VIX > 35 | max 10% | High volatility, minimal new risk |
+
+If VIX cannot be fetched, assume VIX > 25 (conservative default).
+
+Log the VIX level and resulting size cap in the trade record.
 
 ### Position Sizing
+- Fetch VIX and determine max allocation tier (see above)
 - Calculate: `order_amount = portfolio_cash * (allocation_pct / 100)`
 - Calculate shares: `shares = floor(order_amount / current_price)`
 - Actual cost: `shares * current_price`
-- Typical range: 15-30% of available cash
+- Allocation capped by VIX tier
+
+### SPY Benchmark Tracking
+
+After every trade or PASS decision, fetch SPY current price and calculate benchmark return:
+```
+spy_return_pct = (current_spy_price / portfolio.spy_inception_price - 1) * 100
+alpha = portfolio_pnl_pct - spy_return_pct
+```
+Include SPY return and alpha in the daily log summary.
 
 ### Buying
 
@@ -76,6 +140,17 @@ Search: `"polymarket [topic] odds"` or `"kalshi [topic] price"` via Brave Search
 5. Update `state/daily-state.json`: set `bought = true`, add session to `sessions_completed`
 6. Update `state/trade-log.json`: append to `trades` array and `decisions` array
 7. Update `state/leaderboard.json`: increment `picks` and `picks_executed` for the recommending agent
+8. **Sync to Portclaude**: Call `mcp__portclaude__create_transaction` with:
+   ```
+   symbol: ticker
+   action: "buy"
+   quantity: shares
+   price: entry_price
+   date: today (YYYY-MM-DD)
+   asset_type: "stock"|"etf"|"crypto" (map from position asset_type)
+   portfolio: "AlphaFirm"
+   notes: "Alpha Firm | Agent: {agent_id} | Conviction: {conviction} | Session: {session}"
+   ```
 
 ### Selling
 
@@ -97,6 +172,17 @@ Search: `"polymarket [topic] odds"` or `"kalshi [topic] price"` via Brave Search
    - Update `best_trade` / `worst_trade` if applicable
    - Recalculate `reward_earned` (see orchestrator.md for formula)
 6. **Selling does NOT count as the daily buy** — you can sell anytime
+7. **Sync to Portclaude**: Call `mcp__portclaude__create_transaction` with:
+   ```
+   symbol: ticker
+   action: "sell"
+   quantity: shares
+   price: current_price (the sell price)
+   date: today (YYYY-MM-DD)
+   asset_type: "stock"|"etf"|"crypto"
+   portfolio: "AlphaFirm"
+   notes: "Alpha Firm | Agent: {agent_id} | P&L: {pnl_pct}% | Reason: {sell_reason}"
+   ```
 
 ### Prediction Market Positions
 Track prediction markets the same way, but with extra fields:
@@ -128,6 +214,52 @@ Track prediction markets the same way, but with extra fields:
    }
    ```
 2. Do NOT set `bought = true` — the PM can still buy in a later session today
+
+## Portclaude Integration
+
+Every BUY and SELL must be synced to Portclaude via MCP so positions are tracked externally.
+
+### Asset Type Mapping
+| Alpha Firm type | Portclaude asset_type |
+|---|---|
+| `stock` | `stock` |
+| `etf` | `etf` |
+| `crypto` | `crypto` |
+| `prediction` | `stock` (closest match — add "Prediction Market" in notes) |
+
+### On BUY
+```
+mcp__portclaude__create_transaction(
+  symbol: "AAPL",
+  action: "buy",
+  quantity: 10,
+  price: 245.50,
+  date: "2026-03-28",
+  asset_type: "stock",
+  portfolio: "AlphaFirm",
+  notes: "Alpha Firm | Agent: quant | Conviction: 8 | Session: morning"
+)
+```
+
+### On SELL
+```
+mcp__portclaude__create_transaction(
+  symbol: "AAPL",
+  action: "sell",
+  quantity: 10,
+  price: 260.00,
+  date: "2026-04-07",
+  asset_type: "stock",
+  portfolio: "AlphaFirm",
+  notes: "Alpha Firm | Agent: quant | P&L: +5.9% | Reason: hit target"
+)
+```
+
+### Rules
+- Call Portclaude AFTER successfully updating local state files (portfolio.json, trade-log.json)
+- If the Portclaude call fails, log the error but do NOT roll back the local trade — retry next session
+- Portclaude handles deduplication automatically, so retries are safe
+- Do NOT sync backtest trades to Portclaude — only live trades
 
 ## NAV Calculation
 When updating NAV, recalculate from current state:

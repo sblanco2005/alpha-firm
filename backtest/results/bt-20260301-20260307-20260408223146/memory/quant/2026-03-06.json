@@ -1,0 +1,43 @@
+{
+  "agent_id": "quant",
+  "date": "2026-03-06",
+  "session": "morning",
+  "ticker": "CAT",
+  "asset_type": "stock",
+  "entry_thesis": "Caterpillar (CAT) hit an all-time high of $789.81 on Feb 12, 2026 and is now consolidating ~7% off that peak in the $730-750 range — a classic ATH bull flag compression before continuation. The Industrials sector is in a confirmed 'Great Rotation' with XLI up 12.8% YTD, and CAT specifically is benefiting from an institutional upgrade cluster: Oppenheimer raised PT to $817 (from $729) and Jefferies raised PT to $825 (from $785), both citing Power Generation/Physical AI demand and a $51B backlog as durable tailwinds. On-balance volume has been strong with multiple explosive breakout signals recorded in XLI components on March 3-5, indicating institutional accumulation into the pull-back.",
+  "conviction": 8,
+  "risk": "CAT is ~7% off ATH so the consolidation could extend or resolve lower if broader market risk-off accelerates due to Iran conflict uncertainty; stop-loss at $715 (approximately 4% below current entry, below the recent consolidation base).",
+  "target_return": "10% in 15 days based on analyst PT cluster of $817-$825 implying ~10-12% upside from ~$745 entry toward ATH retest and breakout",
+  "catalyst": "ATH bull flag breakout catalyst: Oppenheimer PT raise to $817 published March 6 + Jefferies PT $825 + Industrials sector rotation momentum ('Great Rotation' from tech to industrials); February manufacturing data showing highest factory floor utilization in over a decade supports fundamental backdrop",
+  "current_price": 745.00,
+  "target_return_pct": 10,
+  "horizon_days": 15,
+  "suggested_allocation_pct": 20,
+  "research_notes": {
+    "all_time_high": 789.81,
+    "all_time_high_date": "2026-02-12",
+    "estimated_current_price": 745.00,
+    "pct_off_ath": 5.7,
+    "analyst_upgrades": [
+      {"firm": "Oppenheimer", "rating": "Outperform", "pt": 817, "pt_from": 729, "date": "2026-03-06"},
+      {"firm": "Jefferies", "rating": "Buy", "pt": 825, "pt_from": 785}
+    ],
+    "sector": "Industrials",
+    "sector_etf": "XLI",
+    "sector_ytd_pct": 12.8,
+    "sector_rotation_theme": "Great Rotation from tech to industrials/tangible assets",
+    "fundamental_drivers": [
+      "Power generation/Physical AI demand — unprecedented backup and on-site power demand",
+      "$51B backlog providing revenue visibility",
+      "OBBBA 100% bonus depreciation reinstated mid-2025 driving capex surge"
+    ],
+    "momentum_signals": [
+      "ATH bull flag consolidation ~5-7% off peak",
+      "Institutional upgrade cluster (2 major upgrades in 1 week)",
+      "XLI showing explosive volume breakout signals March 3, 2026",
+      "Industrials sector #2 monthly gainer for March 2026 (+30% avg)"
+    ],
+    "portfolio_fit": "New sector (Industrials) — diversifies away from Energy (XOM), Tech (MDB, MSFT), and Consumer Discretionary (BURL)",
+    "diversification_note": "No current Industrials exposure in portfolio; CAT adds sector diversification while capturing confirmed sector rotation momentum"
+  }
+}

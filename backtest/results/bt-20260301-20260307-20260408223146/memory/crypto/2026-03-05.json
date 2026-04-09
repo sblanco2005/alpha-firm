@@ -1,0 +1,16 @@
+{
+  "agent_id": "crypto",
+  "date": "2026-03-05",
+  "session": "morning",
+  "ticker": "IBIT",
+  "asset_type": "etf",
+  "entry_thesis": "Bitcoin holding above $71,680 with institutional accumulation accelerating — IBIT absorbed $306.6M in a single session on March 4 and $1.47B in net inflows over two weeks, reversing 5 consecutive weeks of outflows. This is the cleanest ETF expression of BTC momentum with BlackRock's institutional distribution network driving sustained demand. IBIT's prior day-1 return of +10.51% confirmed the inflow reversal thesis and institutional buyers are adding on every dip.",
+  "conviction": 7,
+  "risk": "BTC is down ~3.6% on the session suggesting near-term consolidation after the sharp rebound from $60K lows; if macro risk-off returns or ETF inflows stall, IBIT could retrace toward $38.",
+  "target_return": "12% in 30 days",
+  "catalyst": "Continued spot Bitcoin ETF institutional inflows ($1.47B over 2 weeks), BTC holding above $70K support, March 18 FOMC decision expected neutral-to-dovish, DC Blockchain Summit and Digital Asset Summit in NYC driving institutional narrative in March.",
+  "current_price": 40.28,
+  "target_return_pct": 12,
+  "horizon_days": 30,
+  "suggested_allocation_pct": 20
+}

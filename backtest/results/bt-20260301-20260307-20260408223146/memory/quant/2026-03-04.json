@@ -1,0 +1,16 @@
+{
+  "agent_id": "quant",
+  "date": "2026-03-04",
+  "session": "morning",
+  "ticker": "BURL",
+  "asset_type": "stock",
+  "entry_thesis": "Burlington Stores exhibiting classic pre-earnings momentum with BURL up ~16% over the past quarter at $300.75, with volume building ahead of Q4 FY2025 earnings due March 5. Consumer Defensive sector showed explosive volume breakouts on March 3, VIX declining to 23.57. Analyst targets raised aggressively — Citi $380, Wells Fargo $400 — representing 25-33% upside from current levels.",
+  "conviction": 8,
+  "risk": "Earnings miss or weak forward guidance could trigger a sharp reversal, with stop-loss at $280 (-6.9%).",
+  "target_return": "10% in 15 trading days",
+  "catalyst": "Q4 FY2025 earnings release March 5, with strong consumer sector momentum and analyst upgrades",
+  "current_price": 300.75,
+  "target_return_pct": 10,
+  "horizon_days": 15,
+  "suggested_allocation_pct": 25
+}

@@ -1,0 +1,54 @@
+{
+  "cash": 3497.23,
+  "positions": [
+    {
+      "ticker": "XOM",
+      "asset_type": "stock",
+      "shares": 15,
+      "entry_price": 156.50,
+      "entry_date": "2026-03-02",
+      "agent": "quant",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "MDB",
+      "asset_type": "stock",
+      "shares": 6,
+      "entry_price": 252.73,
+      "entry_date": "2026-03-03",
+      "agent": "contrarian",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "MSFT",
+      "asset_type": "stock",
+      "shares": 3,
+      "entry_price": 405.20,
+      "entry_date": "2026-03-04",
+      "agent": "contrarian",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "BURL",
+      "asset_type": "stock",
+      "shares": 3,
+      "entry_price": 321.47,
+      "entry_date": "2026-03-05",
+      "agent": "quant",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "ORCL",
+      "asset_type": "stock",
+      "shares": 3,
+      "entry_price": 152.96,
+      "entry_date": "2026-03-06",
+      "agent": "contrarian",
+      "mode": "simulated"
+    }
+  ],
+  "nav": 9997.54,
+  "inception_date": "BACKTEST",
+  "last_updated": "2026-03-06T09:30:00Z",
+  "high_water_mark": 10000
+}

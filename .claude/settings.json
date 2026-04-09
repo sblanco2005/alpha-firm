@@ -53,6 +53,10 @@
         "./alerts",
         "./logs"
       ]
+    },
+    "price-fetch": {
+      "command": "/home/clawd/price-mcp/venv/bin/python3",
+      "args": ["/home/clawd/price-mcp/price_server.py"]
     }
   }
 }

@@ -1,0 +1,16 @@
+{
+  "agent_id": "contrarian",
+  "date": "2026-03-05",
+  "session": "morning",
+  "ticker": "TGT",
+  "asset_type": "stock",
+  "entry_thesis": "Target has been left for dead by Wall Street — down 40% from 5-year highs — yet just reported Q4 EPS of $2.44 vs $2.15 consensus (13.5% beat) with multiple analyst upgrades (Telsey to Outperform PT $145, Bernstein, Citigroup, UBS, Goldman) arriving March 4. At ~$120 the stock trades at only 15x 2026 guided EPS of $7.50-$8.50, a historically cheap multiple for a dominant blue-chip retailer executing a genuine turnaround with a new CEO, $5B capex plan, and 30+ new stores in 2026. Middle East geopolitical fears and tariff anxiety are hammering consumer discretionary broadly — creating the perfect cover for the market to underprice TGT's improving fundamentals and accelerating analyst re-rating.",
+  "conviction": 7,
+  "risk": "Consumer sentiment cratered to 53.3 and tariff-driven cost inflation could squeeze margins further; if the macro environment deteriorates sharply, TGT's discretionary exposure makes it a laggard even at cheap valuations.",
+  "target_return": "20% in 45 days",
+  "catalyst": "Wave of analyst upgrades and price target increases triggers institutional FOMO; Q1 2026 earnings (May) expected to show traffic recovery confirming the turnaround thesis; Middle East de-escalation removes macro overhang on consumer discretionary sector.",
+  "current_price": 120.80,
+  "target_return_pct": 20,
+  "horizon_days": 45,
+  "suggested_allocation_pct": 20
+}

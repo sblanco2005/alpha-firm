@@ -7,6 +7,7 @@ import { fileURLToPath } from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const STATE_DIR = join(__dirname, "..", "state");
 const MEMORY_DIR = join(__dirname, "..", "memory");
+const INITIAL_CAPITAL = 10000;
 
 const app = express();
 app.use(cors());
@@ -85,12 +86,27 @@ async function enrichPortfolio(portfolio) {
   const nav = +(portfolio.cash + totalPositionValue).toFixed(2);
   const highWaterMark = Math.max(portfolio.high_water_mark || 10000, nav);
 
+  // SPY benchmark tracking
+  let spy_return_pct = null;
+  let alpha = null;
+  if (portfolio.spy_inception_price) {
+    const spyPrices = await fetchAllPrices(["SPY"]);
+    const spyPrice = spyPrices["SPY"];
+    if (spyPrice) {
+      spy_return_pct = +((spyPrice / portfolio.spy_inception_price - 1) * 100).toFixed(2);
+      const portfolioPnlPct = +((nav - INITIAL_CAPITAL) / INITIAL_CAPITAL * 100).toFixed(2);
+      alpha = +(portfolioPnlPct - spy_return_pct).toFixed(2);
+    }
+  }
+
   return {
     ...portfolio,
     positions: enrichedPositions,
     nav,
     high_water_mark: highWaterMark,
     prices_updated_at: new Date().toISOString(),
+    spy_return_pct,
+    alpha,
   };
 }
 

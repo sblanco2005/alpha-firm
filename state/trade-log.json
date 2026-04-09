@@ -27,6 +27,108 @@
       "agent": "sentiment",
       "thesis": "Triple-signal confluence: $6.46M insider cluster buying in March, Goldman Sachs conviction list add with $98 target, aerospace/defense narrative accelerating (Trump $1T defense budget, European rearmament). Q1 earnings April 6.",
       "mode": "simulated"
+    },
+    {
+      "id": 3,
+      "date": "2026-03-31",
+      "session": "premarket",
+      "action": "buy",
+      "ticker": "INTU",
+      "asset_type": "stock",
+      "shares": 4,
+      "price": 422.69,
+      "total_cost": 1690.76,
+      "agent": "contrarian",
+      "thesis": "AI fear overdone \u2014 Intuit grew revenue 41% with 18%/12% beats in Q1/Q2 FY26. CFO terminated 10b5-1 sale plans, $3.5B buyback signals management confidence. April 15 tax deadline + Q3 FY26 earnings catalysts.",
+      "mode": "simulated"
+    },
+    {
+      "id": 4,
+      "date": "2026-03-31",
+      "session": "closing",
+      "action": "sell",
+      "ticker": "LOAR",
+      "asset_type": "stock",
+      "shares": 29,
+      "price": 58.2,
+      "total_proceeds": 1687.8,
+      "entry_price": 67.14,
+      "entry_date": "2026-03-30",
+      "pnl": -259.26,
+      "pnl_pct": -13.32,
+      "agent": "sentiment",
+      "reason": "Stop-loss triggered: position down 13.3% from entry, exceeding 10% threshold. Entry price had known discrepancy (flagged on 3/30 closing). Thesis on insider buying and defense narrative intact but price action invalidated entry.",
+      "mode": "simulated"
+    },
+    {
+      "id": 5,
+      "date": "2026-04-01",
+      "session": "premarket",
+      "action": "buy",
+      "ticker": "GLD",
+      "asset_type": "etf",
+      "shares": 3,
+      "price": 430.29,
+      "total_cost": 1290.87,
+      "agent": "macro",
+      "thesis": "Gold structural breakout: DXY broke below 100 for first time (99.82), central banks buying 1000+ tonnes/yr, Trump Iran address tonight creates asymmetric setup. Portfolio 100% tech \u2014 GLD adds critical commodity/safe-haven diversification. Cross-agent confirmation with quant also bullish gold (GDXJ).",
+      "mode": "simulated"
+    },
+    {
+      "id": 6,
+      "date": "2026-04-02",
+      "session": "premarket",
+      "action": "buy",
+      "ticker": "ORCL",
+      "asset_type": "stock",
+      "shares": 6,
+      "price": 149.9,
+      "total_cost": 899.4000000000001,
+      "agent": "contrarian",
+      "thesis": "Oracle down 57% from highs, market conflating capex spend with permanent impairment. 84% OCI growth, $553B RPO backlog, 21x fwd P/E vs peers at 35x+. Layoff-driven FCF inflection beginning now. Analyst consensus $264 vs $150 current price.",
+      "mode": "simulated"
+    },
+    {
+      "id": 7,
+      "date": "2026-04-06",
+      "session": "premarket",
+      "action": "buy",
+      "ticker": "DAL",
+      "asset_type": "stock",
+      "shares": 14,
+      "price": 65.7,
+      "total_cost": 919.8,
+      "agent": "contrarian",
+      "thesis": "Delta down ~18% this month on tariff/fuel fears, but consensus is wrong: Q1 revenue guidance raised to $15B+ on surging corporate demand, forward P/E 7.7 is cheapest in airline sector. Earnings April 8 \u2014 imminent catalyst for re-rating. Supreme Court tariff ruling removes structural overhang.",
+      "mode": "simulated"
+    },
+    {
+      "id": 8,
+      "date": "2026-04-07",
+      "session": "premarket",
+      "action": "buy",
+      "ticker": "DUK",
+      "asset_type": "stock",
+      "shares": 5,
+      "price": 127.92,
+      "total_cost": 639.6,
+      "agent": "quant",
+      "thesis": "Duke Energy is the cleanest momentum leader in the dominant defensive rotation trade: up 12% YTD, fwd PE 18.7, operating margin 26.6%. All MAs show Strong Buy, MACD positive, RSI mid-range. Tariffs April 8 accelerate defensive bid. Zero utility exposure in portfolio \u2014 fills critical diversification gap.",
+      "mode": "simulated"
+    },
+    {
+      "id": 9,
+      "date": "2026-04-08",
+      "session": "premarket",
+      "action": "buy",
+      "ticker": "PINS",
+      "asset_type": "stock",
+      "shares": 24,
+      "price": 18.5,
+      "total_cost": 444.0,
+      "agent": "contrarian",
+      "thesis": "Pinterest down 54% from highs despite 14% revenue growth, 619M MAUs, 30% EBITDA margins. Fwd P/E 11x, FCF yield 8.4%. Market overreacting to temporary tariff-driven ad budget pullback. Q1 earnings late April catalyst.",
+      "mode": "simulated"
     }
   ],
   "decisions": [
@@ -38,11 +140,36 @@
       "agent": "sentiment",
       "reasoning": "META scored highest on composite PM framework (7.85/10). Extreme fear + institutional call accumulation + Q1 earnings catalyst in 4 weeks. Best asymmetric risk/reward among 5 recommendations.",
       "agents_reviewed": {
-        "macro": {"ticker": "GLD", "conviction": 8, "considered": true, "rejection_reason": "Strong thesis but META's sentiment inflection offers tighter catalyst timeline"},
-        "crypto": {"ticker": "IBIT", "conviction": 7, "considered": true, "rejection_reason": "Lowest conviction, longer timeframe (60-90 days)"},
-        "quant": {"ticker": "XOM", "conviction": 8, "considered": true, "rejection_reason": "Chasing at ATH with RSI 76 overbought — risky for Day 1"},
-        "sentiment": {"ticker": "META", "conviction": 8, "considered": true, "rejection_reason": null},
-        "contrarian": {"ticker": "U", "conviction": 8, "considered": true, "rejection_reason": "Close second but 13% pop yesterday raises near-term pullback risk"}
+        "macro": {
+          "ticker": "GLD",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong thesis but META's sentiment inflection offers tighter catalyst timeline"
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Lowest conviction, longer timeframe (60-90 days)"
+        },
+        "quant": {
+          "ticker": "XOM",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Chasing at ATH with RSI 76 overbought \u2014 risky for Day 1"
+        },
+        "sentiment": {
+          "ticker": "META",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": null
+        },
+        "contrarian": {
+          "ticker": "U",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Close second but 13% pop yesterday raises near-term pullback risk"
+        }
       }
     },
     {
@@ -51,13 +178,38 @@
       "decision": "buy",
       "ticker": "LOAR",
       "agent": "sentiment",
-      "reasoning": "LOAR scored highest (8.55/10) on PM framework — clear standout 0.6 pts above #2. Triple sentiment signal: $6.46M insider cluster buy + Goldman Sachs conviction list + defense narrative acceleration. Excellent diversification from META into aerospace/defense. Q1 earnings catalyst in 7 days — insiders buying ahead of earnings is the most reliable sentiment signal.",
+      "reasoning": "LOAR scored highest (8.55/10) on PM framework \u2014 clear standout 0.6 pts above #2. Triple sentiment signal: $6.46M insider cluster buy + Goldman Sachs conviction list + defense narrative acceleration. Excellent diversification from META into aerospace/defense. Q1 earnings catalyst in 7 days \u2014 insiders buying ahead of earnings is the most reliable sentiment signal.",
       "agents_reviewed": {
-        "macro": {"ticker": "XLE", "conviction": 8, "considered": true, "rejection_reason": "Strong stagflation thesis but already up 21.6% YTD — some chasing risk"},
-        "crypto": {"ticker": "IBIT", "conviction": 8, "considered": true, "rejection_reason": "Good on-chain signals but longer catalyst timeline (45d)"},
-        "quant": {"ticker": "XLB", "conviction": 7, "considered": true, "rejection_reason": "Lowest conviction of the group, technical breakout without fundamental backing"},
-        "sentiment": {"ticker": "LOAR", "conviction": 8, "considered": true, "rejection_reason": null},
-        "contrarian": {"ticker": "MSFT", "conviction": 8, "considered": true, "rejection_reason": "Compelling Azure thesis but same sector as META — poor portfolio diversification"}
+        "macro": {
+          "ticker": "XLE",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong stagflation thesis but already up 21.6% YTD \u2014 some chasing risk"
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Good on-chain signals but longer catalyst timeline (45d)"
+        },
+        "quant": {
+          "ticker": "XLB",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Lowest conviction of the group, technical breakout without fundamental backing"
+        },
+        "sentiment": {
+          "ticker": "LOAR",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": null
+        },
+        "contrarian": {
+          "ticker": "MSFT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Compelling Azure thesis but same sector as META \u2014 poor portfolio diversification"
+        }
       }
     },
     {
@@ -66,13 +218,38 @@
       "decision": "pass",
       "ticker": null,
       "agent": null,
-      "reasoning": "Already bought LOAR in premarket session today (daily buy limit reached). XLE was the top-scoring midday pick (8.50/10) with rare cross-agent confirmation from both Macro (conv 9) and Quant (conv 8) on oil surge thesis. NKE and IBIT also strong at 8.00/10. XLE flagged as top candidate for tomorrow's morning session. No sells warranted — META (2 days, thesis intact) and LOAR (entered today, earnings April 6) both hold.",
+      "reasoning": "Already bought LOAR in premarket session today (daily buy limit reached). XLE was the top-scoring midday pick (8.50/10) with rare cross-agent confirmation from both Macro (conv 9) and Quant (conv 8) on oil surge thesis. NKE and IBIT also strong at 8.00/10. XLE flagged as top candidate for tomorrow's morning session. No sells warranted \u2014 META (2 days, thesis intact) and LOAR (entered today, earnings April 6) both hold.",
       "agents_reviewed": {
-        "macro": {"ticker": "XLE", "conviction": 9, "considered": true, "rejection_reason": "Top pick but daily buy limit reached"},
-        "crypto": {"ticker": "IBIT", "conviction": 8, "considered": true, "rejection_reason": "Daily buy limit reached"},
-        "quant": {"ticker": "XLE", "conviction": 8, "considered": true, "rejection_reason": "Cross-confirms macro thesis; daily buy limit reached"},
-        "sentiment": {"ticker": "CRWD", "conviction": 7, "considered": true, "rejection_reason": "Lowest conviction, tech overlap with META; daily buy limit reached"},
-        "contrarian": {"ticker": "NKE", "conviction": 8, "considered": true, "rejection_reason": "Compelling earnings play but daily buy limit reached; monitor for tomorrow"}
+        "macro": {
+          "ticker": "XLE",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "Top pick but daily buy limit reached"
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Daily buy limit reached"
+        },
+        "quant": {
+          "ticker": "XLE",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Cross-confirms macro thesis; daily buy limit reached"
+        },
+        "sentiment": {
+          "ticker": "CRWD",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Lowest conviction, tech overlap with META; daily buy limit reached"
+        },
+        "contrarian": {
+          "ticker": "NKE",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Compelling earnings play but daily buy limit reached; monitor for tomorrow"
+        }
       }
     },
     {
@@ -81,18 +258,911 @@
       "decision": "pass",
       "ticker": null,
       "agent": null,
-      "reasoning": "Daily buy limit reached (LOAR bought premarket). XLE remains consensus #1 pick across 3 sessions — Macro (conv 9) + Quant (conv 8) cross-confirmation on oil surge thesis, WTI closing above $102. NKE compelling contrarian play ahead of tomorrow's earnings. ASTS new sentiment pick with April 10 BlueBird-7 catalyst. LOAR ALERT: Market price appears ~$55-57 vs $67.14 entry — significant discrepancy flagged for investigation; thesis (insider buying, Goldman CL, Q1 earnings Apr 6) still intact. META up ~2% from entry, holding well. No sells executed — LOAR price needs verification before action.",
+      "reasoning": "Daily buy limit reached (LOAR bought premarket). XLE remains consensus #1 pick across 3 sessions \u2014 Macro (conv 9) + Quant (conv 8) cross-confirmation on oil surge thesis, WTI closing above $102. NKE compelling contrarian play ahead of tomorrow's earnings. ASTS new sentiment pick with April 10 BlueBird-7 catalyst. LOAR ALERT: Market price appears ~$55-57 vs $67.14 entry \u2014 significant discrepancy flagged for investigation; thesis (insider buying, Goldman CL, Q1 earnings Apr 6) still intact. META up ~2% from entry, holding well. No sells executed \u2014 LOAR price needs verification before action.",
       "agents_reviewed": {
-        "macro": {"ticker": "XLE", "conviction": 9, "considered": true, "rejection_reason": "Top pick, 3rd consecutive session; daily buy limit reached. Flag as #1 candidate for tomorrow."},
-        "crypto": {"ticker": "IBIT", "conviction": 7, "considered": true, "rejection_reason": "Conviction reduced from 8 due to ETF outflow reversal and Bitfinex long crowding; daily buy limit reached"},
-        "quant": {"ticker": "XLE", "conviction": 8, "considered": true, "rejection_reason": "Cross-confirms macro XLE thesis at $63.24; daily buy limit reached"},
-        "sentiment": {"ticker": "ASTS", "conviction": 8, "considered": true, "rejection_reason": "New name — BlueBird-7 catalyst April 10; daily buy limit reached"},
-        "contrarian": {"ticker": "NKE", "conviction": 8, "considered": true, "rejection_reason": "Earnings tomorrow — binary event; daily buy limit reached. Monitor outcome for potential morning buy."}
+        "macro": {
+          "ticker": "XLE",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "Top pick, 3rd consecutive session; daily buy limit reached. Flag as #1 candidate for tomorrow."
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Conviction reduced from 8 due to ETF outflow reversal and Bitfinex long crowding; daily buy limit reached"
+        },
+        "quant": {
+          "ticker": "XLE",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Cross-confirms macro XLE thesis at $63.24; daily buy limit reached"
+        },
+        "sentiment": {
+          "ticker": "ASTS",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "New name \u2014 BlueBird-7 catalyst April 10; daily buy limit reached"
+        },
+        "contrarian": {
+          "ticker": "NKE",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Earnings tomorrow \u2014 binary event; daily buy limit reached. Monitor outcome for potential morning buy."
+        }
       }
+    },
+    {
+      "date": "2026-03-31",
+      "session": "premarket",
+      "decision": "buy",
+      "ticker": "INTU",
+      "agent": "contrarian",
+      "reasoning": "INTU scored highest adjusted PM score (8.86/10) after fundamental overlay boosted it 1.15x. Best risk/reward asymmetry: 30% target with $3.5B buyback floor providing downside protection. First contrarian pick executed \u2014 adds agent diversification after 2 consecutive sentiment picks. AI disruption fear overdone given 41% revenue growth and CFO confidence signals.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "XLE",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong stagflation thesis (#2 at 7.90), great diversification, but lower target return (10%) and no fundamental boost"
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "4th consecutive IBIT rec, strong day-1 returns on prior picks but becoming repetitive"
+        },
+        "quant": {
+          "ticker": "ETR",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Discounted to 6.46 by weak fundamentals (negative FCF, high D/E 181.8)"
+        },
+        "sentiment": {
+          "ticker": "ASTS",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Binary launch event risk, pre-revenue company discounted to 5.99 after 0.9x fundamental modifier"
+        },
+        "contrarian": {
+          "ticker": "INTU",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": null
+        }
+      }
+    },
+    {
+      "date": "2026-03-31",
+      "session": "closing",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (INTU bought premarket). SOLD LOAR at $58.20 for -$259.26 (-13.3%) loss \u2014 stop-loss triggered on >10% drawdown from entry. NKE was the standout closing pick (conv 9) after Q3 earnings beat confirmed turnaround, but daily buy limit prevents execution. Flag NKE as top candidate for tomorrow's morning session. META (+3.2%) and INTU (+1.7%) both holding well.",
+      "sell_executed": "LOAR",
+      "sell_reason": "Down 13.3% from entry \u2014 exceeds 10% stop-loss threshold. Entry price discrepancy flagged on 3/30 closing session. Defense thesis intact but price action invalidated position.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "GLD",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Shifted from XLE to GLD (stagflation/geopolitical hedge). Solid thesis but daily buy limit reached."
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "5th consecutive IBIT rec, conviction dropped to 7. Q1 rebalancing ending is valid catalyst but becoming stale."
+        },
+        "quant": {
+          "ticker": "ETR",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "3rd consecutive ETR session, strong relative strength. Daily buy limit reached."
+        },
+        "sentiment": {
+          "ticker": "MU",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "New name \u2014 extreme fear washout + WSB buzz surge. Daily buy limit reached."
+        },
+        "contrarian": {
+          "ticker": "NKE",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "TOP PICK \u2014 Q3 beat confirmed turnaround, +6% NA growth. Daily buy limit. Flag for tomorrow AM."
+        }
+      }
+    },
+    {
+      "date": "2026-04-01",
+      "session": "premarket",
+      "decision": "buy",
+      "ticker": "GLD",
+      "agent": "macro",
+      "reasoning": "GLD chosen for portfolio diversification over higher-scoring TEAM (9.06 vs 7.90). Portfolio was 100% tech (META + INTU) \u2014 adding 3rd tech position in F&G 15 fear regime is poor risk management. Gold has structural tailwinds (DXY <100, central bank buying) and cross-agent confirmation (macro + quant both bullish gold). Works in both Iran scenarios tonight.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "GLD",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": null
+        },
+        "crypto": {
+          "ticker": "MSTR",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "NAV discount thesis is interesting but 0.9x fundamental discount (BTC treasury proxy), adjusted score 6.80"
+        },
+        "quant": {
+          "ticker": "GDXJ",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Cross-confirms gold thesis but lower conviction (7) and derivative of gold move. GLD preferred for simpler exposure."
+        },
+        "sentiment": {
+          "ticker": "ASTS",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Pre-revenue company (0.9x modifier), binary launch risk. Adjusted score 6.98."
+        },
+        "contrarian": {
+          "ticker": "TEAM",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Highest adjusted score (9.06) but adds 3rd tech position to 100% tech portfolio. Portfolio diversification overrides raw score in fear regime."
+        }
+      }
+    },
+    {
+      "date": "2026-04-01",
+      "session": "midday",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (GLD bought premarket). PYPL was top-scoring midday pick (8.15/10) \u2014 CEO-transition overreaction thesis with compelling 30% target. MSTR #2 (7.60) on BTC NAV discount. RKLB #3 (7.35) on WSB sentiment + Neutron launch catalyst. No sells warranted: META +11.9% approaching 15% target (hold), INTU -0.8% day 2 (hold), GLD +1.9% entered today (hold). Market rallying on Iran peace hopes \u2014 S&P +1.18%, semis +5.76%. Trump address tonight 9pm ET is key binary event.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "GLD",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Already own GLD (bought today). Hold recommendation, conv lowered to 7 due to binary risk from Trump address tonight."
+        },
+        "crypto": {
+          "ticker": "MSTR",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong NAV discount thesis (#2 at 7.60). Daily buy limit reached. Flag for tomorrow if BTC holds $68K+."
+        },
+        "quant": {
+          "ticker": "AVGO",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Below key MAs (50-DMA $332, 200-DMA $342). Tech overlap with META. Scored lowest (6.45). Daily buy limit reached."
+        },
+        "sentiment": {
+          "ticker": "RKLB",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "New name \u2014 WSB #2 pick, Neutron catalyst mid-2026. Good diversification. Daily buy limit reached."
+        },
+        "contrarian": {
+          "ticker": "PYPL",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "TOP PICK \u2014 CEO panic overreaction, Venmo +20%, 10x earnings. Best diversification (fintech). Daily buy limit reached. Flag for tomorrow."
+        }
+      }
+    },
+    {
+      "date": "2026-04-01",
+      "session": "closing",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (GLD bought premarket). MU was top-scoring closing pick (8.11/10 after fundamental overlay) on post-earnings WSB surge. SLV #2 (7.45) on silver catch-up to gold thesis. GDXJ #3 (7.30) confirming gold miner breakout with volume. No sells warranted: META +11.9% approaching 15% target (hold \u2014 not yet hit), INTU +0.5% day 2 (hold), GLD +1.8% entered today (hold). Market closed strong \u2014 S&P +0.81%, Nasdaq +1.28%. Trump Iran address tonight 9pm ET remains key binary event. Gold/silver rallied despite risk-on \u2014 confirms structural precious metals bid.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "SLV",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Silver catch-up thesis compelling (7.2% move today, gold-silver ratio compression). #2 at 7.45. Daily buy limit reached. Correlated with existing GLD position."
+        },
+        "crypto": {
+          "ticker": "MSTR",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "3rd consecutive MSTR rec today. NAV discount widened as MSTR -1.3% while BTC +2.7%. 0.9x fundamental discount. Adjusted 6.84. Daily buy limit reached."
+        },
+        "quant": {
+          "ticker": "GDXJ",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Breakout confirmed with +4.1% and 72% volume surge. Correlated with GLD position. Adjusted 7.30. Daily buy limit reached."
+        },
+        "sentiment": {
+          "ticker": "MU",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "TOP PICK \u2014 WSB +344%, post-earnings dip recovery, 1.15x fundamental boost. Adjusted 8.11. Daily buy limit reached. Flag for tomorrow AM."
+        },
+        "contrarian": {
+          "ticker": "NKE",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Post-earnings capitulation at 9-year low $48, NA +6% turnaround confirmed. Conv lowered to 7 (self-correction from -6.53% NKE pick yesterday). 0.85x fundamental discount. Adjusted 6.29. Daily buy limit reached."
+        }
+      }
+    },
+    {
+      "date": "2026-04-02",
+      "session": "premarket",
+      "decision": "buy",
+      "ticker": "ORCL",
+      "agent": "contrarian",
+      "reasoning": "ORCL scored highest adjusted PM score (8.40/10). Best thesis quality (9/10) \u2014 specific data-driven contrarian argument with $553B RPO, 84% OCI growth, and FCF inflection catalyst. Best risk/reward (40% target, $264 analyst consensus). Excellent portfolio diversification (enterprise tech, no overlap with META/INTU/GLD). XLE was #2 at 7.60 but we already have GLD for geopolitical hedge and lower target return.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "XLE",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong oil thesis (#2 at 7.60) but already hold GLD for geopolitical hedge. Lower target return (12%). Adding more commodity exposure creates concentration risk."
+        },
+        "crypto": {
+          "ticker": "MSTR",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Lowest conviction (7). BTC treasury co gets 0.7x fundamental discount. Risk-off environment bad for BTC. Adjusted score 4.73."
+        },
+        "quant": {
+          "ticker": "GDXJ",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Gold miners correlated with existing GLD position. Only 6% target return \u2014 lowest of the group. Portfolio fit scored 5/10."
+        },
+        "sentiment": {
+          "ticker": "RKLB",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "WSB momentum valid but pre-revenue 0.9x discount. Sentiment agent's track record mixed (LOAR disaster). Growth stock in risk-off day is risky. Adjusted 6.48."
+        },
+        "contrarian": {
+          "ticker": "ORCL",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": null
+        }
+      }
+    },
+    {
+      "date": "2026-04-02",
+      "session": "closing",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (ORCL bought premarket). ADBE was the clear standout closing pick \u2014 contrarian thesis on CEO-departure overreaction with 14x fwd PE, $10.3B FCF, Firefly AI tripling ARR, adjusted PM score 10.99/10 (1.3x fundamental boost). XLE #2 (7.80) with macro conviction 9 on Hormuz deadline April 6. IBIT #3 (7.35) on on-chain supply squeeze despite tariff selloff. No sells warranted: META +11.4% (approaching 15% target, hold), INTU -0.8% (thesis intact, tax deadline April 15), GLD +1.7% (gold recovered from midday selloff), ORCL -2.6% (day 1, normal volatility). Market closed down on Trump Liberation Day tariff announcement \u2014 S&P -0.7%, heavy risk-off. ADBE flagged as top candidate for tomorrow AM.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "XLE",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "Strong Hormuz deadline thesis (#2 at 7.80). Daily buy limit reached. XLE has underperformed crude all day."
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "On-chain supply squeeze compelling (#3 at 7.35). Tariff risk-off pressure on BTC. Daily buy limit reached."
+        },
+        "quant": {
+          "ticker": "WMT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Defensive rotation leader, good diversification. 0.85x fundamental discount (high valuation). Adjusted 6.16. Daily buy limit reached."
+        },
+        "sentiment": {
+          "ticker": "RKLB",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "WSB momentum + defense narrative. 0.9x pre-revenue discount. Adjusted 6.26. Daily buy limit reached."
+        },
+        "contrarian": {
+          "ticker": "ADBE",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "TOP PICK \u2014 CEO departure overreaction, 14x PE decade low, $10.3B FCF. 1.3x fundamental boost. Adjusted 10.99. Daily buy limit reached. Flag for tomorrow AM."
+        }
+      }
+    },
+    {
+      "date": "2026-04-06",
+      "session": "premarket",
+      "decision": "buy",
+      "ticker": "DAL",
+      "agent": "contrarian",
+      "reasoning": "DAL scored highest adjusted PM score (9.60/10) \u2014 clear standout 2.65 pts above #2 (BNO at 7.35). Deep value P/E 7.7 with revenue guidance raise to $15B+ and earnings in 2 days (April 8). Fundamental overlay boosted score 1.15x. Excellent portfolio diversification \u2014 first airline/travel exposure. No sells warranted: META +11.9% (approaching target, hold), INTU -0.8% (tax deadline Apr 15), GLD -0.2% (thesis intact), ORCL -2.3% (day 4 normal vol).",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "BNO",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong Hormuz thesis (#2 at 7.35), but oil/energy picks have been underperforming (XLE day_5 -5.29%). Binary event risk on deadline."
+        },
+        "crypto": {
+          "ticker": "MARA",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Lowest conviction (7). Mining stock with thin margins in high-energy-cost environment. 0.85x fundamental discount. Adjusted score 5.87."
+        },
+        "quant": {
+          "ticker": "COST",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Great RS leader but only 6% target return \u2014 lowest of all picks. 45x P/E gets 0.85x discount. At $1,010/share, can only buy 1 share. Adjusted 6.29."
+        },
+        "sentiment": {
+          "ticker": "ASTS",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#3 at 6.93 after 0.9x pre-revenue discount. Binary launch risk April 10. Strong sentiment signals but ASTS has been recommended 3x already."
+        },
+        "contrarian": {
+          "ticker": "DAL",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": null
+        }
+      }
+    },
+    {
+      "date": "2026-04-06",
+      "session": "midday",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (DAL bought premarket). RDDT was the clear standout midday pick (adjusted score 9.03/10) \u2014 Reddit down 50% from highs despite 70% revenue growth, $530M net income, $1B buyback, Q1 earnings April 30 catalyst. Fundamental overlay boosted score 1.15x. SNX #2 (7.75) on post-earnings momentum near 52-week high. BNO #3 (7.65) on Hormuz escalation \u2014 Iran rejected ceasefire, Tuesday deadline. No sells warranted: META +11.1% (approaching 15% target, hold), INTU -1.9% (tax deadline Apr 15), GLD -0.2% (flat), ORCL -4.6% (below -10% threshold), DAL +2.3% (entered today). RDDT flagged as top candidate for closing session or tomorrow AM.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "BNO",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "#3 at 7.65. Hormuz escalation thesis strengthened (Iran rejected ceasefire, Tuesday deadline). Daily buy limit reached. Portfolio already has DAL with inverse oil correlation."
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "Lowest conviction (6). BTC rally fragile \u2014 ceasefire only 30% odds on Polymarket. IBIT has $311M in 5-day outflows. Adjusted score 5.90. Daily buy limit reached."
+        },
+        "quant": {
+          "ticker": "SNX",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#2 at 7.75. Post-earnings momentum near 52-week high, Goldman PT $205, ex-div Apr 15. Good diversification. Daily buy limit reached."
+        },
+        "sentiment": {
+          "ticker": "ASTS",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#4 at 6.62 after 0.9x pre-revenue discount. Already up 5.7% today \u2014 chasing risk. BlueBird-7 launch Apr 10 still valid. Daily buy limit reached."
+        },
+        "contrarian": {
+          "ticker": "RDDT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "TOP PICK \u2014 adjusted score 9.03 (1.15x fundamental boost). Down 50% from $283 high despite 70% rev growth, $530M income, $1B buyback. Q1 earnings Apr 30. Daily buy limit reached. Flag for tomorrow AM."
+        }
+      }
+    },
+    {
+      "date": "2026-04-06",
+      "session": "closing",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (DAL bought premarket). NKE was the standout closing pick \u2014 contrarian thesis on Nike most oversold stock on Wall Street, RSI in teens, $44.19 near 2018 levels, Q3 earnings beat, 17.5x fwd P/E, 60%+ analyst upside to $72. Raw PM score 8.85 but 0.85x fundamental discount (negative revenue growth) \u2192 adjusted 7.52. BNO #2 (7.80) with macro conviction 9 on Hormuz crisis escalation (Israel struck South Pars, Iran threatens Bab al-Mandeb). ASTS #3 (6.89) with sentiment conviction 9, BlueBird-7 launch Apr 10. No sells warranted: META +11% (approaching 15% target, hold), INTU -2% (tax deadline Apr 15), GLD -0.3% (thesis intact), ORCL -5% (below -10% threshold), DAL +2% (entered today, earnings Apr 8). NKE and RDDT (from midday) flagged as top candidates for tomorrow AM.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "BNO",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "#2 at 7.80 (ETF 1.0x modifier). 3rd consecutive BNO rec today. Hormuz crisis escalating \u2014 Israel struck South Pars, Iran threatens Bab al-Mandeb. Tuesday deadline binary. Daily buy limit reached."
+        },
+        "crypto": {
+          "ticker": "MSTR",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Lowest conviction (7). BTC proxy with 0.7x fundamental discount (BTC treasury co). Saylor bought 4,871 BTC but MSTR amplifies downside. Adjusted score 4.34. Daily buy limit reached."
+        },
+        "quant": {
+          "ticker": "MRVL",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#4 at 6.65. Near 52-week high, Nvidia $2B investment catalyst. Tech overlap with META. Modest 7% target return. Daily buy limit reached."
+        },
+        "sentiment": {
+          "ticker": "ASTS",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "#3 at 6.89 after 0.9x pre-revenue discount. Conv raised to 9 (from 8 midday). BlueBird-7 launch Apr 10 \u2014 4 days away. WSB #3 pick. Daily buy limit reached."
+        },
+        "contrarian": {
+          "ticker": "NKE",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "TOP PICK \u2014 raw score 8.85, adjusted 7.52 after 0.85x fundamental discount. Most oversold stock, RSI teens, 17.5x fwd P/E, Q3 beat, $72 analyst target (60%+ upside). Daily buy limit reached. Flag for tomorrow AM alongside RDDT."
+        }
+      }
+    },
+    {
+      "date": "2026-04-07",
+      "session": "premarket",
+      "decision": "buy",
+      "ticker": "DUK",
+      "agent": "quant",
+      "reasoning": "DUK scored highest adjusted PM score (7.65/10). Best portfolio fit (9/10) with zero utility exposure. Defensive rotation is the dominant trade in Fear & Greed 23 regime with tariffs April 8. Duke Energy has clean technicals (Strong Buy across MAs, MACD positive) and data center demand structural tailwind. MDB had best raw thesis (8.10) but 0.85x fundamental discount for negative margins and ORCL database overlap reduced adjusted score to 6.89. BNO was penalized for inverse correlation with DAL position.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "BNO",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong Hormuz thesis (#2 at 7.30) but conflicts with DAL position (oil up hurts airline fuel costs). Binary event risk tonight."
+        },
+        "crypto": {
+          "ticker": "CIFR",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "Lowest conviction (6). Mining stocks volatile \u2014 MARA collapsed 49%. JPMorgan upgrade insufficient catalyst. Adjusted score 5.90."
+        },
+        "quant": {
+          "ticker": "DUK",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": null
+        },
+        "sentiment": {
+          "ticker": "NBIS",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Pre-revenue 0.9x discount. Operating margin -375%. Massive cash burn. Adds tech correlation to META. Adjusted score 5.99."
+        },
+        "contrarian": {
+          "ticker": "MDB",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Best raw thesis (9/10, score 8.10) but 0.85x fundamental discount for negative margins drops to 6.89. ORCL database overlap hurts portfolio fit."
+        }
+      }
+    },
+    {
+      "date": "2026-04-07",
+      "session": "midday",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (DUK bought premarket). AVGO was top-scoring midday pick (8.57/10 est. adjusted) \u2014 reclaiming 200-day SMA on Google/Anthropic AI chip deal, conviction 8. PINS #2 (8.00) \u2014 Elliott activist with $22.72 conversion price floor. No sells warranted: META +10.7% (winning), INTU -1.4% (minor), GLD -0.6% (flat), ORCL -3.5% (within range), DAL +1.8% (earnings tomorrow), DUK +2.4% (entered today). Iran/Hormuz deadline at 8pm ET tonight is the key binary event \u2014 portfolio positioned defensively with DUK + GLD.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "GLD",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Already hold GLD \u2014 poor portfolio fit. Conviction lowered to 7. Daily buy limit reached."
+        },
+        "crypto": {
+          "ticker": "RIOT",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "AMD AI pivot interesting but mining stocks volatile. Adjusted score 5.95. Daily buy limit reached."
+        },
+        "quant": {
+          "ticker": "AVGO",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "TOP PICK \u2014 200-day SMA reclaim on Google/Anthropic deal. Adjusted 8.57. Daily buy limit reached. Flag for tomorrow."
+        },
+        "sentiment": {
+          "ticker": "NCLH",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Binary Iran ceasefire bet, overlaps with DAL travel thesis. Adjusted 5.14. Daily buy limit reached."
+        },
+        "contrarian": {
+          "ticker": "PINS",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#2 pick \u2014 Elliott activist catalyst + buyback. Adjusted 8.00. Daily buy limit reached. Consider for tomorrow."
+        }
+      }
+    },
+    {
+      "date": "2026-04-07",
+      "session": "closing",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (DUK bought premarket). UNH was the top-scoring closing pick (8.55/10) \u2014 CMS Medicare Advantage +2.48% rate hike catalyst drove +9% today, WSB mentions +1471%, no healthcare exposure in portfolio. BNO #2 (8.05) with macro conviction 9 on Iran escalation (Kharg Island strikes, no ceasefire). OXY #3 (7.85) on oil momentum with Morgan Stanley $73 target. No sells warranted: META +10.7% (winner running), INTU -1.4% (minor), GLD -0.5% (geopolitical hedge), ORCL -4.5% (watch), DAL -0.3% (earnings tomorrow \u2014 risk noted but no sell trigger), DUK +0.1% (entered today). UNH flagged as top candidate for tomorrow AM.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "BNO",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "#2 at 8.05 (ETF 1.0x modifier). Iran escalation thesis compelling \u2014 Kharg Island strikes, no ceasefire deal. Already hold GLD for geopolitical hedge. Daily buy limit reached."
+        },
+        "crypto": {
+          "ticker": "CIFR",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "#5 at 6.90. AI/HPC pivot thesis valid but lower conviction. 10%+ intraday move creates profit-taking risk at close. Daily buy limit reached."
+        },
+        "quant": {
+          "ticker": "OXY",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#3 at 7.85. Oil momentum with MS $73 target. Good diversification (no energy stock). Daily buy limit reached."
+        },
+        "sentiment": {
+          "ticker": "UNH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "TOP PICK \u2014 CMS Medicare rate hike catalyst, +9% today, WSB surge +1471%. Best portfolio fit (no healthcare). Adjusted 8.55. Daily buy limit reached. Flag for tomorrow AM."
+        },
+        "contrarian": {
+          "ticker": "MSFT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#4 at 7.45. Decade-low P/E, Azure 39% growth, earnings April 28. Adds more tech exposure (already META, INTU, ORCL). Daily buy limit reached."
+        }
+      }
+    },
+    {
+      "date": "2026-04-08",
+      "session": "premarket",
+      "decision": "buy",
+      "selected_agent": "contrarian",
+      "ticker": "PINS",
+      "allocation_pct": 20,
+      "allocation_amount": 444.0,
+      "reasoning": "PINS scored highest (9.88) after applying 1.3x fundamental modifier for excellent valuation (fwd P/E 8.3, FCF yield 8.4%). Contrarian thesis of temporary tariff-driven ad pullback in an otherwise healthy, growing business. All debate results were toss-ups but PINS fundamentals provide a genuine margin of safety.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "TLT",
+          "conviction": 7,
+          "considered": false,
+          "rejection_reason": "Low final score (6.90)"
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 7,
+          "considered": false,
+          "rejection_reason": "Low final score (6.83)"
+        },
+        "quant": {
+          "ticker": "UNH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Earnings binary risk within 15-day horizon; toss-up debate"
+        },
+        "sentiment": {
+          "ticker": "AVGO",
+          "conviction": 9,
+          "considered": true,
+          "rejection_reason": "Chasing after 6% surge; bear case 8/10 on customer concentration and tariffs"
+        },
+        "contrarian": {
+          "ticker": "PINS",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": null
+        }
+      },
+      "debate_results": [
+        {
+          "ticker": "AVGO",
+          "debate_score": 1,
+          "modifier": 1.0,
+          "bull_strength": 9,
+          "bear_strength": 8,
+          "risk_flags": [
+            "already_priced_in"
+          ],
+          "verdict": "Toss-up \u2014 bull has stronger AI revenue visibility but bear raises valid valuation and concentration concerns"
+        },
+        {
+          "ticker": "PINS",
+          "debate_score": 0,
+          "modifier": 1.0,
+          "bull_strength": 8,
+          "bear_strength": 8,
+          "risk_flags": [
+            "timing_risk"
+          ],
+          "verdict": "Toss-up \u2014 genuinely cheap fundamentals vs earnings binary risk April 23. Fundamentals provide floor."
+        },
+        {
+          "ticker": "UNH",
+          "debate_score": 0,
+          "modifier": 1.0,
+          "bull_strength": 8,
+          "bear_strength": 8,
+          "risk_flags": [
+            "timing_risk",
+            "already_priced_in"
+          ],
+          "verdict": "Toss-up \u2014 CMS catalyst real but 9.37% already priced in, DOJ overhang, earnings risk April 21"
+        }
+      ],
+      "fundamental_overlay": {
+        "AVGO": {
+          "fwd_pe": 18.72,
+          "rev_growth": "29.5%",
+          "op_margin": "44.9%",
+          "de": 82.7,
+          "fcf_yield": "1.61%",
+          "score": 7.25,
+          "modifier": 1.15
+        },
+        "PINS": {
+          "fwd_pe": 8.29,
+          "rev_growth": "14.3%",
+          "op_margin": "22.8%",
+          "de": 5.5,
+          "fcf_yield": "8.4%",
+          "score": 8.1,
+          "modifier": 1.3
+        },
+        "UNH": {
+          "fwd_pe": 15.31,
+          "rev_growth": "12.3%",
+          "op_margin": "0.3%",
+          "de": 81.6,
+          "fcf_yield": "4.96%",
+          "score": 5.0,
+          "modifier": 1.0
+        }
+      },
+      "portfolio_after": {
+        "cash": 1776.03,
+        "nav": 9740.74,
+        "positions_count": 7,
+        "total_pnl": -259.26,
+        "pnl_pct": -2.59
+      }
+    },
+    {
+      "date": "2026-04-08",
+      "session": "midday",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (PINS bought premarket). NCLH scored highest (8.25) but bear debate raised strong concerns: already priced in (+8.7% intraday), Jefferies PT exactly at entry, DAL portfolio correlation. UNH #2 (7.90) with DOJ risk and already rallied 11%. No sells warranted: META +14.8% strong but no specific target hit, ORCL -4.5% not at stop-loss, DAL -3.4% just entered 2 days ago. Ceasefire rally lifting most positions.",
+      "debate_results": [
+        {
+          "ticker": "NCLH",
+          "debate_score": -1,
+          "modifier": 1.0,
+          "bull_strength": 7,
+          "bear_strength": 8,
+          "risk_flags": [
+            "already_priced_in",
+            "timing_risk"
+          ],
+          "verdict": "Toss-up leaning bear \u2014 entry price IS the post-ceasefire rally high, DAL correlation, Jefferies downgrade to $20 PT"
+        },
+        {
+          "ticker": "UNH",
+          "debate_score": 1,
+          "modifier": 1.0,
+          "bull_strength": 8,
+          "bear_strength": 7,
+          "risk_flags": [],
+          "verdict": "Toss-up leaning bull \u2014 CMS catalyst genuine but already rallied 11%, DOJ probe and April 21 earnings risk"
+        }
+      ],
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "TLT",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong thesis (ceasefire \u2192 yield compression). #3 at 7.75. Daily buy limit reached."
+        },
+        "crypto": {
+          "ticker": "MSTR",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Lowest score (6.75). Repetitive MSTR rec. Negative operating margins. Daily buy limit reached."
+        },
+        "quant": {
+          "ticker": "UAL",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#4 at 7.15. DAL portfolio overlap penalized portfolio fit. Already up 9.82% today \u2014 chasing risk. Daily buy limit reached."
+        },
+        "sentiment": {
+          "ticker": "UNH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#2 at 7.90 after debate. Strong sentiment confluence but DOJ probe risk + already rallied 11%. Daily buy limit reached."
+        },
+        "contrarian": {
+          "ticker": "NCLH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "#1 at 8.25 but bear won debate (8 vs 7). Already priced in, Jefferies $20 PT = entry price, DAL correlation. Daily buy limit reached."
+        }
+      }
+    },
+    {
+      "date": "2026-04-08",
+      "session": "closing",
+      "decision": "pass",
+      "ticker": null,
+      "agent": null,
+      "reasoning": "Daily buy limit reached (PINS bought premarket). Iran ceasefire rally dominated today \u2014 markets up ~2.5%. Top closing picks were TEAM (contrarian, 7.85 raw) and TSM (quant, 7.60 raw), both strong but cannot execute. All 7 positions reviewed \u2014 no sells warranted: DAL +20% on earnings beat (let winner run), META +14.8% (Q1 earnings catalyst ahead), ORCL -4.5% (below -10% stop). TEAM flagged as top candidate for tomorrow with Q3 earnings May 7 catalyst.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "TLT",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "3rd consecutive TLT rec today; thesis confirmed but conviction only 7; daily buy limit reached"
+        },
+        "crypto": {
+          "ticker": "IBIT",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "BTC rally thesis valid but ETF flows cooling; daily buy limit reached"
+        },
+        "quant": {
+          "ticker": "TSM",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Strong momentum play \u2014 Goldman PT $550, ceasefire removing Taiwan risk premium; daily buy limit reached. #2 candidate."
+        },
+        "sentiment": {
+          "ticker": "FLY",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "SpaceX halo play interesting but near analyst PT; daily buy limit reached"
+        },
+        "contrarian": {
+          "ticker": "TEAM",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Top-scoring pick (7.85 raw) \u2014 74% off highs, fwd P/E 12.75x, Q3 earnings May 7; daily buy limit reached. #1 candidate for tomorrow."
+        }
+      }
+    },
+    {
+      "date": "2026-04-09",
+      "session": "premarket",
+      "decision": "pass",
+      "reasoning": "Top 2 candidates (UAL, NCLH) eliminated by Capital Protection Gate \u2014 both face unresolvable 2-week ceasefire timing risk within their trade horizons, and portfolio already holds correlated ceasefire/oil exposure via DAL. IEF offers only 4% target (low asymmetry). DECK has vague catalyst timing and narrative penalty. Cash is a position.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "IEF",
+          "conviction": 7,
+          "considered": true,
+          "rejection_reason": "Low asymmetry (4% target return), not debated",
+          "scores": {
+            "evidence": 7,
+            "falsifiability": 7,
+            "risk_reward": 5,
+            "portfolio_impact": 7,
+            "signal_confirmation": 6,
+            "execution_readiness": 7
+          },
+          "raw_score": 6.5,
+          "narrative_penalty": false
+        },
+        "crypto": {
+          "ticker": "MSBT",
+          "conviction": 8,
+          "considered": false,
+          "rejection_reason": "Pre-filter reject: unverifiable new ETF (day-2 product, cannot confirm existence)",
+          "scores": null,
+          "raw_score": null,
+          "narrative_penalty": false
+        },
+        "quant": {
+          "ticker": "UAL",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Debate PASS \u2014 bull conceded 3/4 bear attacks unrebutted (ceasefire fragility, jet fuel economics, Q2 guidance). Bull self-vetoed (strength 4).",
+          "scores": {
+            "evidence": 8,
+            "falsifiability": 8,
+            "risk_reward": 8,
+            "portfolio_impact": 5,
+            "signal_confirmation": 8,
+            "execution_readiness": 8
+          },
+          "raw_score": 7.55,
+          "narrative_penalty": false
+        },
+        "sentiment": {
+          "ticker": "NCLH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Debate PASS \u2014 ceasefire expires inside 21-day trade window, DAL overlap, failed break-the-trade checklist",
+          "scores": {
+            "evidence": 7,
+            "falsifiability": 7,
+            "risk_reward": 7,
+            "portfolio_impact": 6,
+            "signal_confirmation": 7,
+            "execution_readiness": 7
+          },
+          "raw_score": 6.85,
+          "narrative_penalty": false
+        },
+        "contrarian": {
+          "ticker": "DECK",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Narrative penalty (0.85x) \u2192 final 5.53, vague catalyst timing",
+          "scores": {
+            "evidence": 7,
+            "falsifiability": 6,
+            "risk_reward": 7,
+            "portfolio_impact": 7,
+            "signal_confirmation": 6,
+            "execution_readiness": 5
+          },
+          "raw_score": 6.5,
+          "narrative_penalty": true,
+          "narrative_penalty_reasons": [
+            "vague catalyst timing",
+            "thesis depends on sentiment reversal without specific trigger"
+          ]
+        }
+      },
+      "debate_results": [
+        {
+          "ticker": "UAL",
+          "debate_decision": "pass",
+          "bear_classification": "serious_weakness",
+          "risk_flags": [
+            "already_priced_in",
+            "timing_risk",
+            "weak_catalyst",
+            "sector_overlap",
+            "macro_conflict",
+            "poor_asymmetry"
+          ],
+          "bear_strength": 8,
+          "bull_strength_updated": 4,
+          "fatal_flaw_found": false,
+          "serious_weaknesses_rebutted": 0,
+          "reason": "Bull conceded 3 of 4 attacks unrebutted. Ceasefire is 2-week truce expiring at earnings Apr 21-22. Jet fuel at $4.81/gal. DAL overlap. Bull self-vetoed."
+        },
+        {
+          "ticker": "NCLH",
+          "debate_decision": "pass",
+          "bear_classification": "serious_weakness",
+          "risk_flags": [
+            "already_priced_in",
+            "timing_risk",
+            "weak_catalyst",
+            "macro_conflict",
+            "sector_overlap",
+            "poor_asymmetry",
+            "narrative_overreach"
+          ],
+          "bear_strength": 8,
+          "bull_strength_updated": 5,
+          "fatal_flaw_found": false,
+          "serious_weaknesses_rebutted": 0,
+          "reason": "Ceasefire expires Apr 22 inside 21-day window. Jefferies $20 PT flat to entry. DAL thesis overlap. Failed break-the-trade checklist."
+        }
+      ],
+      "vix_level": 20.18,
+      "spy_price": 673.17,
+      "spy_return_pct": 21.15,
+      "portfolio_pnl_pct": -0.05,
+      "alpha": -21.2
     }
   ],
-  "total_trades": 2,
-  "total_buys": 2,
-  "total_sells": 0,
-  "total_passes": 2
+  "total_trades": 8,
+  "total_buys": 7,
+  "total_sells": 1,
+  "total_passes": 8
 }

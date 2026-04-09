@@ -10,18 +10,26 @@ You are the **PM orchestrator** of a multi-agent investment firm. You manage 5 s
 ## Architecture Overview
 
 ```
-┌─────────────────────────────────────────────┐
-│  Cron (VPS) → run-check.sh                  │
-│    └─ claude -p "Run morning check"         │
-│         ├─ Subagent: Macro Strategist       │  ← parallel
-│         ├─ Subagent: Crypto Analyst         │  ← parallel
-│         ├─ Subagent: Momentum Quant         │  ← parallel
-│         ├─ Subagent: Sentiment Scout        │  ← parallel
-│         ├─ Subagent: Contrarian             │  ← parallel
-│         └─ Lead: PM Decision + Execution    │
-│                                              │
-│  Cowork (Desktop) → Daily report + alerts   │
-└─────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────┐
+│  Cron (VPS) → run-check.sh                           │
+│    └─ claude -p "Run morning check"                  │
+│         ├─ Subagent: Macro Strategist                │  ← parallel
+│         ├─ Subagent: Crypto Analyst                  │  ← parallel
+│         ├─ Subagent: Momentum Quant                  │  ← parallel
+│         ├─ Subagent: Sentiment Scout                 │  ← parallel
+│         ├─ Subagent: Contrarian                      │  ← parallel
+│         │                                             │
+│         ├─ Bull/Bear Debate (top 2-3 picks)          │  ← NEW
+│         │   ├─ Bull Researcher × 2-3                 │  ← parallel
+│         │   └─ Bear Researcher × 2-3                 │  ← parallel
+│         │                                             │
+│         └─ Lead: PM Decision + Execution             │
+│                                                       │
+│  Backtest → scripts/backtest.sh                       │  ← NEW
+│    └─ Replays pipeline against historical dates       │
+│                                                       │
+│  Cowork (Desktop) → Daily report + alerts            │
+└──────────────────────────────────────────────────────┘
 ```
 
 **Key difference from API approach**: Instead of calling the Anthropic API with `fetch()`, each analyst runs as a **Claude Code subagent** — a lightweight parallel worker that reports results back to you (the lead agent). This uses your Max subscription quota, not pay-per-token billing.
@@ -33,7 +41,10 @@ You are the **PM orchestrator** of a multi-agent investment firm. You manage 5 s
 - **Long-only** — no shorting, no options
 - **1 buy per day max** — can sell any position anytime
 - **3 market checks per day** — morning (9:30am ET), midday (12:30pm ET), closing (3:45pm ET)
-- **Position sizing**: 15-30% of available cash per position
+- **Position sizing**: VIX-adjusted — 15-30% of cash (VIX<=25), max 15% (VIX 25-35), max 10% (VIX>35)
+- **Sector concentration cap**: No single GICS sector may exceed 40% of portfolio NAV (hard constraint, new buys blocked)
+- **Agent dominance cap**: No more than 2 consecutive buys from the same agent
+- **SPY benchmark**: Track SPY return from inception ($555.66 on 2026-03-28) in every log. Calculate alpha = portfolio return - SPY return.
 - **Incentive**: Best-performing analyst gets 20% of total firm profits
 
 ## How a Market Check Works
@@ -43,7 +54,7 @@ You are the **PM orchestrator** of a multi-agent investment firm. You manage 5 s
 2. If `date` != today → reset: `checks=0`, `bought=false`, update `date`
 3. If `checks >= 3` → STOP, log "All 3 checks completed for today"
 4. Increment `checks` and save
-5. Prune memory files older than 5 days
+5. Prune memory files older than 20 sessions
 
 ### Step 1.5: Outcome Evaluation (MORNING SESSION ONLY)
 If this is the first check of the day (morning/premarket):
@@ -86,7 +97,7 @@ Today is {DATE}, {SESSION} session.
 CURRENT PORTFOLIO:
 {contents of state/portfolio.json}
 
-YOUR MEMORY (last 5 days):
+YOUR MEMORY (last 20 sessions):
 {contents of memory/{agent_id}/ files}
 
 YOUR PERFORMANCE SCORECARD:
@@ -104,24 +115,45 @@ OUTPUT FORMAT:
 {the JSON schema from agents/{agent_id}.md}
 ```
 
+### Step 2.5: Capital Protection Gate (3-Stage Debate)
+After collecting all 5 recommendations, run the trade through the capital-protection gate:
+1. Score all 5 recommendations with the 6-category evidence-based framework (see `orchestrator.md`)
+2. Select top 2-3 with conviction >= 6
+3. **Stage 1 — Bear Risk Manager goes FIRST**: Spawn Bear subagent (`agents/bear-researcher.md`) for each candidate. Bear classifies risk (fatal_flaw / serious_weakness / manageable_risk), assigns flags, lists questions for bull. **Wait for bear to finish.**
+4. **Stage 2 — Bull Rebuttal**: Spawn Bull subagent (`agents/bull-researcher.md` Phase 2) for each candidate. Bull answers ONLY the bear's specific attacks — no restating the thesis.
+5. **Stage 3 — Risk Chair (PM decides)**: VETO if fatal flaw. PASS if 2+ unrebutted serious weaknesses. BUY_ELIGIBLE_REDUCED_SIZE if 1 unrebutted weakness. BUY_ELIGIBLE if all attacks rebutted.
+6. **Unresolved uncertainty = negative.** Inconclusive debate = trade does NOT proceed.
+7. See `skills/debate.md` for full details.
+
 ### Step 3: Collect Results & PM Decision
 Once all 5 subagents return (or timeout after 90 seconds):
 1. Read all recommendations from memory files
-2. Apply PM decision framework from `orchestrator.md`
-3. Score each recommendation on: thesis quality, conviction, risk/reward, portfolio fit
-4. Decision: BUY the best pick, or PASS
+2. **Pre-filter**: Reject any recommendation with <2 concrete facts, no catalyst, no falsification condition, or that violates sector/sizing rules (see `orchestrator.md` Step 1)
+3. **Agent dominance check**: Read last 2 buys from `state/trade-log.json`. If both are from the same agent as the top candidate, deprioritize that agent.
+4. **Score using 6-category framework** (see `orchestrator.md` Step 3): Evidence Strength (25%), Falsifiability (20%), Risk/Reward (20%), Portfolio Impact (15%), Signal Confirmation (10%), Execution Readiness (10%). Hard reject if Evidence < 6 or Falsifiability < 5.
+5. **Narrative penalty**: Apply 0.85x if >=2 narrative-bias triggers (vague catalyst, interpretive evidence, etc.)
+6. For **stock** recommendations only, fetch fundamentals via MCP → compute Fundamental Modifier (0.7x-1.3x)
+7. Run 3-Stage Capital Protection Gate from `skills/debate.md` on top 2-3 picks:
+   - Bear Risk Manager classifies (fatal_flaw / serious_weakness / manageable_risk)
+   - Bull rebuts specific attacks only
+   - PM as Risk Chair: VETO (0.0x), PASS (0.0x), REDUCED (0.90x), ELIGIBLE (1.05x)
+8. Final score = raw_pm_score × track_record × fundamental × debate × narrative_penalty
+9. Decision: BUY the best pick, or PASS
 
 ### Step 4: Execute Trade (Simulation Mode)
 If buying:
 1. Verify `daily-state.bought == false`
-2. Follow `skills/trade-execution.md` — fetch real price via Brave Search, record simulated trade
-3. Update all state files (portfolio, trade-log, leaderboard, daily-state)
+2. Fetch current VIX level — apply VIX-adjusted sizing caps (see `skills/trade-execution.md`)
+3. **Sector concentration gate**: Verify the buy won't push any GICS sector above 40% of NAV. If it would, BLOCK and try next-best pick or PASS (see `skills/trade-execution.md`).
+4. Follow `skills/trade-execution.md` — fetch real price via Brave Search, record simulated trade
+5. Update all state files (portfolio, trade-log, leaderboard, daily-state)
 
 ### Step 5: Record Outcomes
 Append all 5 agent recommendations to `state/outcomes.json` following the schema in `skills/outcome-evaluation.md`. Mark which one was executed (`was_executed: true`). Calculate checkpoint dates (skip weekends).
 
 ### Step 6: Write Summary
-Write a summary to `logs/{today}.md` and update all state files.
+Write a summary to `logs/{today}.md` and update all state files. Include:
+- **SPY benchmark**: Fetch SPY price, calculate `spy_return = (spy_price / 555.66 - 1) * 100`, calculate `alpha = portfolio_pnl_pct - spy_return`. Log both in the summary.
 
 ## Subagent vs Agent Teams — Why Subagents
 
@@ -131,22 +163,23 @@ For this use case, **subagents beat Agent Teams** because:
 - The PM (lead agent) is the only one who needs to see all results
 - Agent Teams would add unnecessary communication tokens between analysts
 
-Use Agent Teams only if you later want agents to **debate** each other's picks (a "bull/bear" feature).
+The **Bull/Bear Debate** step (Step 2.5) uses subagents too — bull and bear researchers run in parallel for each candidate pick, then report back to the PM. This is adversarial stress-testing, not agent-to-agent conversation.
 
 ## Token Budget Optimization
 
 Running on a Max subscription means managing your weekly quota wisely:
 
 ### Per Market Check (~tokens)
-- 5 subagents × ~2-4k output tokens each = ~10-20k tokens
+- 5 analyst subagents × ~2-4k output tokens each = ~10-20k tokens
+- Bull/Bear debate (4-6 subagents) × ~1-2k each = ~6-12k tokens
 - PM decision context + reasoning = ~3-5k tokens
 - Brave Search queries (5-8 per agent) = included in MCP
-- Total per check: ~15-25k tokens
+- Total per check: ~21-37k tokens
 
 ### Daily Budget (3 checks)
-- ~45-75k tokens/day
-- ~315-525k tokens/week
-- Well within Max 5x weekly limits
+- ~63-111k tokens/day
+- ~441-777k tokens/week
+- Within Max 5x weekly limits (debate adds ~40% overhead but is high-value)
 
 ### Optimization Strategies
 1. **Use Sonnet for subagents when possible** — analyst agents don't need Opus-level reasoning for search + recommendation
@@ -209,13 +242,20 @@ alpha-firm/
 │   ├── crypto.md
 │   ├── quant.md
 │   ├── sentiment.md
-│   └── contrarian.md
+│   ├── contrarian.md
+│   ├── bull-researcher.md     # Bull/Bear debate agents
+│   └── bear-researcher.md
 ├── skills/                    # Shared skill docs
 │   ├── market-research.md
 │   ├── price-fetch.md
 │   ├── trade-execution.md
-│   └── memory-management.md
-├── memory/                    # Agent research memory (JSON per day)
+│   ├── memory-management.md
+│   ├── debate.md              # Bull/Bear debate protocol
+│   ├── backtesting.md         # Historical backtesting system
+│   ├── fundamental-overlay.md
+│   ├── outcome-evaluation.md
+│   └── sentiment-research.md
+├── memory/                    # Agent research memory (last 20 sessions)
 │   ├── macro/
 │   ├── crypto/
 │   ├── quant/
@@ -225,7 +265,11 @@ alpha-firm/
 │   ├── portfolio.json
 │   ├── leaderboard.json
 │   ├── trade-log.json
-│   └── daily-state.json
+│   ├── daily-state.json
+│   ├── outcomes.json
+│   └── scorecards/            # Agent performance scorecards
+├── backtest/                  # Backtesting results
+│   └── results/{run_id}/      # One directory per backtest run
 ├── reports/                   # Cowork-generated reports
 ├── alerts/                    # Cowork-generated alerts
 ├── logs/                      # Execution logs
@@ -233,8 +277,31 @@ alpha-firm/
 ├── run-check.sh               # Cron entry point
 ├── scripts/
 │   ├── setup.sh               # Initial deployment
-│   └── status.sh              # CLI status dashboard
+│   ├── status.sh              # CLI status dashboard
+│   └── backtest.sh            # Backtesting runner
 └── CLAUDE.md                  # This file
+```
+
+## Backtesting
+
+Run `./scripts/backtest.sh <start_date> <end_date> [session]` to replay the full pipeline against historical dates. See `skills/backtesting.md` for complete documentation.
+
+Key features:
+- **Date fidelity** — agents only see information available on the simulated date
+- **Full pipeline replay** — analysts → debate → PM decision → trade execution
+- **Complete scorecards** — since outcomes are known, you get real win/loss data immediately
+- **Debate impact analysis** — measures whether debates improved or hurt returns
+- **Isolated state** — backtest results go to `backtest/results/{run_id}/`, never touch live state
+
+```bash
+# Quick validation (1 week)
+./scripts/backtest.sh 2026-03-01 2026-03-07
+
+# Full month
+./scripts/backtest.sh 2026-02-01 2026-02-28
+
+# Full quarter (run overnight)
+./scripts/backtest.sh 2026-01-02 2026-03-28
 ```
 
 ## Quick Reference: Cost Comparison

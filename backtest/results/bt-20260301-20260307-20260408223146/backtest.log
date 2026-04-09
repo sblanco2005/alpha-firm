@@ -1,0 +1,138 @@
+[2026-04-08T22:31:46] ═══════════════════════════════════════════════════════
+[2026-04-08T22:31:46] BACKTEST STARTING
+[2026-04-08T22:31:46] Run ID: bt-20260301-20260307-20260408223146
+[2026-04-08T22:31:46] Period: 2026-03-01 → 2026-03-07
+[2026-04-08T22:31:46] Session: morning
+[2026-04-08T22:31:46] Trading days: 5
+[2026-04-08T22:31:46] Results: /home/clawd/alpha-firm/backtest/results/bt-20260301-20260307-20260408223146
+[2026-04-08T22:31:46] ═══════════════════════════════════════════════════════
+[2026-04-08T22:31:46] ───────────────────────────────────────
+[2026-04-08T22:31:46] Day 1/5: 2026-03-02 (morning)
+[2026-04-08T22:31:46] ───────────────────────────────────────
+**Backtest Day 2026-03-02 (Morning) — Complete**
+
+**Decision: BUY XOM @ $156.50 (15 shares, $2,347.50)**
+- Selected agent: **Quant** (Momentum Quant)
+- Final score: **9.37** (raw 8.15 × fundamental 1.15x × debate 1.00x)
+- Thesis: Bull flag breakout on Iran strikes catalyst, energy sector momentum leader targeting ATH $171-175
+
+**All 5 Recommendations:**
+| Agent | Ticker | Conv. | Final Score | Status |
+|-------|--------|-------|-------------|--------|
+| Quant | XOM | 8 | 9.37 | **EXECUTED** |
+| Macro | XLE | 8 | 7.90 | Passed (correlated) |
+| Sentiment | RTX | 8 | 7.10 | Passed (ATH risk) |
+| Crypto | IREN | 7 | 6.08 | Passed (weak fundamentals) |
+| Contrarian | NKE | 7 | 6.08 | Passed (weak fundamentals) |
+
+**Debate Summary:**
+- XOM: Bull 8 vs Bear 7 = Toss-up (1.00x). Bull thesis intact on ongoing Hormuz risk.
+- RTX: Bull 8 vs Bear 7 = Toss-up (1.00x). Risk flags: already_priced_in, timing_risk.
+
+**Portfolio After:**
+- Cash: $7,652.50
+- Positions: XOM (15 shares @ $156.50 = $2,347.50)
+- NAV: $10,000.00
+
+All state files written to `backtest/results/bt-20260301-20260307-20260408223146/`.
+[2026-04-08T22:41:32] Day 1 complete. Portfolio NAV: 10000.00
+[2026-04-08T22:41:32] ───────────────────────────────────────
+[2026-04-08T22:41:32] Day 2/5: 2026-03-03 (morning)
+[2026-04-08T22:41:32] ───────────────────────────────────────
+---
+
+## Backtest Day Complete: 2026-03-03 (Morning)
+
+### Trade Executed
+**BUY MDB (MongoDB) — 6 shares @ $252.73 = $1,516.38**
+- Agent: Contrarian (conviction 8, final score 8.15)
+- Thesis: Classic earnings overreaction — Q4 beat on revenue (+27% YoY) and EPS, crashed 27% on soft Q1 guidance
+- Debate: Toss-up (bull 7, bear 7) — bear raised valid concerns about dual leadership departures, but the fundamental strength supports recovery
+
+### Portfolio Status
+| Position | Shares | Entry | Current | P&L |
+|----------|--------|-------|---------|-----|
+| XOM | 15 | $156.50 | $151.83 | **-2.98%** |
+| MDB | 6 | $252.73 | $252.73 | **0.00%** |
+| Cash | — | — | — | $6,136.12 |
+| **NAV** | — | — | — | **$9,929.95 (-0.70%)** |
+
+### Day 1 Checkpoint Results (Mar 2 picks)
+- XLE (macro): +0.96% | IREN (crypto): +0.91% | **XOM (quant, executed): -2.98%** | RTX (sentiment): +1.10% | NKE (contrarian): -2.66%
+
+### Key Observations
+- XOM pulled back despite oil at $120 — watching closely but holding (not thesis-breaking yet)
+- Iran conflict dominates: 3 of 5 agents picked geopolitical plays (RTX, OXY, IBIT)
+- MDB contrarian play is the diversification move — uncorrelated to energy/defense
+- All state files updated in `/home/clawd/alpha-firm/backtest/results/bt-20260301-20260307-20260408223146/`
+[2026-04-08T22:56:19] Day 2 complete. Portfolio NAV: 9929.95
+[2026-04-08T22:56:19] ───────────────────────────────────────
+[2026-04-08T22:56:19] Day 3/5: 2026-03-04 (morning)
+[2026-04-08T22:56:19] ───────────────────────────────────────
+Bear GLD researcher completed — confirmed bear case strength 8 with thesis_flaw flag as captured. This was the finding that eliminated GLD from consideration (gold falling during the Iran conflict, record ETF outflows). All subagents done, 2026-03-04 pipeline complete.
+[2026-04-08T23:16:08] Day 3 complete. Portfolio NAV: 9871.48
+[2026-04-08T23:16:08] ───────────────────────────────────────
+[2026-04-08T23:16:08] Day 4/5: 2026-03-05 (morning)
+[2026-04-08T23:16:08] ───────────────────────────────────────
+All debate agents now fully reconciled. Final debate results:
+
+| Ticker | Bull | Bear | Score | Modifier | Risk Flags | Verdict |
+|--------|------|------|-------|----------|------------|---------|
+| **BURL** | **8** | **6** | **+2** | **1.05x** | none | Bull wins |
+| TGT | 8 | 8 | 0 | 1.00x | timing_risk, already_priced_in | Dangerous toss-up |
+
+The TGT bear case was devastating — Q1 guidance 31% below consensus, stock already above consensus PT, 3 years of negative comps. Had TGT been the top pick, the debate would have flagged it for PASS (bear >= 7 with 2 risk flags). Good thing BURL was the clear winner.
+
+All state files for March 5 are complete and accurate. Ready for March 6.
+[2026-04-08T23:32:18] Day 4 complete. Portfolio NAV: 9997.54
+[2026-04-08T23:32:18] ───────────────────────────────────────
+[2026-04-08T23:32:18] Day 5/5: 2026-03-06 (morning)
+[2026-04-08T23:32:18] ───────────────────────────────────────
+All state files updated successfully. Here's the summary:
+
+---
+
+## Backtest Day 5 Complete: 2026-03-06 Morning Session
+
+### Decision: **BUY ORCL (Oracle) — 3 shares @ $152.96 = $458.88**
+- Agent: Contrarian | Conviction: 8 | Final Score: **9.66**
+- Thesis: Oracle down 50% from ATH with accelerating cloud fundamentals ($553B RPO, 84% OCI growth) at cheapest large-cap cloud valuation (18x fwd PE). Earnings March 10 catalyst.
+- Fundamental boost: 1.15x (strong growth + reasonable valuation)
+- Debate: Toss-up (Bull 8 / Bear 7) — binary earnings risk noted but business quality undeniable
+
+### Portfolio After Trade
+| Position | Shares | Entry | Close 3/6 | P&L |
+|----------|--------|-------|-----------|-----|
+| XOM | 15 | $156.50 | $151.21 | -3.4% |
+| MDB | 6 | $252.73 | $270.47 | **+7.0%** |
+| MSFT | 3 | $405.20 | $408.96 | +0.9% |
+| BURL | 3 | $321.47 | $305.64 | -4.9% |
+| ORCL | 3 | $152.96 | $152.96 | 0.0% |
+| **Cash** | | | | **$3,497.23** |
+
+**NAV (mark-to-market): $9,990.88 | P&L: -0.09% | SPY: -2.04% | Alpha: +1.95%**
+
+### Agent Leaderboard (Picks Executed)
+- Contrarian: 3 (MDB, MSFT, ORCL) — dominating on thesis quality
+- Quant: 2 (XOM, BURL)
+- Macro/Crypto/Sentiment: 0
+[2026-04-08T23:43:15] Day 5 complete. Portfolio NAV: 9997.54
+[2026-04-08T23:43:15] Generating summary report...
+Report written to `backtest/results/bt-20260301-20260307-20260408223146/summary-report.md`.
+
+**Key takeaways from the backtest (March 2–6, 2026):**
+
+- **-0.07% return** vs SPY's -2.04% → **+1.97% alpha** in a down market
+- 5 trades, 0 passes — the system bought every day
+- **Contrarian agent** was the star (3/5 picks, +2.65% avg unrealized return)
+- **Quant agent** struggled (2/5 picks, -4.15% avg, both momentum plays reversed)
+- Debate system's best contribution was **killing GLD** on a thesis_flaw (gold falling during conflict, contradicting the safe-haven thesis)
+- Max drawdown was modest at -1.29%
+- All positions still open — need a longer backtest to measure realized performance
+[2026-04-08T23:45:31] ═══════════════════════════════════════════════════════
+[2026-04-08T23:45:31] BACKTEST COMPLETE
+[2026-04-08T23:45:31] Run ID: bt-20260301-20260307-20260408223146
+[2026-04-08T23:45:31] Trading days: 5
+[2026-04-08T23:45:31] Final NAV: 9997.54
+[2026-04-08T23:45:31] Report: /home/clawd/alpha-firm/backtest/results/bt-20260301-20260307-20260408223146/summary-report.md
+[2026-04-08T23:45:31] ═══════════════════════════════════════════════════════

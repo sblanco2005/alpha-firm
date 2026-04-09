@@ -81,13 +81,13 @@ if [ "$SESSION" != "premarket" ]; then
 fi
 
 # ─── Prune old memory files ───
-log "Pruning memory files older than 5 days..."
+log "Pruning memory files older than 20 sessions..."
 for agent in macro crypto quant sentiment contrarian; do
     MEMORY_DIR="$SCRIPT_DIR/memory/$agent"
     if [ -d "$MEMORY_DIR" ]; then
         FILE_COUNT=$(ls -1 "$MEMORY_DIR"/*.json 2>/dev/null | wc -l | tr -d ' ' || true)
-        if [ "$FILE_COUNT" -gt 5 ]; then
-            ls -1t "$MEMORY_DIR"/*.json | tail -n +6 | while read f; do
+        if [ "$FILE_COUNT" -gt 20 ]; then
+            ls -1t "$MEMORY_DIR"/*.json | tail -n +21 | while read f; do
                 log "  Pruned: $f"
                 rm -f "$f"
             done
@@ -100,6 +100,14 @@ log "MARKET CHECK: $SESSION"
 log "Date: $TODAY | Time: $TIMESTAMP"
 log "Mode: Subscription (Max plan)"
 log "═══════════════════════════════════════"
+
+# ─── Refresh portfolio prices before Claude starts ───
+log "Refreshing portfolio prices..."
+if bash "$SCRIPT_DIR/scripts/refresh-prices.sh" 2>&1 | tee -a "$LOG_FILE"; then
+    log "Price refresh complete"
+else
+    log "WARNING: Price refresh failed — Claude will use stale NAV"
+fi
 
 # ─── Run Claude Code on subscription ───
 # --dangerously-skip-permissions: allows autonomous execution
@@ -130,10 +138,23 @@ Execute these steps:
    - Each subagent uses Fetch to get current prices
    - Each subagent writes recommendation to memory/{agent_id}/${TODAY}.json
 5. After all subagents complete, read all 5 recommendations
-6. Apply PM decision logic from orchestrator.md
+5.1. Pre-filter: reject picks with <2 concrete facts, no catalyst, no falsification condition, or sector/sizing violations.
+5.2. Agent dominance check: read last 2 buys from state/trade-log.json. If both are from the same agent as the top candidate, deprioritize per orchestrator.md.
+5.3. Score using 6-CATEGORY FRAMEWORK from orchestrator.md: Evidence Strength (25%), Falsifiability (20%), Risk/Reward (20%), Portfolio Impact (15%), Signal Confirmation (10%), Execution Readiness (10%). Hard reject if Evidence < 6 or Falsifiability < 5.
+5.4. Apply narrative penalty (0.85x) if >=2 narrative-bias triggers are present. See orchestrator.md.
+5.5. Run 3-STAGE CAPITAL PROTECTION GATE (skills/debate.md) on top 2-3 picks:
+   - Stage 1: Bear Risk Manager goes FIRST — classifies fatal_flaw/serious_weakness/manageable_risk, assigns risk flags
+   - Stage 2: Bull Rebuttal — answers ONLY bear's specific attacks with evidence (bear must finish before bull starts)
+   - Stage 3: Risk Chair (PM) — VETO if fatal flaw, PASS if 2+ unrebutted weaknesses, REDUCED if 1, ELIGIBLE if all rebutted
+   - Unresolved uncertainty = negative. Inconclusive debate = trade does NOT proceed.
+6. Apply PM decision logic from orchestrator.md (final = raw × track_record × fundamental × debate × narrative_penalty)
+6.5. Pre-trade gates (if buying):
+   - Fetch VIX level. Apply VIX-adjusted sizing: VIX<=25 → 15-30%, VIX 25-35 → max 15%, VIX>35 → max 10%.
+   - Sector concentration check: verify no GICS sector exceeds 40% of NAV after the buy. If blocked, try next-best pick or PASS.
 7. Execute any trades (update portfolio.json, leaderboard.json, trade-log.json)
+7.5. Sync every BUY/SELL to Portclaude via mcp__portclaude__create_transaction (see skills/trade-execution.md)
 8. Record ALL 5 recommendations to state/outcomes.json (follow skills/outcome-evaluation.md for schema)
-9. Write a summary to logs/${TODAY}.md
+9. Write a summary to logs/${TODAY}.md — include SPY benchmark return and alpha (SPY inception price: 555.66)
 
 IMPORTANT: When updating any state JSON file, write to a .tmp file first, validate with jq, then mv into place.
 Example: write to state/portfolio.json.tmp → validate → mv state/portfolio.json.tmp state/portfolio.json
