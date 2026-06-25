@@ -18,14 +18,15 @@ You are the **PM orchestrator** of a multi-agent investment firm. You manage 5 s
 │         ├─ Subagent: Momentum Quant                  │  ← parallel
 │         ├─ Subagent: Sentiment Scout                 │  ← parallel
 │         ├─ Subagent: Contrarian                      │  ← parallel
+│         ├─ Subagent: Catalyst Agent                  │  ← parallel
 │         │                                             │
-│         ├─ Bull/Bear Debate (top 2-3 picks)          │  ← NEW
+│         ├─ Bull/Bear Debate (top 2-3 picks)          │
 │         │   ├─ Bull Researcher × 2-3                 │  ← parallel
 │         │   └─ Bear Researcher × 2-3                 │  ← parallel
 │         │                                             │
 │         └─ Lead: PM Decision + Execution             │
 │                                                       │
-│  Backtest → scripts/backtest.sh                       │  ← NEW
+│  Backtest → scripts/backtest.sh                       │
 │    └─ Replays pipeline against historical dates       │
 │                                                       │
 │  Cowork (Desktop) → Daily report + alerts            │
@@ -33,6 +34,116 @@ You are the **PM orchestrator** of a multi-agent investment firm. You manage 5 s
 ```
 
 **Key difference from API approach**: Instead of calling the Anthropic API with `fetch()`, each analyst runs as a **Claude Code subagent** — a lightweight parallel worker that reports results back to you (the lead agent). This uses your Max subscription quota, not pay-per-token billing.
+
+## Agent Roles & Communication Flow
+
+```
+                           ┌─────────────────────────────┐
+                           │     PM (Lead Orchestrator)   │
+                           │  Scores picks, manages risk, │
+                           │  executes trades, logs state │
+                           └──────────┬───────────────────┘
+                                      │
+          ┌───────────────────────────┼───────────────────────────┐
+          │     Step 2: Dispatch 6 analysts (parallel, isolated)  │
+          ▼                           ▼                           ▼
+┌──────────────────┐       ┌──────────────────┐       ┌──────────────────┐
+│ Macro Strategist │       │  Crypto Analyst  │       │  Momentum Quant  │
+│                  │       │                  │       │                  │
+│ Regime shifts,   │       │ BTC on-chain,    │       │ Moving averages, │
+│ central bank     │       │ mining stocks,   │       │ RSI, volume      │
+│ policy, FX &     │       │ crypto ETFs,     │       │ breakouts, 52-wk │
+│ commodity trends │       │ regulatory news  │       │ highs, rotation  │
+│                  │       │                  │       │                  │
+│ SPY, QQQ, TLT,  │       │ BTC, ETH, MARA,  │       │ Technicals,      │
+│ GLD, DXY        │       │ IBIT, CLSK, etc. │       │ price & volume   │
+└────────┬─────────┘       └────────┬─────────┘       └────────┬─────────┘
+         │                          │                           │
+         │      ┌───────────────────┴────────────────────┐     │
+         │      │           Sentiment Scout               │     │
+         │      │                                         │     │
+         │      │ CURRENT PSYCHOLOGY & POSITIONING ONLY  │     │
+         │      │ Options flow, put/call ratios, retail   │     │
+         │      │ crowding, insider buying (Form 4),      │     │
+         │      │ fear/greed regime, analyst upgrade      │     │
+         │      │ cycles, meme dynamics                   │     │
+         │      │                                         │     │
+         │      │ "What does the market FEEL right now?"  │     │
+         │      └───────────────────┬────────────────────┘     │
+         │                          │                           │
+         │      ┌───────────────────┴────────────────────┐     │
+         │      │              Contrarian                 │     │
+         │      │                                         │     │
+         │      │ Beaten-down stocks w/ improving         │     │
+         │      │ fundamentals, mean reversion,           │     │
+         │      │ oversold sectors, high short interest   │     │
+         │      └───────────────────┬────────────────────┘     │
+         │                          │                           │
+         │      ┌───────────────────┴────────────────────┐     │
+         │      │            Catalyst Agent               │     │
+         │      │                                         │     │
+         │      │ FORWARD-LOOKING EVENT PROBABILITY ONLY  │     │
+         │      │ Upcoming earnings, FDA PDUFA dates,     │     │
+         │      │ regulatory rulings (FTC/DOJ/SEC),       │     │
+         │      │ product launches, FOMC/CPI/NFP,         │     │
+         │      │ probability-weighted outcome modeling   │     │
+         │      │                                         │     │
+         │      │ "What's ABOUT TO change the narrative?" │     │
+         │      └───────────────────┬────────────────────┘     │
+         │                          │                           │
+         ▼                          ▼                           ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                     PM collects 6 JSON picks                        │
+│              Scores with 6-category framework                       │
+│            Selects top 2-3 (conviction >= 6)                        │
+└─────────────────────────────┬───────────────────────────────────────┘
+                              │
+                    Step 2.5: Capital Protection Gate
+                              │
+               ┌──────────────┴──────────────┐
+               ▼                              ▼
+   ┌─────────────────────┐      ┌─────────────────────┐
+   │   Bear Risk Mgr     │      │   Bull Researcher   │
+   │   (goes FIRST)      │      │   (rebuts bear)     │
+   │                     │      │                     │
+   │ Attacks weakest     │ ───► │ Answers ONLY the    │
+   │ assumptions, checks │      │ bear's specific     │
+   │ if thesis priced    │      │ objections with     │
+   │ in, finds failure   │      │ data & precedents   │
+   │ precedents          │      │                     │
+   │ Classifies:         │      │ Sources: analyst    │
+   │ • fatal_flaw        │      │ upgrades, insider   │
+   │ • serious_weakness  │      │ activity, catalysts │
+   │ • manageable_risk   │      │                     │
+   └─────────────────────┘      └─────────────────────┘
+               │                              │
+               └──────────────┬───────────────┘
+                              ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│                PM as Risk Chair (final decision)                    │
+│                                                                     │
+│  Fatal flaw found         → VETO (no trade)                        │
+│  2+ unrebutted weaknesses → PASS (no trade)                        │
+│  1 unrebutted weakness    → BUY at reduced size                    │
+│  All attacks rebutted     → BUY                                    │
+│  Inconclusive debate      → NO TRADE                               │
+└─────────────────────────────────────────────────────────────────────┘
+```
+
+**Sentiment Scout vs. Catalyst — mandate split:**
+
+| Question | Agent |
+|---|---|
+| "What does the market feel right now?" | Sentiment Scout |
+| "What's about to change the narrative?" | Catalyst Agent |
+| Options flow, put/call, retail crowding | Sentiment Scout |
+| Upcoming earnings, FDA dates, FOMC | Catalyst Agent |
+| Insider buying clusters (Form 4) | Sentiment Scout |
+| Probability of a known future outcome | Catalyst Agent |
+
+These two agents are complementary, not overlapping. Sentiment Scout finds *current* mispricings from positioning. Catalyst Agent finds *future* mispricings from event probability. Both write to `memory/{agent_id}/{today}.json` independently.
+
+**Communication model**: All agents are **isolated subagents** — they cannot see each other's work. The PM is the sole hub: it dispatches agents, collects results, orchestrates the debate, and makes the final call. No agent-to-agent communication occurs at any point.
 
 ## Capital & Rules
 
@@ -66,12 +177,12 @@ If this is the first check of the day (morning/premarket):
 
 Skip this step for midday and closing sessions.
 
-### Step 2: Dispatch 5 Analyst Subagents IN PARALLEL
+### Step 2: Dispatch 6 Analyst Subagents IN PARALLEL
 
-**This is the core architectural pattern.** Use Claude Code's built-in subagent/Task tool to spawn 5 parallel workers:
+**This is the core architectural pattern.** Use Claude Code's built-in subagent/Task tool to spawn 6 parallel workers:
 
 ```
-For each agent in [macro, crypto, quant, sentiment, contrarian]:
+For each agent in [macro, crypto, quant, sentiment, contrarian, catalyst]:
   Spawn subagent with:
     - Instructions from agents/{agent_id}.md
     - Current portfolio context from state/portfolio.json
@@ -87,6 +198,7 @@ For each agent in [macro, crypto, quant, sentiment, contrarian]:
 - Each subagent writes its recommendation to `memory/{agent_id}/{today}.json`
 - Subagents should complete in 30-60 seconds each
 - If a subagent fails or times out, mark it as "no recommendation" and continue
+- **Sentiment Scout and Catalyst Agent have non-overlapping mandates** — Sentiment owns current psychology/positioning; Catalyst owns future event probability. Do not ask them to do each other's job in the dispatch prompt
 
 **Subagent dispatch prompt template:**
 ```
@@ -126,19 +238,26 @@ After collecting all 5 recommendations, run the trade through the capital-protec
 7. See `skills/debate.md` for full details.
 
 ### Step 3: Collect Results & PM Decision
-Once all 5 subagents return (or timeout after 90 seconds):
+Once all 6 subagents return (or timeout after 90 seconds):
 1. Read all recommendations from memory files
 2. **Pre-filter**: Reject any recommendation with <2 concrete facts, no catalyst, no falsification condition, or that violates sector/sizing rules (see `orchestrator.md` Step 1)
 3. **Agent dominance check**: Read last 2 buys from `state/trade-log.json`. If both are from the same agent as the top candidate, deprioritize that agent.
 4. **Score using 6-category framework** (see `orchestrator.md` Step 3): Evidence Strength (25%), Falsifiability (20%), Risk/Reward (20%), Portfolio Impact (15%), Signal Confirmation (10%), Execution Readiness (10%). Hard reject if Evidence < 6 or Falsifiability < 5.
 5. **Narrative penalty**: Apply 0.85x if >=2 narrative-bias triggers (vague catalyst, interpretive evidence, etc.)
 6. For **stock** recommendations only, fetch fundamentals via MCP → compute Fundamental Modifier (0.7x-1.3x)
-7. Run 3-Stage Capital Protection Gate from `skills/debate.md` on top 2-3 picks:
+7. Run 3-Stage Capital Protection Gate from `skills/debate.md` on top 2-3 picks (conviction >= 7.5):
    - Bear Risk Manager classifies (fatal_flaw / serious_weakness / manageable_risk)
    - Bull rebuts specific attacks only
    - PM as Risk Chair: VETO (0.0x), PASS (0.0x), REDUCED (0.90x), ELIGIBLE (1.05x)
-8. Final score = raw_pm_score × track_record × fundamental × debate × narrative_penalty
-9. Decision: BUY the best pick, or PASS
+8. Final score = raw_pm_score × track_record × fundamental × debate × narrative_penalty × SPY_baseline_penalty
+9. Decision: BUY the best pick if final_score >= 7.5 (or >= 8.0 in bull market mode), or PASS
+   - **Agent-specific restrictions apply** (see orchestrator.md Step 1.5)
+   - **Macro**: 0.5x modifier, conviction 8+ required
+   - **Quant**: Execution suspended until 2026-07-08
+   - **Contrarian**: Conviction 8+ required for execution
+   - **Crypto**: Stock picks only, ETFs banned
+   - **Catalyst**: Conviction 8+ required for execution
+   - **Stop-losses**: 12-15% standard, 8-10% pre-event positions only
 
 ### Step 4: Execute Trade (Simulation Mode)
 If buying:
@@ -149,7 +268,7 @@ If buying:
 5. Update all state files (portfolio, trade-log, leaderboard, daily-state)
 
 ### Step 5: Record Outcomes
-Append all 5 agent recommendations to `state/outcomes.json` following the schema in `skills/outcome-evaluation.md`. Mark which one was executed (`was_executed: true`). Calculate checkpoint dates (skip weekends).
+Append all 6 agent recommendations to `state/outcomes.json` following the schema in `skills/outcome-evaluation.md`. Mark which one was executed (`was_executed: true`). Calculate checkpoint dates (skip weekends).
 
 ### Step 6: Write Summary
 Write a summary to `logs/{today}.md` and update all state files. Include:
@@ -170,16 +289,16 @@ The **Bull/Bear Debate** step (Step 2.5) uses subagents too — bull and bear re
 Running on a Max subscription means managing your weekly quota wisely:
 
 ### Per Market Check (~tokens)
-- 5 analyst subagents × ~2-4k output tokens each = ~10-20k tokens
+- 6 analyst subagents × ~2-4k output tokens each = ~12-24k tokens
 - Bull/Bear debate (4-6 subagents) × ~1-2k each = ~6-12k tokens
 - PM decision context + reasoning = ~3-5k tokens
 - Brave Search queries (5-8 per agent) = included in MCP
-- Total per check: ~21-37k tokens
+- Total per check: ~23-41k tokens
 
 ### Daily Budget (3 checks)
-- ~63-111k tokens/day
-- ~441-777k tokens/week
-- Within Max 5x weekly limits (debate adds ~40% overhead but is high-value)
+- ~69-123k tokens/day
+- ~483-861k tokens/week
+- Within Max 5x weekly limits (Catalyst Agent adds ~10% overhead vs. prior 5-agent setup)
 
 ### Optimization Strategies
 1. **Use Sonnet for subagents when possible** — analyst agents don't need Opus-level reasoning for search + recommendation
@@ -231,6 +350,39 @@ If found, create ~/alpha-firm/alerts/{today}-stop-loss.md with the alert details
 Also check if any position has hit its target return from the trade log.
 ```
 
+## Weekly Post-Mortem & Learning Loop
+
+Every losing trade feeds a **fully-automated weekly review** that converts losses into enforced trading rules — closing the learning loop with zero manual editing of `orchestrator.md`. This is how mistakes become permanent guardrails.
+
+```
+Saturday 09:00 UTC (cron) → scripts/run-postmortem.sh
+  1. weekly_postmortem.py gather   → state/retrospectives/{weekStart}.json
+     (realized losses from trade-log + portfolio; notable paper losses conviction≥7
+      from outcomes; each enriched with thesis, checkpoint trajectory, exit reason,
+      agent scorecard, and any active lesson it violated)
+  2. claude (skills/weekly-postmortem.md) → assigns a root cause to each loss,
+     drafts candidate preventive rules with machine-enforceable specs,
+     writes reports/{year}-week-postmortem.md + candidate_rules back into the retro file
+  3. weekly_postmortem.py promote  → merges candidates into state/lessons-learned.json,
+     auto-promotes to ACTIVE at a corroboration threshold, retires rules whose leak closed
+```
+
+**The over-fit guardrail (no human review = safe by construction):** a candidate rule enters as `status: candidate` (documented, NOT enforced). It only becomes `status: active` (enforced on every market check via `orchestrator.md` Step 1.6) once **≥3 independent losses** across one or more weeks share the same `(agent + root_cause + enforcement)` pattern. `external_shock` losses are logged but never promote. Active rules carry a 45-day `review_date`; when the agent's win rate for that pattern recovers ≥15pt, the rule auto-retires. So one noisy week cannot harden a bad rule, and stale rules lift themselves.
+
+**Enforcement:** `orchestrator.md` Step 1.6 (and `run-check.sh` step 5.25) read `state/lessons-learned.json` at the start of every market check and apply every active rule's `enforcement` spec as a hard gate or score modifier — same authority as the hand-maintained Step 1.5 agent restrictions.
+
+**Running it:**
+```bash
+# This week (automated, via cron)
+./scripts/run-postmortem.sh
+
+# One-time historical backfill to seed confirmed rules from inception
+./scripts/run-postmortem.sh --since inception
+
+# Inspect current rules
+python3 scripts/weekly_postmortem.py list
+```
+
 ## Directory Structure
 
 ```
@@ -254,7 +406,8 @@ alpha-firm/
 │   ├── backtesting.md         # Historical backtesting system
 │   ├── fundamental-overlay.md
 │   ├── outcome-evaluation.md
-│   └── sentiment-research.md
+│   ├── sentiment-research.md
+│   └── weekly-postmortem.md   # Weekly losing-trade post-mortem protocol
 ├── memory/                    # Agent research memory (last 20 sessions)
 │   ├── macro/
 │   ├── crypto/
@@ -267,7 +420,9 @@ alpha-firm/
 │   ├── trade-log.json
 │   ├── daily-state.json
 │   ├── outcomes.json
-│   └── scorecards/            # Agent performance scorecards
+│   ├── lessons-learned.json   # Auto-generated enforced rules (weekly post-mortem)
+│   ├── scorecards/            # Agent performance scorecards
+│   └── retrospectives/        # Weekly loss-context + candidate rules (one file per week)
 ├── backtest/                  # Backtesting results
 │   └── results/{run_id}/      # One directory per backtest run
 ├── reports/                   # Cowork-generated reports
@@ -278,7 +433,9 @@ alpha-firm/
 ├── scripts/
 │   ├── setup.sh               # Initial deployment
 │   ├── status.sh              # CLI status dashboard
-│   └── backtest.sh            # Backtesting runner
+│   ├── backtest.sh            # Backtesting runner
+│   ├── run-postmortem.sh      # Weekly post-mortem runner (cron entry point)
+│   └── weekly_postmortem.py   # gather/promote engine for the learning loop
 └── CLAUDE.md                  # This file
 ```
 

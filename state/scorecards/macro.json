@@ -1,134 +1,162 @@
 {
   "agent_id": "macro",
-  "generated": "2026-04-09",
-  "overall": {
-    "total_recommendations": 14,
-    "evaluated": 0,
-    "wins": 0,
-    "losses": 0,
-    "partial": 0,
-    "tracking": 14,
-    "win_rate": null,
-    "avg_return_at_horizon": null,
-    "avg_peak_return": null
+  "last_updated": "2026-06-09",
+  "total_evaluated": 63,
+  "total_tracking": 16,
+  "wins": 6,
+  "losses": 44,
+  "partials": 13,
+  "win_rate": 9.5,
+  "partial_rate": 20.6,
+  "loss_rate": 69.8,
+  "avg_horizon_return_pct": -2.12,
+  "avg_peak_return_pct": 2.46,
+  "track_record_modifier": 0.8,
+  "conviction_calibration": {
+    "8": {
+      "total": 13,
+      "wins": 1,
+      "losses": 8,
+      "partials": 4,
+      "win_rate": 7.7
+    },
+    "9": {
+      "total": 7,
+      "wins": 0,
+      "losses": 6,
+      "partials": 1,
+      "win_rate": 0.0
+    },
+    "7": {
+      "total": 19,
+      "wins": 1,
+      "losses": 16,
+      "partials": 2,
+      "win_rate": 5.3
+    },
+    "5": {
+      "total": 9,
+      "wins": 2,
+      "losses": 6,
+      "partials": 1,
+      "win_rate": 22.2
+    },
+    "6": {
+      "total": 15,
+      "wins": 2,
+      "losses": 8,
+      "partials": 5,
+      "win_rate": 13.3
+    }
   },
-  "conviction_calibration": {},
-  "by_asset_type": {},
+  "by_asset_type": {
+    "etf": {
+      "total": 63,
+      "wins": 6,
+      "losses": 44,
+      "partials": 13,
+      "win_rate": 9.5
+    }
+  },
   "recent_picks": [
     {
-      "date": "2026-04-08",
-      "ticker": "TLT",
-      "conviction": 7,
-      "entry_price": 86.87,
-      "status": "tracking",
-      "current_return_pct": 0.06,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 0.06,
+      "id": "macro-2026-06-19-premarket",
+      "date": "2026-06-19",
+      "ticker": "PASS",
+      "conviction": 1,
+      "final_verdict": null,
+      "peak_return_pct": null,
       "was_executed": false
     },
     {
-      "date": "2026-04-07",
-      "ticker": "BNO",
-      "conviction": 8,
-      "entry_price": 55.05,
-      "status": "tracking",
-      "current_return_pct": -0.69,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": -0.69,
+      "id": "macro-2026-06-19-midday",
+      "date": "2026-06-19",
+      "ticker": "PASS",
+      "conviction": 1,
+      "final_verdict": null,
+      "peak_return_pct": null,
       "was_executed": false
     },
     {
-      "date": "2026-04-07",
-      "ticker": "GLD",
-      "conviction": 7,
-      "entry_price": 427.83,
-      "status": "tracking",
-      "current_return_pct": 0.93,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 0.93,
-      "was_executed": false
-    },
-    {
-      "date": "2026-04-07",
-      "ticker": "BNO",
-      "conviction": 9,
-      "entry_price": 54.67,
-      "status": "tracking",
-      "current_return_pct": 0.0,
-      "latest_checkpoint": "day_1",
+      "id": "macro-2026-06-19-closing",
+      "date": "2026-06-19",
+      "ticker": "PASS",
+      "conviction": 0,
+      "final_verdict": "pass",
       "peak_return_pct": 0.0,
       "was_executed": false
     },
     {
-      "date": "2026-04-06",
-      "ticker": "BNO",
-      "conviction": 9,
-      "entry_price": 54.43,
-      "status": "tracking",
-      "current_return_pct": 0.04,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 0.04,
+      "id": "macro-2026-06-18",
+      "date": "2026-06-18",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
       "was_executed": false
     },
     {
-      "date": "2026-04-06",
-      "ticker": "BNO",
-      "conviction": 9,
-      "entry_price": 54.7,
-      "status": "tracking",
-      "current_return_pct": -0.46,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": -0.46,
+      "id": "macro-2026-06-18-midday",
+      "date": "2026-06-18",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
       "was_executed": false
     },
     {
-      "date": "2026-04-02",
-      "ticker": "XLE",
-      "conviction": 9,
-      "entry_price": 58.71,
-      "status": "tracking",
-      "current_return_pct": -1.12,
-      "latest_checkpoint": "day_5",
-      "peak_return_pct": 0.92,
+      "id": "macro-2026-06-18-closing",
+      "date": "2026-06-18",
+      "ticker": "PASS",
+      "conviction": 0,
+      "final_verdict": "pass",
+      "peak_return_pct": null,
       "was_executed": false
     },
     {
-      "date": "2026-04-01",
+      "id": "macro-2026-06-17-premarket",
+      "date": "2026-06-17",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "pass",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-17-midday",
+      "date": "2026-06-17",
+      "ticker": "PASS",
+      "conviction": 4,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-17-closing",
+      "date": "2026-06-17",
+      "ticker": "PASS",
+      "conviction": 0,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-16-midday",
+      "date": "2026-06-16",
       "ticker": "GLD",
-      "conviction": 8,
-      "entry_price": 430.29,
-      "status": "tracking",
-      "current_return_pct": 0.35,
-      "latest_checkpoint": "day_5",
-      "peak_return_pct": 1.75,
-      "was_executed": true
-    },
-    {
-      "date": "2026-04-01",
-      "ticker": "GLD",
-      "conviction": 7,
-      "entry_price": 438.65,
-      "status": "tracking",
-      "current_return_pct": -1.56,
-      "latest_checkpoint": "day_5",
-      "peak_return_pct": -0.19,
-      "was_executed": false
-    },
-    {
-      "date": "2026-04-01",
-      "ticker": "SLV",
-      "conviction": 8,
-      "entry_price": 68.07,
-      "status": "tracking",
-      "current_return_pct": -3.13,
-      "latest_checkpoint": "day_5",
-      "peak_return_pct": 0.07,
+      "conviction": 6,
+      "final_verdict": null,
+      "peak_return_pct": null,
       "was_executed": false
     }
   ],
   "patterns": {
-    "strengths": "Insufficient evaluated data for patterns",
-    "weaknesses": "Insufficient evaluated data for patterns",
-    "adjustment": "Insufficient evaluated data for patterns"
+    "strengths": [],
+    "weaknesses": [
+      "Win rate 9.5% below breakeven \u2014 review thesis quality",
+      "Negative avg horizon return (-2.12%)",
+      "Etf picks only 9.5% win rate \u2014 consider avoiding"
+    ],
+    "adjustment_suggestions": []
   }
 }

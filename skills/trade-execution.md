@@ -96,6 +96,25 @@ If VIX cannot be fetched, assume VIX > 25 (conservative default).
 
 Log the VIX level and resulting size cap in the trade record.
 
+### Stop-Loss Guidelines (Updated 2026-06-25)
+
+**Previous stops (8-10%) were too tight and caused excessive whipsaw.** New framework:
+
+| Position Type | Stop-Loss % | Rationale |
+|---------------|-------------|-----------|
+| Standard (non-event) | **12-15%** from entry | Allows normal volatility without triggering premature exits |
+| Pre-event (earnings within 5 days) | 8-10% | Binary risk — if thesis is wrong, exit fast |
+| Post-event (after earnings/FDA) | 8% | Event passed — if move is against you, thesis is broken |
+| Crypto mining stocks | 15-20% | Higher baseline volatility |
+| ETFs (SPY, QQQ, sector) | 10-12% | Lower single-name risk, slightly wider than before |
+
+**Rules:**
+- Default to 12% for standard stock positions unless the agent specifies otherwise
+- Hard stop at 15% max for any non-crypto position — thesis is definitively broken
+- Trailing stops activate after +5% gain — set trail at 8% from peak (for standard) or 5% (for event positions)
+- Never set stops tighter than 8% on non-event positions (whipsaw risk)
+- **The EYE trade (-21.4% same-day stop) must never happen again.** Binary event positions must be exited before the event if thesis weakens.
+
 ### Position Sizing
 - Fetch VIX and determine max allocation tier (see above)
 - Calculate: `order_amount = portfolio_cash * (allocation_pct / 100)`

@@ -2,21 +2,22 @@
 
 ## What Is Alpha Firm?
 
-Alpha Firm is an autonomous investment research and decision-making system powered by five specialized AI analysts and a Portfolio Manager (PM) orchestrator. It runs on a VPS via scheduled cron jobs, performing 3 market checks per trading day. Each check spawns 5 independent AI agents that research markets in parallel, produce recommendations, stress-tests the top picks through an adversarial Bull/Bear debate, and feeds them to a PM layer that makes the final buy/sell/pass decision.
+Alpha Firm is an autonomous investment research and decision-making system powered by six specialized AI analysts and a Portfolio Manager (PM) orchestrator. It runs on a VPS via scheduled cron jobs, performing 3 market checks per trading day. Each check spawns 6 independent AI agents that research markets in parallel, produce recommendations, stress-tests the top picks through an adversarial Bull/Bear debate, and feeds them to a PM layer that makes the final buy/sell/pass decision.
 
 The system operates in **simulated mode** -- it tracks real market prices but does not execute real trades. This allows us to build a verifiable track record before deploying capital.
 
 - **Starting Capital:** $10,000
 - **Inception Date:** March 28, 2026
-- **Current NAV:** $10,243.88 (+2.44%)
-- **Open Positions:** META, INTU, GLD, ORCL, DAL, DUK, PINS
-- **Total Trades:** 8 buys, 1 sell
-- **Days Active:** 8
+- **Current NAV:** $10,280.03 (+2.80%)
+- **Open Positions:** CAT, SYK, TGLS, FCN, NCLH, MU, FDX, CLSK
+- **Total Trades:** 31 buys, 30 sells
+- **Days Active:** 88
+- **SPY Return (same period):** +34.39% | **Alpha:** -29.56%
 - **Infrastructure:** Claude Code (Anthropic) on a dedicated VPS
 
 ---
 
-## The Five Analysts
+## The Six Analysts
 
 Each analyst is a specialized AI agent with a distinct research methodology, coverage universe, and conviction framework. They operate independently -- no analyst sees what the others are recommending. This prevents groupthink and ensures diversity of signal.
 
@@ -74,6 +75,32 @@ Hunts for beaten-down names with improving fundamentals. Every thesis must answe
 - 9-10: Extreme pessimism + clear fundamental improvement + upcoming catalyst forcing re-rating
 - 7-8: Significant pessimism with early signs of improvement, reasonable catalyst timeline
 - 5-6: Interesting value setup but no clear catalyst or improvement signal yet
+
+### 6. Catalyst Agent
+
+Identifies trades by reasoning about known future events before the market has fully priced in the outcome. Scans a rolling event calendar, estimates probability-weighted outcomes, and finds asymmetric setups where the expected outcome diverges from market consensus. Covers earnings dates, FDA PDUFA dates, regulatory rulings (FTC/DOJ/SEC), FOMC/CPI/NFP releases, product launches, and clinical trial readouts.
+
+**Edge:** Forward-looking specificity -- trades events with known dates and quantifiable outcomes, not vibes. Models both outcomes and only recommends when the market is mispricing the probability.
+
+**Key rules:** No date = no trade. Asymmetry required (pass if market already pricing 85%+ of base case). Binary events (FDA, regulatory) get smaller sizing (15-20% max). Macro events favor ETFs over single stocks.
+
+**Conviction calibration:**
+- 9-10: Known event date + specific asymmetry (market pricing ~50%, you assess 75%+) + bounded downside
+- 7-8: Clear catalyst with probable outcome, some uncertainty on timing or scope
+- 5-6: Event identified but market may already be pricing the likely outcome
+
+### Sentiment Scout vs. Catalyst — Mandate Split
+
+These two agents are complementary, not overlapping. Dispatching them with crossed mandates produces duplicate signals and wastes quota.
+
+| Question | Agent |
+|---|---|
+| "What does the market feel right now?" | Sentiment Scout |
+| "What's about to change the narrative?" | Catalyst Agent |
+| Options flow, put/call ratios, retail crowding | Sentiment Scout |
+| Upcoming earnings, FDA dates, FOMC | Catalyst Agent |
+| Insider buying clusters (Form 4) | Sentiment Scout |
+| Probability of a known future outcome | Catalyst Agent |
 
 ---
 
@@ -243,7 +270,7 @@ Here is exactly what happens during each market check:
 3. Update outcomes with checkpoint prices and verdicts
 4. Regenerate all scorecards in `state/scorecards/*.json`
 
-### Step 2: Dispatch 5 Analyst Subagents (IN PARALLEL)
+### Step 2: Dispatch 6 Analyst Subagents (IN PARALLEL)
 Each subagent:
 - Reads its agent prompt from `agents/{agent_id}.md`
 - Reads its rolling memory from `memory/{agent_id}/`
@@ -253,7 +280,7 @@ Each subagent:
 - Writes recommendation to `memory/{agent_id}/{today}.json`
 - Returns exactly ONE JSON recommendation
 
-Subagents are independent -- they cannot see each other's work.
+Subagents are independent -- they cannot see each other's work. Sentiment Scout and Catalyst Agent have non-overlapping mandates (see above) and must not be dispatched with overlapping instructions.
 
 ### Step 3: Fundamental Overlay (Stocks Only)
 - Filter stock recommendations
@@ -275,7 +302,7 @@ Subagents are independent -- they cannot see each other's work.
 - Sync every BUY/SELL to PortClaude via MCP
 
 ### Step 6: Record Outcomes
-- Append all 5 recommendations to `state/outcomes.json`
+- Append all 6 recommendations to `state/outcomes.json`
 - Mark which one was executed
 
 ### Step 7: Write Summary
@@ -294,7 +321,7 @@ Alpha Firm runs 3 market checks per trading day (Monday-Friday, excluding US hol
 | Midday | 12:30 PM | 16:30 UTC | Momentum check. Catches intraday developments. |
 | Closing | 3:45 PM | 19:45 UTC | End-of-day review. Last chance to act before close. |
 
-Each session spawns all 5 analysts in parallel, collects recommendations, runs the fundamental overlay, runs the bull/bear debate, and applies the PM decision framework. The morning session also evaluates any due outcome checkpoints.
+Each session spawns all 6 analysts in parallel, collects recommendations, runs the fundamental overlay, runs the bull/bear debate, and applies the PM decision framework. The morning session also evaluates any due outcome checkpoints.
 
 **Price Refresh:** Before each Claude session, `scripts/refresh-prices.sh` fetches live prices from Yahoo Finance (stocks/ETFs) and CoinGecko (crypto), updating portfolio NAV. Falls back to entry price if a fetch fails.
 
@@ -307,14 +334,17 @@ Each session spawns all 5 analysts in parallel, collects recommendations, runs t
 | Rule | Details |
 |------|---------|
 | Daily buy limit | 1 buy per day maximum |
-| Position sizing | 15-30% of available cash |
-| Max concentration | 30% of portfolio in any single name |
+| Position sizing (VIX-adjusted) | VIX ≤ 25: 15-30% of cash · VIX 25-35: max 15% · VIX > 35: max 10% |
+| Sector concentration cap | No single GICS sector may exceed 40% of NAV (hard block on new buys) |
+| Max single-name concentration | 30% of portfolio in any single name |
+| Agent dominance cap | No more than 2 consecutive buys from the same agent |
 | Stop-loss review | Positions down >8% from entry are flagged |
 | Hard stop | Positions down >10% from entry -- likely thesis broken, sell |
 | Stale position review | Positions >14 days with <2% return are flagged |
 | No leverage | Long-only, no margin, no shorting, no options |
 | Prediction market cap | Max 10% of portfolio |
 | Weekend/holiday skip | No trading on non-market days |
+| SPY benchmark | Track SPY return from inception ($555.66 on 2026-03-28). Log alpha = portfolio return - SPY return every session. |
 | Memory pruning | Agent memory capped at 20 most recent sessions |
 | Atomic writes | All state JSON writes go to .tmp first, validated with jq, then mv into place |
 
@@ -370,41 +400,56 @@ Key features:
 
 ## Current Portfolio
 
-*As of April 8, 2026*
+*As of June 24, 2026*
 
 | Metric | Value |
 |--------|-------|
-| **NAV** | $10,243.88 |
-| **Cash** | $1,776.03 (17.3%) |
-| **P&L** | +$243.88 (+2.44%) |
-| **Positions** | 7 |
-| **Total Trades** | 8 buys, 1 sell |
-| **Days Active** | 8 |
-| **High Water Mark** | $10,243.88 |
+| **NAV** | $10,280.03 |
+| **Cash** | $4,314.45 (42.0%) |
+| **P&L** | +$280.03 (+2.80%) |
+| **Positions** | 8 open |
+| **Total Trades** | 31 buys, 30 sells |
+| **Days Active** | 88 |
+| **High Water Mark** | $11,431.25 |
+| **SPY Return (same period)** | +34.39% |
+| **Alpha** | **-29.56%** |
 
 ### Open Positions
 
-| Ticker | Shares | Entry Price | Entry Date | Analyst |
-|--------|--------|-------------|------------|---------|
-| META | 4 | $520.07 | 2026-03-28 | Sentiment |
-| INTU | 4 | $422.69 | 2026-03-31 | Contrarian |
-| GLD | 3 | $430.29 | 2026-04-01 | Macro |
-| ORCL | 6 | $149.90 | 2026-04-02 | Contrarian |
-| DAL | 14 | $65.70 | 2026-04-06 | Contrarian |
-| DUK | 5 | $127.92 | 2026-04-07 | Quant |
-| PINS | 24 | $18.50 | 2026-04-08 | Contrarian |
+| Ticker | Shares | Entry Price | Latest Price | Return | Agent | Stop |
+|--------|--------|-------------|--------------|--------|-------|------|
+| CAT | 1 | $828.79 | $985.82 | +18.9% | Catalyst | $940 |
+| TGLS | 13 | $38.61 | $43.75 | +13.3% | Sentiment | — |
+| MU | 1 | $1,055.89 | $1,133.99 | +7.4% | Quant | $1,050 |
+| SYK | 1 | $294.50 | $308.69 | +4.8% | Contrarian | — |
+| FCN | 4 | $153.18 | $158.57 | +3.5% | Sentiment | — |
+| NCLH | 40 | $20.22 | $20.44 | +1.1% | Sentiment | $19 |
+| CLSK | 43 | $17.36 | $17.24 | -0.7% | Crypto | $14 |
+| FDX | 3 | $331.82 | $326.20 | -1.7% | Quant | $315 |
 
 ### Agent Leaderboard
 
-| Agent | Picks | Executed | Wins | Losses | P&L |
-|-------|-------|----------|------|--------|-----|
-| Contrarian | 12 | 4 | 0 | 0 | $0.00 |
-| Sentiment | 11 | 2 | 0 | 1 | -$259.26 |
-| Macro | 10 | 1 | 0 | 0 | $0.00 |
-| Quant | 9 | 1 | 0 | 0 | $0.00 |
-| Crypto | 8 | 0 | 0 | 0 | $0.00 |
+| Agent | Picks | Executed | Wins | Losses | Realized P&L | Win Rate |
+|-------|-------|----------|------|--------|------|----------|
+| Sentiment | 37 | 17 | 5 | 7 | **+$211.70** | 58.3% |
+| Contrarian | 32 | 14 | 5 | 6 | +$90.69 | 33.3% |
+| Catalyst | 15 | 3 | 1 | 0 | +$17.32 | 23.3% |
+| Macro | 25 | 1 | 0 | 1 | -$2.16 | 10.0% |
+| Crypto | 30 | 8 | 2 | 2 | -$51.55 | 62.0% |
+| Quant | 30 | 15 | 3 | 6 | **-$106.98** | 42.6% |
 
-Contrarian dominates execution (4 of 8 buys). Sentiment has the only realized loss (LOAR, sold at -13.3%). Crypto has never had a pick executed.
+**Key issue:** Portfolio +2.80% vs SPY +34.39%. The alpha gap (-29.56%) is driven by over-trading individual stocks in a bull market and tight stop-losses generating realized losses. Sentiment is the only consistently profitable agent. Quant has the most executed trades but worst realized P&L. Macro has a 10% win rate and should be silenced.
+
+**Changes implemented 2026-06-25:**
+- Macro agent: 0.5x modifier, conviction 8+ floor, effectively silenced
+- Quant agent: execution suspended until 2026-07-08
+- Contrarian: conviction 8+ required for execution
+- Crypto: ETF picks banned (stocks only)
+- Catalyst: conviction 8+ required for execution
+- Execution threshold raised from 6.0 to 7.5 (8.0 in bull markets)
+- Stop-losses widened from 8-10% to 12-15% for standard positions
+- Track record modifier now incorporates realized P&L
+- SPY Baseline Test added — every pick must justify beating the index
 
 ---
 
@@ -445,12 +490,13 @@ run-check.sh
        ├─ Step 1: Pre-flight (daily-state.json)
        ├─ Step 1.5: Outcome Evaluation (morning only)
        |
-       ├─ Step 2: 5 Analyst Subagents (PARALLEL)
+       ├─ Step 2: 6 Analyst Subagents (PARALLEL)
        │   ├── Macro Strategist ──────┐
        │   ├── Crypto Analyst ────────┤
-       │   ├── Momentum Quant ────────┤→ 5 JSON recommendations
+       │   ├── Momentum Quant ────────┤→ 6 JSON recommendations
        │   ├── Sentiment Scout ───────┤
-       │   └── Contrarian ────────────┘
+       │   ├── Contrarian ────────────┤
+       │   └── Catalyst Agent ────────┘
        |
        ├─ Step 3: Fundamental Overlay (stocks only)
        │   └── Price Fetch MCP → yfinance fundamentals
@@ -470,7 +516,7 @@ run-check.sh
 
 | Component | Details |
 |-----------|---------|
-| **Runtime** | Claude Code CLI on VPS (Claude Max subscription, $0 API spend) |
+| **Runtime** | Claude Code CLI on VPS (Claude Max subscription; auto-falls back to Anthropic API / Sonnet 4.6 if subscription quota exhausted) |
 | **Price Data** | Price Fetch MCP server (yfinance + CoinGecko, `mcp/price_server.py`) |
 | **Portfolio Sync** | PortClaude MCP (localhost:8001) for trade sync and price batch API |
 | **Market Research** | Brave Search MCP for real-time news, analysis, and price lookups |
@@ -485,7 +531,7 @@ run-check.sh
 ```
 alpha-firm/
 ├── agents/                    # Agent system prompts
-│   ├── macro.md, crypto.md, quant.md, sentiment.md, contrarian.md
+│   ├── macro.md, crypto.md, quant.md, sentiment.md, contrarian.md, catalyst.md
 │   ├── bull-researcher.md     # Bull/Bear debate agents
 │   └── bear-researcher.md
 ├── skills/                    # Shared skill docs
@@ -494,11 +540,11 @@ alpha-firm/
 │   ├── market-research.md, price-fetch.md, sentiment-research.md
 │   └── memory-management.md
 ├── memory/                    # Agent research memory (last 20 sessions)
-│   └── {macro,crypto,quant,sentiment,contrarian}/{date}.json
+│   └── {macro,crypto,quant,sentiment,contrarian,catalyst}/{date}.json
 ├── state/                     # Persistent portfolio state
 │   ├── portfolio.json, trade-log.json, leaderboard.json
 │   ├── daily-state.json, outcomes.json, cron-status.json
-│   └── scorecards/{agent_id}.json
+│   └── scorecards/{macro,crypto,quant,sentiment,contrarian,catalyst}.json
 ├── backtest/results/          # Backtesting results (one dir per run)
 ├── dashboard/                 # React dashboard + Express API
 ├── mcp/price_server.py        # Price Fetch MCP server
@@ -537,6 +583,6 @@ alpha-firm/
 
 8. **Backtesting** -- Full pipeline replay against historical dates with date-fidelity constraints. Validates the strategy before trusting it with live decisions.
 
-9. **Zero marginal cost** -- Runs on Claude Max subscription. No per-trade API fees, no data vendor costs beyond Brave Search.
+9. **Near-zero marginal cost** -- Runs on Claude Max subscription. Falls back to Anthropic API (Sonnet 4.6) only if subscription quota is exhausted, ensuring no missed sessions. No per-trade API fees, no data vendor costs beyond Brave Search.
 
 10. **Real-time monitoring** -- Live dashboard, Telegram briefings (morning + EOD), automated alerts, and PortClaude portfolio sync.

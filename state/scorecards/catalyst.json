@@ -1,0 +1,155 @@
+{
+  "agent_id": "catalyst",
+  "last_updated": "2026-06-09",
+  "total_evaluated": 49,
+  "total_tracking": 13,
+  "wins": 10,
+  "losses": 28,
+  "partials": 11,
+  "win_rate": 20.4,
+  "partial_rate": 22.4,
+  "loss_rate": 57.1,
+  "avg_horizon_return_pct": -4.06,
+  "avg_peak_return_pct": 5.68,
+  "track_record_modifier": 0.8,
+  "conviction_calibration": {
+    "7": {
+      "total": 27,
+      "wins": 7,
+      "losses": 13,
+      "partials": 7,
+      "win_rate": 25.9
+    },
+    "6": {
+      "total": 18,
+      "wins": 2,
+      "losses": 13,
+      "partials": 3,
+      "win_rate": 11.1
+    },
+    "5": {
+      "total": 3,
+      "wins": 1,
+      "losses": 2,
+      "partials": 0,
+      "win_rate": 33.3
+    },
+    "8": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 1,
+      "win_rate": 0.0
+    }
+  },
+  "by_asset_type": {
+    "stock": {
+      "total": 49,
+      "wins": 10,
+      "losses": 28,
+      "partials": 11,
+      "win_rate": 20.4
+    }
+  },
+  "recent_picks": [
+    {
+      "id": "catalyst-2026-06-19-premarket",
+      "date": "2026-06-19",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-19-midday",
+      "date": "2026-06-19",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-19-closing",
+      "date": "2026-06-19",
+      "ticker": "NKE",
+      "conviction": 6,
+      "final_verdict": null,
+      "peak_return_pct": -7.48,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-18",
+      "date": "2026-06-18",
+      "ticker": "MU",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": -1.18,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-18-midday",
+      "date": "2026-06-18",
+      "ticker": "MU",
+      "conviction": 8,
+      "final_verdict": "partial",
+      "peak_return_pct": 0.51,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-18-closing",
+      "date": "2026-06-18",
+      "ticker": "NKE",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": -5.51,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-17-premarket",
+      "date": "2026-06-17",
+      "ticker": "FDX",
+      "conviction": 7,
+      "final_verdict": "loss",
+      "peak_return_pct": 1.96,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-17-midday",
+      "date": "2026-06-17",
+      "ticker": "ACN",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 1.2,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-17-closing",
+      "date": "2026-06-17",
+      "ticker": "ACN",
+      "conviction": 5,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-16-midday",
+      "date": "2026-06-16",
+      "ticker": "FDX",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    }
+  ],
+  "patterns": {
+    "strengths": [],
+    "weaknesses": [
+      "Win rate 20.4% below breakeven \u2014 review thesis quality",
+      "Negative avg horizon return (-4.06%)",
+      "Stock picks only 20.4% win rate \u2014 consider avoiding"
+    ],
+    "adjustment_suggestions": []
+  }
+}

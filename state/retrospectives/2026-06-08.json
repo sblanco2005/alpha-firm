@@ -1,0 +1,883 @@
+{
+  "week_start": "2026-06-08",
+  "week_end": "2026-06-12",
+  "window_label": "2026-06-08",
+  "generated_at": "2026-06-25T14:52:12+00:00",
+  "scope": "realized + notable paper losses (conviction >= 7)",
+  "realized_loss_count_total": 5,
+  "paper_loss_count_total": 4,
+  "loss_count_analyzed": 9,
+  "max_losses": 10,
+  "losses": [
+    {
+      "loss_id": "realized-EYE-2026-06-10",
+      "kind": "realized",
+      "agent": "sentiment",
+      "ticker": "EYE",
+      "asset_type": null,
+      "entry_date": "2026-06-10",
+      "entry_price": 21.91,
+      "sell_date": "2026-06-10",
+      "sell_price": 17.23,
+      "pnl": -219.96,
+      "return_pct": -21.36,
+      "thesis": "Director Nicholson LLC bought 50,000 shares at $15.52 on June 5 (Form 4) \u2014 largest director buy in 12 months. National Vision down 37.7% YTD from $35. 11 analysts median $35 target. AAII bears 37% > bulls 36.3%. 11-day Stochastic oversold. Debate: REDUCED_SIZE (41% move from insider cost = 1 unrebutted weakness).",
+      "exit_reason": "Hard stop $18 triggered: EYE $17.23 midday. Same-day buy and stop. CPI 4.2% YoY warm + VIX spike 22.21.",
+      "session": null,
+      "conviction": 8,
+      "target_return_pct": 18,
+      "horizon_days": 30,
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-11",
+          "price": 16.75,
+          "return_pct": -23.55
+        },
+        "day_5": {
+          "date": "2026-06-17",
+          "price": 17.0,
+          "return_pct": -22.41
+        },
+        "day_10": {
+          "date": "2026-06-24",
+          "price": 17.61,
+          "return_pct": -19.63
+        },
+        "day_20": {
+          "date": "2026-07-09",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-23",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -19.63,
+      "horizon_return_pct": null,
+      "magnitude_pct": 21.36,
+      "agent_scorecard": {
+        "win_rate": 57.1,
+        "loss_rate": 23.8,
+        "total_evaluated": 63,
+        "track_record_modifier": 1.0,
+        "conviction_calibration": {
+          "8": {
+            "total": 27,
+            "wins": 16,
+            "losses": 7,
+            "partials": 4,
+            "win_rate": 59.3
+          },
+          "7": {
+            "total": 33,
+            "wins": 18,
+            "losses": 8,
+            "partials": 7,
+            "win_rate": 54.5
+          },
+          "9": {
+            "total": 2,
+            "wins": 2,
+            "losses": 0,
+            "partials": 0,
+            "win_rate": 100.0
+          },
+          "6": {
+            "total": 1,
+            "wins": 0,
+            "losses": 0,
+            "partials": 1,
+            "win_rate": 0.0
+          }
+        },
+        "by_asset_type": {
+          "stock": {
+            "total": 62,
+            "wins": 36,
+            "losses": 15,
+            "partials": 11,
+            "win_rate": 58.1
+          },
+          "etf": {
+            "total": 1,
+            "wins": 0,
+            "losses": 0,
+            "partials": 1,
+            "win_rate": 0.0
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    },
+    {
+      "loss_id": "realized-IREN-2026-06-10",
+      "kind": "realized",
+      "agent": "crypto",
+      "ticker": "IREN",
+      "asset_type": "stock",
+      "entry_date": "2026-06-05",
+      "entry_price": 60.75,
+      "sell_date": "2026-06-10",
+      "sell_price": 52.65,
+      "pnl": -153.9,
+      "return_pct": -13.3,
+      "thesis": "",
+      "exit_reason": "Hard stop $54 triggered: IREN premarket $52.65 below $54 hard stop. BTC $61,594 above $61K conditional sell threshold (not triggered). Stop discipline honored.",
+      "session": "premarket",
+      "magnitude_pct": 13.3,
+      "agent_scorecard": {
+        "win_rate": 60.4,
+        "loss_rate": 20.8,
+        "total_evaluated": 53,
+        "track_record_modifier": 1.2,
+        "conviction_calibration": {
+          "7": {
+            "total": 33,
+            "wins": 20,
+            "losses": 8,
+            "partials": 5,
+            "win_rate": 60.6
+          },
+          "8": {
+            "total": 13,
+            "wins": 6,
+            "losses": 3,
+            "partials": 4,
+            "win_rate": 46.2
+          },
+          "6": {
+            "total": 6,
+            "wins": 5,
+            "losses": 0,
+            "partials": 1,
+            "win_rate": 83.3
+          },
+          "5": {
+            "total": 1,
+            "wins": 1,
+            "losses": 0,
+            "partials": 0,
+            "win_rate": 100.0
+          }
+        },
+        "by_asset_type": {
+          "etf": {
+            "total": 22,
+            "wins": 6,
+            "losses": 9,
+            "partials": 7,
+            "win_rate": 27.3
+          },
+          "stock": {
+            "total": 31,
+            "wins": 26,
+            "losses": 2,
+            "partials": 3,
+            "win_rate": 83.9
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    },
+    {
+      "loss_id": "realized-STRL-2026-06-09",
+      "kind": "realized",
+      "agent": "quant",
+      "ticker": "STRL",
+      "asset_type": null,
+      "entry_date": "2026-06-08",
+      "entry_price": 880.0,
+      "sell_date": "2026-06-09",
+      "sell_price": 804.4,
+      "pnl": -75.6,
+      "return_pct": -8.59,
+      "thesis": "Sterling Infrastructure (STRL): ChartMill 10/10 technical rating, MACD bullish cross June 3. Q1 2026 revenue +92% YoY, E-Infrastructure (AI data centers) +174% to $597.7M. FY2026 guidance raised to $3.70-3.80B with $5.15B combined backlog (3.5x book-to-burn). Top-performing Industrials sector June 2026. Debate: BUY_ELIGIBLE (1.05x). Final PM score 8.84.",
+      "exit_reason": "Hard stop-loss $820 triggered: STRL at $804.40 (-8.59%). Risk-off selloff June 9.",
+      "session": null,
+      "conviction": 7,
+      "target_return_pct": 10,
+      "horizon_days": 20,
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-09",
+          "price": 880.0,
+          "return_pct": 0.0
+        },
+        "day_5": {
+          "date": "2026-06-15",
+          "price": 842.01,
+          "return_pct": -4.32
+        },
+        "day_10": {
+          "date": "2026-06-22",
+          "price": 867.23,
+          "return_pct": -1.45
+        },
+        "horizon": {
+          "date": "2026-07-06",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.0,
+      "horizon_return_pct": null,
+      "magnitude_pct": 8.59,
+      "agent_scorecard": {
+        "win_rate": 37.2,
+        "loss_rate": 39.7,
+        "total_evaluated": 78,
+        "track_record_modifier": 0.8,
+        "conviction_calibration": {
+          "8": {
+            "total": 33,
+            "wins": 16,
+            "losses": 13,
+            "partials": 4,
+            "win_rate": 48.5
+          },
+          "7": {
+            "total": 30,
+            "wins": 8,
+            "losses": 12,
+            "partials": 10,
+            "win_rate": 26.7
+          },
+          "9": {
+            "total": 2,
+            "wins": 1,
+            "losses": 1,
+            "partials": 0,
+            "win_rate": 50.0
+          },
+          "6": {
+            "total": 13,
+            "wins": 4,
+            "losses": 5,
+            "partials": 4,
+            "win_rate": 30.8
+          }
+        },
+        "by_asset_type": {
+          "stock": {
+            "total": 71,
+            "wins": 28,
+            "losses": 29,
+            "partials": 14,
+            "win_rate": 39.4
+          },
+          "etf": {
+            "total": 7,
+            "wins": 1,
+            "losses": 2,
+            "partials": 4,
+            "win_rate": 14.3
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    },
+    {
+      "loss_id": "realized-META-2026-06-10",
+      "kind": "realized",
+      "agent": "contrarian",
+      "ticker": "META",
+      "asset_type": null,
+      "entry_date": "2026-04-30",
+      "entry_price": 622.2,
+      "sell_date": "2026-06-10",
+      "sell_price": 576.5,
+      "pnl": -45.7,
+      "return_pct": -7.34,
+      "thesis": "Post-earnings contrarian overreaction. Q1 revenue $56.31B +33% YoY, EPS $10.44 both beat. Sold off on $125-145B capex raise (manageable at $65B FCF run-rate) + Iran DAU miss (geographic noise, not secular). Q2 guide $58-61B absorbs China headwind. At 24x forward P/E vs 33x historical, this is a 27% P/E discount on a 33%-revenue-growth business. Classic contrarian setup: beat+guide beat but sold on fear.",
+      "exit_reason": "Hard stop $580 triggered: META $576.50 midday. Post-CPI tech selloff + EU WhatsApp regulatory overhang.",
+      "session": null,
+      "magnitude_pct": 7.34,
+      "agent_scorecard": {
+        "win_rate": 28.0,
+        "loss_rate": 40.0,
+        "total_evaluated": 25,
+        "track_record_modifier": 0.8,
+        "conviction_calibration": {
+          "8": {
+            "total": 14,
+            "wins": 6,
+            "losses": 2,
+            "partials": 6,
+            "win_rate": 42.9
+          },
+          "9": {
+            "total": 1,
+            "wins": 0,
+            "losses": 1,
+            "partials": 0,
+            "win_rate": 0.0
+          },
+          "7": {
+            "total": 9,
+            "wins": 1,
+            "losses": 6,
+            "partials": 2,
+            "win_rate": 11.1
+          },
+          "5": {
+            "total": 1,
+            "wins": 0,
+            "losses": 1,
+            "partials": 0,
+            "win_rate": 0.0
+          }
+        },
+        "by_asset_type": {
+          "stock": {
+            "total": 23,
+            "wins": 7,
+            "losses": 10,
+            "partials": 6,
+            "win_rate": 30.4
+          },
+          "etf": {
+            "total": 2,
+            "wins": 0,
+            "losses": 0,
+            "partials": 2,
+            "win_rate": 0.0
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    },
+    {
+      "loss_id": "realized-MAR-2026-06-10",
+      "kind": "realized",
+      "agent": "quant",
+      "ticker": "MAR",
+      "asset_type": "stock",
+      "entry_date": "2026-06-09",
+      "entry_price": 391.62,
+      "sell_date": "2026-06-10",
+      "sell_price": 373.76,
+      "pnl": -35.72,
+      "return_pct": -4.56,
+      "thesis": "52-week high breakout consolidation above $387 support. RSI 67.98, above 20/50/200 SMA. DBS Buy PT $417 (+6.5%). IBD Stock of Day. Q1 EPS $2.72 beat. Consumer Discretionary (0% portfolio exposure). Pre-identified setup June 8. Debate: all bear attacks rebutted \u2192 BUY_ELIGIBLE.",
+      "exit_reason": "Hard stop $381 triggered: MAR $373.76 below $381 stop. Post-WWDC/CPI consumer discretionary pressure. 1-day holding period.",
+      "session": "premarket",
+      "conviction": 7,
+      "target_return_pct": 8,
+      "horizon_days": 20,
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-10",
+          "price": 373.76,
+          "return_pct": -6.09
+        },
+        "day_5": {
+          "date": "2026-06-16",
+          "price": 400.63,
+          "return_pct": 0.66
+        },
+        "day_10": {
+          "date": "2026-06-23",
+          "price": 383.56,
+          "return_pct": -3.63
+        },
+        "day_20": {
+          "date": "2026-07-07",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-07",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.66,
+      "horizon_return_pct": null,
+      "magnitude_pct": 4.56,
+      "agent_scorecard": {
+        "win_rate": 37.2,
+        "loss_rate": 39.7,
+        "total_evaluated": 78,
+        "track_record_modifier": 0.8,
+        "conviction_calibration": {
+          "8": {
+            "total": 33,
+            "wins": 16,
+            "losses": 13,
+            "partials": 4,
+            "win_rate": 48.5
+          },
+          "7": {
+            "total": 30,
+            "wins": 8,
+            "losses": 12,
+            "partials": 10,
+            "win_rate": 26.7
+          },
+          "9": {
+            "total": 2,
+            "wins": 1,
+            "losses": 1,
+            "partials": 0,
+            "win_rate": 50.0
+          },
+          "6": {
+            "total": 13,
+            "wins": 4,
+            "losses": 5,
+            "partials": 4,
+            "win_rate": 30.8
+          }
+        },
+        "by_asset_type": {
+          "stock": {
+            "total": 71,
+            "wins": 28,
+            "losses": 29,
+            "partials": 14,
+            "win_rate": 39.4
+          },
+          "etf": {
+            "total": 7,
+            "wins": 1,
+            "losses": 2,
+            "partials": 4,
+            "win_rate": 14.3
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    },
+    {
+      "loss_id": "quant-2026-05-21",
+      "kind": "paper",
+      "agent": "quant",
+      "ticker": "IONQ",
+      "asset_type": "stock",
+      "entry_date": "2026-05-21",
+      "entry_price": 60.86,
+      "conviction": 7,
+      "target_return_pct": 20,
+      "horizon_days": 15,
+      "thesis_summary": "IONQ broke out +8.3% on Trump $2B quantum computing grants. Q1 revenue +755% YoY to $64.7M. Volume 3-4x average. Pre-debate score 6.28 \u2014 ranked 4th.",
+      "was_executed": false,
+      "peak_return_pct": 15.25,
+      "horizon_return_pct": -8.58,
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-05-22",
+          "price": 58.94,
+          "return_pct": -3.15
+        },
+        "day_5": {
+          "date": "2026-05-28",
+          "price": 70.14,
+          "return_pct": 15.25
+        },
+        "day_10": {
+          "date": "2026-06-04",
+          "price": 64.66,
+          "return_pct": 6.24
+        },
+        "day_20": {
+          "date": "2026-06-18",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-06-11",
+          "price": 55.64,
+          "return_pct": -8.58
+        }
+      },
+      "magnitude_pct": 8.58,
+      "agent_scorecard": {
+        "win_rate": 37.2,
+        "loss_rate": 39.7,
+        "total_evaluated": 78,
+        "track_record_modifier": 0.8,
+        "conviction_calibration": {
+          "8": {
+            "total": 33,
+            "wins": 16,
+            "losses": 13,
+            "partials": 4,
+            "win_rate": 48.5
+          },
+          "7": {
+            "total": 30,
+            "wins": 8,
+            "losses": 12,
+            "partials": 10,
+            "win_rate": 26.7
+          },
+          "9": {
+            "total": 2,
+            "wins": 1,
+            "losses": 1,
+            "partials": 0,
+            "win_rate": 50.0
+          },
+          "6": {
+            "total": 13,
+            "wins": 4,
+            "losses": 5,
+            "partials": 4,
+            "win_rate": 30.8
+          }
+        },
+        "by_asset_type": {
+          "stock": {
+            "total": 71,
+            "wins": 28,
+            "losses": 29,
+            "partials": 14,
+            "win_rate": 39.4
+          },
+          "etf": {
+            "total": 7,
+            "wins": 1,
+            "losses": 2,
+            "partials": 4,
+            "win_rate": 14.3
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    },
+    {
+      "loss_id": "catalyst-2026-04-28-closing",
+      "kind": "paper",
+      "agent": "catalyst",
+      "ticker": "NVDA",
+      "asset_type": "stock",
+      "entry_date": "2026-04-28",
+      "entry_price": 213.52,
+      "conviction": 7,
+      "target_return_pct": 15,
+      "horizon_days": 29,
+      "thesis_summary": "NVDA May 27 Q1 FY2027 earnings; hyperscaler capex acceleration confirmation from tonight's big tech earnings; 75% beat probability vs 65% market-implied; Blackwell ramp driving 136% YoY EPS growth.",
+      "was_executed": false,
+      "peak_return_pct": 2.79,
+      "horizon_return_pct": -2.52,
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-29",
+          "price": 213.17,
+          "return_pct": -0.16
+        },
+        "day_5": {
+          "date": "2026-05-05",
+          "price": 198.25,
+          "return_pct": -7.15
+        },
+        "day_10": {
+          "date": "2026-05-12",
+          "price": 219.48,
+          "return_pct": 2.79
+        },
+        "day_20": {
+          "date": "2026-05-27",
+          "price": 211.14,
+          "return_pct": -1.11
+        },
+        "horizon": {
+          "date": "2026-06-09",
+          "price": 208.14,
+          "return_pct": -2.52
+        }
+      },
+      "magnitude_pct": 2.52,
+      "agent_scorecard": {
+        "win_rate": 20.4,
+        "loss_rate": 57.1,
+        "total_evaluated": 49,
+        "track_record_modifier": 0.8,
+        "conviction_calibration": {
+          "7": {
+            "total": 27,
+            "wins": 7,
+            "losses": 13,
+            "partials": 7,
+            "win_rate": 25.9
+          },
+          "6": {
+            "total": 18,
+            "wins": 2,
+            "losses": 13,
+            "partials": 3,
+            "win_rate": 11.1
+          },
+          "5": {
+            "total": 3,
+            "wins": 1,
+            "losses": 2,
+            "partials": 0,
+            "win_rate": 33.3
+          },
+          "8": {
+            "total": 1,
+            "wins": 0,
+            "losses": 0,
+            "partials": 1,
+            "win_rate": 0.0
+          }
+        },
+        "by_asset_type": {
+          "stock": {
+            "total": 49,
+            "wins": 10,
+            "losses": 28,
+            "partials": 11,
+            "win_rate": 20.4
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    },
+    {
+      "loss_id": "macro-2026-04-09",
+      "kind": "paper",
+      "agent": "macro",
+      "ticker": "IEF",
+      "asset_type": "etf",
+      "entry_date": "2026-04-09",
+      "entry_price": 95.25,
+      "conviction": 7,
+      "target_return_pct": 4,
+      "horizon_days": 45,
+      "thesis_summary": "US-Iran ceasefire unwinding oil war premium, 7-10yr yields compressing from 4.1% toward 3.85%",
+      "was_executed": false,
+      "peak_return_pct": 0.83,
+      "horizon_return_pct": -1.64,
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-10",
+          "price": 95.0,
+          "return_pct": -0.26
+        },
+        "day_5": {
+          "date": "2026-04-16",
+          "price": 95.59,
+          "return_pct": 0.36
+        },
+        "day_10": {
+          "date": "2026-04-23",
+          "price": 96.04,
+          "return_pct": 0.83
+        },
+        "day_20": {
+          "date": "2026-05-07",
+          "price": 93.9,
+          "return_pct": -1.42
+        },
+        "horizon": {
+          "date": "2026-06-11",
+          "price": 93.69,
+          "return_pct": -1.64
+        }
+      },
+      "magnitude_pct": 1.64,
+      "agent_scorecard": {
+        "win_rate": 9.5,
+        "loss_rate": 69.8,
+        "total_evaluated": 63,
+        "track_record_modifier": 0.8,
+        "conviction_calibration": {
+          "8": {
+            "total": 13,
+            "wins": 1,
+            "losses": 8,
+            "partials": 4,
+            "win_rate": 7.7
+          },
+          "9": {
+            "total": 7,
+            "wins": 0,
+            "losses": 6,
+            "partials": 1,
+            "win_rate": 0.0
+          },
+          "7": {
+            "total": 19,
+            "wins": 1,
+            "losses": 16,
+            "partials": 2,
+            "win_rate": 5.3
+          },
+          "5": {
+            "total": 9,
+            "wins": 2,
+            "losses": 6,
+            "partials": 1,
+            "win_rate": 22.2
+          },
+          "6": {
+            "total": 15,
+            "wins": 2,
+            "losses": 8,
+            "partials": 5,
+            "win_rate": 13.3
+          }
+        },
+        "by_asset_type": {
+          "etf": {
+            "total": 63,
+            "wins": 6,
+            "losses": 44,
+            "partials": 13,
+            "win_rate": 9.5
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    },
+    {
+      "loss_id": "sentiment-2026-04-29-midday",
+      "kind": "paper",
+      "agent": "sentiment",
+      "ticker": "EFOR",
+      "asset_type": "stock",
+      "entry_date": "2026-04-29",
+      "entry_price": 22.75,
+      "conviction": 7,
+      "target_return_pct": 22,
+      "horizon_days": 30,
+      "thesis_summary": "EFOR (formerly ASGN): 5-insider cluster buy $1.8M (CEO $999K + CFO + EVP + 2 directors, Apr 24-28) post-earnings-miss at multi-year lows; 5.94x forward P/E, down 52.77% YTD. PM PASS (narrative penalty: 4.90 pre-debate, below top-2 threshold).",
+      "was_executed": false,
+      "peak_return_pct": -0.4,
+      "horizon_return_pct": null,
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-04-30",
+          "price": 22.52,
+          "return_pct": -1.01
+        },
+        "day_5": {
+          "date": "2026-05-06",
+          "price": 22.5,
+          "return_pct": -1.1
+        },
+        "day_10": {
+          "date": "2026-05-13",
+          "price": 20.67,
+          "return_pct": -9.14
+        },
+        "day_20": {
+          "date": "2026-05-28",
+          "price": 22.66,
+          "return_pct": -0.4
+        },
+        "horizon": {
+          "date": "2026-06-11",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "magnitude_pct": 0,
+      "agent_scorecard": {
+        "win_rate": 57.1,
+        "loss_rate": 23.8,
+        "total_evaluated": 63,
+        "track_record_modifier": 1.0,
+        "conviction_calibration": {
+          "8": {
+            "total": 27,
+            "wins": 16,
+            "losses": 7,
+            "partials": 4,
+            "win_rate": 59.3
+          },
+          "7": {
+            "total": 33,
+            "wins": 18,
+            "losses": 8,
+            "partials": 7,
+            "win_rate": 54.5
+          },
+          "9": {
+            "total": 2,
+            "wins": 2,
+            "losses": 0,
+            "partials": 0,
+            "win_rate": 100.0
+          },
+          "6": {
+            "total": 1,
+            "wins": 0,
+            "losses": 0,
+            "partials": 1,
+            "win_rate": 0.0
+          }
+        },
+        "by_asset_type": {
+          "stock": {
+            "total": 62,
+            "wins": 36,
+            "losses": 15,
+            "partials": 11,
+            "win_rate": 58.1
+          },
+          "etf": {
+            "total": 1,
+            "wins": 0,
+            "losses": 0,
+            "partials": 1,
+            "win_rate": 0.0
+          }
+        }
+      },
+      "applicable_active_lessons": []
+    }
+  ],
+  "candidate_rules": [
+    {
+      "id": "quant-min-conviction-8",
+      "category": "conviction_floor",
+      "applies_to": "quant",
+      "root_cause": "calibration_error",
+      "rule": "Require conviction >=8 for quant picks. Quant conviction-7 picks win only 26.7% (scorecard) and all three quant losses this window were conviction-7 (STRL, MAR, IONQ).",
+      "enforcement": {
+        "type": "min_conviction",
+        "value": 8
+      },
+      "source_losses": [
+        "realized-STRL-2026-06-09",
+        "realized-MAR-2026-06-10",
+        "quant-2026-05-21"
+      ]
+    },
+    {
+      "id": "all-no-cpi-fomc-entry",
+      "category": "entry_condition",
+      "applies_to": "all",
+      "root_cause": "risk_mgmt_error",
+      "rule": "Do not execute new buys on CPI/FOMC release days. EYE and META were bought on the June 10 CPI print and stopped same/next day on the VIX 22 spike.",
+      "enforcement": {
+        "type": "entry_condition",
+        "value": "not_on_cpi_fomc_day"
+      },
+      "source_losses": [
+        "realized-EYE-2026-06-10",
+        "realized-META-2026-06-10"
+      ]
+    },
+    {
+      "id": "catalyst-min-conviction-8",
+      "category": "conviction_floor",
+      "applies_to": "catalyst",
+      "root_cause": "catalyst_miss",
+      "rule": "Require conviction >=8 for catalyst picks. NVDA conviction-7 earnings play yielded only +2.79% peak then -2.52% \u2014 thin event edge. Rediscovers existing Step 1.5 catalyst rule.",
+      "enforcement": {
+        "type": "min_conviction",
+        "value": 8
+      },
+      "source_losses": [
+        "catalyst-2026-04-28-closing"
+      ]
+    }
+  ],
+  "analysis_notes": "Week's losses cluster on the June 9-10 CPI/VIX 22 flush. Dominant pattern: quant conviction-7 momentum buys (STRL/MAR/IONQ) entered into risk-off tape -> promotes min_conviction:8 rule. EYE/META bought on CPI day -> candidate no-CPI-entry rule. Catalyst NVDA rediscovers existing 8+ conviction rule."
+}

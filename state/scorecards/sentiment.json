@@ -1,134 +1,160 @@
 {
   "agent_id": "sentiment",
-  "generated": "2026-04-09",
-  "overall": {
-    "total_recommendations": 18,
-    "evaluated": 0,
-    "wins": 0,
-    "losses": 0,
-    "partial": 0,
-    "tracking": 18,
-    "win_rate": null,
-    "avg_return_at_horizon": null,
-    "avg_peak_return": null
+  "last_updated": "2026-06-09",
+  "total_evaluated": 63,
+  "total_tracking": 37,
+  "wins": 36,
+  "losses": 15,
+  "partials": 12,
+  "win_rate": 57.1,
+  "partial_rate": 19.0,
+  "loss_rate": 23.8,
+  "avg_horizon_return_pct": 17.15,
+  "avg_peak_return_pct": 34.29,
+  "track_record_modifier": 1.0,
+  "conviction_calibration": {
+    "8": {
+      "total": 27,
+      "wins": 16,
+      "losses": 7,
+      "partials": 4,
+      "win_rate": 59.3
+    },
+    "7": {
+      "total": 33,
+      "wins": 18,
+      "losses": 8,
+      "partials": 7,
+      "win_rate": 54.5
+    },
+    "9": {
+      "total": 2,
+      "wins": 2,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 100.0
+    },
+    "6": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 1,
+      "win_rate": 0.0
+    }
   },
-  "conviction_calibration": {},
-  "by_asset_type": {},
+  "by_asset_type": {
+    "stock": {
+      "total": 62,
+      "wins": 36,
+      "losses": 15,
+      "partials": 11,
+      "win_rate": 58.1
+    },
+    "etf": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 1,
+      "win_rate": 0.0
+    }
+  },
   "recent_picks": [
     {
-      "date": "2026-04-08",
-      "ticker": "AVGO",
-      "conviction": 9,
-      "entry_price": 326.65,
-      "status": "tracking",
-      "current_return_pct": 7.34,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 7.34,
+      "id": "sentiment-2026-06-19-premarket",
+      "date": "2026-06-19",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": null,
+      "peak_return_pct": null,
       "was_executed": false
     },
     {
-      "date": "2026-04-08",
-      "ticker": "UNH",
-      "conviction": 8,
-      "entry_price": 307.08,
-      "status": "tracking",
-      "current_return_pct": -0.36,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": -0.36,
-      "was_executed": false
-    },
-    {
-      "date": "2026-04-08",
-      "ticker": "FLY",
-      "conviction": 7,
-      "entry_price": 37.97,
-      "status": "tracking",
-      "current_return_pct": -6.32,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": -6.32,
-      "was_executed": false
-    },
-    {
-      "date": "2026-04-07",
-      "ticker": "NBIS",
-      "conviction": 8,
-      "entry_price": 112.0,
-      "status": "tracking",
-      "current_return_pct": 4.82,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 4.82,
-      "was_executed": false
-    },
-    {
-      "date": "2026-04-07",
+      "id": "sentiment-2026-06-19-midday",
+      "date": "2026-06-19",
       "ticker": "NCLH",
       "conviction": 7,
-      "entry_price": 18.36,
-      "status": "tracking",
-      "current_return_pct": 7.19,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 7.19,
+      "final_verdict": null,
+      "peak_return_pct": 2.79,
       "was_executed": false
     },
     {
-      "date": "2026-04-07",
-      "ticker": "UNH",
-      "conviction": 8,
-      "entry_price": 307.17,
-      "status": "tracking",
-      "current_return_pct": 0.18,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 0.18,
+      "id": "sentiment-2026-06-19-closing",
+      "date": "2026-06-19",
+      "ticker": "UAL",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 10.33,
       "was_executed": false
     },
     {
-      "date": "2026-04-06",
-      "ticker": "ASTS",
-      "conviction": 8,
-      "entry_price": 97.9,
-      "status": "tracking",
-      "current_return_pct": 0.0,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 0.0,
+      "id": "sentiment-2026-06-18",
+      "date": "2026-06-18",
+      "ticker": "HOOD",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 3.95,
       "was_executed": false
     },
     {
-      "date": "2026-04-06",
-      "ticker": "ASTS",
-      "conviction": 9,
-      "entry_price": 95.44,
-      "status": "tracking",
-      "current_return_pct": 2.58,
-      "latest_checkpoint": "day_1",
-      "peak_return_pct": 2.58,
+      "id": "sentiment-2026-06-18-midday",
+      "date": "2026-06-18",
+      "ticker": "HOOD",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": -7.61,
       "was_executed": false
     },
     {
-      "date": "2026-04-02",
-      "ticker": "RKLB",
-      "conviction": 8,
-      "entry_price": 66.55,
-      "status": "tracking",
-      "current_return_pct": -3.5,
-      "latest_checkpoint": "day_5",
-      "peak_return_pct": 1.77,
+      "id": "sentiment-2026-06-18-closing",
+      "date": "2026-06-18",
+      "ticker": "PASS",
+      "conviction": 0,
+      "final_verdict": "pass",
+      "peak_return_pct": null,
       "was_executed": false
     },
     {
-      "date": "2026-04-01",
-      "ticker": "ASTS",
-      "conviction": 8,
-      "entry_price": 83.69,
-      "status": "tracking",
-      "current_return_pct": 13.29,
-      "latest_checkpoint": "day_5",
-      "peak_return_pct": 13.29,
+      "id": "sentiment-2026-06-17-premarket",
+      "date": "2026-06-17",
+      "ticker": "HOOD",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 13.2,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-17-midday",
+      "date": "2026-06-17",
+      "ticker": "SOXX",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 167.33,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-17-closing",
+      "date": "2026-06-17",
+      "ticker": "EML",
+      "conviction": 7,
+      "final_verdict": "rejected_pre_filter",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-16-midday",
+      "date": "2026-06-16",
+      "ticker": "PEB",
+      "conviction": 4,
+      "final_verdict": null,
+      "peak_return_pct": null,
       "was_executed": false
     }
   ],
   "patterns": {
-    "strengths": "Insufficient evaluated data for patterns",
-    "weaknesses": "Insufficient evaluated data for patterns",
-    "adjustment": "Insufficient evaluated data for patterns"
+    "strengths": [
+      "Conviction-9 picks win 100.0% \u2014 maintain high-conviction approach"
+    ],
+    "weaknesses": [],
+    "adjustment_suggestions": []
   }
 }

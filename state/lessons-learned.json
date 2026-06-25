@@ -1,0 +1,143 @@
+{
+  "last_updated": "2026-06-25",
+  "rules": [
+    {
+      "id": "quant-min-conviction-8",
+      "status": "active",
+      "category": "conviction_floor",
+      "applies_to": "quant",
+      "root_cause": "calibration_error",
+      "rule": "Require conviction >=8 for quant picks. Quant conviction-7 picks win only 26.7% (scorecard) and all three quant losses this window were conviction-7 (STRL, MAR, IONQ).",
+      "enforcement": {
+        "type": "min_conviction",
+        "value": 8
+      },
+      "evidence": [
+        {
+          "loss_id": "realized-STRL-2026-06-09",
+          "date": "2026-06-09",
+          "ticker": "STRL",
+          "agent": "quant",
+          "return_pct": -8.59,
+          "kind": "realized"
+        },
+        {
+          "loss_id": "realized-MAR-2026-06-10",
+          "date": "2026-06-10",
+          "ticker": "MAR",
+          "agent": "quant",
+          "return_pct": -4.56,
+          "kind": "realized"
+        },
+        {
+          "loss_id": "quant-2026-05-21",
+          "date": "2026-05-21",
+          "ticker": "IONQ",
+          "agent": "quant",
+          "return_pct": -8.58,
+          "kind": "paper"
+        }
+      ],
+      "evidence_count": 3,
+      "first_seen": "2026-06-25",
+      "last_seen": "2026-06-25",
+      "effective_date": "2026-06-25",
+      "review_date": "2026-08-09",
+      "win_rate_at_promotion": 37.2,
+      "status_history": [
+        {
+          "date": "2026-06-25",
+          "from": null,
+          "to": "candidate"
+        },
+        {
+          "date": "2026-06-25",
+          "from": "candidate",
+          "to": "active",
+          "evidence_count": 3
+        }
+      ]
+    },
+    {
+      "id": "all-no-cpi-fomc-entry",
+      "status": "candidate",
+      "category": "entry_condition",
+      "applies_to": "all",
+      "root_cause": "risk_mgmt_error",
+      "rule": "Do not execute new buys on CPI/FOMC release days. EYE and META were bought on the June 10 CPI print and stopped same/next day on the VIX 22 spike.",
+      "enforcement": {
+        "type": "entry_condition",
+        "value": "not_on_cpi_fomc_day"
+      },
+      "evidence": [
+        {
+          "loss_id": "realized-EYE-2026-06-10",
+          "date": "2026-06-10",
+          "ticker": "EYE",
+          "agent": "sentiment",
+          "return_pct": -21.36,
+          "kind": "realized"
+        },
+        {
+          "loss_id": "realized-META-2026-06-10",
+          "date": "2026-06-10",
+          "ticker": "META",
+          "agent": "contrarian",
+          "return_pct": -7.34,
+          "kind": "realized"
+        }
+      ],
+      "evidence_count": 2,
+      "first_seen": "2026-06-25",
+      "last_seen": "2026-06-25",
+      "effective_date": null,
+      "review_date": null,
+      "win_rate_at_promotion": null,
+      "status_history": [
+        {
+          "date": "2026-06-25",
+          "from": null,
+          "to": "candidate"
+        }
+      ]
+    },
+    {
+      "id": "catalyst-min-conviction-8",
+      "status": "candidate",
+      "category": "conviction_floor",
+      "applies_to": "catalyst",
+      "root_cause": "catalyst_miss",
+      "rule": "Require conviction >=8 for catalyst picks. NVDA conviction-7 earnings play yielded only +2.79% peak then -2.52% \u2014 thin event edge. Rediscovers existing Step 1.5 catalyst rule.",
+      "enforcement": {
+        "type": "min_conviction",
+        "value": 8
+      },
+      "evidence": [
+        {
+          "loss_id": "catalyst-2026-04-28-closing",
+          "date": "2026-04-28",
+          "ticker": "NVDA",
+          "agent": "catalyst",
+          "return_pct": -2.52,
+          "kind": "paper"
+        }
+      ],
+      "evidence_count": 1,
+      "first_seen": "2026-06-25",
+      "last_seen": "2026-06-25",
+      "effective_date": null,
+      "review_date": null,
+      "win_rate_at_promotion": null,
+      "status_history": [
+        {
+          "date": "2026-06-25",
+          "from": null,
+          "to": "candidate"
+        }
+      ]
+    }
+  ],
+  "_promoted_retros": [
+    "2026-06-08.json"
+  ]
+}

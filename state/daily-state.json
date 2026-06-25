@@ -1,6 +1,98 @@
 {
-  "date": "2026-04-09",
-  "checks": 1,
+  "date": "2026-06-25",
+  "checks": 2,
   "bought": false,
-  "sessions_completed": ["premarket"]
+  "sessions_completed": [
+    "premarket",
+    "midday"
+  ],
+  "last_buy": {
+    "ticker": "CLSK",
+    "price": 17.36,
+    "shares": 43,
+    "agent": "crypto",
+    "timestamp": "2026-06-18T09:30:00Z"
+  },
+  "portclaude_sync_pending": [
+    "SELL IREN 12sh@$47.94 (2026-05-20)",
+    "SELL ORCL 6sh@$181.33 (2026-05-20)",
+    "BUY TGLS 13sh@$38.61 (2026-05-20)",
+    "BUY UNH 1sh@$390.38 (2026-05-21)",
+    "BUY LULU 4sh@$131.00 (2026-05-28)",
+    "BUY NKE 10sh@$46.51 (2026-06-01)",
+    "SELL IBIT 10sh@$40.46 (2026-06-01)",
+    "SELL UPST 19sh@$33.59 (2026-06-01)",
+    "BUY FCN 4sh@$153.18 (2026-06-02)",
+    "SELL LULU 4sh@$126.60 (2026-06-02)",
+    "BUY LRCX 2sh@$339.77 (2026-06-03)",
+    "SELL NOC 1sh@$526.34 (2026-06-03)",
+    "SELL UNH 1sh@$371.99 (2026-06-04)",
+    "SELL LRCX 2sh@$318.00 (2026-06-04)",
+    "SELL XYZ 7sh@$70.00 (2026-06-04)",
+    "SELL NOW 6sh@$125.00 (2026-06-04)",
+    "BUY CHRW 3sh@$179.89 (2026-06-04)",
+    "BUY IREN 19sh@$60.75 (2026-06-05)",
+    "BUY STRL 1sh@$880.00 (2026-06-08)",
+    "BUY MAR 2sh@$391.62 (2026-06-09)",
+    "SELL STRL 1sh@$804.40 (2026-06-09)",
+    "SELL AAPL 3sh@$289.53 (2026-06-09)",
+    "SELL IREN 19sh@$52.65 (2026-06-10)",
+    "SELL MAR 2sh@$373.76 (2026-06-10)",
+    "BUY EYE 47sh@$21.91 (2026-06-10)",
+    "SELL EYE 47sh@$21.91 (2026-06-10)",
+    "SELL META 1sh@$576.50 (2026-06-10)",
+    "BUY HUM 3sh@$361.00 (2026-06-11)",
+    "BUY RIOT 47sh@$26.05 (2026-06-12)",
+    "SELL XLE 9sh@$56.82 (2026-06-15)",
+    "BUY NCLH 40sh@$20.22 (2026-06-15)",
+    "SELL HUM 3sh@$374.62 (2026-06-15)",
+    "SELL RIOT 47sh@$27.78 (2026-06-17)",
+    "BUY FDX 3sh@$331.82 (2026-06-17)",
+    "BUY CLSK 43sh@$17.36 (2026-06-18)"
+  ],
+  "portclaude_sync_error": "Neon DB compute quota exceeded \u2014 retry when quota resets",
+  "midday_session": {
+    "completed": true,
+    "timestamp": "2026-06-25T16:30:01Z",
+    "decision": "PASS",
+    "reason": "Risk-off tape (SPY -1.14%, VIX +9.55% to 18.93, GLD -4.8%, GDX -9.5%, BTC -6.45%, NKE -7.09%). Only live candidate LULU VETO'd in debate (fatal_flaw: wrong catalyst date Jun 4 actual vs Jun 30 claimed; miscounted beat streak; earnings-driven drawdown; firm already fled this trade Jun 2). macro GDX falsified by tape + 0.5x rule. catalyst NKE below 8.0 bar (0.8x + declining fundamentals + falling knife). crypto/sentiment PASS. quant paper-only (suspended). No sells - all 8 positions above stops.",
+    "vix_level": 18.93,
+    "buy_attempted": false
+  },
+  "closing_session": {
+    "completed": true,
+    "timestamp": "2026-06-19T19:45:01Z",
+    "decision": "PASS",
+    "reason": "Markets closed (Juneteenth federal holiday). Best setups identified for Monday June 23: IREN (crypto, 7.61 final score, reduced size), ENTG (quant, 6.26), ADBE (contrarian, 5.06 watchlist).",
+    "top_candidates_monday": {
+      "primary": {
+        "ticker": "IREN",
+        "final_score": 7.61,
+        "agent": "crypto",
+        "entry_range": "55-63",
+        "stop": 52,
+        "condition": "BTC > 60000"
+      },
+      "secondary": {
+        "ticker": "ENTG",
+        "final_score": 6.26,
+        "agent": "quant",
+        "entry_range": "175-183",
+        "stop": 163
+      },
+      "watchlist": {
+        "ticker": "ADBE",
+        "final_score": 5.06,
+        "agent": "contrarian",
+        "entry_range": "188-200",
+        "stop": 180
+      }
+    }
+  },
+  "premarket_session": {
+    "completed": true,
+    "timestamp": "2026-06-25T11:00:02Z",
+    "decision": "pass",
+    "reason": "No candidate cleared 8.0 bull-market bar. KMX (sentiment conv8) killed in debate: bear 10b5-1 crux rebutted via SEC Form 4 (code P, aff10b5One=0 = genuine $628K cluster), but 2+ unrebutted serious weaknesses (no 35-day catalyst; valuation). NKE flagged by catalyst(conv8)+contrarian(conv7) but below threshold + value-trap risk + -45% pre-earnings downside. MU/FDX earnings BEATS held; MU stop $1050->$985. Portclaude still down (Neon quota)."
+  }
 }

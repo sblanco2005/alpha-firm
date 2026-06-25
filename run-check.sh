@@ -29,11 +29,10 @@ log() {
     echo "[$(date +%Y-%m-%dT%H:%M:%S)] $1" | tee -a "$LOG_FILE"
 }
 
-# ─── CRITICAL: Ensure we're on subscription, not API billing ───
-if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
-    log "WARNING: ANTHROPIC_API_KEY is set! Claude Code will bill to API instead of subscription."
-    log "Run: unset ANTHROPIC_API_KEY"
-    log "Unsetting for this session..."
+# ─── Save API key for fallback, then unset to run on subscription first ───
+SAVED_API_KEY="${ANTHROPIC_API_KEY:-}"
+if [ -n "$SAVED_API_KEY" ]; then
+    log "INFO: ANTHROPIC_API_KEY saved for quota fallback. Running subscription mode first."
     unset ANTHROPIC_API_KEY
 fi
 
@@ -98,7 +97,7 @@ done
 log "═══════════════════════════════════════"
 log "MARKET CHECK: $SESSION"
 log "Date: $TODAY | Time: $TIMESTAMP"
-log "Mode: Subscription (Max plan)"
+log "Mode: Subscription (Max plan)$([ -n "$SAVED_API_KEY" ] && echo " | API fallback: configured (claude-sonnet-4-6)" || echo " | API fallback: not configured")"
 log "═══════════════════════════════════════"
 
 # ─── Refresh portfolio prices before Claude starts ───
@@ -109,21 +108,8 @@ else
     log "WARNING: Price refresh failed — Claude will use stale NAV"
 fi
 
-# ─── Run Claude Code on subscription ───
-# --dangerously-skip-permissions: allows autonomous execution
-# No --model flag: uses your subscription's default model
-# MCP servers configured in .claude/settings.json
-#
-# The prompt tells Claude Code to:
-# 1. Read CLAUDE.md for full instructions
-# 2. Spawn 5 subagents in parallel (one per analyst)
-# 3. Collect recommendations
-# 4. Run PM decision logic
-# 5. Execute trade if decided
-# 6. Update all state files
-
-claude --dangerously-skip-permissions \
-    -p "Run a $SESSION market check for $TODAY.
+# ─── Build prompt once so it can be reused in the API fallback ───
+CLAUDE_PROMPT="Run a $SESSION market check for $TODAY.
 
 READ CLAUDE.md FIRST for complete instructions.
 
@@ -132,14 +118,16 @@ Execute these steps:
 1.5. OUTCOME EVALUATION (morning/premarket only): Read state/outcomes.json, evaluate any due checkpoints by fetching current prices via Brave Search, update outcomes and regenerate state/scorecards/*.json. Follow skills/outcome-evaluation.md. Skip for midday/closing.
 2. Read each agent prompt from agents/*.md
 3. Read current portfolio from state/portfolio.json
-4. Spawn 5 PARALLEL subagents — one for each analyst (macro, crypto, quant, sentiment, contrarian):
+4. Spawn 6 PARALLEL subagents — one for each analyst (macro, crypto, quant, sentiment, contrarian, catalyst):
    - Each subagent reads its own agent prompt + its own memory files
    - Each subagent uses Brave Search for real-time market research
    - Each subagent uses Fetch to get current prices
    - Each subagent writes recommendation to memory/{agent_id}/${TODAY}.json
-5. After all subagents complete, read all 5 recommendations
+   - NOTE: Sentiment Scout owns current psychology/positioning. Catalyst Agent owns future event probability. Do not mix their mandates.
+5. After all subagents complete, read all 6 recommendations
 5.1. Pre-filter: reject picks with <2 concrete facts, no catalyst, no falsification condition, or sector/sizing violations.
 5.2. Agent dominance check: read last 2 buys from state/trade-log.json. If both are from the same agent as the top candidate, deprioritize per orchestrator.md.
+5.25. LIVE LESSONS ENFORCEMENT: read state/lessons-learned.json. For each rule with status=active and effective_date<=today<review_date, apply its enforcement spec as a hard gate/modifier during pre-filter and scoring, per orchestrator.md Step 1.6. Log every rule that fires (rule id, candidate, action).
 5.3. Score using 6-CATEGORY FRAMEWORK from orchestrator.md: Evidence Strength (25%), Falsifiability (20%), Risk/Reward (20%), Portfolio Impact (15%), Signal Confirmation (10%), Execution Readiness (10%). Hard reject if Evidence < 6 or Falsifiability < 5.
 5.4. Apply narrative penalty (0.85x) if >=2 narrative-bias triggers are present. See orchestrator.md.
 5.5. Run 3-STAGE CAPITAL PROTECTION GATE (skills/debate.md) on top 2-3 picks:
@@ -153,19 +141,50 @@ Execute these steps:
    - Sector concentration check: verify no GICS sector exceeds 40% of NAV after the buy. If blocked, try next-best pick or PASS.
 7. Execute any trades (update portfolio.json, leaderboard.json, trade-log.json)
 7.5. Sync every BUY/SELL to Portclaude via mcp__portclaude__create_transaction (see skills/trade-execution.md)
-8. Record ALL 5 recommendations to state/outcomes.json (follow skills/outcome-evaluation.md for schema)
+8. Record ALL 6 recommendations to state/outcomes.json (follow skills/outcome-evaluation.md for schema)
 9. Write a summary to logs/${TODAY}.md — include SPY benchmark return and alpha (SPY inception price: 555.66)
 
 IMPORTANT: When updating any state JSON file, write to a .tmp file first, validate with jq, then mv into place.
 Example: write to state/portfolio.json.tmp → validate → mv state/portfolio.json.tmp state/portfolio.json
 
 Session: $SESSION
-Timestamp: $TIMESTAMP" \
-    2>&1 | tee -a "$LOG_FILE"
+Timestamp: $TIMESTAMP"
 
+# ─── Run Claude Code on subscription ───
+# --dangerously-skip-permissions: allows autonomous execution
+# No --model flag: uses subscription default model
+# MCP servers configured in .claude/settings.json
+set +e
+claude --dangerously-skip-permissions -p "$CLAUDE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 EXIT_CODE=${PIPESTATUS[0]}
+set -e
 
-if [ $EXIT_CODE -ne 0 ]; then
+# ─── Fallback to API if subscription quota is exhausted ───
+if [ $EXIT_CODE -ne 0 ] && grep -qi "out of extra usage" "$LOG_FILE"; then
+    if [ -n "$SAVED_API_KEY" ]; then
+        log "═══ QUOTA EXHAUSTED: Falling back to claude-sonnet-4-6 via API ═══"
+        export ANTHROPIC_API_KEY="$SAVED_API_KEY"
+
+        set +e
+        claude --dangerously-skip-permissions \
+            --model claude-sonnet-4-6 \
+            -p "$CLAUDE_PROMPT" \
+            2>&1 | tee -a "$LOG_FILE"
+        FALLBACK_EXIT=${PIPESTATUS[0]}
+        set -e
+
+        unset ANTHROPIC_API_KEY
+
+        if [ $FALLBACK_EXIT -ne 0 ]; then
+            log "ERROR: API fallback also failed (code $FALLBACK_EXIT)"
+        else
+            log "API fallback completed successfully"
+            EXIT_CODE=0
+        fi
+    else
+        log "ERROR: Subscription quota exhausted and no ANTHROPIC_API_KEY in .env for fallback."
+    fi
+elif [ $EXIT_CODE -ne 0 ]; then
     log "ERROR: Claude Code exited with code $EXIT_CODE"
     # Don't fail hard — next cron run will try again
 fi
