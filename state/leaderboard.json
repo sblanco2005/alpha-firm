@@ -131,6 +131,6 @@
   },
   "reward_pool_pct": 0.2,
   "reward_pool_usd": 68.07,
-  "reward_pool_note": "2026-06-25 PREMARKET: PASS. No candidate cleared 8.0 bull-market bar. KMX (sentiment conv8) killed in debate (bear crux rebutted but 2+ unrebutted weaknesses). Leaderboard leader: sentiment ($211.70 realized PnL, 57.1% win rate). 8 positions held; MU/FDX earnings beats. Next buy must be from any agent (last 2 buys: FDX-quant, CLSK-crypto).",
-  "last_updated": "2026-06-25T11:00:02Z"
+  "reward_pool_note": "2026-06-26 CLOSING: PASS (3rd disciplined pass of the day, risk-off breakdown-test close). No sells -> realized P&L unchanged, reward pool unchanged. Leader remains sentiment (total_pnl +$211.70, reward_earned $68.07). MTM NAV $10,479.35 (+4.79%), alpha -27.23% (SPY +32.02%). Last 2 buys: FDX-quant, CLSK-crypto. Standings (realized): sentiment +211.70 > contrarian +90.69 > catalyst +17.32 > macro -2.16 > crypto -51.55 > quant -106.98. Next actionable: deploy SPY/QQQ tranche ONLY on confirmed 50-day hold + VIX rollover (SPY closed AT 50-day breakdown test, VIX +9.1% today).",
+  "last_updated": "2026-06-26T19:45:01Z"
 }

@@ -1,16 +1,16 @@
 {
   "agent_id": "macro",
-  "last_updated": "2026-06-09",
-  "total_evaluated": 63,
+  "last_updated": "2026-06-26",
+  "total_evaluated": 86,
   "total_tracking": 16,
   "wins": 6,
   "losses": 44,
-  "partials": 13,
-  "win_rate": 9.5,
-  "partial_rate": 20.6,
-  "loss_rate": 69.8,
-  "avg_horizon_return_pct": -2.12,
-  "avg_peak_return_pct": 2.46,
+  "partials": 14,
+  "win_rate": 9.4,
+  "partial_rate": 16.3,
+  "loss_rate": 51.2,
+  "avg_horizon_return_pct": -1.73,
+  "avg_peak_return_pct": 2.41,
   "track_record_modifier": 0.8,
   "conviction_calibration": {
     "8": {
@@ -28,37 +28,106 @@
       "win_rate": 0.0
     },
     "7": {
-      "total": 19,
+      "total": 20,
       "wins": 1,
       "losses": 16,
       "partials": 2,
       "win_rate": 5.3
     },
     "5": {
-      "total": 9,
+      "total": 10,
       "wins": 2,
-      "losses": 6,
+      "losses": 5,
       "partials": 1,
-      "win_rate": 22.2
+      "win_rate": 25.0
     },
     "6": {
-      "total": 15,
+      "total": 20,
       "wins": 2,
-      "losses": 8,
-      "partials": 5,
-      "win_rate": 13.3
+      "losses": 9,
+      "partials": 6,
+      "win_rate": 11.8
+    },
+    "0": {
+      "total": 7,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
+    },
+    "3": {
+      "total": 2,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
+    },
+    "2": {
+      "total": 7,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
     }
   },
   "by_asset_type": {
     "etf": {
-      "total": 63,
+      "total": 73,
       "wins": 6,
       "losses": 44,
-      "partials": 13,
-      "win_rate": 9.5
+      "partials": 14,
+      "win_rate": 9.4
+    },
+    "pass": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
+    },
+    "none": {
+      "total": 11,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
+    },
+    "null": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
     }
   },
   "recent_picks": [
+    {
+      "id": "macro-2026-06-25-premarket",
+      "date": "2026-06-25",
+      "ticker": "GLD",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 0.97,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-25-midday",
+      "date": "2026-06-25",
+      "ticker": "GDX",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": -0.94,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-25-closing",
+      "date": "2026-06-25",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
     {
       "id": "macro-2026-06-19-premarket",
       "date": "2026-06-19",
@@ -121,41 +190,14 @@
       "final_verdict": "pass",
       "peak_return_pct": null,
       "was_executed": false
-    },
-    {
-      "id": "macro-2026-06-17-midday",
-      "date": "2026-06-17",
-      "ticker": "PASS",
-      "conviction": 4,
-      "final_verdict": null,
-      "peak_return_pct": null,
-      "was_executed": false
-    },
-    {
-      "id": "macro-2026-06-17-closing",
-      "date": "2026-06-17",
-      "ticker": "PASS",
-      "conviction": 0,
-      "final_verdict": null,
-      "peak_return_pct": null,
-      "was_executed": false
-    },
-    {
-      "id": "macro-2026-06-16-midday",
-      "date": "2026-06-16",
-      "ticker": "GLD",
-      "conviction": 6,
-      "final_verdict": null,
-      "peak_return_pct": null,
-      "was_executed": false
     }
   ],
   "patterns": {
     "strengths": [],
     "weaknesses": [
-      "Win rate 9.5% below breakeven \u2014 review thesis quality",
-      "Negative avg horizon return (-2.12%)",
-      "Etf picks only 9.5% win rate \u2014 consider avoiding"
+      "Win rate 9.4% below breakeven \u2014 review thesis quality",
+      "Negative avg horizon return (-1.73%)",
+      "Conviction-8 picks only 7.7% win \u2014 discount high-conviction calls"
     ],
     "adjustment_suggestions": []
   }

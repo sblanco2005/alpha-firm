@@ -8436,11 +8436,436 @@
         "spy_return_pct": 31.83,
         "alpha": -26.44
       }
+    },
+    {
+      "date": "2026-06-25",
+      "session": "closing",
+      "decision": "pass",
+      "selected_agent": null,
+      "ticker": null,
+      "allocation_pct": 0,
+      "reasoning": "PASS - 3rd disciplined pass of the day. No candidate cleared the 8.0 bull-market bar. LULU (contrarian conv8) = CARRY-FORWARD VETO from midday: fatal_flaw unrebutted. The closing re-pitch re-asserted the same disputed earnings date (labeled 'Q4 FY2026' when June is Q1; trade-log proves Q4 already landed Jun 4) and beat-streak count, with NEW internal contradictions ('most recently Mar Q1 $5.01'), and did NOT rebut the bear's findings. Firm already fled LULU at a loss Jun 2. Unrebutted fatal flaw = VETO stands; trade stays dead. NKE (catalyst conv8) = mathematically below bar: raw 6.0 x 0.8 catalyst track-record modifier caps final at ~6.5 max even best-case (0.8 x 1.3 x 1.05 x 1.0 x 1.0 = 1.09; 6.0x1.09=6.55<8.0), plus fresh-52wk-low falling knife ($40.73, -7.8% today) and the $0.19 guidance is unverifiable (WebSearch 429). macro/crypto/sentiment = agent PASS (no edge). quant XLI = paper-only (suspended to 2026-07-08 + active lesson conv<8). No fresh debate subagents spawned: LULU blocked by same-day veto carry-forward, NKE by threshold math - capital-protection gate satisfied without ceremonial quota spend. SPY/QQQ index-buy fallback (alpha -26.6%) considered but declined for timing (risk-off close, VIX +10.8%); flagged for next premarket.",
+      "sell_tickers": [],
+      "sell_reasoning": "No sells. All 8 positions above stops, theses intact. CLSK ($15.84, -8.8%) held into Jun-26 production catalyst tomorrow (BTC $59,248 > $58K falsification line; stop $14.00). FCN ($140.05, -8.6%) within 12% standard stop, thesis intact. CAT (+26.9%), MU (+13.8%), TGLS (+14.3%) winners running. FDX above $315 stop. NCLH +3.5%, SYK +7.6%.",
+      "vix_level": 19.14,
+      "vix_size_cap": "15-30% (VIX<=25)",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 2,
+          "considered": false,
+          "rejection_reason": "Agent PASS - gold crash (GLD -4.9%, GDX -10%) with RISING DXY contradicted own mean-reversion thesis; premarket GLD + midday GDX bounce calls both invalidated. 9.5% win rate, 0.5x modifier. No trade.",
+          "scores": null,
+          "raw_score": null,
+          "narrative_penalty": false
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": false,
+          "rejection_reason": "Agent PASS - BTC 5-day breakdown ($63.2k->$59.2k) sitting on $58-59k invalidation line; midday falsification (BTC>$60k & MARA>$13.80) NOT met. Already hold CLSK into Jun-26 catalyst - no second correlated miner.",
+          "scores": null,
+          "raw_score": null,
+          "narrative_penalty": false
+        },
+        "quant": {
+          "ticker": "XLI",
+          "conviction": 7,
+          "considered": false,
+          "rejection_reason": "PAPER ONLY - quant suspended to 2026-07-08. ACTIVE lesson quant-min-conviction-8: conv 7<8 non-executable. ETF + existing Industrials concentration (CAT/FCN/FDX = ~25% NAV).",
+          "scores": null,
+          "raw_score": null,
+          "narrative_penalty": false
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 2,
+          "considered": false,
+          "rejection_reason": "Agent PASS - exhaustive ~180-ticker insider scan returned ZERO multi-insider cluster buys since Jun 10. VIX 19 moderate (not extreme-fear). No positioning asymmetry; WebSearch exhausted.",
+          "scores": null,
+          "raw_score": null,
+          "narrative_penalty": false
+        },
+        "contrarian": {
+          "ticker": "LULU",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "CARRY-FORWARD VETO (0.0x) - midday fatal_flaw unrebutted. Closing re-pitch re-asserted disputed earnings date (Q4 vs actual Jun-4 landing) + beat-streak count with NEW contradictions ('Mar Q1 $5.01'), did NOT rebut bear's findings. Firm exited LULU at loss Jun 2.",
+          "scores": {
+            "evidence": 6,
+            "falsifiability": 8,
+            "risk_reward": 6,
+            "portfolio_impact": 6,
+            "signal_confirmation": 6,
+            "execution_readiness": 5
+          },
+          "raw_score": 6.3,
+          "narrative_penalty": true,
+          "final_score_estimate": 0.0
+        },
+        "catalyst": {
+          "ticker": "NKE",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "Below 8.0 bar (mathematically eliminated): raw 6.0 x 0.8 (catalyst 20.4% winrate) x 0.85 (narrative) x 0.92 (SPY baseline) ~3.9; even best-case (0.8x1.3x1.05x1.0x1.0) caps ~6.55. Fresh 52wk-low falling knife ($40.73, -7.8% today); $0.19 guidance unverifiable (WebSearch 429).",
+          "scores": {
+            "evidence": 6,
+            "falsifiability": 8,
+            "risk_reward": 5,
+            "portfolio_impact": 6,
+            "signal_confirmation": 5,
+            "execution_readiness": 5
+          },
+          "raw_score": 6.0,
+          "narrative_penalty": true,
+          "final_score_estimate": 3.9
+        }
+      },
+      "debate_results": [
+        {
+          "ticker": "LULU",
+          "debate_decision": "veto (carry-forward from midday)",
+          "bear_classification": "fatal_flaw",
+          "modifier": 0.0,
+          "reason": "Not re-debated. Midday VETO (fatal_flaw: wrong catalyst date, miscounted beat streak, earnings-driven drawdown) stands unrebutted - the closing re-pitch re-asserted the same disputed facts with new contradictions and never answered the bear's specific objections. No fresh subagent spawned."
+        },
+        {
+          "ticker": "NKE",
+          "debate_decision": "not debated (below bar)",
+          "reason": "Mathematically below 8.0 bull-market bar before debate (0.8x catalyst track record makes 8.0 unreachable). No subagent spawned."
+        }
+      ],
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "quant(FDX Jun17)",
+          "crypto(CLSK Jun18)"
+        ],
+        "current_top_agent": "contrarian(LULU) / catalyst(NKE)",
+        "deprioritized": false
+      },
+      "live_lessons_enforced": [
+        {
+          "rule_id": "quant-min-conviction-8",
+          "status": "active",
+          "candidate": "quant XLI conv7",
+          "action": "REJECT - quant suspended to 2026-07-08 AND conv 7<8; paper-only"
+        },
+        {
+          "rule_id": "all-no-cpi-fomc-entry",
+          "status": "candidate (not enforced)",
+          "candidate": "n/a",
+          "action": "NOT fired - candidate status (not active); today is not CPI/FOMC day anyway"
+        }
+      ],
+      "sector_check": {
+        "note": "No buy; gate not triggered. (LULU/NKE both Consumer Discretionary w/ NCLH; would have stayed ~14% NAV - not the blocker.)"
+      },
+      "portfolio_after": {
+        "cash": 4314.45,
+        "nav": 10522.73,
+        "positions_count": 8,
+        "portfolio_pnl_pct": 5.23,
+        "spy_return_pct": 31.85,
+        "alpha": -26.62
+      }
+    },
+    {
+      "date": "2026-06-26",
+      "session": "premarket",
+      "timestamp": "2026-06-26T11:00:01Z",
+      "decision": "pass",
+      "reasoning": "Disciplined PASS in bull-market-mode (8.0 bar) on a risk-off tape. Only 1 of 6 agents produced an executable candidate. sentiment AVTR (conv8, the desk's preferred agent) was the sole live pick but was KILLED in the 3-stage capital-protection gate: bear classified serious_weakness (strength 7); bull could rebut only 1 of 4 attacks (Q2 earnings Jul-23 IS a real dated catalyst) and conceded 3 \u2014 (1) insider signal narrow/MSPR 8.8x inflated by code-A comp grants (only 947K code-P, 5 of 18 insiders, Mehra=50%), (2) peer comparison proves company-specific decline NOT cyclical (TMO/DHR/IQV all profitable+growing while AVTR has -2% rev / -8.4% net margin), (3) poor timing (entry above all insider cost, +38.8% off low, below 200d MA). Bull strength 8->5; >=2 unrebutted serious weaknesses -> PASS (0.0x). Independently AVTR raw ~7.05 caps ~7.4 even at max debate boost < 8.0 bull bar. quant UNH (conv8, new 52wk high, stacked MAs, +42pp RS) = PAPER ONLY (quant suspended to 2026-07-08 + 0.5x track record). macro/crypto/contrarian/catalyst all self-PASSed (risk-off reads: gold -17% off peak, BTC at 52wk low, value traps, NKE earnings setup degraded). SPY/QQQ index-tranche fallback considered (alpha gap -26.68%, 40.9% cash) but DECLINED for timing: SPY at 734.30 is AT its 50-day MA (733.77, +0.07%) with VIX spiking +16.8% to 20.19 and 5/6 agents reading risk-off \u2014 buying an unconfirmed 50-day test is not asymmetric. Plan: deploy QQQ/SPY tranche on 50-day follow-through confirmation (SPY holds 50-day + VIX rolls over), re-evaluate midday/closing. No sells: all 8 positions above stops; CAT(+27.5%)/MU(+14.9%)/TGLS(+14.1%) winners running; CLSK(-8.6%) held into today's production catalyst (BTC $59,294 > $58K falsification).",
+      "sell_tickers": [],
+      "sell_reasoning": "None. All 8 positions above stops with intact theses. CAT trailing stop $940 (now $1057, let winner run, earnings Aug 4). MU stop $985 (now $1213, post-earnings-beat winner). CLSK stop $14.00 (now $15.87, -8.6% within 15-20% crypto-miner band; BTC $59,294 > $58K falsification; production release TODAY \u2014 hold into catalyst, exit only if BTC closes <$58K or release disappoints). FCN -8.4% within 12% standard stop, thesis intact.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 2,
+          "considered": false,
+          "rejection_reason": "PASS by agent \u2014 internally contradictory tape (gold -17% off peak on DXY surge, yields fell); 0.5x modifier makes any conv-8 call mathematically unexecutable (4.0<7.5)"
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": false,
+          "rejection_reason": "PASS by agent \u2014 BTC at 52wk low $58,397 (unconfirmed), portfolio already holds CLSK into today's catalyst; doubling correlation declined"
+        },
+        "quant": {
+          "ticker": "UNH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "EXECUTION SUSPENDED to 2026-07-08 (Step 1.5) + 0.5x track record (worst realized PnL -$106.98). Paper-only. Meets conv-8 lesson floor. New 52wk high, stacked MAs, RSI 64.9, +42pp 3mo RS vs SPY.",
+          "scores": {
+            "evidence": 8,
+            "falsifiability": 8,
+            "risk_reward": 7,
+            "portfolio_impact": 7,
+            "signal_confirmation": 7,
+            "execution_readiness": 7
+          },
+          "raw_score": 7.45,
+          "narrative_penalty": false,
+          "final_score_estimate": 3.73,
+          "execution_status": "paper_only_suspended"
+        },
+        "sentiment": {
+          "ticker": "AVTR",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "KILLED IN DEBATE (2+ unrebutted serious weaknesses -> 0.0x). Raw 7.05 also caps <8.0 bull bar.",
+          "scores": {
+            "evidence": 8,
+            "falsifiability": 8,
+            "risk_reward": 6,
+            "portfolio_impact": 7,
+            "signal_confirmation": 6,
+            "execution_readiness": 6
+          },
+          "raw_score": 7.05,
+          "narrative_penalty": false,
+          "final_score_estimate": 0.0
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "PASS by agent \u2014 no conv-8 turnaround; gap-ups chaseable-late, CMCSA value trap (5mo insider selling), PYPL falling knife"
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "PASS by agent \u2014 NKE Jun-30 earnings setup degraded (5 down sessions into print, neg news flow); no Jun26-Jul10 conv-8 catalyst"
+        }
+      },
+      "debate_results": [
+        {
+          "ticker": "AVTR",
+          "debate_decision": "pass",
+          "bear_classification": "serious_weakness",
+          "bear_strength": 7,
+          "bull_strength_updated": 5,
+          "risk_flags": [
+            "narrative_overreach",
+            "valuation_mismatch",
+            "evidence_quality_low",
+            "weak_catalyst",
+            "already_priced_in",
+            "poor_asymmetry"
+          ],
+          "fatal_flaw_found": false,
+          "serious_weaknesses_count": 4,
+          "serious_weaknesses_rebutted": 1,
+          "modifier": 0.0,
+          "reason": "Bear (strength 7): MSPR 8.8x inflated by code-A comp grants (real code-P only 947K, 5/18 insiders, Mehra=50%); peer comp proves company-specific decline (TMO/DHR/IQV profitable+growing, AVTR -2% rev/-8.4% net); entry above all insider cost +38.8% off low; below 200d MA ($10.45); asymmetry ~1:1 (Barclays $8 PT = -20.6% vs +22% tgt). Bull rebutted ONLY the catalyst (Q2 earnings Jul-23 IS real, 19 trading days out) and conceded 3 of 4 questions; bull strength 8->5 and self-recommended PASS. >=2 unrebutted serious weaknesses -> PASS per skills/debate.md.",
+          "break_the_trade_answer": "Fails facts-only test: stripping the 'broad insider campaign' narrative, the hard facts show a narrow 5-insider buy into a company-specific operational decline, entered above insider cost on a sub-200d-MA chart with ~1:1 asymmetry. Not buyable."
+        }
+      ],
+      "live_lessons_enforced": [
+        {
+          "rule_id": "quant-min-conviction-8",
+          "status": "active",
+          "candidate": "quant UNH conv8",
+          "action": "NOT a reject \u2014 UNH meets the conv>=8 floor. But quant EXECUTION SUSPENDED to 2026-07-08 per Step 1.5 + 0.5x track record. Paper-only tracking."
+        },
+        {
+          "rule_id": "all-no-cpi-fomc-entry",
+          "status": "candidate (not enforced)",
+          "candidate": "n/a",
+          "action": "NOT fired \u2014 candidate status (not active); today 2026-06-26 is not a CPI/FOMC release day regardless."
+        }
+      ],
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "quant (FDX Jun17)",
+          "crypto (CLSK Jun18)"
+        ],
+        "current_top_agent": "sentiment (AVTR)",
+        "deprioritized": false
+      },
+      "vix_level": 20.19,
+      "vix_size_cap": "15-30% (VIX<=25); not triggered (no buy)",
+      "sector_check": {
+        "note": "No buy; gate not triggered. Current sector exposure: Industrials 23.1%, Technology 17.1%, Consumer Disc 7.7%, Materials 4.8%, Healthcare 2.8% \u2014 all well below 40% cap. AVTR (Healthcare) would have added ~8% -> ~11% Healthcare, not a blocker."
+      },
+      "index_fallback_deliberation": {
+        "considered": "SPY/QQQ tranche to address -26.68% alpha gap (40.9% cash, bull regime)",
+        "decision": "DECLINED for timing",
+        "reason": "SPY 734.30 AT 50-day MA (733.77, +0.07%) with VIX spiking +16.8% to 20.19 and 5/6 agents risk-off. Buying unconfirmed 50-day test is not asymmetric. Plan: deploy tranche on 50-day follow-through (SPY holds 50-day + VIX rolls over); re-evaluate midday/closing 2026-06-26."
+      },
+      "portfolio_after": {
+        "cash": 4314.45,
+        "nav": 10545.57,
+        "positions_count": 8,
+        "portfolio_pnl_pct": 5.46,
+        "spy_return_pct": 32.14,
+        "alpha": -26.68
+      }
+    },
+    {
+      "date": "2026-06-26",
+      "session": "midday",
+      "decision": "pass",
+      "reasoning": "Risk-off tape (SPY -1.7% AT 50-day MA ~734 breakdown test, QQQ -3.8%, GLD -3.0%, VIX 19.0 +10%, BTC -6.1%). 5/6 agents self-PASS (macro conv2, crypto conv5, sentiment conv2, contrarian conv3, catalyst conv3 \u2014 no edge). quant UNH (conv8) = PAPER-ONLY (execution suspended to 2026-07-08) AND would fail bar anyway: 3%up/7%stop weak R/R + 0.5x quant modifier (raw~7.2 x 0.5 = 3.6 < 8.0). SPY/QQQ index tranche DECLINED for timing \u2014 premarket plan required 50-day follow-through + VIX rolling over; neither met (SPY at 50-day on RISING VIX = breakdown test). No sells - all 8 positions above stops; CLSK held through today production catalyst (BTC $60,063 > $58K falsification), stop $14, watch sell-the-news risk.",
+      "selected_agent": null,
+      "ticker": null,
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 2,
+          "considered": false,
+          "rejection_reason": "Self-PASS; 0.5x modifier + conv-8 bar mathematically unexecutable; metals-bounce thesis failed 3rd session"
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": false,
+          "rejection_reason": "Self-PASS; BTC unconfirmed reversal, correlation gate blocks adding miners alongside held CLSK"
+        },
+        "quant": {
+          "ticker": "UNH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "PAPER-ONLY (execution suspended to 2026-07-08); also weak R/R 3%up/7%stop + 0.5x modifier => raw 7.2 x 0.5 = 3.6, fails 8.0 bar"
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 2,
+          "considered": false,
+          "rejection_reason": "Self-PASS; zero insider clusters in 150-name scan, VIX rising not extreme, NCLH already held"
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "Self-PASS; no conv-8 setup; corrected LULU factual errors (no Jun-30 earnings, beat-streak false)"
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "Self-PASS; no conv-8 dated catalyst; NKE/STZ/AVAV all disqualified"
+        }
+      },
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "quant",
+          "crypto"
+        ],
+        "current_top_agent": null,
+        "deprioritized": false,
+        "note": "No executable candidate; dominance gate not triggered."
+      },
+      "live_lessons_enforcement": {
+        "rules_checked": [
+          "quant-min-conviction-8 (active)"
+        ],
+        "fired": [],
+        "note": "quant-min-conviction-8 active: UNH conv 8 meets the floor, but quant is execution-suspended so the lesson is moot. No active rule rejected a candidate. Candidate rules (all-no-cpi-fomc-entry, catalyst-min-conviction-8) are status=candidate -> not enforced."
+      },
+      "vix_level": 19.0,
+      "vix_size_cap": "15-30% (VIX<=25); not triggered (no buy)",
+      "sector_check": {
+        "note": "No buy; gate not triggered. Current sector exposure: Industrials 24.5% (CAT+FCN+FDX), Technology 17.7% (MU+CLSK), Consumer Disc 8.0% (NCLH), Materials 5.6% (TGLS), Healthcare 3.1% (SYK) \u2014 all well below 40% cap."
+      },
+      "index_fallback_deliberation": {
+        "considered": "SPY/QQQ tranche to address -26.85% alpha gap (41% cash, bull regime nominally)",
+        "decision": "DECLINED for timing",
+        "reason": "Premarket plan required 50-day follow-through + VIX rolling over. Midday: SPY $734.00 AT/ON 50-day MA (~734), -1.7% today = breakdown test (not follow-through), VIX RISING +10% to 19.0 (not rolling over), QQQ -3.8%. Buying a breakdown test with rising VIX is not asymmetric. Plan unchanged: deploy tranche only on confirmed 50-day hold + VIX rollover; re-evaluate closing 2026-06-26."
+      },
+      "portfolio_after": {
+        "cash": 4314.45,
+        "nav": 10523.2,
+        "positions_count": 8,
+        "portfolio_pnl_pct": 5.23,
+        "spy_return_pct": 32.09,
+        "alpha": -26.86
+      }
+    },
+    {
+      "date": "2026-06-26",
+      "session": "closing",
+      "decision": "pass",
+      "reasoning": "3rd disciplined PASS of the day on a risk-off breakdown-test close (SPY $733.58 -1.76% closed AT/below 50-day MA ~734 but above 200-day; QQQ -3.90%, GLD -3.55%, BTC -6.48%, VIX 18.85 +9.1% but <25). 5/6 agents self-PASS (macro conv2, crypto conv5, sentiment conv3, contrarian conv3, catalyst conv3 - no edge). quant UNH (conv8) = PAPER-ONLY: quant execution suspended to 2026-07-08; AND 0.5x quant track-record modifier (realized -$106.98, 42.6% win rate) => raw~7.0 x 0.5 = 3.5, fails 7.5 bar even if not suspended. SPY/QQQ index tranche DECLINED for timing (3rd time): premarket deploy condition (50-day reclaim on falling VIX) UNMET - SPY closed AT 50-day breakdown test with VIX RISING +9.1%; deploy tranche only on confirmed 50-day hold + VIX rollover. No sells - all 8 positions above stops; CLSK survived today's production catalyst ($16.14, BTC $59,808 > $58K falsification, above $14 stop); FDX TIGHT ($318.11 vs $315 stop, only $3.11 cushion) - watch closely. NAV $10,479.35 (+4.79%), alpha -27.23% (SPY +32.02%).",
+      "selected_agent": null,
+      "ticker": null,
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 2,
+          "considered": false,
+          "rejection_reason": "Self-PASS; breakdown test not regime shift, 5 macro setups all rejected; 0.5x modifier + conv-8 bar mathematically unexecutable (8x0.5=4.0<7.5)"
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": false,
+          "rejection_reason": "Self-PASS; BTC $59,752 below $61K confirmation line (own falsification), MSTR fresh 52wk low, correlation gate blocks 2nd miner alongside held CLSK"
+        },
+        "quant": {
+          "ticker": "UNH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "PAPER-ONLY (execution suspended to 2026-07-08); fresh 52wk high $427.81 not held into close + below-avg volume concern; 0.5x modifier => raw~7.0 x 0.5 = 3.5 < 7.5 bar"
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "Self-PASS; only 1 insider cluster found (KMX, $628K, single-signal), VIX ~18.7 not fear extreme, positioning feeds dark (WebSearch 429); on -3 streak won't force"
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "Self-PASS; no conv-8 setup; gold miners already bounced (chase risk), BABA EPS -17.8% + negative catalyst, NKE falling knife"
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "Self-PASS; no conv-8 dated catalyst Jun27-Jul10; NKE degraded, STZ priced-in, AVAV negative revisions, CNXC/FDS ran dbl-digit (priced-in traps)"
+        }
+      },
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "quant",
+          "crypto"
+        ],
+        "current_top_agent": null,
+        "deprioritized": false,
+        "note": "No executable candidate; dominance gate not triggered."
+      },
+      "live_lessons_enforcement": {
+        "rules_checked": [
+          "quant-min-conviction-8 (active)"
+        ],
+        "fired": [],
+        "note": "quant-min-conviction-8 active: UNH conv 8 meets the floor, but quant is execution-suspended so the lesson is moot. Candidate rules (all-no-cpi-fomc-entry, catalyst-min-conviction-8) are status=candidate -> not enforced. Today is NOT a CPI/FOMC day."
+      },
+      "vix_level": 18.85,
+      "vix_size_cap": "15-30% (VIX<=25); not triggered (no buy)",
+      "sector_check": {
+        "note": "No buy; gate not triggered. Current sector exposure (closing mkt values): Industrials 24.4% (CAT+FCN+FDX), Technology 17.6% (MU+CLSK), Consumer Disc 8.1% (NCLH), Materials 5.5% (TGLS), Healthcare 3.2% (SYK) - all well below 40% cap."
+      },
+      "index_fallback_deliberation": {
+        "considered": "SPY/QQQ tranche to address -27.23% alpha gap (41% cash)",
+        "decision": "DECLINED for timing",
+        "reason": "Deploy condition (50-day reclaim on falling VIX) UNMET for the 3rd session today: SPY closed AT/below 50-day MA breakdown test with VIX RISING +9.1%; QQQ -3.90%. Buying a breakdown test with rising VIX is not asymmetric. Plan unchanged: deploy tranche only on confirmed 50-day hold + VIX rollover; re-evaluate next premarket."
+      },
+      "portfolio_after": {
+        "cash": 4314.45,
+        "nav": 10479.35,
+        "positions_count": 8,
+        "portfolio_pnl_pct": 4.79,
+        "spy_return_pct": 32.02,
+        "alpha": -27.23
+      }
     }
   ],
-  "total_trades": 77,
+  "total_trades": 80,
   "total_buys": 42,
   "total_sells": 28,
-  "total_passes": 5,
-  "last_updated": "2026-06-25T16:30:01Z"
+  "total_passes": 9,
+  "last_updated": "2026-06-26T19:45:01Z"
 }

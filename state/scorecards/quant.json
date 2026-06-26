@@ -1,27 +1,27 @@
 {
   "agent_id": "quant",
-  "last_updated": "2026-06-09",
-  "total_evaluated": 78,
-  "total_tracking": 21,
+  "last_updated": "2026-06-26",
+  "total_evaluated": 86,
+  "total_tracking": 23,
   "wins": 29,
   "losses": 31,
   "partials": 18,
   "win_rate": 37.2,
-  "partial_rate": 23.1,
-  "loss_rate": 39.7,
+  "partial_rate": 20.9,
+  "loss_rate": 36.0,
   "avg_horizon_return_pct": -1.3,
-  "avg_peak_return_pct": 16.96,
+  "avg_peak_return_pct": 15.91,
   "track_record_modifier": 0.8,
   "conviction_calibration": {
     "8": {
-      "total": 33,
+      "total": 34,
       "wins": 16,
       "losses": 13,
       "partials": 4,
       "win_rate": 48.5
     },
     "7": {
-      "total": 30,
+      "total": 32,
       "wins": 8,
       "losses": 12,
       "partials": 10,
@@ -35,23 +35,37 @@
       "win_rate": 50.0
     },
     "6": {
-      "total": 13,
+      "total": 16,
       "wins": 4,
       "losses": 5,
       "partials": 4,
       "win_rate": 30.8
+    },
+    "0": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
+    },
+    "2": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
     }
   },
   "by_asset_type": {
     "stock": {
-      "total": 71,
+      "total": 78,
       "wins": 28,
       "losses": 29,
       "partials": 14,
       "win_rate": 39.4
     },
     "etf": {
-      "total": 7,
+      "total": 8,
       "wins": 1,
       "losses": 2,
       "partials": 4,
@@ -59,6 +73,33 @@
     }
   },
   "recent_picks": [
+    {
+      "id": "quant-2026-06-25-premarket",
+      "date": "2026-06-25",
+      "ticker": "XLI",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 2.22,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-25-midday",
+      "date": "2026-06-25",
+      "ticker": "XLI",
+      "conviction": 6,
+      "final_verdict": null,
+      "peak_return_pct": 2.22,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-25-closing",
+      "date": "2026-06-25",
+      "ticker": "XLI",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 0.25,
+      "was_executed": false
+    },
     {
       "id": "quant-2026-06-19-premarket",
       "date": "2026-06-19",
@@ -83,7 +124,7 @@
       "ticker": "ENTG",
       "conviction": 7,
       "final_verdict": null,
-      "peak_return_pct": -4.5,
+      "peak_return_pct": -1.82,
       "was_executed": false
     },
     {
@@ -110,7 +151,7 @@
       "ticker": "MRVL",
       "conviction": 7,
       "final_verdict": null,
-      "peak_return_pct": -14.43,
+      "peak_return_pct": -13.02,
       "was_executed": false
     },
     {
@@ -121,41 +162,13 @@
       "final_verdict": null,
       "peak_return_pct": 1.96,
       "was_executed": true
-    },
-    {
-      "id": "quant-2026-06-17-midday",
-      "date": "2026-06-17",
-      "ticker": "PASS",
-      "conviction": 0,
-      "final_verdict": null,
-      "peak_return_pct": null,
-      "was_executed": false
-    },
-    {
-      "id": "quant-2026-06-17-closing",
-      "date": "2026-06-17",
-      "ticker": "PASS",
-      "conviction": 0,
-      "final_verdict": null,
-      "peak_return_pct": null,
-      "was_executed": false
-    },
-    {
-      "id": "quant-2026-06-16-midday",
-      "date": "2026-06-16",
-      "ticker": "MU",
-      "conviction": 8,
-      "final_verdict": null,
-      "peak_return_pct": 0.12,
-      "was_executed": false
     }
   ],
   "patterns": {
     "strengths": [],
     "weaknesses": [
       "Win rate 37.2% below breakeven \u2014 review thesis quality",
-      "Negative avg horizon return (-1.3%)",
-      "Etf picks only 14.3% win rate \u2014 consider avoiding"
+      "Negative avg horizon return (-1.3%)"
     ],
     "adjustment_suggestions": []
   }

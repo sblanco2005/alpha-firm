@@ -1,24 +1,24 @@
 {
   "agent_id": "contrarian",
-  "last_updated": "2026-06-09",
-  "total_evaluated": 25,
+  "last_updated": "2026-06-26",
+  "total_evaluated": 31,
   "total_tracking": 80,
-  "wins": 7,
-  "losses": 10,
+  "wins": 8,
+  "losses": 11,
   "partials": 8,
-  "win_rate": 28.0,
-  "partial_rate": 32.0,
-  "loss_rate": 40.0,
-  "avg_horizon_return_pct": 5.48,
-  "avg_peak_return_pct": 12.97,
+  "win_rate": 29.6,
+  "partial_rate": 25.8,
+  "loss_rate": 35.5,
+  "avg_horizon_return_pct": 4.13,
+  "avg_peak_return_pct": 14.67,
   "track_record_modifier": 0.8,
   "conviction_calibration": {
     "8": {
-      "total": 14,
+      "total": 16,
       "wins": 6,
-      "losses": 2,
+      "losses": 3,
       "partials": 6,
-      "win_rate": 42.9
+      "win_rate": 40.0
     },
     "9": {
       "total": 1,
@@ -28,11 +28,11 @@
       "win_rate": 0.0
     },
     "7": {
-      "total": 9,
-      "wins": 1,
+      "total": 12,
+      "wins": 2,
       "losses": 6,
       "partials": 2,
-      "win_rate": 11.1
+      "win_rate": 20.0
     },
     "5": {
       "total": 1,
@@ -40,15 +40,22 @@
       "losses": 1,
       "partials": 0,
       "win_rate": 0.0
+    },
+    "0": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
     }
   },
   "by_asset_type": {
     "stock": {
-      "total": 23,
-      "wins": 7,
-      "losses": 10,
+      "total": 28,
+      "wins": 8,
+      "losses": 11,
       "partials": 6,
-      "win_rate": 30.4
+      "win_rate": 32.0
     },
     "etf": {
       "total": 2,
@@ -56,9 +63,43 @@
       "losses": 0,
       "partials": 2,
       "win_rate": 0.0
+    },
+    "none": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
     }
   },
   "recent_picks": [
+    {
+      "id": "contrarian-2026-06-25-premarket",
+      "date": "2026-06-25",
+      "ticker": "NKE",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": -2.2,
+      "was_executed": false
+    },
+    {
+      "id": "contrarian-2026-06-25-midday",
+      "date": "2026-06-25",
+      "ticker": "LULU",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": -0.14,
+      "was_executed": false
+    },
+    {
+      "id": "contrarian-2026-06-25-closing",
+      "date": "2026-06-25",
+      "ticker": "LULU",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": -0.23,
+      "was_executed": false
+    },
     {
       "id": "contrarian-2026-06-19-premarket",
       "date": "2026-06-19",
@@ -121,39 +162,12 @@
       "final_verdict": null,
       "peak_return_pct": 9.81,
       "was_executed": false
-    },
-    {
-      "id": "contrarian-2026-06-17-midday",
-      "date": "2026-06-17",
-      "ticker": "FMC",
-      "conviction": 7,
-      "final_verdict": null,
-      "peak_return_pct": -28.37,
-      "was_executed": false
-    },
-    {
-      "id": "contrarian-2026-06-17-closing",
-      "date": "2026-06-17",
-      "ticker": "FMC",
-      "conviction": 8,
-      "final_verdict": null,
-      "peak_return_pct": null,
-      "was_executed": false
-    },
-    {
-      "id": "contrarian-2026-06-16-midday",
-      "date": "2026-06-16",
-      "ticker": "ADBE",
-      "conviction": 7,
-      "final_verdict": null,
-      "peak_return_pct": null,
-      "was_executed": false
     }
   ],
   "patterns": {
     "strengths": [],
     "weaknesses": [
-      "Win rate 28.0% below breakeven \u2014 review thesis quality"
+      "Win rate 29.6% below breakeven \u2014 review thesis quality"
     ],
     "adjustment_suggestions": []
   }

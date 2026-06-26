@@ -8,8 +8,8 @@
       "entry_price": 828.79,
       "entry_date": "2026-04-28",
       "agent": "catalyst",
-      "latest_price": 1046.93,
-      "latest_price_note": "2026-06-25 MIDDAY: $1,046.93 (+26.2% from $828.79). Iran/AI backlog record. Trailing stop $940 intact. Earnings Aug 4. HOLD - let winner run.",
+      "latest_price": 1000.53,
+      "latest_price_note": "2026-06-26 CLOSING: $1,000.53 (+20.7% from $828.79). Winner. Trailing stop $940. Earnings Aug 4. HOLD - let winner run.",
       "mode": "simulated",
       "stop_loss": 940
     },
@@ -20,8 +20,8 @@
       "entry_price": 294.5,
       "entry_date": "2026-05-08",
       "agent": "contrarian",
-      "latest_price": 318.3,
-      "latest_price_note": "2026-06-25 MIDDAY: $318.30 (+8.1% from $294.50). Healthcare defensive. HOLD.",
+      "latest_price": 331.29,
+      "latest_price_note": "2026-06-26 CLOSING: $331.29 (+12.5% from $294.50). Healthcare defensive leader (XLV only green sector today +2.6%). HOLD.",
       "mode": "simulated"
     },
     {
@@ -31,8 +31,8 @@
       "entry_price": 38.61,
       "entry_date": "2026-05-20",
       "agent": "sentiment",
-      "latest_price": 44.52,
-      "latest_price_note": "2026-06-25 MIDDAY: $44.52 (+15.3% from $38.61). Let winner run. Ex-div Jun 30. HOLD.",
+      "latest_price": 44.72,
+      "latest_price_note": "2026-06-26 CLOSING: $44.72 (+15.8% from $38.61). Let winner run. Ex-div Jun 30. HOLD.",
       "mode": "simulated"
     },
     {
@@ -42,8 +42,8 @@
       "entry_price": 153.18,
       "entry_date": "2026-06-02",
       "agent": "sentiment",
-      "latest_price": 141.51,
-      "latest_price_note": "2026-06-25 MIDDAY: $141.51 (-7.6% from $153.18). Within 12% standard stop. Thesis intact. HOLD.",
+      "latest_price": 150.355,
+      "latest_price_note": "2026-06-26 CLOSING: $150.36 (-1.8% from $153.18). Within 12% stop. Thesis intact. HOLD.",
       "mode": "simulated"
     },
     {
@@ -53,8 +53,8 @@
       "entry_price": 20.22,
       "entry_date": "2026-06-15",
       "agent": "sentiment",
-      "latest_price": 21.062,
-      "latest_price_note": "2026-06-25 MIDDAY: $21.06 (+4.2% from $20.22). Citi PT $25. Stop $19.00. HOLD.",
+      "latest_price": 21.305,
+      "latest_price_note": "2026-06-26 CLOSING: $21.31 (+5.4% from $20.22). Above $19 stop. HOLD.",
       "mode": "simulated",
       "stop_loss": 19.0
     },
@@ -65,8 +65,8 @@
       "entry_price": 1055.89,
       "entry_date": "2026-06-16",
       "agent": "quant",
-      "latest_price": 1213.34,
-      "latest_price_note": "2026-06-25 MIDDAY: $1,213.34 (+14.9% from $1,055.89). EARNINGS BEAT Jun24 - post-earnings rip continuing (+15.7% off $1,048.51). HBM/AI strong. Stop $985. HOLD - let winner run.",
+      "latest_price": 1149.755,
+      "latest_price_note": "2026-06-26 CLOSING: $1,149.76 (+8.9% from $1,055.89). Above $985 stop. HOLD - let winner run.",
       "mode": "simulated",
       "stop_loss": 985
     },
@@ -77,8 +77,8 @@
       "entry_price": 331.82,
       "entry_date": "2026-06-17",
       "agent": "quant",
-      "latest_price": 327.265,
-      "latest_price_note": "2026-06-25 MIDDAY: $327.27 (-1.4% from $331.82). Earnings beat Jun23, recovered above $315 stop. HOLD.",
+      "latest_price": 318.11,
+      "latest_price_note": "2026-06-26 CLOSING: $318.11 (-4.1% from $331.82). TIGHT - only $3.11 above $315 stop. Watch closely. HOLD.",
       "mode": "simulated",
       "stop_loss": 315
     },
@@ -89,22 +89,22 @@
       "entry_price": 17.36,
       "entry_date": "2026-06-18",
       "agent": "crypto",
-      "latest_price": 15.72,
-      "latest_price_note": "2026-06-25 MIDDAY: $15.72 (-9.4% from $17.36). BTC $59,142 (>$58K falsification). Jun 26 production release TOMORROW. Stop $14.00. HOLD into catalyst.",
+      "latest_price": 16.14,
+      "latest_price_note": "2026-06-26 CLOSING: $16.14 (-7.0% from $17.36). Production catalyst TODAY resolved favorably. BTC $59,808 > $58K falsification. Above $14 stop. HOLD - SELL if <$14 or BTC <$58K.",
       "mode": "simulated",
       "stop_loss": 14.0
     }
   ],
-  "nav": 10538.06,
+  "nav": 10479.35,
   "inception_date": "2026-03-28",
-  "last_updated": "2026-06-25T16:30:01Z",
+  "last_updated": "2026-06-26T19:45:01Z",
   "high_water_mark": 11431.25,
   "spy_inception_price": 555.66,
-  "spy_closing_price": 732.5,
-  "spy_return_pct": 31.83,
-  "portfolio_pnl_pct": 5.38,
-  "alpha": -26.44,
-  "nav_note": "NAV 2026-06-25 MIDDAY: $10538.06. Cash $4314.45. 8 positions all above stops. MU earnings rip (+14.9%) + CAT (+26.2%) offset CLSK(-9.4%)/FCN(-7.6%). SPY $732.50 (+31.83%). Portfolio +5.38%. Alpha -26.44% (improved from -28.70% premarket on MU beat). PASS - only live candidate LULU VETO'd in debate (fatal_flaw: wrong catalyst date Jun 4 actual vs claimed Jun 30; miscounted beat streak 3 not 4; drawdown earnings-driven not PR). macro GDX thesis falsified by tape (GLD -4.8%/GDX -9.5%). NKE falling knife -7.09%. crypto/sentiment PASS. quant paper-only (suspended). No sells - all theses intact.",
+  "spy_closing_price": 733.58,
+  "spy_return_pct": 32.02,
+  "portfolio_pnl_pct": 4.79,
+  "alpha": -27.23,
+  "nav_note": "NAV 2026-06-26 CLOSING: $10479.35. Cash $4314.45. 8 positions all above stops. MTM winners: CAT(+20.7%)/TGLS(+15.8%)/SYK(+12.5%)/MU(+8.9%); losers: CLSK(-7.0%, catalyst-day held)/FDX(-4.1%, tight to $315 stop)/FCN(-1.8%). SPY $733.58 (-1.76%, closed AT/below 50-day MA ~734 breakdown test; above 200-day). VIX 18.85 (+9.1%, <25). QQQ -3.90%, GLD -3.55%, BTC -6.48%. Portfolio +4.79%. Alpha -27.23% (SPY +32.02%). CLOSING PASS - 3rd disciplined PASS of day. 5/6 agents self-PASS (risk-off breakdown-test tape, no edge); quant UNH(conv8) PAPER-ONLY (suspended to 07-08 + 0.5x track-record => final ~3.5 < 7.5). SPY/QQQ index tranche declined for timing (SPY AT 50-day breakdown test + VIX rising = not follow-through; deploy on 50-day reclaim + VIX roll). No sells - all 8 above stops. CLSK survived today's production catalyst ($16.14, BTC $59,808 > $58K, stop $14). FDX tight to $315 stop - watch.",
   "sold_positions": [
     {
       "ticker": "RTX",

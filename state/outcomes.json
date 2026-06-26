@@ -11299,7 +11299,7 @@
       "conviction": 7,
       "was_executed": false,
       "thesis_summary": "CRM fell 9% on Apr 23 on sector contagion (NOW/IBM misses) with ZERO CRM-specific bad news. Agentforce $800M ARR growing 169% YoY. $50B buyback ($25B ASR). $41.5B FY2026 revenue +10% YoY. Forward P/E ~14x vs sector 40-60x. $28B RPO backlog. Analysts consensus PT $278.74 (+59% upside).",
-      "status": "tracking",
+      "status": "evaluated",
       "pm_score": 7.92,
       "pm_score_note": "Raw 7.20, TRM 1.0x, Fundamental 1.1x (strong FCF $14.4B, buyback, 14x P/E). Ranked #2 midday. Cannot buy today (daily limit reached).",
       "rejection_reason": "Cannot buy today \u2014 daily limit reached (NOC premarket). Second-ranked; watch for closing session or tomorrow.",
@@ -11321,13 +11321,13 @@
         },
         "horizon": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 150.19,
+          "return_pct": -14.36
         }
       },
       "falsification_condition": "CRM Q1 FY2027 shows subscription revenue growth <8% YoY, or Agentforce ARR growth <80% YoY, or FY2027 guidance cut below $45.8B",
       "peak_return_pct": 85.31,
-      "final_verdict": null
+      "final_verdict": "win"
     },
     {
       "id": "catalyst-2026-04-24-midday",
@@ -11824,7 +11824,7 @@
       "conviction": 8,
       "was_executed": true,
       "thesis_summary": "ServiceNow beat Q1 EPS+revenue, RAISED FY guidance, dropped 57% on one-time Middle East deal delay; May 4 Analyst Day catalyst; 28/31 analysts Buy",
-      "status": "tracking",
+      "status": "evaluated",
       "checkpoints": {
         "day_1": {
           "date": "2026-04-28",
@@ -11848,12 +11848,12 @@
         },
         "horizon": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 89.52,
+          "return_pct": -0.37
         }
       },
       "peak_return_pct": 13.19,
-      "final_verdict": null
+      "final_verdict": "loss"
     },
     {
       "id": "catalyst-2026-04-27",
@@ -17831,7 +17831,7 @@
       "conviction": 6,
       "was_executed": false,
       "thesis_summary": "KBWB bank ETF benefits from hawkish Fed. June 10 CPI + June 16-17 FOMC catalysts. Iran ceasefire stabilization removes oil shock risk. Bank NIM expansion with 10-year yield at 4.46%.",
-      "status": "tracking",
+      "status": "evaluated",
       "checkpoints": {
         "day_1": {
           "date": "2026-06-03",
@@ -17850,12 +17850,12 @@
         },
         "horizon": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 94.69,
+          "return_pct": 7.65
         }
       },
-      "peak_return_pct": -15.63,
-      "final_verdict": null
+      "peak_return_pct": 7.65,
+      "final_verdict": "partial"
     },
     {
       "id": "crypto-2026-06-02-midday",
@@ -22604,7 +22604,7 @@
       "conviction": 6,
       "was_executed": false,
       "thesis_summary": "Gold surged +3.1% today to ~$386 confirming stagflation regime: CPI 4.2%, PPI 6.5%, VIX 18.3 ahead of FOMC June 16-17. GLD benefits whether Warsh signals higher-for-longer or Iran deal collapses.",
-      "status": "tracking",
+      "status": "evaluated",
       "checkpoints": {
         "day_1": {
           "date": "2026-06-15",
@@ -22618,8 +22618,8 @@
         },
         "day_10": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 369.46,
+          "return_pct": -4.36
         },
         "day_20": {
           "date": "2026-07-13",
@@ -22628,12 +22628,12 @@
         },
         "horizon": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 369.46,
+          "return_pct": -4.36
         }
       },
       "peak_return_pct": 0.06,
-      "final_verdict": null
+      "final_verdict": "loss"
     },
     {
       "id": "crypto-2026-06-12-closing",
@@ -22706,8 +22706,8 @@
         },
         "day_10": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 1213.56,
+          "return_pct": 22.66
         },
         "day_20": {
           "date": "2026-07-13",
@@ -22720,7 +22720,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": 5.98,
+      "peak_return_pct": 22.66,
       "final_verdict": null
     },
     {
@@ -22750,8 +22750,8 @@
         },
         "day_10": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 141.88,
+          "return_pct": 7.49
         },
         "day_20": {
           "date": "2026-07-13",
@@ -22794,8 +22794,8 @@
         },
         "day_10": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 10.72,
+          "return_pct": 22.94
         },
         "day_20": {
           "date": "2026-07-13",
@@ -22808,7 +22808,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": 21.33,
+      "peak_return_pct": 22.94,
       "final_verdict": null
     },
     {
@@ -24245,7 +24245,7 @@
       "base_case_probability_pct": 72,
       "market_implied_probability_pct": 45,
       "is_binary_event": false,
-      "status": "tracking",
+      "status": "evaluated",
       "pm_scores": {
         "evidence": 8,
         "falsifiability": 8,
@@ -24281,12 +24281,12 @@
         },
         "horizon": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 125.82,
+          "return_pct": -24.2
         }
       },
       "peak_return_pct": 1.2,
-      "final_verdict": null
+      "final_verdict": "loss"
     },
     {
       "id": "macro-2026-06-17-closing",
@@ -24687,7 +24687,7 @@
       "conviction": 8,
       "was_executed": false,
       "thesis_summary": "Micron Q3 earnings June 24; management guided $33.5B revenue, $19.15 EPS; TD Cowen $1,500 PT, Aletheia $1,600 PT; AI HBM memory structural demand",
-      "status": "tracking",
+      "status": "evaluated",
       "checkpoints": {
         "day_1": {
           "date": "2026-06-19",
@@ -24711,12 +24711,12 @@
         },
         "horizon": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 1213.56,
+          "return_pct": 14.38
         }
       },
-      "peak_return_pct": -1.18,
-      "final_verdict": null
+      "peak_return_pct": 14.38,
+      "final_verdict": "win"
     },
     {
       "id": "macro-2026-06-18-midday",
@@ -25048,8 +25048,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 15.87,
+          "return_pct": -6.43
         },
         "day_10": {
           "date": "2026-07-06",
@@ -25092,8 +25092,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 281.26,
+          "return_pct": -13.02
         },
         "day_10": {
           "date": "2026-07-06",
@@ -25111,7 +25111,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": -14.43,
+      "peak_return_pct": -13.02,
       "final_verdict": null
     },
     {
@@ -25180,8 +25180,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 189.73,
+          "return_pct": -4.25
         },
         "day_10": {
           "date": "2026-07-06",
@@ -25224,8 +25224,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 40.9,
+          "return_pct": -7.59
         },
         "day_10": {
           "date": "2026-07-06",
@@ -25436,8 +25436,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 20.98,
+          "return_pct": 2.64
         },
         "day_10": {
           "date": "2026-07-03",
@@ -25470,8 +25470,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 193.41,
+          "return_pct": -0.9
         },
         "day_10": {
           "date": "2026-07-03",
@@ -25537,8 +25537,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 47.74,
+          "return_pct": -20.38
         },
         "day_10": {
           "date": "2026-07-03",
@@ -25584,8 +25584,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 176.28,
+          "return_pct": -1.82
         },
         "day_10": {
           "date": "2026-07-03",
@@ -25598,7 +25598,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": -4.5,
+      "peak_return_pct": -1.82,
       "final_verdict": null,
       "pm_score": 6.26,
       "debate_result": "BUY_ELIGIBLE_REDUCED_SIZE",
@@ -25626,8 +25626,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 134.605,
+          "return_pct": 13.76
         },
         "day_10": {
           "date": "2026-07-03",
@@ -25645,7 +25645,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": 10.33,
+      "peak_return_pct": 13.76,
       "final_verdict": null,
       "pm_score": 0.0,
       "debate_result": "PASS",
@@ -25673,8 +25673,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 193.41,
+          "return_pct": -0.9
         },
         "day_10": {
           "date": "2026-07-03",
@@ -25720,8 +25720,8 @@
         },
         "day_5": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 40.9,
+          "return_pct": -9.51
         },
         "horizon": {
           "date": "2026-07-06",
@@ -25752,8 +25752,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 369.46,
+          "return_pct": 0.97
         },
         "day_5": {
           "date": "2026-07-02",
@@ -25776,7 +25776,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 0.97,
       "final_verdict": null
     },
     {
@@ -25796,8 +25796,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 13.88,
+          "return_pct": -0.86
         },
         "day_5": {
           "date": "2026-07-02",
@@ -25820,7 +25820,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -0.86,
       "final_verdict": null
     },
     {
@@ -25840,8 +25840,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 184.12,
+          "return_pct": 2.22
         },
         "day_5": {
           "date": "2026-07-02",
@@ -25864,7 +25864,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 2.22,
       "final_verdict": null
     },
     {
@@ -25884,8 +25884,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 52.9,
+          "return_pct": 1.44
         },
         "day_5": {
           "date": "2026-07-02",
@@ -25908,7 +25908,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 1.44,
       "final_verdict": null
     },
     {
@@ -25928,8 +25928,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 40.9,
+          "return_pct": -2.2
         },
         "day_5": {
           "date": "2026-07-02",
@@ -25952,7 +25952,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -2.2,
       "final_verdict": null
     },
     {
@@ -25972,8 +25972,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 40.9,
+          "return_pct": -2.2
         },
         "day_5": {
           "date": "2026-07-02",
@@ -25996,7 +25996,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -2.2,
       "final_verdict": null
     },
     {
@@ -26016,8 +26016,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 75.67,
+          "return_pct": -0.94
         },
         "day_5": {
           "date": "2026-07-02",
@@ -26040,7 +26040,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -0.94,
       "final_verdict": null
     },
     {
@@ -26060,8 +26060,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 184.12,
+          "return_pct": 2.22
         },
         "day_5": {
           "date": "2026-07-02",
@@ -26084,7 +26084,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": 2.22,
       "final_verdict": null
     },
     {
@@ -26104,8 +26104,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 112.06,
+          "return_pct": -0.14
         },
         "day_5": {
           "date": "2026-07-02",
@@ -26128,7 +26128,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -0.14,
       "final_verdict": null
     },
     {
@@ -26148,8 +26148,8 @@
       "checkpoints": {
         "day_1": {
           "date": "2026-06-26",
-          "price": null,
-          "return_pct": null
+          "price": 40.9,
+          "return_pct": -0.39
         },
         "day_5": {
           "date": "2026-07-02",
@@ -26172,7 +26172,7 @@
           "return_pct": null
         }
       },
-      "peak_return_pct": null,
+      "peak_return_pct": -0.39,
       "final_verdict": null
     },
     {
@@ -26210,11 +26210,627 @@
       "checkpoints": {},
       "peak_return_pct": null,
       "final_verdict": "no_recommendation"
+    },
+    {
+      "id": "macro-2026-06-25-closing",
+      "agent_id": "macro",
+      "date": "2026-06-25",
+      "session": "closing",
+      "ticker": "PASS",
+      "asset_type": "n/a",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 2,
+      "was_executed": false,
+      "thesis_summary": "PASS - gold crash + rising DXY contradicted thesis; own GLD/GDX bounce calls invalidated (9.5% win rate).",
+      "status": "pass",
+      "checkpoints": {},
+      "peak_return_pct": null,
+      "final_verdict": "no_recommendation"
+    },
+    {
+      "id": "crypto-2026-06-25-closing",
+      "agent_id": "crypto",
+      "date": "2026-06-25",
+      "session": "closing",
+      "ticker": "PASS",
+      "asset_type": "n/a",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 5,
+      "was_executed": false,
+      "thesis_summary": "PASS - BTC 5-day breakdown ($63.2k->$59.2k) on $58-59k invalidation line; already hold CLSK into Jun-26 catalyst; no second correlated miner.",
+      "status": "pass",
+      "checkpoints": {},
+      "peak_return_pct": null,
+      "final_verdict": "no_recommendation"
+    },
+    {
+      "id": "quant-2026-06-25-closing",
+      "agent_id": "quant",
+      "date": "2026-06-25",
+      "session": "closing",
+      "ticker": "XLI",
+      "asset_type": "etf",
+      "entry_price": 183.66,
+      "target_return_pct": 4,
+      "horizon_days": 8,
+      "conviction": 7,
+      "was_executed": false,
+      "thesis_summary": "Industrials breakout confirmed (fresh 52wk high, +1.9% vs SPY -1.1%) but below-avg breakout volume. PAPER ONLY (suspended to 2026-07-08); conv<8 active lesson.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-26",
+          "price": 184.12,
+          "return_pct": 0.25
+        },
+        "day_5": {
+          "date": "2026-07-02",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-07-09",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-07-23",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-07",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.25,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-06-25-closing",
+      "agent_id": "sentiment",
+      "date": "2026-06-25",
+      "session": "closing",
+      "ticker": "PASS",
+      "asset_type": "n/a",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 2,
+      "was_executed": false,
+      "thesis_summary": "PASS - zero multi-insider cluster buys across ~180-ticker scan; VIX moderate (19); no positioning asymmetry.",
+      "status": "pass",
+      "checkpoints": {},
+      "peak_return_pct": null,
+      "final_verdict": "no_recommendation"
+    },
+    {
+      "id": "contrarian-2026-06-25-closing",
+      "agent_id": "contrarian",
+      "date": "2026-06-25",
+      "session": "closing",
+      "ticker": "LULU",
+      "asset_type": "stock",
+      "entry_price": 112.32,
+      "target_return_pct": 20,
+      "horizon_days": 45,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Stabilization above 52wk low ($104.44) into Jun-30 earnings; +0.5% vs SPY -1.1%; 8.2x P/E, 31% ROE, 4-beat streak. NOTE: VETO'd midday (fatal flaw unrebutted - earnings-date/quarter mislabel + beat-streak dispute recurring).",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-26",
+          "price": 112.06,
+          "return_pct": -0.23
+        },
+        "day_5": {
+          "date": "2026-07-02",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-07-09",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-07-23",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-08-27",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": -0.23,
+      "final_verdict": null
+    },
+    {
+      "id": "catalyst-2026-06-25-closing",
+      "agent_id": "catalyst",
+      "date": "2026-06-25",
+      "session": "closing",
+      "ticker": "NKE",
+      "asset_type": "stock",
+      "entry_price": 40.73,
+      "target_return_pct": 15,
+      "horizon_days": 7,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Jun-30 Q4 FY26 earnings; consensus EPS $0.11 < guidance $0.19 (unverifiable - WebSearch down). Fresh 52wk low ($40.44), falling knife. Catalyst track record poor (20% win).",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-26",
+          "price": 40.9,
+          "return_pct": 0.42
+        },
+        "day_5": {
+          "date": "2026-07-02",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-07-09",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-07-23",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-06",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.42,
+      "final_verdict": null
+    },
+    {
+      "id": "macro-2026-06-26-premarket",
+      "agent_id": "macro",
+      "date": "2026-06-26",
+      "session": "premarket",
+      "ticker": "PASS",
+      "asset_type": "etf",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 2,
+      "was_executed": false,
+      "thesis_summary": "PASS \u2014 tape internally contradictory: gold/GLD -17% off 3mo peak on DXY surge to 101.6, yields fell (TLT 3mo high). Potential metals-bounce setup emerging (DXY 2 lower highs) but unconfirmed; macro 0.",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "crypto-2026-06-26-premarket",
+      "agent_id": "crypto",
+      "date": "2026-06-26",
+      "session": "premarket",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 5,
+      "was_executed": false,
+      "thesis_summary": "PASS \u2014 BTC tagged 52wk low $58,397, bounced to $59,337 (unconfirmed yearly-low test, only $1.3K above $58K falsification). Portfolio already holds CLSK (-8.6%) with production release TODAY; adding a ",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "quant-2026-06-26-premarket",
+      "agent_id": "quant",
+      "date": "2026-06-26",
+      "session": "premarket",
+      "ticker": "UNH",
+      "asset_type": "stock",
+      "entry_price": 415.53,
+      "target_return_pct": 6,
+      "horizon_days": 12,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "UNH new 52wk high $415.53 (first in a month); stacked SMA20(399.55)>SMA50(380.64)>rising SMA200(335.47); RSI 64.9 (not overbought); +42.1pp 3mo relative strength vs SPY; 2:1 up/down-day volume accumul",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-29",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-07-03",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-07-10",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-07-24",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-14",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "sentiment-2026-06-26-premarket",
+      "agent_id": "sentiment",
+      "date": "2026-06-26",
+      "session": "premarket",
+      "ticker": "AVTR",
+      "asset_type": "stock",
+      "entry_price": 10.08,
+      "target_return_pct": 22,
+      "horizon_days": 35,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "Avantor: 12mo insider MSPR 87-100%, 4-director code-P cluster $2.69M (Mehra/Summe/Lucier/Dingemans) at $8.01-9.40, sell ratings collapsed 3+3->1+1. KILLED IN DEBATE: MSPR 8.8x inflated by code-A comp ",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-29",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-07-03",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-07-10",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-07-24",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-08-14",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": null,
+      "final_verdict": null
+    },
+    {
+      "id": "contrarian-2026-06-26-premarket",
+      "agent_id": "contrarian",
+      "date": "2026-06-26",
+      "session": "premarket",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 3,
+      "was_executed": false,
+      "thesis_summary": "PASS \u2014 no conviction-8 turnaround. Value names gapped up (KSS +15%, DLTR +11%) = late/chasing. Non-gapped beaten-down all fatal-flaw: CMCSA insiders sold 5 straight months (value trap, current ratio 0",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "catalyst-2026-06-26-premarket",
+      "agent_id": "catalyst",
+      "date": "2026-06-26",
+      "session": "premarket",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 3,
+      "was_executed": false,
+      "thesis_summary": "PASS \u2014 only near catalyst NKE Jun-30 earnings but thesis DEGRADED: 5 straight down sessions into print (-7.7%), negative news flow (China ban, outside-hire CFO), consensus EPS up to $0.125 narrowing a",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "macro-2026-06-26-midday",
+      "agent_id": "macro",
+      "date": "2026-06-26",
+      "session": "midday",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 2,
+      "was_executed": false,
+      "thesis_summary": "PASS - no macro trade meets conv-8 bar (8x0.5=4.0 < 7.5). Risk-off rotation: tech crushed (XLK -4.8%), cyclicals green; portfolio already holds cyclicals, can't short tech. 3rd session metals-bounce failed.",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "crypto-2026-06-26-midday",
+      "agent_id": "crypto",
+      "date": "2026-06-26",
+      "session": "midday",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 5,
+      "was_executed": false,
+      "thesis_summary": "PASS - BTC double-bottom at 52wk low ($58,076/$58,398) but reversal unconfirmed (not closed >$61K). Correlation gate blocks adding miners alongside held CLSK. Let CLSK catalyst print first.",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "quant-2026-06-26-midday",
+      "agent_id": "quant",
+      "date": "2026-06-26",
+      "session": "midday",
+      "ticker": "UNH",
+      "asset_type": "stock",
+      "entry_price": 424.83,
+      "target_return_pct": 3,
+      "horizon_days": 6,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "PAPER-ONLY. UNH +2.3% to $424.83, fresh 52wk high $427.80 intraday, on risk-off tape. Stacked-bull MAs, RSI 68.1, +756bps 5d RS vs SPY, XLV +6.8%/5d. Weakness: below-avg volume + 6.3% above SMA20 chase. Quant execution suspended to 07-08; for scorecard tracking only.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-29",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-07-06",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-07-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-07-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-07",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.0,
+      "final_verdict": null,
+      "paper_only": true
+    },
+    {
+      "id": "sentiment-2026-06-26-midday",
+      "agent_id": "sentiment",
+      "date": "2026-06-26",
+      "session": "midday",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 2,
+      "was_executed": false,
+      "thesis_summary": "PASS - zero multi-insider cluster buys in 150-name scan; strongest signal NCLH already held; VIX 20.2 rising but <25 extreme; ARM -4.3% is insider-SELLING-driven. WebSearch down (no options/put-call data).",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "contrarian-2026-06-26-midday",
+      "agent_id": "contrarian",
+      "date": "2026-06-26",
+      "session": "midday",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 3,
+      "was_executed": false,
+      "thesis_summary": "PASS - no conv-8 setup in risk-off tape. Corrected prior LULU errors: no Jun-30 earnings exists in calendar + last print (06-04) was an EPS MISS, so '4 consecutive beats' claim is FALSE. NKE/ADBE/CMCSA all disqualified.",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "catalyst-2026-06-26-midday",
+      "agent_id": "catalyst",
+      "date": "2026-06-26",
+      "session": "midday",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 3,
+      "was_executed": false,
+      "thesis_summary": "PASS - no conv-8 dated catalyst Jun26-Jul10. NKE (Jun30) thesis degraded; STZ priced-in per RBC; AVAV has 3 PT cuts today. No FDA PDUFA/macro in-window. 21.6% win rate => conv-8 bar mandatory.",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "macro-2026-06-26-closing",
+      "agent_id": "macro",
+      "date": "2026-06-26",
+      "session": "closing",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 2,
+      "was_executed": false,
+      "thesis_summary": "PASS - breakdown test (SPY closed AT/below 50d MA, +6.2% above 200d), risk-off rotation not regime shift. 5 setups rejected (metals bounce [UUP rising to 52wk high], long-vol [VIX<25 no panic], TLT [conflicting curve], IWM/XLI [concentrates existing cyclicals], USO [falling knife]). 0.5x modifier => conv-8 mathematically unexecutable (8x0.5=4.0<7.5).",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "crypto-2026-06-26-closing",
+      "agent_id": "crypto",
+      "date": "2026-06-26",
+      "session": "closing",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 5,
+      "was_executed": false,
+      "thesis_summary": "PASS - BTC closed $59,752, BELOW $61K reversal-confirmation line (own midday falsification half-met: MARA held $14.30 yes, BTC decisively no). MSTR fresh 52wk low $81.81, ETH -8.8%/wk. Portfolio already holds CLSK (-7.0%) - adding 2nd correlated miner = duplicate-thesis violation (IREN -13.3% lesson). CLSK today's production catalyst resolved favorably ($16.14, above $14 stop).",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "quant-2026-06-26-closing",
+      "agent_id": "quant",
+      "date": "2026-06-26",
+      "session": "closing",
+      "ticker": "UNH",
+      "asset_type": "stock",
+      "entry_price": 426.21,
+      "target_return_pct": 3,
+      "horizon_days": 6,
+      "conviction": 8,
+      "was_executed": false,
+      "thesis_summary": "PAPER-ONLY. UNH +2.57% to $426.21, fresh 52wk high $427.81 intraday (not held into close), on risk-off tape. Stacked-bull MAs (SMA20 399.55>SMA50 380.64>SMA200 335.47). XLV +2.58% ONLY green sector; +430bps 1d RS vs SPY. Conv capped at 8 (not 9): volume unverified [midday below-avg], intraday fade from high, worst desk track record. Quant execution suspended to 07-08; for scorecard tracking only.",
+      "status": "tracking",
+      "checkpoints": {
+        "day_1": {
+          "date": "2026-06-29",
+          "price": null,
+          "return_pct": null
+        },
+        "day_5": {
+          "date": "2026-07-06",
+          "price": null,
+          "return_pct": null
+        },
+        "day_10": {
+          "date": "2026-07-13",
+          "price": null,
+          "return_pct": null
+        },
+        "day_20": {
+          "date": "2026-07-27",
+          "price": null,
+          "return_pct": null
+        },
+        "horizon": {
+          "date": "2026-07-07",
+          "price": null,
+          "return_pct": null
+        }
+      },
+      "peak_return_pct": 0.0,
+      "final_verdict": null,
+      "paper_only": true
+    },
+    {
+      "id": "sentiment-2026-06-26-closing",
+      "agent_id": "sentiment",
+      "date": "2026-06-26",
+      "session": "closing",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 3,
+      "was_executed": false,
+      "thesis_summary": "PASS - broad insider scan returned ONE cluster: KMX (CEO 9,400sh@$53.005 + director 2,500sh@$52.20, 06-22, $628K, code P) - real but single-signal, modest size, depends on unverifiable fundamental (used-car demand). VIX 5d 17.3->18.7 stable, NOT fear extreme (<25). Positioning feeds dark (WebSearch 429). On -3 streak, won't force 1-signal trade. KMX logged as tracking candidate.",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "contrarian-2026-06-26-closing",
+      "agent_id": "contrarian",
+      "date": "2026-06-26",
+      "session": "closing",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 3,
+      "was_executed": false,
+      "thesis_summary": "PASS - no conv-8 setup. Gold miners ALREADY bounced today (NEM +0.6%, GDX +2.0%) - crash was prior 8 sessions, buying = chasing bounce. BABA cheap but EPS -17.8% + Anthropic IP-theft negative catalyst. GOOGL momentum dip not contrarian. NKE falling knife. Structural gold headwinds (DXY 101.4 nr 52wk high, 10Y 4.37%).",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
+    },
+    {
+      "id": "catalyst-2026-06-26-closing",
+      "agent_id": "catalyst",
+      "date": "2026-06-26",
+      "session": "closing",
+      "ticker": "PASS",
+      "asset_type": "stock",
+      "entry_price": null,
+      "target_return_pct": 0,
+      "horizon_days": 0,
+      "conviction": 3,
+      "was_executed": false,
+      "thesis_summary": "PASS - no conv-8 dated catalyst Jun27-Jul10. NKE (Jun30) DEGRADED further (-0.8%, 6th down of 7, nr 52wk low; consensus EPS ticked UP narrowing edge). STZ (Jun30) priced-in per RBC 'in-line'. AVAV (Jun29) 3 PT cuts today = negative revisions. CNXC(+9.6%)/FDS(+10.5%) ran dbl-digit = priced-in traps. No FDA PDUFA in-window; macro calendar empty 7d. 21.6% win rate => conv-8 bar mandatory.",
+      "status": "evaluated",
+      "checkpoints": {},
+      "peak_return_pct": 0.0,
+      "final_verdict": "pass"
     }
   ],
   "last_evaluated": "2026-06-25",
-  "last_updated": "2026-06-25T16:30:01Z",
-  "total_recommendations": 649,
+  "last_updated": "2026-06-26T19:45:01Z",
+  "total_recommendations": 673,
   "session_2026-05-08-closing": {
     "macro": {
       "id": "macro-2026-05-08-closing",
@@ -26710,7 +27326,7 @@
       "ORCL"
     ]
   },
-  "total_tracked": 200,
+  "total_tracked": 205,
   "macro-2026-06-04": {
     "agent_id": "macro",
     "date": "2026-06-04",
@@ -27975,5 +28591,19 @@
       "sentiment-PASS"
     ],
     "reason": "Risk-off tape; LULU vetoed in debate (fatal_flaw: wrong catalyst date); no candidate cleared 8.0 bull bar."
+  },
+  "session_2026_06_25_closing": {
+    "date": "2026-06-25",
+    "session": "closing",
+    "decision": "pass",
+    "reason": "No candidate cleared 8.0 bull-market bar. LULU carry-forward VETO (midday fatal flaw unrebutted). NKE mathematically capped ~6.5 max (0.8x catalyst track record + narrative/SPY penalties) and a fresh-52wk-low falling knife. macro/crypto/sentiment PASS. quant XLI paper-only.",
+    "recommendations": [
+      "macro-2026-06-25-closing",
+      "crypto-2026-06-25-closing",
+      "quant-2026-06-25-closing",
+      "sentiment-2026-06-25-closing",
+      "contrarian-2026-06-25-closing",
+      "catalyst-2026-06-25-closing"
+    ]
   }
 }

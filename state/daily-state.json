@@ -1,10 +1,11 @@
 {
-  "date": "2026-06-25",
-  "checks": 2,
+  "date": "2026-06-26",
+  "checks": 3,
   "bought": false,
   "sessions_completed": [
     "premarket",
-    "midday"
+    "midday",
+    "closing"
   ],
   "last_buy": {
     "ticker": "CLSK",
@@ -53,46 +54,26 @@
   "portclaude_sync_error": "Neon DB compute quota exceeded \u2014 retry when quota resets",
   "midday_session": {
     "completed": true,
-    "timestamp": "2026-06-25T16:30:01Z",
+    "timestamp": "2026-06-26T16:30:01Z",
     "decision": "PASS",
-    "reason": "Risk-off tape (SPY -1.14%, VIX +9.55% to 18.93, GLD -4.8%, GDX -9.5%, BTC -6.45%, NKE -7.09%). Only live candidate LULU VETO'd in debate (fatal_flaw: wrong catalyst date Jun 4 actual vs Jun 30 claimed; miscounted beat streak; earnings-driven drawdown; firm already fled this trade Jun 2). macro GDX falsified by tape + 0.5x rule. catalyst NKE below 8.0 bar (0.8x + declining fundamentals + falling knife). crypto/sentiment PASS. quant paper-only (suspended). No sells - all 8 positions above stops.",
-    "vix_level": 18.93,
+    "reason": "Risk-off tape (SPY -1.7% AT 50-day MA ~734 breakdown test, QQQ -3.8%, GLD -3.0%, VIX 19.0 +10%, BTC -6.1%). 5/6 agents self-PASS (macro conv2, crypto conv5, sentiment conv2, contrarian conv3, catalyst conv3 \u2014 no edge). quant UNH (conv8) = PAPER-ONLY (execution suspended to 2026-07-08) AND would fail bar anyway: 3%up/7%stop weak R/R + 0.5x quant modifier (raw~7.2 x 0.5 = 3.6 < 8.0). SPY/QQQ index tranche DECLINED for timing \u2014 premarket plan required 50-day follow-through + VIX rolling over; neither met (SPY at 50-day on RISING VIX = breakdown test). No sells - all 8 positions above stops; CLSK held through today production catalyst (BTC $60,063 > $58K falsification), stop $14, watch sell-the-news risk.",
+    "vix_level": 19.0,
     "buy_attempted": false
   },
   "closing_session": {
     "completed": true,
-    "timestamp": "2026-06-19T19:45:01Z",
+    "timestamp": "2026-06-26T19:45:01Z",
     "decision": "PASS",
-    "reason": "Markets closed (Juneteenth federal holiday). Best setups identified for Monday June 23: IREN (crypto, 7.61 final score, reduced size), ENTG (quant, 6.26), ADBE (contrarian, 5.06 watchlist).",
-    "top_candidates_monday": {
-      "primary": {
-        "ticker": "IREN",
-        "final_score": 7.61,
-        "agent": "crypto",
-        "entry_range": "55-63",
-        "stop": 52,
-        "condition": "BTC > 60000"
-      },
-      "secondary": {
-        "ticker": "ENTG",
-        "final_score": 6.26,
-        "agent": "quant",
-        "entry_range": "175-183",
-        "stop": 163
-      },
-      "watchlist": {
-        "ticker": "ADBE",
-        "final_score": 5.06,
-        "agent": "contrarian",
-        "entry_range": "188-200",
-        "stop": 180
-      }
-    }
+    "reason": "3rd disciplined PASS of the day (risk-off breakdown-test close: SPY $733.58 -1.76% closed AT/below 50-day MA ~734, QQQ -3.90%, GLD -3.55%, BTC -6.48%, VIX 18.85 +9.1% but <25). 5/6 agents self-PASS (macro conv2, crypto conv5, sentiment conv3, contrarian conv3, catalyst conv3 - no edge). quant UNH (conv8) = PAPER-ONLY (execution suspended to 2026-07-08) AND 0.5x quant track-record modifier (raw~7.0 x 0.5 = 3.5 < 7.5). SPY/QQQ index tranche DECLINED for timing again - premarket deploy condition (50-day reclaim on falling VIX) UNMET (SPY AT 50-day breakdown test, VIX rising); deploy on follow-through. No sells - all 8 positions above stops; CLSK survived today's production catalyst ($16.14, BTC $59,808 > $58K falsification, above $14 stop); FDX TIGHT ($318.11 vs $315 stop) - watch. NAV $10,479.35 (+4.79%), alpha -27.23% (SPY +32.02%).",
+    "vix_level": 18.85,
+    "buy_attempted": false
   },
   "premarket_session": {
     "completed": true,
-    "timestamp": "2026-06-25T11:00:02Z",
+    "timestamp": "2026-06-26T11:00:01Z",
     "decision": "pass",
-    "reason": "No candidate cleared 8.0 bull-market bar. KMX (sentiment conv8) killed in debate: bear 10b5-1 crux rebutted via SEC Form 4 (code P, aff10b5One=0 = genuine $628K cluster), but 2+ unrebutted serious weaknesses (no 35-day catalyst; valuation). NKE flagged by catalyst(conv8)+contrarian(conv7) but below threshold + value-trap risk + -45% pre-earnings downside. MU/FDX earnings BEATS held; MU stop $1050->$985. Portclaude still down (Neon quota)."
+    "reason": "Disciplined PASS, bull-market 8.0 bar, risk-off tape. sentiment AVTR (conv8) KILLED in debate (2+ unrebutted: MSPR comp-grant inflation, company-specific decline vs thriving peers, poor timing below 200d MA; bull strength 8->5). quant UNH paper-only (suspended). macro/crypto/contrarian/catalyst self-PASS. SPY/QQQ index tranche declined for timing (SPY AT 50-day +0.07%, VIX +16.8% to 20.19); deploy on follow-through. No sells - all 8 above stops; CLSK held into today production catalyst (BTC $59,294 > $58K).",
+    "vix_level": 20.19,
+    "buy_attempted": false
   }
 }
