@@ -1,0 +1,2 @@
+cd "alpha-firm/dashboard" && npm run server      # terminal 1 — the data API
+cd "alpha-firm/mobile"   && npx expo start --host lan   # terminal 2 — then scan the QR
