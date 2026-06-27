@@ -2,9 +2,14 @@ node_modules/
 .DS_Store
 *.tmp
 .env
+.env.dashboard
 venv/
 dashboard/dist/
 dashboard/node_modules/
+mobile/node_modules/
+mobile/.expo/
+mobile/ios/
+mobile/android/
 
 # Keep directory structure but ignore contents
 logs/*

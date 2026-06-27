@@ -1,0 +1,27 @@
+# systemd alternative to pm2. Edit the REPLACE_* values, then:
+#   sudo cp alpha-firm-dashboard.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now alpha-firm-dashboard
+#
+# IMPORTANT: User/HOME/PATH must match how cron runs run-check.sh, so the manual-run
+# trigger can find `claude` and its Max-subscription login. Run `which claude` and
+# `echo $HOME` as the cron user and paste the results below.
+[Unit]
+Description=Alpha Firm Dashboard API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=REPLACE_CRON_USER
+WorkingDirectory=REPLACE_ABS_PATH/alpha-firm/dashboard
+EnvironmentFile=REPLACE_ABS_PATH/alpha-firm/dashboard/.env.dashboard
+Environment=NODE_ENV=production
+Environment=PORT=3001
+Environment=HOME=REPLACE_HOME_OF_CRON_USER
+Environment=PATH=REPLACE_DIR_OF_CLAUDE:/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/bin/env node server.js
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
