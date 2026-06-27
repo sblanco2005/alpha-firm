@@ -9,13 +9,13 @@
       "distribution": "internal",
       "ios": { "simulator": false },
       "env": {
-        "EXPO_PUBLIC_API_BASE": "https://REPLACE-WITH-TAILSCALE-HOST.ts.net"
+        "EXPO_PUBLIC_API_BASE": "https://srv1377405.tail5e1256.ts.net"
       }
     },
     "production": {
       "autoIncrement": true,
       "env": {
-        "EXPO_PUBLIC_API_BASE": "https://REPLACE-WITH-TAILSCALE-HOST.ts.net"
+        "EXPO_PUBLIC_API_BASE": "https://srv1377405.tail5e1256.ts.net"
       }
     }
   },
