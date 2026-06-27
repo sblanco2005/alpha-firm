@@ -75,26 +75,33 @@ user cron uses** for `run-check.sh` (so `claude` + its login are available to ma
 
 ---
 
-## Phase 3 — Build the iPhone app (EAS) and install
+## Phase 3 — Build the iPhone app (EAS, cloud — no Mac)
 
-On the **Mac**, in `mobile/`:
+The build runs on **Expo's cloud** (their macOS workers), so trigger it from the **VPS**
+(or the Expo website). Your Mac is never involved. The repo (incl. `mobile/`) is already
+on the VPS after Phase 2's `git pull`.
 
-1. **One-time:** `npm i -g eas-cli && eas login` (free Expo account), then `eas init`
-   (creates the EAS project; commit the `extra.eas.projectId` it adds to `app.json`).
-2. **Bake in the URL + token:**
-   - Put your Tailscale URL in `eas.json` → `build.preview.env.EXPO_PUBLIC_API_BASE`.
-   - Set the token as an EAS env var (kept out of git):
-     ```bash
-     eas env:create --environment preview --name EXPO_PUBLIC_API_TOKEN --value <API_TOKEN> --visibility plaintext
-     ```
-3. **Build + install:**
-   ```bash
-   eas build --platform ios --profile preview
-   ```
-   EAS will ask for your Apple Developer login and register your iPhone (UDID) the first
-   time. When it finishes it prints a QR / install link — open it **on the iPhone** to
-   install the app (you may need to trust the profile in Settings → General → VPN & Device
-   Management).
+**Option A — from the VPS CLI:**
+```bash
+cd /path/to/alpha-firm/mobile
+npm i -g eas-cli && eas login          # free Expo account
+eas init                                # sets extra.eas.projectId in app.json — commit + push it
+# bake in the URL + token (token kept out of git):
+#   edit eas.json → build.preview.env.EXPO_PUBLIC_API_BASE = your https://<host>.ts.net
+eas env:create --environment preview --name EXPO_PUBLIC_API_TOKEN --value <API_TOKEN> --visibility plaintext
+eas build --platform ios --profile preview
+```
+First run prompts for your Apple Developer login and registers your iPhone (UDID). When the
+cloud build finishes it prints a QR / install link — open it **on the iPhone** to install
+(trust the profile under Settings → General → VPN & Device Management).
+
+**Option B — fully web, no terminal:** push the repo to GitHub (done), then on
+**expo.dev** → create the project → link the GitHub repo → set the build profile env
+(`EXPO_PUBLIC_API_BASE`, `EXPO_PUBLIC_API_TOKEN`) → click **Build**. Expo builds from GitHub
+in the cloud and gives you the install link.
+
+> Note: Expo Go (the QR-from-Metro dev flow) is the one thing that needs a Metro host — we're
+> replacing it entirely with this standalone build, so nothing runs on your Mac.
 
 ---
 
