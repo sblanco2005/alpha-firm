@@ -7,6 +7,7 @@ import { PositionDetailScreen } from "../screens/PositionDetailScreen";
 import { DeskScreen } from "../screens/DeskScreen";
 import { AnalystDetailScreen } from "../screens/AnalystDetailScreen";
 import { MarketCheckScreen } from "../screens/MarketCheckScreen";
+import { PickDetailScreen } from "../screens/PickDetailScreen";
 import { StandingsScreen } from "../screens/StandingsScreen";
 import { PortfolioIcon, AnalystsIcon, LiveIcon, LeagueIcon } from "./TabIcons";
 
@@ -19,6 +20,16 @@ function PortfolioStack() {
     <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg } }}>
       <Stack.Screen name="PortfolioHome" component={PortfolioScreen} />
       <Stack.Screen name="PositionDetail" component={PositionDetailScreen} />
+    </Stack.Navigator>
+  );
+}
+
+// The Live tab is a native stack so tapping an analyst's pick pushes its drill-down.
+function LiveStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg } }}>
+      <Stack.Screen name="MarketCheckHome" component={MarketCheckScreen} />
+      <Stack.Screen name="PickDetail" component={PickDetailScreen} />
     </Stack.Navigator>
   );
 }
@@ -69,8 +80,11 @@ export function RootNavigator() {
       />
       <Tab.Screen
         name="Live"
-        component={MarketCheckScreen}
+        component={LiveStack}
         options={{ tabBarIcon: ({ color }) => <LiveIcon color={color} /> }}
+        listeners={({ navigation }) => ({
+          tabPress: () => navigation.navigate("Live", { screen: "MarketCheckHome" }),
+        })}
       />
       <Tab.Screen
         name="League"

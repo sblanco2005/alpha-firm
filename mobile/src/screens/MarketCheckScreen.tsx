@@ -174,8 +174,29 @@ function SessionCard({ s }: { s: any }) {
   );
 }
 
-export function MarketCheckScreen() {
+// Real per-analyst pick card (tap → drill-down explaining why the agent picked it).
+function PickCard({ a, onPress }: { a: any; onPress: () => void }) {
+  const dim = a.statusType === "benched" || a.statusType === "suspended";
+  return (
+    <Touchable onPress={onPress} style={{ flex: 1, backgroundColor: C.card, borderWidth: 1, borderColor: rgba(a.color, 0.3), borderRadius: 15, padding: 12, opacity: dim ? 0.6 : 1 }}>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 8 }}>
+        <Text style={{ fontSize: 18 }}>{a.emoji}</Text>
+        <Text style={{ fontSize: 11.5, fontFamily: F.ui600, color: rgba("#FFFFFF", 0.7) }}>{a.name}</Text>
+        <Text style={{ marginLeft: "auto", color: rgba("#FFFFFF", 0.3), fontSize: 13 }}>▸</Text>
+      </View>
+      <View style={{ marginTop: 9, flexDirection: "row", alignItems: "baseline", justifyContent: "space-between" }}>
+        <Text style={{ fontFamily: F.mono700, fontSize: 16, color: a.color }}>{a.ticker || "—"}</Text>
+        <Text style={{ fontFamily: F.mono, fontSize: 11, color: rgba("#FFFFFF", 0.5) }}>conv {a.conviction ?? "—"}</Text>
+      </View>
+      <GrowBar pct={(a.conviction || 0) * 10} color={a.color} />
+      <Text numberOfLines={1} style={{ marginTop: 6, fontSize: 10, color: rgba("#FFFFFF", 0.4), fontFamily: F.ui }}>{a.note || "—"}</Text>
+    </Touchable>
+  );
+}
+
+export function MarketCheckScreen({ navigation }: any) {
   const { data: sessions, reload: reloadSessions } = useApi<any>("/api/sessions", { pollMs: 30000 });
+  const { data: latest } = useApi<any>("/api/check/latest", { pollMs: 30000 });
   const { data: runStatus, reload: reloadRun } = useApi<any>("/api/check/run-status", { pollMs: 5000 });
   const [selSession, setSelSession] = useState("closing");
   const [triggering, setTriggering] = useState(false);
@@ -253,6 +274,28 @@ export function MarketCheckScreen() {
             <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.32), marginTop: 12, fontFamily: F.mono, textAlign: "center" }}>~15–30 min · runs on Claude Max · 1 buy/day</Text>
             {err && <Text style={{ fontSize: 11, color: C.loss, marginTop: 8, textAlign: "center", fontFamily: F.ui }}>{err}</Text>}
           </View>
+        )}
+
+        {/* This session's real picks — tap any to see why the agent picked it */}
+        {latest && latest.agents && latest.agents.length > 0 && (
+          <>
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 24, marginBottom: 12, marginHorizontal: 2 }}>
+              <Text style={{ fontFamily: F.display, fontSize: 19, color: C.text }}>This session's picks</Text>
+              <Text style={{ fontSize: 11, color: rgba("#FFFFFF", 0.4), fontFamily: F.mono }}>{latest.agents.length} · tap for why</Text>
+            </View>
+            <View style={{ gap: 8 }}>
+              {[[0, 1], [2, 3], [4, 5]].map((row, ri) => (
+                <View key={ri} style={{ flexDirection: "row", gap: 8 }}>
+                  {row.map((idx) => {
+                    const a = latest.agents[idx];
+                    return a
+                      ? <PickCard key={a.agentId} a={a} onPress={() => navigation.push("PickDetail", { agentId: a.agentId })} />
+                      : <View key={idx} style={{ flex: 1 }} />;
+                  })}
+                </View>
+              ))}
+            </View>
+          </>
         )}
 
         {/* Session summaries */}

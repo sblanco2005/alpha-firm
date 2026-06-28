@@ -408,6 +408,7 @@ app.get("/api/check/latest", (_, res) => {
     if (rec) {
       agents.push({
         agentId: id, name: meta.name.split(" ")[0], emoji: meta.emoji, color: meta.color,
+        statusType: meta.statusType,
         ticker: rec.ticker ?? null, conviction: rec.conviction ?? null,
         note: rec.catalyst || rec.note || (rec.entry_thesis ? rec.entry_thesis.slice(0, 60) + "…" : null),
         ranAt: rec.date ?? null, session: rec.session ?? null,
@@ -416,6 +417,104 @@ app.get("/api/check/latest", (_, res) => {
   }
   const ranAt = agents.map((a) => a.ranAt).filter(Boolean).sort().pop() || null;
   res.json({ ranAt, agents, demo: agents.length === 0 });
+});
+
+// Pick detail — one analyst's latest recommendation, enriched for the Market Check
+// drill-down. Every field is real: the thesis/catalyst/risk come from the agent's own
+// memory rec, the PM rationale is the matching session's decision reason, company/sector
+// are enriched via Finnhub. Fields the firm never emits (claim/facts arrays, a numeric
+// score breakdown) are simply absent — the app omits those cards rather than fabricate.
+app.get("/api/check/picks/:agentId", async (req, res) => {
+  const agentId = req.params.agentId;
+  const meta = ANALYST_META[agentId];
+  if (!meta) return res.status(404).json({ error: "unknown agent" });
+
+  let rec = null;
+  try {
+    const dir = join(MEMORY_DIR, agentId);
+    const files = readdirSync(dir).filter((f) => f.endsWith(".json")).sort();
+    if (files.length) rec = readJSON(join(dir, files[files.length - 1]));
+  } catch { /* no memory yet */ }
+  if (!rec) return res.status(404).json({ error: "no recommendation yet" });
+
+  const ticker = String(rec.ticker || "").toUpperCase();
+
+  // Outcome: BOUGHT if this agent holds it (or it was the day's buy); INELIGIBLE if the
+  // agent's mandate blocks execution; otherwise PASSED.
+  const portfolio = readJSON(join(STATE_DIR, "portfolio.json")) || { positions: [] };
+  const dailyState = readJSON(join(STATE_DIR, "daily-state.json")) || {};
+  const held = (portfolio.positions || []).some((p) => p.ticker === ticker && p.agent === agentId);
+  const lastBuy = dailyState.last_buy || {};
+  const wasBought = held || (lastBuy.ticker === ticker && lastBuy.agent === agentId);
+
+  let outcome = wasBought ? "BOUGHT" : "PASSED";
+  let outcomeMeta = wasBought ? "executed · logged" : "logged · not executed";
+  if (!wasBought) {
+    if (meta.statusType === "suspended") { outcome = "INELIGIBLE"; outcomeMeta = "execution suspended"; }
+    else if (meta.statusType === "benched") { outcome = "INELIGIBLE"; outcomeMeta = "benched · 0.5× · conv-8 floor"; }
+    else if (meta.statusType === "restricted" && rec.asset_type === "etf") { outcome = "INELIGIBLE"; outcomeMeta = "ETF picks banned"; }
+  }
+
+  // PM rationale = the decision reason from the matching session.
+  const sessObj = dailyState[`${String(rec.session || "").toLowerCase()}_session`] || {};
+  const pmWhy = sessObj.reason || null;
+  const pmDecision = sessObj.decision ? String(sessObj.decision).toUpperCase() : null;
+
+  // Company / sector — curated narrative first, else Finnhub profile2.
+  const narrative = POSITION_NARRATIVES[ticker] || {};
+  let company = narrative.company || ticker;
+  let sector = narrative.sector || null;
+  if (!sector && FINNHUB_KEY && rec.asset_type !== "crypto") {
+    try {
+      const p = await fetch(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${FINNHUB_KEY}`).then((r) => r.json());
+      if (p && (p.name || p.finnhubIndustry)) {
+        company = narrative.company || p.name || company;
+        sector = p.finnhubIndustry || null;
+      }
+    } catch { /* leave sector null */ }
+  }
+
+  // Live price + history for the chart.
+  let price = rec.current_price ?? null;
+  if (FINNHUB_KEY) {
+    try {
+      const q = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${FINNHUB_KEY}`).then((r) => r.json());
+      if (q && q.c) price = q.c;
+    } catch { /* keep rec price */ }
+  }
+  const [daily, intraday] = await Promise.all([
+    fetchDailyCloses(ticker).catch(() => []),
+    fetchIntraday(ticker).catch(() => []),
+  ]);
+
+  // target / horizon — recs phrase these as "15% in 4-6 weeks" or via numeric fields.
+  let target = rec.target_return_pct != null ? `+${rec.target_return_pct}%` : null;
+  let horizon = rec.horizon_days != null ? `${rec.horizon_days} days` : (rec.horizon || null);
+  if (rec.target_return) {
+    const tr = String(rec.target_return);
+    if (!target) {
+      const m = tr.match(/[+\-]?\d+(?:\.\d+)?\s*(?:[-–]\s*\d+(?:\.\d+)?)?\s*%?/);
+      if (m) { let t = m[0].replace(/\s+/g, ""); if (!t.includes("%")) t += "%"; target = t; }
+    }
+    if (!horizon) { const h = tr.split(/\bin\b/i)[1]; if (h) horizon = h.trim(); }
+  }
+
+  res.json({
+    agentId, agent: meta.name, nickname: meta.nickname, emoji: meta.emoji, color: meta.color,
+    statusType: meta.statusType,
+    ticker, company, sector: sector || "—", assetType: rec.asset_type || "stock",
+    conviction: rec.conviction ?? null,
+    recPrice: rec.current_price ?? null,
+    price,
+    target, horizon,
+    catalyst: rec.catalyst || null,
+    agentWhy: rec.entry_thesis || null,
+    risk: rec.risk || null,
+    outcome, outcomeMeta, pmDecision,
+    pmWhy,
+    session: rec.session || null, ranAt: rec.date || null,
+    history: { daily, intraday },
+  });
 });
 
 // Position detail — live numbers + curated narrative + price history for the chart.
