@@ -16,6 +16,11 @@ if [ -z "$HOST_IP" ]; then
 fi
 export REACT_NATIVE_PACKAGER_HOSTNAME="$HOST_IP"
 
+# Free port 8081 if a previous Metro is squatting on it, so expo never falls into
+# the interactive "Use port 8082 instead?" prompt (which hangs under pm2).
+( fuser -k 8081/tcp || lsof -ti:8081 | xargs -r kill -9 ) >/dev/null 2>&1 || true
+sleep 1
+
 echo "▶ Metro advertising exp://$HOST_IP:8081"
 echo "  iPhone (Tailscale ON): scan the QR below with the Camera app → Open in Expo Go."
-exec npx expo start --host lan
+exec npx expo start --host lan --port 8081
