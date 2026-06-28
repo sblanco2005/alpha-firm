@@ -3,6 +3,9 @@ node_modules/
 *.tmp
 .env
 .env.dashboard
+# Tailscale cert exports (created if `tailscale cert` is run inside the repo) — never commit keys
+*.ts.net.crt
+*.ts.net.key
 venv/
 dashboard/dist/
 dashboard/node_modules/
