@@ -113,10 +113,32 @@ function Detail({ d, onBack }: { d: any; onBack: () => void }) {
                 <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.45), fontFamily: F.mono, marginTop: 1 }}>conviction {d.conviction ?? "—"}/10{d.horizon ? ` · ${d.horizon}` : ""}</Text>
               </View>
             </View>
-            {/* lead summary — the agent's own one-liner on why it's actionable */}
-            {d.catalyst && (
+            {/* lead — the structured one-line claim if the agent emitted it, else its catalyst one-liner */}
+            {d.coreClaim ? (
+              <Text style={{ fontSize: 13.5, lineHeight: 19, fontFamily: F.ui600, color: C.text, marginBottom: 10 }}>{d.coreClaim}</Text>
+            ) : d.catalyst ? (
               <Text style={{ fontSize: 12.5, lineHeight: 18, fontFamily: F.ui600, color: d.color, marginBottom: 9 }}>⚡ {d.catalyst}</Text>
+            ) : null}
+
+            {/* supporting facts (structured) */}
+            {d.supportingFacts && d.supportingFacts.length > 0 && (
+              <View style={{ gap: 5, marginBottom: 10 }}>
+                {d.supportingFacts.map((f: string, i: number) => (
+                  <View key={i} style={{ flexDirection: "row", gap: 8 }}>
+                    <Text style={{ color: d.color, fontSize: 12, lineHeight: 18 }}>▪</Text>
+                    <Text style={{ flex: 1, fontSize: 12, lineHeight: 18, color: rgba("#FFFFFF", 0.72), fontFamily: F.ui }}>{f}</Text>
+                  </View>
+                ))}
+              </View>
             )}
+
+            {/* why now (structured) */}
+            {d.whyNow && (
+              <Text style={{ fontSize: 12, lineHeight: 18, color: rgba("#FFFFFF", 0.62), fontFamily: F.ui, marginBottom: 10 }}>
+                <Text style={{ fontFamily: F.ui700, color: rgba("#FFFFFF", 0.78) }}>Why now — </Text>{d.whyNow}
+              </Text>
+            )}
+
             {/* full thesis, collapsed */}
             <ExpandableText lines={4} moreColor={d.color}>{d.agentWhy}</ExpandableText>
             {d.target && (
@@ -130,10 +152,10 @@ function Detail({ d, onBack }: { d: any; onBack: () => void }) {
         )}
 
         {/* what would break the thesis (the agent's own stated risk) */}
-        {d.risk && (
+        {(d.falsification || d.risk) && (
           <View style={{ marginTop: 11, backgroundColor: rgba(C.loss, 0.09), borderWidth: 1, borderColor: rgba(C.loss, 0.26), borderRadius: 16, padding: 16 }}>
             <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: C.loss, marginBottom: 6 }}>WHAT WOULD BREAK IT</Text>
-            <ExpandableText lines={3} moreColor={rgba(C.loss, 0.85)}>{d.risk}</ExpandableText>
+            <ExpandableText lines={3} moreColor={rgba(C.loss, 0.85)}>{d.falsification || d.risk}</ExpandableText>
           </View>
         )}
 

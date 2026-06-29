@@ -567,6 +567,11 @@ app.get("/api/check/picks/:agentId", async (req, res) => {
     catalyst: rec.catalyst || null,
     agentWhy: rec.entry_thesis || null,
     risk: rec.risk || null,
+    // Structured summary (present once agents emit it; app omits these cards when null).
+    coreClaim: rec.core_claim || null,
+    supportingFacts: Array.isArray(rec.supporting_facts) ? rec.supporting_facts.filter(Boolean) : null,
+    whyNow: rec.why_now || null,
+    falsification: rec.falsification || null,
     outcome, outcomeMeta, pmDecision,
     pmWhy,
     session: rec.session || null, ranAt: rec.date || null,
