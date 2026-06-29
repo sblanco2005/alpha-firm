@@ -5,7 +5,7 @@ import * as Haptics from "expo-haptics";
 import { useApi, apiPost } from "../api";
 import { C, F, rgba } from "../theme";
 import { Screen } from "../components/Screen";
-import { Touchable, ScreenTitle, Loading } from "../components/ui";
+import { Touchable, ScreenTitle, Loading, ExpandableText } from "../components/ui";
 import { FadeInView, PulseDot, PingDot, GrowBar } from "../components/anim";
 
 const SESSIONS = [
@@ -31,24 +31,35 @@ function DecisionBadge({ s }: { s: any }) {
   );
 }
 
-function SessionCard({ s }: { s: any }) {
-  const [open, setOpen] = useState(false);
-  const dotColor = s.completed ? (s.status === "error" ? C.loss : C.gain) : rgba("#FFFFFF", 0.25);
+function PendingBadge() {
   return (
-    <Touchable onPress={() => s.reason && setOpen((o) => !o)} style={{ backgroundColor: C.card, borderWidth: 1, borderColor: C.hair, borderRadius: 16, padding: 15 }}>
+    <View style={{ backgroundColor: rgba("#FFFFFF", 0.05), borderWidth: 1, borderColor: rgba("#FFFFFF", 0.1), paddingVertical: 3, paddingHorizontal: 8, borderRadius: 7 }}>
+      <Text style={{ fontSize: 10.5, fontFamily: F.ui700, color: rgba("#FFFFFF", 0.4), letterSpacing: 0.4 }}>SCHEDULED</Text>
+    </View>
+  );
+}
+
+// One session row. Completed sessions show their decision + a clamped summary of the PM's
+// reason; sessions that haven't run today read "Hasn't run yet" so it's clear where we are.
+function SessionCard({ s }: { s: any }) {
+  const ran = s.completed;
+  const dotColor = ran ? (s.status === "error" ? C.loss : C.gain) : rgba("#FFFFFF", 0.2);
+  return (
+    <View style={{ backgroundColor: ran ? C.card : C.cardDim, borderWidth: 1, borderColor: C.hair, borderRadius: 16, padding: 15, opacity: ran ? 1 : 0.72 }}>
       <View style={{ flexDirection: "row", alignItems: "center", gap: 11 }}>
         <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: dotColor }} />
         <View style={{ flex: 1 }}>
-          <Text style={{ fontFamily: F.ui700, fontSize: 14, color: C.text }}>{s.label}</Text>
-          <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.42), fontFamily: F.mono, marginTop: 1 }}>{s.timeET}{s.vix != null ? ` · VIX ${s.vix}` : ""}</Text>
+          <Text style={{ fontFamily: F.ui700, fontSize: 14, color: ran ? C.text : rgba("#FFFFFF", 0.6) }}>{s.label}</Text>
+          <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.42), fontFamily: F.mono, marginTop: 1 }}>{s.timeET}{ran && s.vix != null ? ` · VIX ${s.vix}` : ""}</Text>
         </View>
-        <DecisionBadge s={s} />
-        {s.reason && <Text style={{ color: rgba("#FFFFFF", 0.3), fontSize: 15, marginLeft: 8 }}>{open ? "▾" : "▸"}</Text>}
+        {ran ? <DecisionBadge s={s} /> : <PendingBadge />}
       </View>
-      {open && s.reason && (
-        <Text style={{ marginTop: 11, fontSize: 12, lineHeight: 18, color: rgba("#FFFFFF", 0.7), fontFamily: F.ui }}>{s.reason}</Text>
+      {ran ? (
+        s.reason ? <View style={{ marginTop: 11 }}><ExpandableText lines={2} threshold={120}>{s.reason}</ExpandableText></View> : null
+      ) : (
+        <Text style={{ marginTop: 9, fontSize: 11.5, color: rgba("#FFFFFF", 0.35), fontFamily: F.ui, fontStyle: "italic" }}>Hasn't run yet.</Text>
       )}
-    </Touchable>
+    </View>
   );
 }
 
@@ -179,7 +190,7 @@ export function MarketCheckScreen({ navigation }: any) {
         {/* Session summaries */}
         <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 24, marginBottom: 12, marginHorizontal: 2 }}>
           <Text style={{ fontFamily: F.display, fontSize: 19, color: C.text }}>{sessions.stale ? "Last sessions" : "Today's sessions"}</Text>
-          <Text style={{ fontSize: 11, color: rgba("#FFFFFF", 0.4), fontFamily: F.mono }}>{sessions.date}</Text>
+          <Text style={{ fontSize: 11, color: rgba("#FFFFFF", 0.4), fontFamily: F.mono }}>{sessions.sessions.filter((s: any) => s.completed).length} of 3 run</Text>
         </View>
         <View style={{ gap: 8 }}>
           {sessions.sessions.map((s: any) => <SessionCard key={s.key} s={s} />)}

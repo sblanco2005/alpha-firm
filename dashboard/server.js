@@ -689,19 +689,23 @@ app.get("/api/sessions", (_, res) => {
   const sessions = SESSION_META.map((m) => {
     const s = daily[`${m.key}_session`];
     const run = (cron.runs || []).filter((r) => r.session === m.key).pop();
-    const decisionRaw = s?.decision ? String(s.decision).toLowerCase() : null;
+    // A session counts as run only if its OWN timestamp matches the board's date.
+    // Otherwise it's a stale leftover from a previous day (e.g. premarket ran today but
+    // midday/closing still hold yesterday's objects) → show it as not-run-yet.
+    const ranToday = !!(s?.completed && s?.timestamp && String(s.timestamp).slice(0, 10) === daily.date);
+    const decisionRaw = ranToday && s?.decision ? String(s.decision).toLowerCase() : null;
     const isBuy = decisionRaw === "buy";
     return {
       key: m.key,
       label: m.label,
       timeET: m.timeET,
-      completed: !!s?.completed,
+      completed: ranToday,
       decision: decisionRaw ? (isBuy ? "buy" : "pass") : null,
       ticker: isBuy ? (daily.last_buy?.ticker || null) : null,
-      reason: s?.reason || null,
-      vix: s?.vix_level ?? null,
-      ranAt: s?.timestamp || run?.started_at || null,
-      status: run?.status || (s?.completed ? "success" : null),
+      reason: ranToday ? (s?.reason || null) : null,
+      vix: ranToday ? (s?.vix_level ?? null) : null,
+      ranAt: ranToday ? (s?.timestamp || null) : null,
+      status: ranToday ? (run?.status || "success") : "pending",
     };
   });
 
