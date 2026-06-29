@@ -98,3 +98,28 @@ export function ErrorState({ error, onRetry }: { error: any; onRetry?: () => voi
     </View>
   );
 }
+
+// Long prose clamped to `lines`, with a "Show more · less" toggle that only appears when the
+// text is actually long (deterministic length threshold — no layout-measurement race).
+export function ExpandableText({
+  children, lines = 4, color, moreColor, threshold = 220,
+}: { children: string; lines?: number; color?: string; moreColor?: string; threshold?: number }) {
+  const [open, setOpen] = React.useState(false);
+  const long = typeof children === "string" && children.length > threshold;
+  return (
+    <View>
+      <Text numberOfLines={open ? undefined : lines} style={{ fontSize: 12.5, lineHeight: 18, color: color ?? rgba("#FFFFFF", 0.78), fontFamily: F.ui }}>
+        {children}
+      </Text>
+      {long && (
+        <Text
+          onPress={() => setOpen((o) => !o)}
+          suppressHighlighting
+          style={{ fontSize: 11.5, fontFamily: F.ui600, color: moreColor ?? rgba("#FFFFFF", 0.5), marginTop: 7 }}
+        >
+          {open ? "Show less ▴" : "Show more ▾"}
+        </Text>
+      )}
+    </View>
+  );
+}

@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 import { useApi } from "../api";
 import { C, F, rgba, pnlColor, pct, money, fmtPrice } from "../theme";
 import { Screen } from "../components/Screen";
-import { Touchable, Loading, ErrorState } from "../components/ui";
+import { Touchable, Loading, ErrorState, ExpandableText } from "../components/ui";
 import { FadeInView } from "../components/anim";
 import { PerfChart } from "../components/PerfChart";
 import { PeriodBar } from "../components/PeriodBar";
@@ -113,19 +113,17 @@ function Detail({ d, onBack }: { d: any; onBack: () => void }) {
                 <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.45), fontFamily: F.mono, marginTop: 1 }}>conviction {d.conviction ?? "—"}/10{d.horizon ? ` · ${d.horizon}` : ""}</Text>
               </View>
             </View>
-            <Text style={{ fontSize: 12.5, lineHeight: 18, color: rgba("#FFFFFF", 0.78), fontFamily: F.ui }}>{d.agentWhy}</Text>
-            {(d.catalyst || d.target) && (
+            {/* lead summary — the agent's own one-liner on why it's actionable */}
+            {d.catalyst && (
+              <Text style={{ fontSize: 12.5, lineHeight: 18, fontFamily: F.ui600, color: d.color, marginBottom: 9 }}>⚡ {d.catalyst}</Text>
+            )}
+            {/* full thesis, collapsed */}
+            <ExpandableText lines={4} moreColor={d.color}>{d.agentWhy}</ExpandableText>
+            {d.target && (
               <View style={{ flexDirection: "row", gap: 6, marginTop: 11, flexWrap: "wrap" }}>
-                {d.catalyst && (
-                  <View style={{ backgroundColor: tintBg, borderWidth: 1, borderColor: tintBorder, paddingVertical: 3, paddingHorizontal: 8, borderRadius: 7 }}>
-                    <Text style={{ fontSize: 9.5, fontFamily: F.mono, color: d.color }}>⚡ {d.catalyst}</Text>
-                  </View>
-                )}
-                {d.target && (
-                  <View style={{ backgroundColor: C.card, borderWidth: 1, borderColor: rgba("#FFFFFF", 0.1), paddingVertical: 3, paddingHorizontal: 8, borderRadius: 7 }}>
-                    <Text style={{ fontSize: 9.5, fontFamily: F.mono, color: rgba("#FFFFFF", 0.6) }}>🎯 target {d.target}</Text>
-                  </View>
-                )}
+                <View style={{ backgroundColor: C.card, borderWidth: 1, borderColor: rgba("#FFFFFF", 0.1), paddingVertical: 3, paddingHorizontal: 8, borderRadius: 7 }}>
+                  <Text style={{ fontSize: 9.5, fontFamily: F.mono, color: rgba("#FFFFFF", 0.6) }}>🎯 target {d.target}</Text>
+                </View>
               </View>
             )}
           </View>
@@ -135,7 +133,7 @@ function Detail({ d, onBack }: { d: any; onBack: () => void }) {
         {d.risk && (
           <View style={{ marginTop: 11, backgroundColor: rgba(C.loss, 0.09), borderWidth: 1, borderColor: rgba(C.loss, 0.26), borderRadius: 16, padding: 16 }}>
             <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: C.loss, marginBottom: 6 }}>WHAT WOULD BREAK IT</Text>
-            <Text style={{ fontSize: 12.5, lineHeight: 18, color: rgba("#FFFFFF", 0.78), fontFamily: F.ui }}>{d.risk}</Text>
+            <ExpandableText lines={3} moreColor={rgba(C.loss, 0.85)}>{d.risk}</ExpandableText>
           </View>
         )}
 
@@ -151,7 +149,7 @@ function Detail({ d, onBack }: { d: any; onBack: () => void }) {
                 <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.45), fontFamily: F.mono, marginTop: 1 }}>{d.pmDecision ? `session ${d.pmDecision}` : "PM decision"} · {d.outcomeMeta}</Text>
               </View>
             </View>
-            <Text style={{ fontSize: 12.5, lineHeight: 18, color: rgba("#FFFFFF", 0.78), fontFamily: F.ui }}>{d.pmWhy}</Text>
+            <ExpandableText lines={4} moreColor={rgba(oc.color, 0.85)}>{d.pmWhy}</ExpandableText>
           </View>
         )}
 
