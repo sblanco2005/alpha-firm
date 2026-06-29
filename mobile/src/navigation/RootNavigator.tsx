@@ -9,8 +9,7 @@ import { AnalystDetailScreen } from "../screens/AnalystDetailScreen";
 import { AgentTransactionsScreen } from "../screens/AgentTransactionsScreen";
 import { MarketCheckScreen } from "../screens/MarketCheckScreen";
 import { PickDetailScreen } from "../screens/PickDetailScreen";
-import { StandingsScreen } from "../screens/StandingsScreen";
-import { PortfolioIcon, AnalystsIcon, LiveIcon, LeagueIcon } from "./TabIcons";
+import { PortfolioIcon, AnalystsIcon, LiveIcon } from "./TabIcons";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -87,11 +86,6 @@ export function RootNavigator() {
         listeners={({ navigation }) => ({
           tabPress: () => navigation.navigate("Live", { screen: "MarketCheckHome" }),
         })}
-      />
-      <Tab.Screen
-        name="League"
-        component={StandingsScreen}
-        options={{ tabBarIcon: ({ color }) => <LeagueIcon color={color} /> }}
       />
     </Tab.Navigator>
   );
