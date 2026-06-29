@@ -392,6 +392,63 @@ app.get("/api/analysts/:id", (req, res) => {
   analyst ? res.json(analyst) : res.status(404).json({ error: "unknown analyst" });
 });
 
+// Per-agent executed-trade ledger: current holdings (open/unrealized) + sold positions
+// (closed/realized). The realized total is the authoritative leaderboard figure; the
+// "earlier closed" net row is derived from it so the screen always reconciles.
+app.get("/api/analysts/:id/transactions", async (req, res) => {
+  const agentId = req.params.id;
+  const meta = ANALYST_META[agentId];
+  if (!meta) return res.status(404).json({ error: "unknown analyst" });
+
+  const portfolio = readJSON(join(STATE_DIR, "portfolio.json")) || { positions: [], sold_positions: [] };
+  const lb = readJSON(join(STATE_DIR, "leaderboard.json")) || {};
+  const sc = readJSON(join(STATE_DIR, "scorecards", `${agentId}.json`)) || {};
+
+  let enriched = portfolio;
+  try { enriched = await enrichPortfolio(portfolio); } catch { /* live prices optional */ }
+
+  const open = (enriched.positions || [])
+    .filter((p) => p.agent === agentId)
+    .map((p) => ({
+      ticker: p.ticker,
+      shares: p.shares || 1,
+      avgCost: p.entry_price,
+      lastPrice: p.current_price ?? p.latest_price ?? p.entry_price,
+    }));
+
+  const allClosed = (portfolio.sold_positions || [])
+    .filter((s) => s.agent === agentId)
+    .sort((a, b) => (String(a.sell_date) < String(b.sell_date) ? 1 : String(a.sell_date) > String(b.sell_date) ? -1 : 0)); // recent first
+
+  const CAP = 6;
+  const closed = allClosed.slice(0, CAP).map((s) => ({
+    ticker: s.ticker,
+    shares: s.shares,
+    avgCost: s.entry_price,
+    exitPrice: s.sell_price,
+    soldAt: s.sell_date || null,
+    realizedPnl: s.realized_pnl != null ? s.realized_pnl : +(((s.sell_price - s.entry_price) * (s.shares || 1))).toFixed(2),
+  }));
+  const earlierClosedCount = Math.max(0, allClosed.length - closed.length);
+
+  const realizedTotal = lb[agentId]?.total_pnl != null
+    ? lb[agentId].total_pnl
+    : +allClosed.reduce((sum, x) => sum + (x.realized_pnl || 0), 0).toFixed(2);
+
+  res.json({
+    agentId,
+    name: meta.name,
+    emoji: meta.emoji,
+    color: meta.color,
+    realizedTotal,
+    winRate: sc.win_rate ?? null,
+    open,
+    closed,
+    earlierClosedCount,
+    closedTotalCount: allClosed.length,
+  });
+});
+
 // Most recent market check — the six analysts' latest recommendations.
 // Debate/verdict are not reconstructable from state files, so the Live screen
 // renders those from its bundled showcase data; this hydrates the agent grid.

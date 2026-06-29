@@ -70,7 +70,13 @@ export function AnalystDetailScreen({ route, navigation }: any) {
         </View>
         <View style={{ flexDirection: "row", gap: 9, marginTop: 9 }}>
           <StatBox value={a.picks ?? "—"} label="Recommendations" />
-          <StatBox value={a.executed ?? "—"} label="Executed" />
+          <Touchable onPress={() => navigation.push("AgentTransactions", { id })} style={{ flex: 1, backgroundColor: C.card, borderWidth: 1, borderColor: tintBorder, borderRadius: 15, paddingVertical: 13, paddingHorizontal: 15 }}>
+            <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
+              <Text style={{ fontFamily: F.mono700, fontSize: 21, color: C.text }}>{a.executed ?? "—"}</Text>
+              <Text style={{ fontSize: 15, color: a.color }}>›</Text>
+            </View>
+            <Text style={{ fontSize: 11, color: a.color, marginTop: 2, fontFamily: F.ui }}>Executed · view trades</Text>
+          </Touchable>
         </View>
 
         <Text style={{ marginTop: 18, fontSize: 13.5, lineHeight: 20, color: rgba("#FFFFFF", 0.7), fontFamily: F.ui }}>{a.blurb}</Text>

@@ -6,6 +6,7 @@ import { PortfolioScreen } from "../screens/PortfolioScreen";
 import { PositionDetailScreen } from "../screens/PositionDetailScreen";
 import { DeskScreen } from "../screens/DeskScreen";
 import { AnalystDetailScreen } from "../screens/AnalystDetailScreen";
+import { AgentTransactionsScreen } from "../screens/AgentTransactionsScreen";
 import { MarketCheckScreen } from "../screens/MarketCheckScreen";
 import { PickDetailScreen } from "../screens/PickDetailScreen";
 import { StandingsScreen } from "../screens/StandingsScreen";
@@ -41,6 +42,7 @@ function AnalystsStack() {
     <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg } }}>
       <Stack.Screen name="Desk" component={DeskScreen} />
       <Stack.Screen name="AnalystDetail" component={AnalystDetailScreen} />
+      <Stack.Screen name="AgentTransactions" component={AgentTransactionsScreen} />
     </Stack.Navigator>
   );
 }
