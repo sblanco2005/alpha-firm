@@ -62,32 +62,68 @@ function getFinnhubKey() {
 
 const FINNHUB_KEY = getFinnhubKey();
 
-async function fetchAllPrices(tickers) {
+// Cache live quotes so app polling doesn't hammer Finnhub's free tier (60 calls/min).
+// Each symbol is refetched at most once per TTL window; a failed refresh keeps the last
+// good price. Tune with PRICE_CACHE_MINUTES (default 15). `force` bypasses the cache —
+// used by the explicit POST /api/refresh-prices so a manual refresh is always live.
+const PRICE_TTL_MS = Math.max(1, Number(process.env.PRICE_CACHE_MINUTES) || 15) * 60 * 1000;
+const priceCache = new Map(); // symbol -> { price: number|null, ts: number }
+
+async function fetchAllPrices(tickers, { force = false } = {}) {
   if (!tickers.length || !FINNHUB_KEY) return {};
+  const now = Date.now();
   const results = {};
-  // Finnhub's free tier has no batch quote, so fetch each symbol in parallel.
+  const stale = [];
+  for (const symbol of tickers) {
+    const hit = priceCache.get(symbol);
+    if (!force && hit && now - hit.ts < PRICE_TTL_MS) results[symbol] = hit.price;
+    else stale.push(symbol);
+  }
+  // Only hit Finnhub for symbols whose cache is missing/expired. No batch quote on free tier.
   await Promise.all(
-    tickers.map(async (symbol) => {
+    stale.map(async (symbol) => {
+      let price = null;
       try {
         const res = await fetch(`https://finnhub.io/api/v1/quote?symbol=${encodeURIComponent(symbol)}&token=${FINNHUB_KEY}`);
-        if (!res.ok) return;
-        const data = await res.json();
-        // Finnhub returns c=0 for unknown/closed symbols — treat 0/falsy as null
-        // so the caller falls back to the last stored price.
-        results[symbol] = data && data.c ? data.c : null;
-      } catch {
-        /* ignore — caller falls back to stored price */
-      }
+        if (res.ok) {
+          const data = await res.json();
+          price = data && data.c ? data.c : null; // c=0 for unknown/closed → null
+        }
+      } catch { /* keep last good price below */ }
+      const prev = priceCache.get(symbol);
+      // Preserve the last good price on a failed refresh; always bump ts to respect the TTL.
+      const finalPrice = price != null ? price : (prev ? prev.price : null);
+      priceCache.set(symbol, { price: finalPrice, ts: now });
+      results[symbol] = finalPrice;
     })
   );
   return results;
 }
 
-async function enrichPortfolio(portfolio) {
+// Company name + sector barely change — cache profile lookups for a day.
+const PROFILE_TTL_MS = 24 * 60 * 60 * 1000;
+const profileCache = new Map(); // symbol -> { name, sector, ts }
+
+async function fetchProfile(symbol) {
+  if (!FINNHUB_KEY) return null;
+  const now = Date.now();
+  const hit = profileCache.get(symbol);
+  if (hit && now - hit.ts < PROFILE_TTL_MS) return hit;
+  try {
+    const p = await fetch(`https://finnhub.io/api/v1/stock/profile2?symbol=${encodeURIComponent(symbol)}&token=${FINNHUB_KEY}`).then((r) => r.json());
+    const rec = { name: p?.name || null, sector: p?.finnhubIndustry || null, ts: now };
+    profileCache.set(symbol, rec);
+    return rec;
+  } catch {
+    return hit || null;
+  }
+}
+
+async function enrichPortfolio(portfolio, { force = false } = {}) {
   if (!portfolio?.positions?.length) return portfolio;
 
   const tickers = portfolio.positions.map((p) => p.ticker);
-  const prices = await fetchAllPrices(tickers);
+  const prices = await fetchAllPrices(tickers, { force });
 
   let totalPositionValue = 0;
   const enrichedPositions = portfolio.positions.map((pos) => {
@@ -124,7 +160,7 @@ async function enrichPortfolio(portfolio) {
   let spy_return_pct = null;
   let alpha = null;
   if (portfolio.spy_inception_price) {
-    const spyPrices = await fetchAllPrices(["SPY"]);
+    const spyPrices = await fetchAllPrices(["SPY"], { force });
     const spyPrice = spyPrices["SPY"] ?? portfolio.spy_closing_price ?? null;
     if (spyPrice) {
       spy_return_pct = +((spyPrice / portfolio.spy_inception_price - 1) * 100).toFixed(2);
@@ -164,7 +200,7 @@ app.post("/api/refresh-prices", async (_, res) => {
   if (!portfolio) return res.status(404).json({ error: "portfolio not found" });
 
   try {
-    const enriched = await enrichPortfolio(portfolio);
+    const enriched = await enrichPortfolio(portfolio, { force: true });
 
     // Persist updated NAV and position prices to portfolio.json
     writeJSON(join(STATE_DIR, "portfolio.json"), {
@@ -179,7 +215,7 @@ app.post("/api/refresh-prices", async (_, res) => {
     if (outcomes?.recommendations) {
       const today = new Date().toISOString().split("T")[0];
       const allTickers = [...new Set(outcomes.recommendations.filter(r => r.status === "tracking").map(r => r.ticker))];
-      const prices = await fetchAllPrices(allTickers);
+      const prices = await fetchAllPrices(allTickers, { force: true });
       let updated = false;
 
       for (const rec of outcomes.recommendations) {
@@ -522,23 +558,17 @@ app.get("/api/check/picks/:agentId", async (req, res) => {
   let company = narrative.company || ticker;
   let sector = narrative.sector || null;
   if (!sector && FINNHUB_KEY && rec.asset_type !== "crypto") {
-    try {
-      const p = await fetch(`https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${FINNHUB_KEY}`).then((r) => r.json());
-      if (p && (p.name || p.finnhubIndustry)) {
-        company = narrative.company || p.name || company;
-        sector = p.finnhubIndustry || null;
-      }
-    } catch { /* leave sector null */ }
+    const prof = await fetchProfile(ticker);
+    if (prof && (prof.name || prof.sector)) {
+      company = narrative.company || prof.name || company;
+      sector = prof.sector || null;
+    }
   }
 
-  // Live price + history for the chart.
+  // Live price (cached) + history for the chart.
   let price = rec.current_price ?? null;
-  if (FINNHUB_KEY) {
-    try {
-      const q = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${FINNHUB_KEY}`).then((r) => r.json());
-      if (q && q.c) price = q.c;
-    } catch { /* keep rec price */ }
-  }
+  const q = await fetchAllPrices([ticker]);
+  if (q[ticker] != null) price = q[ticker];
   const [daily, intraday] = await Promise.all([
     fetchDailyCloses(ticker).catch(() => []),
     fetchIntraday(ticker).catch(() => []),
