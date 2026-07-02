@@ -1,0 +1,162 @@
+{
+  "agent_id": "catalyst",
+  "last_updated": "2026-06-09",
+  "total_evaluated": 54,
+  "total_tracking": 13,
+  "wins": 11,
+  "losses": 31,
+  "partials": 11,
+  "win_rate": 20.4,
+  "partial_rate": 20.4,
+  "loss_rate": 57.4,
+  "avg_horizon_return_pct": -4.15,
+  "avg_peak_return_pct": 5.55,
+  "track_record_modifier": 0.8,
+  "conviction_calibration": {
+    "7": {
+      "total": 30,
+      "wins": 7,
+      "losses": 16,
+      "partials": 7,
+      "win_rate": 23.3
+    },
+    "6": {
+      "total": 18,
+      "wins": 2,
+      "losses": 13,
+      "partials": 3,
+      "win_rate": 11.1
+    },
+    "5": {
+      "total": 3,
+      "wins": 1,
+      "losses": 2,
+      "partials": 0,
+      "win_rate": 33.3
+    },
+    "8": {
+      "total": 2,
+      "wins": 1,
+      "losses": 0,
+      "partials": 1,
+      "win_rate": 50.0
+    },
+    "3": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
+    }
+  },
+  "by_asset_type": {
+    "stock": {
+      "total": 54,
+      "wins": 11,
+      "losses": 31,
+      "partials": 11,
+      "win_rate": 20.4
+    }
+  },
+  "recent_picks": [
+    {
+      "id": "catalyst-2026-07-02-premarket",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": "pass",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-07-02-midday",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-07-02-closing",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-29-premarket",
+      "date": "2026-06-29",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-26-premarket",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-26-midday",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-26-closing",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-25-premarket",
+      "date": "2026-06-25",
+      "ticker": "NKE",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 2.97,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-25-midday",
+      "date": "2026-06-25",
+      "ticker": "NKE",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 4.87,
+      "was_executed": false
+    },
+    {
+      "id": "catalyst-2026-06-25-closing",
+      "date": "2026-06-25",
+      "ticker": "NKE",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 5.72,
+      "was_executed": false
+    }
+  ],
+  "patterns": {
+    "strengths": [],
+    "weaknesses": [
+      "Win rate 20.4% below breakeven \u2014 review thesis quality",
+      "Negative avg horizon return (-4.15%)",
+      "Stock picks only 20.4% win rate \u2014 consider avoiding"
+    ],
+    "adjustment_suggestions": []
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "agent_id": "sentiment",
+  "last_updated": "2026-07-02",
+  "total_evaluated": 0,
+  "total_tracking": 0,
+  "wins": 0,
+  "losses": 0,
+  "partials": 0,
+  "win_rate": 0.0,
+  "track_record_modifier": 1.0,
+  "modifier_frozen": true,
+  "executed_trades": 0,
+  "modifier_note": "RUN 2 fresh start \u2014 frozen at 1.0x until 30 executed trades under realized-R metric. Run 1 scorecard archived in runs/ (informational only; computed on deprecated metric)."
+}

@@ -1,0 +1,150 @@
+[2026-06-19T11:00:02] INFO: ANTHROPIC_API_KEY saved for quota fallback. Running subscription mode first.
+[2026-06-19T11:00:02] Resetting daily state (was 2026-06-18, now 2026-06-19)
+[2026-06-19T11:00:02] Pruning memory files older than 20 sessions...
+[2026-06-19T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/macro/2026-06-09-closing.json
+[2026-06-19T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/crypto/2026-06-09-closing.json
+[2026-06-19T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/quant/2026-06-09-closing.json
+[2026-06-19T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/sentiment/2026-06-09-closing.json
+[2026-06-19T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/contrarian/2026-06-09-closing.json
+[2026-06-19T11:00:02] ═══════════════════════════════════════
+[2026-06-19T11:00:02] MARKET CHECK: premarket
+[2026-06-19T11:00:02] Date: 2026-06-19 | Time: 2026-06-19T11:00:02
+[2026-06-19T11:00:02] Mode: Subscription (Max plan) | API fallback: configured (claude-sonnet-4-6)
+[2026-06-19T11:00:02] ═══════════════════════════════════════
+[2026-06-19T11:00:02] Refreshing portfolio prices...
+Refreshing prices for 8 positions...
+  CAT: $985.82 (18.00% from entry) — 1 shares = $985.82
+  SYK: $307.8 (4.00% from entry) — 1 shares = $307.80
+  TGLS: $45.97 (19.00% from entry) — 13 shares = $597.61
+  FCN: $145.58 (-4.00% from entry) — 4 shares = $582.32
+  NCLH: $20.44 (1.00% from entry) — 40 shares = $817.60
+  MU: $1133.99 (7.00% from entry) — 1 shares = $1133.99
+  FDX: $326.2 (-1.00% from entry) — 3 shares = $978.60
+  CLSK: $17.24 (0% from entry) — 43 shares = $741.32
+  SPY Benchmark: $746.74 (34.38% from inception)
+  NAV: $10459.35 → $10459.51 (updated 2026-06-19T11:00:02Z)
+[2026-06-19T11:00:07] Price refresh complete
+## Alpha Firm — Premarket Check 2026-06-19 Complete
+
+**Decision: PASS** — No trade executed today (Juneteenth holiday; US markets closed).
+
+---
+
+### Agent Recommendations Summary
+
+| Agent | Pick | Conviction | Outcome |
+|-------|------|-----------|---------|
+| Macro | PASS | 1 | Holiday + hawkish FOMC kills thesis |
+| Crypto | Hold CLSK | 6 | No new buy; monitoring existing position |
+| Quant | PASS | 4 | NBIS entry window passed after +4.2% surge |
+| Sentiment | PASS | 3 | HOOD surged +15.5% past entry point |
+| **Contrarian** | **ADBE $195** | **7** | **Best setup — blocked by market closure** |
+| Catalyst | PASS | 5 | FDX/MU earnings already in portfolio |
+
+---
+
+### Portfolio Status
+- **NAV**: $10,459.51 (+4.60%)
+- **SPY return** since inception (~Mar 28): ~+34.98%
+- **Alpha**: -30.38% (portfolio underperforming SPY significantly)
+- **Cash**: $4,314.45 (41.3% — large cash position)
+
+### Near-Term Catalysts to Watch
+- **FDX earnings**: June 23
+- **MU earnings**: June 24
+- **Top setup for Monday**: ADBE at $188–200 (Contrarian, conviction 7, stop $180, target $230)
+
+Full log written to `logs/2026-06-19.md`. Outcomes recorded for all 6 picks with checkpoints (June 30, July 9, July 31 for ADBE).
+[2026-06-19T11:09:18] ═══════════════════════════════════════
+[2026-06-19T11:09:18] MARKET CHECK COMPLETE: premarket
+[2026-06-19T11:09:18] ═══════════════════════════════════════
+[2026-06-19T11:09:18] STATUS: NAV=3765285{NAV} | Cash=3765285{CASH} | Positions=8
+[2026-06-19T16:30:01] INFO: ANTHROPIC_API_KEY saved for quota fallback. Running subscription mode first.
+[2026-06-19T16:30:01] Pruning memory files older than 20 sessions...
+[2026-06-19T16:30:02]   Pruned: /home/clawd/alpha-firm/memory/macro/2026-06-10.json
+[2026-06-19T16:30:02]   Pruned: /home/clawd/alpha-firm/memory/crypto/2026-06-10.json
+[2026-06-19T16:30:02]   Pruned: /home/clawd/alpha-firm/memory/quant/2026-06-10.json
+[2026-06-19T16:30:02]   Pruned: /home/clawd/alpha-firm/memory/sentiment/2026-06-10.json
+[2026-06-19T16:30:02]   Pruned: /home/clawd/alpha-firm/memory/contrarian/2026-06-10.json
+[2026-06-19T16:30:02] ═══════════════════════════════════════
+[2026-06-19T16:30:02] MARKET CHECK: midday
+[2026-06-19T16:30:02] Date: 2026-06-19 | Time: 2026-06-19T16:30:01
+[2026-06-19T16:30:02] Mode: Subscription (Max plan) | API fallback: configured (claude-sonnet-4-6)
+[2026-06-19T16:30:02] ═══════════════════════════════════════
+[2026-06-19T16:30:02] Refreshing portfolio prices...
+Refreshing prices for 8 positions...
+  CAT: $985.82 (18.00% from entry) — 1 shares = $985.82
+  SYK: $307.8 (4.00% from entry) — 1 shares = $307.80
+  TGLS: $45.97 (19.00% from entry) — 13 shares = $597.61
+  FCN: $145.58 (-4.00% from entry) — 4 shares = $582.32
+  NCLH: $20.44 (1.00% from entry) — 40 shares = $817.60
+  MU: $1133.99 (7.00% from entry) — 1 shares = $1133.99
+  FDX: $326.2 (-1.00% from entry) — 3 shares = $978.60
+  CLSK: $17.24 (0% from entry) — 43 shares = $741.32
+  SPY Benchmark: $746.74 (34.38% from inception)
+  NAV: $10459.51 → $10459.51 (updated 2026-06-19T16:30:02Z)
+[2026-06-19T16:30:05] Price refresh complete
+[2026-06-19T19:45:01] INFO: ANTHROPIC_API_KEY saved for quota fallback. Running subscription mode first.
+[2026-06-19T19:45:01] Pruning memory files older than 20 sessions...
+[2026-06-19T19:45:01]   Pruned: /home/clawd/alpha-firm/memory/macro/2026-06-10-midday.json
+[2026-06-19T19:45:01]   Pruned: /home/clawd/alpha-firm/memory/crypto/2026-06-10-midday.json
+[2026-06-19T19:45:01]   Pruned: /home/clawd/alpha-firm/memory/quant/2026-06-10-midday.json
+[2026-06-19T19:45:01]   Pruned: /home/clawd/alpha-firm/memory/sentiment/2026-06-10-midday.json
+[2026-06-19T19:45:01]   Pruned: /home/clawd/alpha-firm/memory/contrarian/2026-06-10-midday.json
+[2026-06-19T19:45:01] ═══════════════════════════════════════
+[2026-06-19T19:45:01] MARKET CHECK: closing
+[2026-06-19T19:45:01] Date: 2026-06-19 | Time: 2026-06-19T19:45:01
+[2026-06-19T19:45:02] Mode: Subscription (Max plan) | API fallback: configured (claude-sonnet-4-6)
+[2026-06-19T19:45:02] ═══════════════════════════════════════
+[2026-06-19T19:45:02] Refreshing portfolio prices...
+Refreshing prices for 8 positions...
+  CAT: $985.82 (18.00% from entry) — 1 shares = $985.82
+  SYK: $307.8 (4.00% from entry) — 1 shares = $307.80
+  TGLS: $45.97 (19.00% from entry) — 13 shares = $597.61
+  FCN: $145.58 (-4.00% from entry) — 4 shares = $582.32
+  NCLH: $20.44 (1.00% from entry) — 40 shares = $817.60
+  MU: $1133.99 (7.00% from entry) — 1 shares = $1133.99
+  FDX: $326.2 (-1.00% from entry) — 3 shares = $978.60
+  CLSK: $17.24 (0% from entry) — 43 shares = $741.32
+  SPY Benchmark: $746.74 (34.38% from inception)
+  NAV: $10483.5 → $10459.51 (updated 2026-06-19T19:45:02Z)
+[2026-06-19T19:45:04] Price refresh complete
+All state files verified. Here's the complete closing session summary:
+
+---
+
+## Alpha Firm — Closing Session Complete (2026-06-19)
+
+**Markets: CLOSED (Juneteenth federal holiday)**
+
+### 6 Analyst Recommendations
+
+| Agent | Ticker | Conv. | Thesis |
+|-------|--------|-------|--------|
+| Macro | PASS | 0 | DXY 13-mo high, hawkish FOMC, no new macro edge |
+| Crypto | **IREN** | 7 | Only profitable miner ($158M net income), $1.6B Dell/NVIDIA deal, HPC pivot, 35% analyst upside |
+| Quant | **ENTG** | 7 | 52-wk high breakout with volume, Q1 EPS beat +15%, UBS PT $205 |
+| Sentiment | UAL | 7 | Airline analyst wave + fuel cost tailwind — **DEBATE: PASS** (crowded consensus + NCLH overlap) |
+| Contrarian | **ADBE** | 8 | 8-week thesis — P/E 11x (8-yr low), Burry long, upgrade cycle not started |
+| Catalyst | NKE | 6 | June 30 earnings with decade-low EPS bar, -29% YTD |
+
+### PM Decision: **PASS** (Markets closed)
+
+**Capital Protection Gate results:**
+- IREN: **BUY_ELIGIBLE_REDUCED_SIZE** — serious_weakness (re-entry at prior failed price + CLSK overlap) partially rebutted. Final score **7.61**
+- ENTG: **BUY_ELIGIBLE_REDUCED_SIZE** — serious_weakness (above avg analyst consensus) partially rebutted. Final score **6.26**
+- UAL: **PASS** — 2 unrebutted weaknesses (crowded consensus contradicts "positioning gap"; NCLH sector overlap). Score **0.00**
+
+### Monday June 23 Playbook
+1. **IREN** (7.61) — Primary if BTC > $60K at open. ~11 shares, stop $52, 75% sizing
+2. **ENTG** (6.26) — Technical breakout. ~11 shares, stop $163, 75% sizing
+3. **ADBE** (watchlist, 5.06) — Entry $188-200, stop $180
+
+### Portfolio (unchanged — markets closed)
+- NAV: **$10,483.50** | Cash: $4,314.45 | Return: **+4.83%**
+- SPY: +34.39% (inception $555.66 → $746.74) | **Alpha: -29.56%**
+- FDX earnings June 23 AH | MU earnings June 24 AH — both held into reports
+[2026-06-19T20:03:21] ═══════════════════════════════════════
+[2026-06-19T20:03:21] MARKET CHECK COMPLETE: closing
+[2026-06-19T20:03:21] ═══════════════════════════════════════
+[2026-06-19T20:03:21] STATUS: NAV=3823705{NAV} | Cash=3823705{CASH} | Positions=8

@@ -1,0 +1,167 @@
+{
+  "agent_id": "sentiment",
+  "last_updated": "2026-06-09",
+  "total_evaluated": 65,
+  "total_tracking": 40,
+  "wins": 36,
+  "losses": 15,
+  "partials": 14,
+  "win_rate": 55.4,
+  "partial_rate": 21.5,
+  "loss_rate": 23.1,
+  "avg_horizon_return_pct": 16.66,
+  "avg_peak_return_pct": 33.32,
+  "track_record_modifier": 1.0,
+  "conviction_calibration": {
+    "8": {
+      "total": 27,
+      "wins": 16,
+      "losses": 7,
+      "partials": 4,
+      "win_rate": 59.3
+    },
+    "7": {
+      "total": 33,
+      "wins": 18,
+      "losses": 8,
+      "partials": 7,
+      "win_rate": 54.5
+    },
+    "9": {
+      "total": 2,
+      "wins": 2,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 100.0
+    },
+    "6": {
+      "total": 2,
+      "wins": 0,
+      "losses": 0,
+      "partials": 2,
+      "win_rate": 0.0
+    },
+    "5": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 1,
+      "win_rate": 0.0
+    }
+  },
+  "by_asset_type": {
+    "stock": {
+      "total": 64,
+      "wins": 36,
+      "losses": 15,
+      "partials": 13,
+      "win_rate": 56.2
+    },
+    "etf": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 1,
+      "win_rate": 0.0
+    }
+  },
+  "recent_picks": [
+    {
+      "id": "sentiment-2026-07-02-premarket",
+      "date": "2026-07-02",
+      "ticker": "KMX",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-07-02-midday",
+      "date": "2026-07-02",
+      "ticker": "KMX",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-07-02-closing",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-29-premarket",
+      "date": "2026-06-29",
+      "ticker": "KMX",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": -1.78,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-26-premarket",
+      "date": "2026-06-26",
+      "ticker": "AVTR",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 1.98,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-26-midday",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-26-closing",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 3,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-25-premarket",
+      "date": "2026-06-25",
+      "ticker": "KMX",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 1.44,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-25-midday",
+      "date": "2026-06-25",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "sentiment-2026-06-25-closing",
+      "date": "2026-06-25",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    }
+  ],
+  "patterns": {
+    "strengths": [
+      "Conviction-9 picks win 100.0% \u2014 maintain high-conviction approach"
+    ],
+    "weaknesses": [],
+    "adjustment_suggestions": []
+  }
+}

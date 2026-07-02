@@ -1,0 +1,169 @@
+{
+  "agent_id": "macro",
+  "last_updated": "2026-06-09",
+  "total_evaluated": 71,
+  "total_tracking": 12,
+  "wins": 6,
+  "losses": 48,
+  "partials": 16,
+  "win_rate": 8.5,
+  "partial_rate": 22.5,
+  "loss_rate": 67.6,
+  "avg_horizon_return_pct": -1.9,
+  "avg_peak_return_pct": 2.57,
+  "track_record_modifier": 0.8,
+  "conviction_calibration": {
+    "8": {
+      "total": 13,
+      "wins": 1,
+      "losses": 8,
+      "partials": 4,
+      "win_rate": 7.7
+    },
+    "9": {
+      "total": 7,
+      "wins": 0,
+      "losses": 6,
+      "partials": 1,
+      "win_rate": 0.0
+    },
+    "7": {
+      "total": 20,
+      "wins": 1,
+      "losses": 17,
+      "partials": 2,
+      "win_rate": 5.0
+    },
+    "5": {
+      "total": 10,
+      "wins": 2,
+      "losses": 7,
+      "partials": 1,
+      "win_rate": 20.0
+    },
+    "6": {
+      "total": 20,
+      "wins": 2,
+      "losses": 10,
+      "partials": 8,
+      "win_rate": 10.0
+    },
+    "2": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
+    }
+  },
+  "by_asset_type": {
+    "etf": {
+      "total": 71,
+      "wins": 6,
+      "losses": 48,
+      "partials": 16,
+      "win_rate": 8.5
+    }
+  },
+  "recent_picks": [
+    {
+      "id": "macro-2026-07-02-premarket",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "pass",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-07-02-midday",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-07-02-closing",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-29-premarket",
+      "date": "2026-06-29",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-26-premarket",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-26-midday",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-26-closing",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-25-premarket",
+      "date": "2026-06-25",
+      "ticker": "GLD",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 1.28,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-25-midday",
+      "date": "2026-06-25",
+      "ticker": "GDX",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": -0.94,
+      "was_executed": false
+    },
+    {
+      "id": "macro-2026-06-25-closing",
+      "date": "2026-06-25",
+      "ticker": "PASS",
+      "conviction": 2,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    }
+  ],
+  "patterns": {
+    "strengths": [],
+    "weaknesses": [
+      "Win rate 8.5% below breakeven \u2014 review thesis quality",
+      "Negative avg horizon return (-1.9%)",
+      "Etf picks only 8.5% win rate \u2014 consider avoiding"
+    ],
+    "adjustment_suggestions": []
+  }
+}
