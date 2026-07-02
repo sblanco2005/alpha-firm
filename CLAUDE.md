@@ -252,12 +252,7 @@ Once all 6 subagents return (or timeout after 90 seconds):
    - PM as Risk Chair: VETO (0.0x), PASS (0.0x), REDUCED (0.90x), ELIGIBLE (1.05x)
 8. Final score = raw_pm_score × track_record × fundamental × debate × narrative_penalty × SPY_baseline_penalty
 9. Decision: BUY the best pick if final_score >= 7.5 (or >= 8.0 in bull market mode), or PASS
-   - **Agent-specific restrictions apply** (see orchestrator.md Step 1.5)
-   - **Macro**: 0.5x modifier, conviction 8+ required
-   - **Quant**: Execution suspended until 2026-07-08
-   - **Contrarian**: Conviction 8+ required for execution
-   - **Crypto**: Stock picks only, ETFs banned
-   - **Catalyst**: Conviction 8+ required for execution
+   - **Agent-specific restrictions: NONE for Run 2** (cleared 2026-07-02 — the old macro/quant/contrarian/crypto/catalyst restrictions were tuned on the deprecated win metric and corrupted prices; see orchestrator.md Step 1.5). New restrictions come only from the automated lessons pipeline (Step 1.6) with reconciled evidence.
    - **Exits**: falsification condition is the PRIMARY sell trigger; -20% disaster stop as backstop; 10-12% stops only on justified pre-binary-event positions; NO stale-position rule (Phase 2.2, 2026-07-02)
 
 ### Step 4: Execute Trade (Simulation Mode)

@@ -1,5 +1,7 @@
 # Alpha Firm — Remediation Plan
-**Date:** 2026-07-02 · **Status:** Phase 0 executed this session; Phases 1-3 pending
+**Date:** 2026-07-02 · **Status:** Phases 0-2 EXECUTED; reconciliation applied on VPS (33 fills corrected, NAV $10,479→$10,901); Run 2 fresh start launched via `scripts/reset_fresh_start.py`. Phase 3 (attribution + scorecard v2) pending.
+
+**Also executed 2026-07-02 (beyond original plan):** ALL Step 1.5 agent restrictions cleared for Run 2 (macro 0.5x/silenced, quant suspension, contrarian/catalyst conviction floors, crypto ETF ban) — every rationale in that table was computed on the deprecated win metric and unreconciled prices. New restrictions may only enter via the lessons pipeline with reconciled evidence, or manually at 30+ executed trades.
 
 ## Verified Findings (audited against real OHLC data, 2026-07-02)
 
@@ -24,7 +26,7 @@
 **0.2 Single price source** ✅ (policy)
 `skills/price-fetch.md` rewritten: the **price MCP (`mcp/price_server.py`, yfinance/Yahoo) is the sole source** for prices, entries, checkpoints, and benchmarks. Brave Search is banned for numeric price data (allowed for news only). Every recorded fill must be validated against the trade day's OHLC range; out-of-range price = fetch again, never guess.
 
-**0.3 Historical reconciliation** ⬜ **RUN ON VPS**
+**0.3 Historical reconciliation** ✅ (applied on VPS 2026-07-02: 145 fills checked, 33 corrected, 2 baseline fixes, cash rebuilt +$421.69 → NAV $10,901.05)
 `scripts/reconcile_prices.py` (new) reconciles every entry/exit in `state/trade-log.json` + `state/portfolio.json` (open + sold positions) against actual OHLC via yfinance:
 - price inside that day's [low, high] → keep; outside → flag and correct to that day's close
 - recompute realized P&L per trade, leaderboard `total_pnl`, NAV

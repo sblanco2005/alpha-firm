@@ -27,16 +27,13 @@ Only candidates that pass ALL pre-filters proceed to scoring. Log rejected picks
 
 ### Step 1.5: Agent-Specific Execution Restrictions
 
-These are **hard rules** based on historical performance data. They override all other scoring.
+**ALL RESTRICTIONS CLEARED FOR RUN 2 (2026-07-02).** The previous table (macro 0.5x + suspended, quant suspended, contrarian/catalyst conviction floors, crypto ETF ban, sentiment preferred) was built on the deprecated peak-touched-target win metric and partially corrupted prices — reconciliation showed some of its "worst trades" never happened at the recorded prices (e.g. quant's MAR stop-out, sentiment's EYE disaster). Statistics computed on that data are not admissible as hard rules.
 
 | Agent | Restriction | Rationale |
 |-------|-------------|-----------|
-| **Macro** | EFFECTIVE MODIFIER 0.5x. Conviction 8+ required. Minimum horizon 10 trading days. | 10% win rate across 60 tracked picks. Conviction 9 picks: 0% win rate. Agent is systematically wrong. |
-| **Quant** | EXECUTION SUSPENDED until 2026-07-08. Agent may still track paper picks. | -$106.98 realized PnL (worst agent). 42.6% win rate but negative avg return (-1.39%). Needs recalibration period. |
-| **Contrarian** | Conviction 8+ required for execution. Conviction 7 picks rejected. | Conviction 7 win rate: 14.3%. Conviction 8 win rate: 57.1%. Agent cannot differentiate 7 from 8. |
-| **Crypto** | Stock picks only. ETF recommendations (IBIT, BITO, etc.) are rejected. | Stock win rate: 89.7%. ETF win rate: 23.8%. ETFs are a systematic leak. |
-| **Catalyst** | Conviction 8+ required for execution (was 6). | 23.3% overall win rate, -3.61% avg horizon return. Only high-conviction calls should execute. |
-| **Sentiment** | No restrictions. Preferred agent. Increase allocation weight. | 58.3% win rate, +$211.70 realized PnL, +17.31% avg horizon return. Best performing agent. |
+| *(all)* | **None — clean slate.** | Run-2 restrictions may only be added by the automated lessons pipeline (Step 1.6) with reconciled-price evidence, or manually with 30+ executed trades under the corrected metric. |
+
+The Run-1 table is preserved in `runs/run1-*/` archives and REMEDIATION-PLAN.md for reference. If an agent's run-2 record deteriorates, let the weekly post-mortem promote a rule — do not hand-tune on small samples again.
 
 ### Step 1.6: Live Lessons Enforcement (auto-generated from losing trades)
 
@@ -300,7 +297,7 @@ Before final scoring, assess the market regime:
 - Raise execution threshold to **8.0** (from 7.5)
 - Apply SPY Baseline Test more aggressively (0.85x → 0.80x for weak justifications)
 - **Bias toward momentum and index exposure** over contrarian/catch-falling-knife plays
-- Quant agent (when suspension lifts) should favor SPY/QQQ/leveraged tech ETFs over single names
+- Quant agent should favor SPY/QQQ/leveraged tech ETFs over single names
 - Contrarian picks face extra scrutiny — mean reversion in a bull market is often just a trap
 - **Consider buying SPY or QQQ directly** if no individual pick scores above 8.0. The index IS the best trade.
 

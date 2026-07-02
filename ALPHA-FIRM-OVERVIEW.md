@@ -6,15 +6,36 @@ Alpha Firm is an autonomous investment research and decision-making system power
 
 The system operates in **simulated mode** -- it tracks real market prices but does not execute real trades. This allows us to build a verifiable track record before deploying capital.
 
-- **Starting Capital:** $10,000
-- **Inception Date:** March 28, 2026
-- **Current NAV:** $10,479.35 (+4.79%)
-- **Open Positions:** CAT, SYK, TGLS, FCN, NCLH, MU, FDX, CLSK
-- **Total Trades:** 44 buys, 31 sells
-- **Days Active:** 96
-- **SPY Return (same period):** +14.97% | **Alpha:** -10.18% (corrected 2026-07-02: prior +32.02%/-27.23% used fabricated $555.66 baseline)
+- **Current run:** Run 2, started July 2, 2026 with a fresh $10,000 (Run 1 archived in `runs/`)
 - **Infrastructure:** Claude Code (Anthropic) on a dedicated VPS
-- *Portfolio figures as of the latest recorded session, 2026-06-26.*
+
+---
+
+## The July 2026 Overhaul (Run 1 → Run 2)
+
+Run 1 (Mar 28 – Jul 2, 2026) ended at NAV $10,901 (+9.01% after reconciliation) vs SPY +14.97% — real alpha ≈ **-6%**. A full audit found the reported "-27% alpha" was mostly measurement error, but the true gap had identifiable structural causes. Everything below was fixed before Run 2 launched.
+
+### What the audit found
+
+1. **Fabricated SPY baseline.** The benchmark inception price ($555.66) never traded — the real Mar 27 close was $634.09. Reported SPY return was +32%, actual +15%.
+2. **Systemically corrupted prices.** 33 of 145 fills (23%) failed OHLC validation. Many were prior-day closes recorded as fills; some were phantom (EYE "entered" at $21.91 on a day it never traded above $17.75 — its infamous -21.4% "worst trade" was really ≈ -2%; the UNH stop "triggered at $371.99" on a day UNH traded $389–401 — actually a winning trade). Root cause: prices came from Brave Search snippets and LLM recall instead of a market-data API.
+3. **Broken win metric.** "Win = peak return touched target at any point" counted spike-then-stop-out losers as wins, inflating win rates that then drove the track-record modifiers — the meritocracy was rewarding noise.
+4. **Structural sell bias.** Tight stops (8-15%), 3x/day sell evaluation vs 1 buy/day, a stale-position rule, and "sell first" ordering produced 31 buys/30 sells in 61 trading days and gave back $1,100+ from the high-water mark in whipsaw.
+5. **Cash drag.** ~40% cash during a +15% SPY run explained most of the honest alpha gap.
+
+### What changed (Run 2 rules)
+
+| Fix | Mechanism |
+|-----|-----------|
+| **Single price source** | All prices from the price MCP (yfinance/Yahoo). Brave Search banned for numeric data. Every fill validated against the day's OHLC range; stops only fire on prices that actually printed. |
+| **SPY sweep — default is beta, not cash** | At every closing session, cash above a 5% buffer sweeps into SPY (agent: "index"). Stock buys fund from the sweep, making every pick an explicit bet against the index. Worst case ≈ market performance. |
+| **Falsification-first exits** | Each position's falsification condition (required at entry) is the primary sell trigger. -20% disaster stop as backstop only. Stale-position rule deleted. Trailing stops only after +15%. |
+| **Sell symmetry** | Sells need an affirmative, price-verified trigger — no "sell first" reflex, no selling winners for discipline. Sell proceeds may fund a same-day buy. |
+| **Honest win metric** | Verdicts from realized/horizon returns + R-multiples (realized % ÷ stop distance %). Peak return is diagnostic only. |
+| **Modifiers frozen at 1.0x** | Track-record modifiers disabled for all agents until 30+ executed trades under the corrected metric. Sample sizes of 1-17 trades are coin flips. |
+| **Fresh state, kept learnings** | Run 2 started at $10,000 with a live-fetched SPY baseline. Agent memory kept; lessons-learned rules demoted to candidate (must re-earn promotion). Run 1 fully archived for attribution analysis. |
+
+Tooling added: `scripts/reconcile_prices.py` (OHLC audit/correction of the ledger), `scripts/reset_fresh_start.py` (archive + reset), REMEDIATION-PLAN.md (full phased plan; Phase 3 attribution pending).
 
 ---
 
@@ -160,12 +181,14 @@ This penalty exists because LLMs naturally produce compelling narratives. Contra
 
 ### Agent Track Record Modifier
 
+**FROZEN at 1.0x for all agents** (2026-07-02) until an agent reaches 30+ executed trades under the corrected realized-R metric. Historical win rates were computed on the deprecated peak-touched-target metric with partially corrupted prices. When unfrozen:
+
 | Agent Win Rate | Modifier |
 |---|---|
 | > 60% | 1.2x |
 | 40-60% | 1.0x |
 | < 40% | 0.8x |
-| < 5 picks | 1.0x |
+| < 30 executed trades | 1.0x (frozen) |
 
 ### Fundamental Overlay (Stocks Only)
 
@@ -198,20 +221,20 @@ final_score = raw_pm_score x track_record x fundamental x debate x narrative_pen
 
 Full chain:
 1. Raw PM score (evidence 25% + falsifiability 20% + risk/reward 20% + portfolio impact 15% + signal confirmation 10% + execution readiness 10%)
-2. x Track record modifier (0.8x to 1.2x)
+2. x Track record modifier (frozen at 1.0x until 30+ executed trades per agent)
 3. x Fundamental modifier (0.7x to 1.3x, stocks only)
 4. x Debate modifier (0.0x if VETO/PASS, 0.90x if reduced, 1.05x if eligible)
 5. x Narrative penalty (0.85x if triggered, else 1.0x)
 6. = Final score -- used for ranking and BUY/PASS decision
 
-### Position Management
+### Position Management (Falsification-First — rewritten 2026-07-02)
 
-For each existing position, the PM asks at every check:
-1. Has it hit the target return? -- Sell and take profit
-2. Is the thesis broken? -- Sell regardless of P&L
-3. Held 2+ weeks with no movement? -- Consider selling for opportunity cost
-4. Down 10%+ from entry? -- Likely thesis broken, sell
-5. Up but catalyst hasn't happened yet? -- Hold
+For each existing position, the PM asks at every check, in order:
+1. Is the falsification condition met? -- Sell regardless of P&L (trigger verified via price MCP)
+2. Has it hit the target return? -- Sell, or switch to a trailing stop per the agent's entry plan
+3. Down 20%+ from entry? -- Disaster stop: sell and file a lesson candidate
+4. Pre-binary-event position with weakening thesis? -- Exit BEFORE the event (justified 10-12% stops allowed on these only)
+5. Otherwise -- HOLD. No stale-position sells; the SPY sweep handles opportunity cost.
 
 ---
 
@@ -440,16 +463,9 @@ Key features:
 
 **Key issue:** Portfolio +4.79% vs SPY +14.97% (corrected 2026-07-02). The alpha gap (-10.18%) is driven by over-trading individual stocks in a bull market and tight stop-losses generating realized losses. NOTE (2026-07-02): per-agent win rates are unreliable — computed on the deprecated peak-touched-target metric, unreconciled prices, and samples of 1-17 executed trades. Track-record modifiers frozen at 1.0x pending scorecard rebuild (REMEDIATION-PLAN.md).
 
-**Changes implemented 2026-06-25:**
-- Macro agent: 0.5x modifier, conviction 8+ floor, effectively silenced
-- Quant agent: execution suspended until 2026-07-08
-- Contrarian: conviction 8+ required for execution
-- Crypto: ETF picks banned (stocks only)
-- Catalyst: conviction 8+ required for execution
-- Execution threshold raised from 6.0 to 7.5 (8.0 in bull markets)
-- Stop-losses widened from 8-10% to 12-15% for standard positions
-- Track record modifier now incorporates realized P&L
-- SPY Baseline Test added — every pick must justify beating the index
+**Changes implemented 2026-06-25** (superseded): agent restrictions (macro silenced, quant suspended, conviction floors, crypto ETF ban), threshold raised to 7.5/8.0, stops widened to 12-15%, P&L-based modifiers, SPY Baseline Test.
+
+**Superseded 2026-07-02 (Run 2):** all agent-specific restrictions CLEARED — they were tuned on the deprecated win metric and corrupted prices. Modifiers frozen at 1.0x. Stops replaced by falsification-first exits + -20% disaster stop. SPY Baseline Test kept and made mechanical via the SPY sweep. New restrictions may only come from the automated lessons pipeline with reconciled-price evidence. See "The July 2026 Overhaul" section at the top.
 
 ---
 
