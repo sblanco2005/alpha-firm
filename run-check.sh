@@ -198,5 +198,5 @@ if [ -f state/portfolio.json ] && command -v jq &>/dev/null; then
     NAV=$(jq -r '.nav // .cash' state/portfolio.json 2>/dev/null || echo "?")
     CASH=$(jq -r '.cash' state/portfolio.json 2>/dev/null || echo "?")
     POSITIONS=$(jq '.positions | length' state/portfolio.json 2>/dev/null || echo "?")
-    log "STATUS: NAV=$${NAV} | Cash=$${CASH} | Positions=${POSITIONS}"
+    log "STATUS: NAV=\$${NAV} | Cash=\$${CASH} | Positions=${POSITIONS}"
 fi

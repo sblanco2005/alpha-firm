@@ -90,6 +90,7 @@ export function MarketCheckScreen({ navigation }: any) {
   const [selSession, setSelSession] = useState("closing");
   const [triggering, setTriggering] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [confirmForce, setConfirmForce] = useState(false);
 
   const running = runStatus?.running || sessions?.run?.running;
   const runSession = runStatus?.session || sessions?.run?.session;
@@ -102,18 +103,22 @@ export function MarketCheckScreen({ navigation }: any) {
     wasRunning.current = !!running;
   }, [running]);
 
-  const runNow = async () => {
+  const runNow = async (force = false) => {
     setErr(null); setTriggering(true);
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
     try {
-      await apiPost("/api/check/run", { session: selSession });
+      await apiPost("/api/check/run", { session: selSession, force });
+      setConfirmForce(false);
       await reloadRun();
     } catch (e: any) {
-      setErr(String(e?.message || e));
+      // Session already ran → offer an explicit override. Executed a trade → hard block.
+      if (e?.data?.canForce) { setConfirmForce(true); setErr(e.message); }
+      else { setConfirmForce(false); setErr(String(e?.message || e)); }
     } finally {
       setTriggering(false);
     }
   };
+  const pickSession = (key: string) => { setSelSession(key); setConfirmForce(false); setErr(null); };
 
   if (!sessions) return <Screen><Loading label="Loading sessions…" /></Screen>;
 
@@ -148,20 +153,39 @@ export function MarketCheckScreen({ navigation }: any) {
               {SESSIONS.map((s) => {
                 const active = selSession === s.key;
                 return (
-                  <Touchable key={s.key} onPress={() => setSelSession(s.key)} style={{ flex: 1, alignItems: "center", paddingVertical: 9, borderRadius: 10, backgroundColor: active ? rgba(C.gain, 0.16) : "transparent", borderWidth: 1, borderColor: active ? rgba(C.gain, 0.3) : rgba("#FFFFFF", 0.08) }}>
+                  <Touchable key={s.key} onPress={() => pickSession(s.key)} style={{ flex: 1, alignItems: "center", paddingVertical: 9, borderRadius: 10, backgroundColor: active ? rgba(C.gain, 0.16) : "transparent", borderWidth: 1, borderColor: active ? rgba(C.gain, 0.3) : rgba("#FFFFFF", 0.08) }}>
                     <Text style={{ fontSize: 12, fontFamily: F.ui600, color: active ? C.gain : rgba("#FFFFFF", 0.5) }}>{s.label}</Text>
                   </Touchable>
                 );
               })}
             </View>
-            <Touchable onPress={runNow} style={{ borderRadius: 14, overflow: "hidden" }}>
-              <LinearGradient colors={["#2BD98A", "#17b56e"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10, paddingVertical: 14 }}>
-                {triggering ? <ActivityIndicator color="#04130B" size="small" /> : <PingDot />}
-                <Text style={{ fontFamily: F.display800, fontSize: 16, color: "#04130B" }}>Run {SESSIONS.find((s) => s.key === selSession)?.label} check</Text>
-              </LinearGradient>
-            </Touchable>
-            <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.32), marginTop: 12, fontFamily: F.mono, textAlign: "center" }}>~15–30 min · runs on Claude Max · 1 buy/day</Text>
-            {err && <Text style={{ fontSize: 11, color: C.loss, marginTop: 8, textAlign: "center", fontFamily: F.ui }}>{err}</Text>}
+            {confirmForce ? (
+              // Session already ran today → explicit override (server blocks it if it executed a trade).
+              <View>
+                <Text style={{ fontSize: 12, color: C.gold, fontFamily: F.ui, lineHeight: 17, marginBottom: 12 }}>
+                  Today's {SESSIONS.find((s) => s.key === selSession)?.label} already ran. Re-running overwrites its result and re-logs its outcomes. (If it executed a trade, it's blocked — use Fresh Start.)
+                </Text>
+                <View style={{ flexDirection: "row", gap: 8 }}>
+                  <Touchable onPress={() => { setConfirmForce(false); setErr(null); }} style={{ flex: 1, alignItems: "center", paddingVertical: 13, borderRadius: 13, backgroundColor: C.cardDim, borderWidth: 1, borderColor: rgba("#FFFFFF", 0.1) }}>
+                    <Text style={{ fontFamily: F.ui600, fontSize: 14, color: rgba("#FFFFFF", 0.65) }}>Cancel</Text>
+                  </Touchable>
+                  <Touchable onPress={() => runNow(true)} style={{ flex: 1, alignItems: "center", paddingVertical: 13, borderRadius: 13, backgroundColor: rgba(C.gold, 0.16), borderWidth: 1, borderColor: rgba(C.gold, 0.4) }}>
+                    {triggering ? <ActivityIndicator color={C.gold} size="small" /> : <Text style={{ fontFamily: F.ui700, fontSize: 14, color: C.gold }}>Re-run anyway</Text>}
+                  </Touchable>
+                </View>
+              </View>
+            ) : (
+              <>
+                <Touchable onPress={() => runNow(false)} style={{ borderRadius: 14, overflow: "hidden" }}>
+                  <LinearGradient colors={["#2BD98A", "#17b56e"]} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={{ flexDirection: "row", alignItems: "center", justifyContent: "center", gap: 10, paddingVertical: 14 }}>
+                    {triggering ? <ActivityIndicator color="#04130B" size="small" /> : <PingDot />}
+                    <Text style={{ fontFamily: F.display800, fontSize: 16, color: "#04130B" }}>Run {SESSIONS.find((s) => s.key === selSession)?.label} check</Text>
+                  </LinearGradient>
+                </Touchable>
+                <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.32), marginTop: 12, fontFamily: F.mono, textAlign: "center" }}>~15–30 min · runs on Claude Max · 1 buy/day</Text>
+              </>
+            )}
+            {err && <Text style={{ fontSize: 11, color: confirmForce ? rgba("#FFFFFF", 0.5) : C.loss, marginTop: 8, textAlign: "center", fontFamily: F.ui }}>{err}</Text>}
           </View>
         )}
 

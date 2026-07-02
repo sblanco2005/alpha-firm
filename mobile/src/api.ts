@@ -33,7 +33,12 @@ export async function apiPost<T = any>(path: string, body?: any): Promise<T> {
     body: body ? JSON.stringify(body) : undefined,
   });
   const json = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error((json as any)?.error || `${path} → ${res.status}`);
+  if (!res.ok) {
+    const err = new Error((json as any)?.error || `${path} → ${res.status}`) as Error & { data?: any; status?: number };
+    err.data = json;
+    err.status = res.status;
+    throw err;
+  }
   return json as T;
 }
 

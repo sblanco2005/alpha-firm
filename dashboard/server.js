@@ -904,12 +904,77 @@ app.get("/api/sessions", (_, res) => {
   });
 });
 
+// Undo one completed session's state so it can be re-run cleanly, without double-counting.
+// Drops it from daily-state (sessions_completed, checks, {session}_session) and removes its
+// outcome recommendations for today. Trades are NOT touched — the caller guarantees (via the
+// block-if-bought guard) that this session did not execute a buy. Once daily-state shows the
+// session as not-run, run-check.sh's own "3 checks done" guard passes and the orchestrator
+// re-runs it normally — so no changes to run-check.sh or the orchestrator are needed.
+function rollbackSession(session, today) {
+  const dsPath = join(STATE_DIR, "daily-state.json");
+  const daily = readJSON(dsPath);
+  if (daily) {
+    const wasCompleted = Array.isArray(daily.sessions_completed) && daily.sessions_completed.includes(session);
+    if (Array.isArray(daily.sessions_completed)) daily.sessions_completed = daily.sessions_completed.filter((s) => s !== session);
+    if (wasCompleted && Number.isFinite(daily.checks)) daily.checks = Math.max(0, daily.checks - 1);
+    delete daily[`${session}_session`];
+    writeJSON(dsPath, daily);
+  }
+  const ocPath = join(STATE_DIR, "outcomes.json");
+  const outcomes = readJSON(ocPath);
+  if (outcomes && Array.isArray(outcomes.recommendations)) {
+    const before = outcomes.recommendations.length;
+    outcomes.recommendations = outcomes.recommendations.filter(
+      (r) => !(String(r.date || "").slice(0, 10) === today && String(r.session || "").toLowerCase() === session)
+    );
+    if (outcomes.recommendations.length !== before) writeJSON(ocPath, outcomes);
+  }
+}
+
 // Trigger a market check manually (runs the full pipeline on Claude Max, ~15-30 min).
+// A session that already ran today is refused with { blocked:"duplicate", canForce:true } so
+// the app can offer an explicit override; { force:true } re-runs it after rolling back its
+// state — but a session that executed a BUY is blocked (unwinding a real trade is the firm
+// reset's job, not a re-run's).
 app.post("/api/check/run", express.json(), (req, res) => {
   if (isRunning()) return res.status(409).json({ error: "a market check is already running", run: getRunStatus() });
+  const session = String(req.body?.session || "midday").toLowerCase();
+  const force = req.body?.force === true;
+  if (!["premarket", "midday", "closing"].includes(session)) return res.status(400).json({ error: "invalid session" });
+
+  const today = new Date().toISOString().slice(0, 10);
+  const daily = readJSON(join(STATE_DIR, "daily-state.json")) || {};
+  const sessObj = daily[`${session}_session`] || {};
+  const completedToday =
+    daily.date === today &&
+    ((Array.isArray(daily.sessions_completed) && daily.sessions_completed.includes(session)) ||
+      (sessObj.completed && String(sessObj.timestamp || "").slice(0, 10) === today));
+
+  if (completedToday && !force) {
+    return res.status(409).json({
+      error: `Today's ${session} check already ran.`,
+      blocked: "duplicate",
+      canForce: true,
+      decision: sessObj.decision ? String(sessObj.decision).toLowerCase() : null,
+    });
+  }
+  if (completedToday && force) {
+    const bought =
+      String(sessObj.decision || "").toLowerCase() === "buy" ||
+      (daily.bought && String(daily.last_buy?.session || "").toLowerCase() === session);
+    if (bought) {
+      return res.status(409).json({
+        error: `The ${session} check executed a BUY today — a re-run can't unwind a real trade. Use Fresh Start to reset the book.`,
+        blocked: "bought",
+      });
+    }
+    try { rollbackSession(session, today); }
+    catch (e) { return res.status(500).json({ error: `couldn't roll back ${session}: ${e.message}` }); }
+  }
+
   try {
-    const info = startRun(req.body?.session || "midday", ROOT_DIR);
-    res.status(202).json({ started: true, ...info });
+    const info = startRun(session, ROOT_DIR);
+    res.status(202).json({ started: true, forced: completedToday && force, ...info });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
