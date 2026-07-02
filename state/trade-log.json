@@ -8861,11 +8861,133 @@
         "spy_return_pct": 32.02,
         "alpha": -27.23
       }
+    },
+    {
+      "date": "2026-06-29",
+      "session": "premarket",
+      "decision": "pass",
+      "selected_agent": null,
+      "ticker": null,
+      "reasoning": "Disciplined PREMARKET PASS, 7.5 bar, risk-off tape (SPY $728.99 BELOW 50-day MA ~734, above 200-day; QQQ/semis weak, GLD $373.63 gold crashed, BTC $60,028 correcting, VIX 18.38 <25, TLT bid = flight to safety). 4/6 agents self-PASS (macro conv2, crypto conv4, contrarian conv3, catalyst conv3 - no edge in risk-off breakdown regime). quant UNH (conv8, fresh 52wk-high close $427.89 on 1.41x vol, defensive-XLV RS leader) = PAPER-ONLY (execution suspended to 2026-07-08) AND 0.5x quant modifier => ~3.6 < 7.5 even if not suspended. sentiment KMX (conv8) = ONLY executable candidate. Insider-cluster thesis INDEPENDENTLY VERIFIED via SEC EDGAR Form 4s: 5 current insiders incl CEO Keith Barr made open-market PURCHASES (code P) 6/22-6/25 (~$1.27M); former-CEO Folliard exercised+sold (M/F, minor offset). 6-category raw score 7.15 (Evidence 8 verified, Falsifiability 8, R/R 6 [1.36:1 to soft floor; 52wk low $30.26], Portfolio 7, Signal 6, Execution 7). Capital Protection Gate: bear raised macro_conflict (risk-off tape for cyclical Consumer Discretionary) + modest R/R; bull partially rebutted regime risk (insider clusters leading/counter-cyclical, small size) but could not neutralize => BUY_ELIGIBLE_REDUCED_SIZE (0.90x). Final = 7.15 x track 1.0 x fundamental 1.0 x debate 0.90 x narrative 1.0 x spy_baseline 1.0 = 6.44 < 7.5 => PASS. KMX remains a tracked sentiment candidate; re-evaluate on regime stabilization (SPY reclaim 50-day) or improved asymmetry. No sells - all 8 positions above stops; FDX TIGHT ($318.53 vs $315 stop, $3.53 cushion) - watch closely. NAV $10470.49, alpha -26.49%.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 2,
+          "considered": false,
+          "rejection_reason": "Self-PASS; risk-off transitional breakdown, no asymmetric regime setup, gold longs stopped; 0.5x + conv-8 mathematically unexecutable"
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": false,
+          "rejection_reason": "Self-PASS; BTC<$61K confirmation, MSTR at 52wk low, correlation gate blocks 2nd miner w/ held CLSK"
+        },
+        "quant": {
+          "ticker": "UNH",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "PAPER-ONLY (suspended to 07-08); 0.5x modifier => ~3.6 < 7.5; tracked only",
+          "scores": {
+            "evidence": 8,
+            "falsifiability": 7,
+            "risk_reward": 6,
+            "portfolio_impact": 7,
+            "signal_confirmation": 7,
+            "execution_readiness": 7
+          },
+          "raw_score": 7.1,
+          "final_score": 3.55,
+          "narrative_penalty": false,
+          "note": "Execution suspended; recorded paper-only"
+        },
+        "sentiment": {
+          "ticker": "KMX",
+          "conviction": 8,
+          "considered": true,
+          "rejection_reason": "EDGAR-verified 5-insider cluster incl CEO; raw 7.15 but capital-protection gate REDUCED (0.90x) => final 6.44 < 7.5",
+          "scores": {
+            "evidence": 8,
+            "falsifiability": 8,
+            "risk_reward": 6,
+            "portfolio_impact": 7,
+            "signal_confirmation": 6,
+            "execution_readiness": 7
+          },
+          "raw_score": 7.15,
+          "final_score": 6.44,
+          "narrative_penalty": false
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "Self-PASS; no conv-8 setup; NKE earnings gamble, gold/crypto miners falling knives"
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": false,
+          "rejection_reason": "Self-PASS; no conv-8 dated catalyst; NKE degraded, STZ/FDS/CNXC priced-in, AVAV neg revisions"
+        }
+      },
+      "debate_results": [
+        {
+          "ticker": "KMX",
+          "debate_decision": "buy_eligible_reduced",
+          "bear_classification": "serious_weakness",
+          "risk_flags": [
+            "macro_conflict",
+            "modest_asymmetry"
+          ],
+          "bear_strength": 6,
+          "bull_strength_updated": 7,
+          "fatal_flaw_found": false,
+          "serious_weaknesses_count": 2,
+          "serious_weaknesses_rebutted": 1,
+          "modifier": 0.9,
+          "reason": "Bear: risk-off tape (SPY<50-day) hostile to cyclical Consumer Discretionary + 1.36:1 R/R with structural downside to 52wk low $30.26. Bull partially rebuted regime risk (EDGAR-verified CEO-led insider cluster is a leading/counter-cyclical signal; small size) but R/R asymmetry unrebutted. 1 unresolved macro/factor risk => REDUCED SIZE. Final 6.44 < 7.5 => PASS.",
+          "break_the_trade_answer": "Facts-only: a verified CEO-led insider cluster is genuinely bullish, but a 1.36:1 discretionary long in a below-50-day tape is not the asymmetric trade to close a -26% alpha gap. PASS and monitor."
+        }
+      ],
+      "vix_level": 18.38,
+      "vix_size_cap": "15-30%",
+      "sector_check": {
+        "ticker_sector": "N/A (PASS)",
+        "sector_exposure_before_pct": null,
+        "sector_exposure_after_pct": null,
+        "blocked": false
+      },
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "quant",
+          "crypto"
+        ],
+        "current_top_agent": "sentiment",
+        "deprioritized": false,
+        "note": "KMX=sentiment; no dominance conflict (last 2 buys quant/crypto)."
+      },
+      "live_lessons_enforcement": {
+        "rules_checked": [
+          "quant-min-conviction-8 (active)",
+          "all-no-cpi-fomc-entry (candidate)",
+          "catalyst-min-conviction-8 (candidate)"
+        ],
+        "fired": [],
+        "note": "quant-min-conviction-8 active: UNH conv8 meets floor but quant execution-suspended => moot. Candidate rules not enforced. Today is NOT a CPI/FOMC day. No active rule fires on KMX (sentiment)."
+      },
+      "portfolio_after": {
+        "cash": 4314.45,
+        "nav": 10470.49,
+        "positions_count": 8,
+        "pnl_pct": 4.7,
+        "spy_return_pct": 31.19,
+        "alpha": -26.49
+      }
     }
   ],
   "total_trades": 80,
   "total_buys": 42,
   "total_sells": 28,
-  "total_passes": 9,
-  "last_updated": "2026-06-26T19:45:01Z"
+  "total_passes": 10,
+  "last_updated": "2026-06-29T11:00:02Z"
 }

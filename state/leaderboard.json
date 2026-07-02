@@ -74,7 +74,7 @@
       "pnl": 629.34,
       "pnl_pct": 30.24,
       "date": "2026-04-28",
-      "note": "Final close — all 4 shares of META. Total realized gain $629.34."
+      "note": "Final close \u2014 all 4 shares of META. Total realized gain $629.34."
     },
     "worst_trade": {
       "ticker": "EYE",
@@ -109,7 +109,7 @@
     },
     "current_streak": -1,
     "reward_earned": 0.0,
-    "open_positions_notes": "SYK 1sh@$294.50 (+7.3%). SMCI tracked (conviction 8, eliminated by PM — poor R:R 1.06:1 + narrative penalty)."
+    "open_positions_notes": "SYK 1sh@$294.50 (+7.3%). SMCI tracked (conviction 8, eliminated by PM \u2014 poor R:R 1.06:1 + narrative penalty)."
   },
   "catalyst": {
     "picks": 15,
@@ -131,6 +131,6 @@
   },
   "reward_pool_pct": 0.2,
   "reward_pool_usd": 68.07,
-  "reward_pool_note": "2026-06-26 CLOSING: PASS (3rd disciplined pass of the day, risk-off breakdown-test close). No sells -> realized P&L unchanged, reward pool unchanged. Leader remains sentiment (total_pnl +$211.70, reward_earned $68.07). MTM NAV $10,479.35 (+4.79%), alpha -27.23% (SPY +32.02%). Last 2 buys: FDX-quant, CLSK-crypto. Standings (realized): sentiment +211.70 > contrarian +90.69 > catalyst +17.32 > macro -2.16 > crypto -51.55 > quant -106.98. Next actionable: deploy SPY/QQQ tranche ONLY on confirmed 50-day hold + VIX rollover (SPY closed AT 50-day breakdown test, VIX +9.1% today).",
-  "last_updated": "2026-06-26T19:45:01Z"
+  "reward_pool_note": "2026-06-29 PREMARKET: PASS (disciplined; only candidate KMX scored 6.44<7.5 after reduced-size gate). No sells => realized P&L unchanged, reward pool unchanged. Leader remains sentiment (total_pnl +$211.70, reward_earned $68.07). MTM NAV $10470.49 (+4.7%), alpha -26.49% (SPY +31.19%). Last 2 buys: FDX-quant, CLSK-crypto. Next actionable: KMX tracked (re-enter on regime stabilization/improved R/R); deploy index tranche ONLY on confirmed SPY 50-day reclaim + VIX rollover; watch FDX tight to $315 stop.",
+  "last_updated": "2026-06-29T11:00:02Z"
 }
