@@ -8,12 +8,13 @@ The system operates in **simulated mode** -- it tracks real market prices but do
 
 - **Starting Capital:** $10,000
 - **Inception Date:** March 28, 2026
-- **Current NAV:** $10,280.03 (+2.80%)
+- **Current NAV:** $10,479.35 (+4.79%)
 - **Open Positions:** CAT, SYK, TGLS, FCN, NCLH, MU, FDX, CLSK
-- **Total Trades:** 31 buys, 30 sells
-- **Days Active:** 88
-- **SPY Return (same period):** +34.39% | **Alpha:** -29.56%
+- **Total Trades:** 44 buys, 31 sells
+- **Days Active:** 96
+- **SPY Return (same period):** +32.02% | **Alpha:** -27.23%
 - **Infrastructure:** Claude Code (Anthropic) on a dedicated VPS
+- *Portfolio figures as of the latest recorded session, 2026-06-26.*
 
 ---
 
@@ -298,8 +299,7 @@ Subagents are independent -- they cannot see each other's work. Sentiment Scout 
 ### Step 5: PM Decision
 - Apply full scoring chain: raw x fundamental x debate
 - Decision tree: sell first, then evaluate buys, BUY or PASS
-- Execute trade if decided -- update all state files
-- Sync every BUY/SELL to PortClaude via MCP
+- Execute trade if decided -- update all state files (the `state/` JSON ledger is authoritative)
 
 ### Step 6: Record Outcomes
 - Append all 6 recommendations to `state/outcomes.json`
@@ -400,32 +400,32 @@ Key features:
 
 ## Current Portfolio
 
-*As of June 24, 2026*
+*As of the latest recorded session, June 26, 2026*
 
 | Metric | Value |
 |--------|-------|
-| **NAV** | $10,280.03 |
-| **Cash** | $4,314.45 (42.0%) |
-| **P&L** | +$280.03 (+2.80%) |
+| **NAV** | $10,479.35 |
+| **Cash** | $4,314.45 (41.2%) |
+| **P&L** | +$479.35 (+4.79%) |
 | **Positions** | 8 open |
-| **Total Trades** | 31 buys, 30 sells |
-| **Days Active** | 88 |
+| **Total Trades** | 44 buys, 31 sells |
+| **Days Active** | 96 |
 | **High Water Mark** | $11,431.25 |
-| **SPY Return (same period)** | +34.39% |
-| **Alpha** | **-29.56%** |
+| **SPY Return (same period)** | +32.02% |
+| **Alpha** | **-27.23%** |
 
 ### Open Positions
 
 | Ticker | Shares | Entry Price | Latest Price | Return | Agent | Stop |
 |--------|--------|-------------|--------------|--------|-------|------|
-| CAT | 1 | $828.79 | $985.82 | +18.9% | Catalyst | $940 |
-| TGLS | 13 | $38.61 | $43.75 | +13.3% | Sentiment | — |
-| MU | 1 | $1,055.89 | $1,133.99 | +7.4% | Quant | $1,050 |
-| SYK | 1 | $294.50 | $308.69 | +4.8% | Contrarian | — |
-| FCN | 4 | $153.18 | $158.57 | +3.5% | Sentiment | — |
-| NCLH | 40 | $20.22 | $20.44 | +1.1% | Sentiment | $19 |
-| CLSK | 43 | $17.36 | $17.24 | -0.7% | Crypto | $14 |
-| FDX | 3 | $331.82 | $326.20 | -1.7% | Quant | $315 |
+| CAT | 1 | $828.79 | $1,000.53 | +20.7% | Catalyst | $940 |
+| TGLS | 13 | $38.61 | $44.72 | +15.8% | Sentiment | — |
+| SYK | 1 | $294.50 | $331.29 | +12.5% | Contrarian | — |
+| MU | 1 | $1,055.89 | $1,149.76 | +8.9% | Quant | $985 |
+| NCLH | 40 | $20.22 | $21.31 | +5.4% | Sentiment | $19 |
+| FCN | 4 | $153.18 | $150.36 | -1.8% | Sentiment | — |
+| FDX | 3 | $331.82 | $318.11 | -4.1% | Quant | $315 |
+| CLSK | 43 | $17.36 | $16.14 | -7.0% | Crypto | $14 |
 
 ### Agent Leaderboard
 
@@ -438,7 +438,7 @@ Key features:
 | Crypto | 30 | 8 | 2 | 2 | -$51.55 | 62.0% |
 | Quant | 30 | 15 | 3 | 6 | **-$106.98** | 42.6% |
 
-**Key issue:** Portfolio +2.80% vs SPY +34.39%. The alpha gap (-29.56%) is driven by over-trading individual stocks in a bull market and tight stop-losses generating realized losses. Sentiment is the only consistently profitable agent. Quant has the most executed trades but worst realized P&L. Macro has a 10% win rate and should be silenced.
+**Key issue:** Portfolio +4.79% vs SPY +32.02%. The alpha gap (-27.23%) is driven by over-trading individual stocks in a bull market and tight stop-losses generating realized losses. Sentiment is the only consistently profitable agent. Quant has the most executed trades but worst realized P&L. Macro has a 10% win rate and should be silenced.
 
 **Changes implemented 2026-06-25:**
 - Macro agent: 0.5x modifier, conviction 8+ floor, effectively silenced
@@ -455,13 +455,30 @@ Key features:
 
 ## Monitoring & Reporting
 
-### Live Dashboard
-A real-time web dashboard (Express.js + Vite React) at `localhost:5173` shows:
-- Portfolio NAV with live P&L (prices via PortClaude API at localhost:8001)
-- Open positions with unrealized gains/losses
-- Agent recommendations and conviction scores
-- Cron job status and execution history
-- Full trade history and PM decision log
+### Native iOS App + Dashboard API
+An **Express API** (`dashboard/server.js`, port 3001) serves live portfolio, analyst,
+market-check and markets data. It's consumed by two clients:
+- **Native iOS app (primary)** — an Expo / React Native app (`mobile/`) running on the
+  phone via Expo Go, reaching the API over **Tailscale** (private, no public exposure,
+  bearer-token auth). Tabs: **Portfolio** (NAV chart, positions, alpha-vs-SPY),
+  **Markets** (12+ customizable benchmarks with live quotes/charts/news + a macro-regime
+  read), **Analysts** (roster, scorecards, executed-trade ledgers), **Live** (session
+  summaries + manual "run check" trigger). An **Account/Profile** page sets a personal
+  capital base and can reset the tracked strategy — a non-destructive overlay that
+  rescales the displayed book without touching the firm's real $10k simulation.
+- **PWA (earlier build)** — the original browser dashboard, still available.
+
+**Live prices for the dashboard/app** come from **Finnhub REST** (`/quote`, 15-min cached
+to stay within the free tier); **price history** for all charts comes from **Yahoo Finance**
+(`v8/finance/chart`, keyless). The firm's cron price refresh (`refresh-prices.sh`) uses
+Yahoo Finance + CoinGecko to update NAV before each session.
+
+The dashboard/app surface shows:
+- Portfolio NAV with live P&L, an interactive multi-period NAV chart vs SPY
+- Open positions with unrealized gains/losses and per-position detail
+- Agent recommendations, conviction scores, and per-agent scorecards
+- Cron job / session status and execution history
+- Full trade history and PM decision reasoning
 
 ### Telegram Briefings (via OpenClaw Cron)
 - **Daily Morning Briefing** (6:30 AM ET): BTC price, macro/AI news, Alpha Firm portfolio snapshot -- sent to Telegram
@@ -506,7 +523,7 @@ run-check.sh
        │   └── Bear Researcher × 2-3 ─┘
        |
        ├─ Step 5: PM Decision (buy/pass/sell)
-       │   └── PortClaude MCP → sync trades
+       │   └── Write trades to state/ JSON (authoritative ledger)
        |
        ├─ Step 6: Record outcomes
        └─ Step 7: Write logs/{today}.md
@@ -516,13 +533,15 @@ run-check.sh
 
 | Component | Details |
 |-----------|---------|
-| **Runtime** | Claude Code CLI on VPS (Claude Max subscription; auto-falls back to Anthropic API / Sonnet 4.6 if subscription quota exhausted) |
-| **Price Data** | Price Fetch MCP server (yfinance + CoinGecko, `mcp/price_server.py`) |
-| **Portfolio Sync** | PortClaude MCP (localhost:8001) for trade sync and price batch API |
-| **Market Research** | Brave Search MCP for real-time news, analysis, and price lookups |
-| **Dashboard** | Express.js API + Vite React frontend (localhost:5173) |
+| **Runtime** | Claude Code CLI on VPS (Claude Max subscription; auto-falls back to Anthropic API / Sonnet if subscription quota exhausted) |
+| **Live Prices** | Finnhub REST `/quote` for the dashboard/app (15-min cached); agents fetch prices via Brave Search / Fetch during checks |
+| **Price History** | Yahoo Finance `v8/finance/chart` (keyless) — powers every chart, sparkline, and NAV reconstruction |
+| **Cron Price Refresh** | `scripts/refresh-prices.sh` (Yahoo Finance + CoinGecko) updates NAV before each session |
+| **Portfolio State** | JSON files in `state/` are authoritative (portfolio, trades, outcomes, scorecards, leaderboard, daily-state); no external portfolio-sync service |
+| **Market Research** | Brave Search MCP for real-time news, analysis, and price lookups (per-agent, during checks) |
+| **Dashboard / App** | Express.js API (port 3001) → native Expo iOS app over Tailscale (bearer-token auth) + earlier PWA; `pm2` runs the API + a Metro bundler process |
+| **News Feed (Markets)** | Yahoo Finance search (`v1/finance/search`) for per-symbol headlines |
 | **Notifications** | Telegram via OpenClaw cron jobs (morning briefing, EOD briefing) |
-| **State Storage** | JSON files (portfolio, trades, outcomes, scorecards, leaderboard, daily-state) |
 | **Scheduling** | System crontab (3 market checks) + OpenClaw cron (briefings, healthchecks) |
 | **Backtesting** | `scripts/backtest.sh` -- replays full pipeline against historical dates |
 
@@ -583,6 +602,6 @@ alpha-firm/
 
 8. **Backtesting** -- Full pipeline replay against historical dates with date-fidelity constraints. Validates the strategy before trusting it with live decisions.
 
-9. **Near-zero marginal cost** -- Runs on Claude Max subscription. Falls back to Anthropic API (Sonnet 4.6) only if subscription quota is exhausted, ensuring no missed sessions. No per-trade API fees, no data vendor costs beyond Brave Search.
+9. **Near-zero marginal cost** -- Runs on Claude Max subscription. Falls back to the Anthropic API only if subscription quota is exhausted, ensuring no missed sessions. No per-trade API fees, no data vendor costs beyond Brave Search.
 
-10. **Real-time monitoring** -- Live dashboard, Telegram briefings (morning + EOD), automated alerts, and PortClaude portfolio sync.
+10. **Real-time monitoring** -- Native iOS app + dashboard API over Tailscale (portfolio, markets, analysts, live sessions), Telegram briefings (morning + EOD), and automated alerts.
