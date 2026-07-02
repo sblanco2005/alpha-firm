@@ -132,11 +132,14 @@ def main():
                 t["pnl_pct"] = round((t["price"] / ep - 1) * 100, 2)
 
     # ── 2. portfolio open + sold positions ────────────────────────────────
+    cash_delta = 0.0  # corrected prices change historical cash flows
     for p in pf.get("positions", []):
         c = check_fill(p["ticker"], p["entry_date"], p["entry_price"],
                        findings, "portfolio open position entry")
         if c is not None and args.apply:
             p["entry_price_original"] = p["entry_price"]
+            # paid less/more than recorded -> cash adjusts by the difference
+            cash_delta += (p["entry_price"] - c) * p["shares"]
             p["entry_price"] = c
     for p in pf.get("sold_positions", []):
         ce = check_fill(p["ticker"], p["entry_date"], p["entry_price"],
@@ -144,6 +147,7 @@ def main():
         cs = check_fill(p["ticker"], p["sell_date"], p["sell_price"],
                         findings, "sold position exit")
         if args.apply and (ce is not None or cs is not None):
+            old_pnl = p.get("realized_pnl", 0.0)
             if ce is not None:
                 p["entry_price_original"] = p["entry_price"]
                 p["entry_price"] = ce
@@ -152,6 +156,21 @@ def main():
                 p["sell_price"] = cs
             p["realized_pnl"] = round((p["sell_price"] - p["entry_price"]) * p["shares"], 2)
             p["realized_pnl_pct"] = round((p["sell_price"] / p["entry_price"] - 1) * 100, 2)
+            cash_delta += p["realized_pnl"] - old_pnl
+
+    # ── 2b. rebuild cash + NAV from corrected flows ───────────────────────
+    if args.apply and abs(cash_delta) > 0.005:
+        pf["cash_original"] = pf.get("cash")
+        pf["cash"] = round(pf["cash"] + cash_delta, 2)
+        open_value = sum(p["shares"] * p.get("latest_price", p["entry_price"])
+                         for p in pf.get("positions", []))
+        pf["nav_original"] = pf.get("nav")
+        pf["nav"] = round(pf["cash"] + open_value, 2)
+        pf["portfolio_pnl_pct"] = round((pf["nav"] / 10000 - 1) * 100, 2)
+        if isinstance(pf.get("spy_return_pct"), (int, float)):
+            pf["alpha"] = round(pf["portfolio_pnl_pct"] - pf["spy_return_pct"], 2)
+        print(f"Cash rebuilt: {pf['cash_original']} -> {pf['cash']} "
+              f"(delta {round(cash_delta,2)}); NAV {pf['nav_original']} -> {pf['nav']}")
 
     # ── 3. SPY baseline in historical entries ─────────────────────────────
     baseline_fixes = 0
