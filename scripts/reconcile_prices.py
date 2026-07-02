@@ -97,26 +97,36 @@ def main():
     for t in tl.get("trades", []):
         if t.get("action") not in ("buy", "sell") or t.get("asset_type") == "crypto":
             continue
-        corrected = check_fill(t["ticker"], t["date"], t["price"], findings,
+        price_key = next((k for k in ("price", "sell_price", "buy_price", "fill_price")
+                          if isinstance(t.get(k), (int, float))), None)
+        if price_key is None or not t.get("ticker") or not t.get("date"):
+            findings.append({"ticker": t.get("ticker"), "date": t.get("date"),
+                             "price": None, "context": f"trade-log #{t.get('id')} {t.get('action')}",
+                             "status": "SKIPPED_NO_PRICE_FIELD", "corrected": None})
+            continue
+        corrected = check_fill(t["ticker"], t["date"], t[price_key], findings,
                                f"trade-log #{t.get('id')} {t['action']}")
         if corrected is not None and args.apply:
-            t["price_original"] = t["price"]
-            t["price"] = corrected
+            t["price_original"] = t[price_key]
+            t[price_key] = corrected
             t["price_corrected_note"] = "reconciled 2026-07-02 vs actual OHLC"
-            if t["action"] == "buy":
-                t["total_cost"] = round(corrected * t["shares"], 2)
-            else:
-                t["total_proceeds"] = round(corrected * t["shares"], 2)
+            if isinstance(t.get("shares"), (int, float)):
+                if t["action"] == "buy":
+                    t["total_cost"] = round(corrected * t["shares"], 2)
+                else:
+                    t["total_proceeds"] = round(corrected * t["shares"], 2)
 
     # sell P&L recompute (entry may also have been corrected)
     if args.apply:
         buy_price = {}
         for t in tl.get("trades", []):
-            if t.get("action") == "buy":
-                buy_price[(t["ticker"], t["date"])] = t["price"]
+            if t.get("action") == "buy" and isinstance(t.get("price"), (int, float)):
+                buy_price[(t.get("ticker"), t.get("date"))] = t["price"]
         for t in tl.get("trades", []):
-            if t.get("action") == "sell" and "entry_price" in t:
-                ep = buy_price.get((t["ticker"], t.get("entry_date")), t["entry_price"])
+            if (t.get("action") == "sell" and isinstance(t.get("entry_price"), (int, float))
+                    and isinstance(t.get("price"), (int, float))
+                    and isinstance(t.get("shares"), (int, float))):
+                ep = buy_price.get((t.get("ticker"), t.get("entry_date")), t["entry_price"])
                 t["entry_price"] = ep
                 t["pnl"] = round((t["price"] - ep) * t["shares"], 2)
                 t["pnl_pct"] = round((t["price"] / ep - 1) * 100, 2)
@@ -163,8 +173,9 @@ def main():
     # ── 4. report / write ─────────────────────────────────────────────────
     bad = [f for f in findings if f["status"] == "OUT_OF_RANGE"]
     nodata = [f for f in findings if f["status"] == "NO_DATA"]
-    print(f"Checked {len(findings)} fills: {len(findings)-len(bad)-len(nodata)} OK, "
-          f"{len(bad)} out-of-range, {len(nodata)} no-data")
+    skipped = [f for f in findings if f["status"] == "SKIPPED_NO_PRICE_FIELD"]
+    print(f"Checked {len(findings)} fills: {len(findings)-len(bad)-len(nodata)-len(skipped)} OK, "
+          f"{len(bad)} out-of-range, {len(nodata)} no-data, {len(skipped)} skipped (no price field)")
     for f in bad:
         print(f"  BAD {f['context']}: {f['ticker']} {f['date']} recorded "
               f"{f['price']} vs range [{f['day_low']}, {f['day_high']}] "
