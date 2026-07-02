@@ -52,12 +52,22 @@
             <span style="width:8px; height:8px; border-radius:50%; background:#2BD98A; box-shadow:0 0 10px #2BD98A;"></span>
             <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:16px; letter-spacing:-.3px;">ALPHA&#8202;FIRM</span>
           </div>
-          <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(255,255,255,.42); letter-spacing:.3px;">JUN&nbsp;24 · DAY&nbsp;88</span>
+          <div style="display:flex; align-items:center; gap:10px;">
+            <span style="font-family:'JetBrains Mono',monospace; font-size:11.5px; color:rgba(255,255,255,.42); letter-spacing:.3px;">{{ headerDate }}</span>
+            <div onClick="{{ goProfile }}" style="cursor:pointer; width:32px; height:32px; border-radius:50%; background:linear-gradient(135deg,#2BD98A,#1a7f5a); display:flex; align-items:center; justify-content:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:12.5px; color:#0B0B11; border:1px solid rgba(255,255,255,.15);">AM</div>
+          </div>
         </div>
+
+        <sc-if value="{{ isReset }}">
+          <div style="display:flex; align-items:center; gap:8px; background:rgba(43,217,138,.1); border:1px solid rgba(43,217,138,.28); border-radius:11px; padding:8px 12px; margin-bottom:14px;">
+            <span style="font-size:13px; color:#2BD98A;">↻</span>
+            <span style="font-size:11.5px; color:#2BD98A; font-weight:600;">{{ trackingLine }} · P&amp;L reset to zero</span>
+          </div>
+        </sc-if>
 
         <div style="font-size:12.5px; color:rgba(255,255,255,.5); letter-spacing:1.4px; font-weight:600;">NET ASSET VALUE</div>
         <div style="display:flex; align-items:baseline; gap:12px; margin-top:4px;">
-          <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:52px; letter-spacing:-2px; line-height:1;">$10,280<span style="font-size:30px; color:rgba(255,255,255,.45);">.03</span></div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:52px; letter-spacing:-2px; line-height:1;">${{ navWhole }}<span style="font-size:30px; color:rgba(255,255,255,.45);">.{{ navCents }}</span></div>
         </div>
         <div style="display:flex; align-items:center; gap:8px; margin-top:11px;">
           <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px; color:{{ homeChart.color }}; background:{{ homeChart.pillBg }}; border:1px solid {{ homeChart.pillBorder }}; padding:4px 9px; border-radius:8px;">{{ homeChart.changeStr }}</span>
@@ -86,26 +96,26 @@
         </div>
 
         <!-- alpha gap callout -->
-        <div style="margin-top:8px; background:linear-gradient(135deg, rgba(255,92,106,.14), rgba(255,92,106,.04)); border:1px solid rgba(255,92,106,.26); border-radius:18px; padding:15px 16px; display:flex; align-items:center; justify-content:space-between;">
+        <div style="margin-top:8px; background:{{ alphaBg }}; border:1px solid {{ alphaBorder }}; border-radius:18px; padding:15px 16px; display:flex; align-items:center; justify-content:space-between;">
           <div>
             <div style="font-size:12px; color:rgba(255,255,255,.6); letter-spacing:.4px; font-weight:600;">ALPHA vs SPY</div>
-            <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:26px; color:#FF5C6A; letter-spacing:-.5px;">−29.56%</div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:26px; color:{{ alphaColor }}; letter-spacing:-.5px;">{{ alphaStr }}</div>
           </div>
-          <div style="max-width:148px; text-align:right; font-size:11.5px; line-height:1.45; color:rgba(255,255,255,.5);">Behind the index in a bull run. Still <span style="color:#F2F2F5;">simulated</span> — building a track record before risking capital.</div>
+          <div style="max-width:150px; text-align:right; font-size:11.5px; line-height:1.45; color:rgba(255,255,255,.5);">{{ alphaNote }}</div>
         </div>
 
         <!-- quick stats -->
         <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:14px;">
           <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:11px 12px;">
-            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px;">42%</div>
-            <div style="font-size:10.5px; color:rgba(255,255,255,.42); margin-top:2px;">Cash · $4.3k</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px;">{{ cashPct }}</div>
+            <div style="font-size:10.5px; color:rgba(255,255,255,.42); margin-top:2px;">Cash · {{ cashStr }}</div>
           </div>
           <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:11px 12px;">
-            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px;">8</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px;">{{ posCountStr }}</div>
             <div style="font-size:10.5px; color:rgba(255,255,255,.42); margin-top:2px;">Positions</div>
           </div>
           <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:11px 12px;">
-            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px;">61</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px;">{{ tradesTotal }}</div>
             <div style="font-size:10.5px; color:rgba(255,255,255,.42); margin-top:2px;">Trades total</div>
           </div>
         </div>
@@ -113,10 +123,11 @@
         <!-- positions -->
         <div style="display:flex; align-items:center; justify-content:space-between; margin:24px 2px 12px;">
           <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:19px;">Open positions</span>
-          <span style="font-size:11.5px; color:rgba(255,255,255,.4); font-family:'JetBrains Mono',monospace;">8 · LIVE PX</span>
+          <span style="font-size:11.5px; color:rgba(255,255,255,.4); font-family:'JetBrains Mono',monospace;">{{ posCountStr }} · LIVE PX</span>
         </div>
 
                 <div style="display:flex; flex-direction:column; gap:8px;">
+          <sc-if value="{{ hasPositions }}" hint-placeholder-val="{{ true }}">
           <sc-for list="{{ positions }}" as="p" hint-placeholder-count="8">
             <div onClick="{{ p.open }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:16px; padding:13px 15px; display:flex; align-items:center; gap:13px;">
               <span style="width:9px; height:9px; border-radius:50%; background:{{ p.color }}; box-shadow:{{ p.dotGlow }}; flex-shrink:0;"></span>
@@ -131,6 +142,14 @@
               <span style="color:rgba(255,255,255,.25); font-size:17px; margin-left:1px;">›</span>
             </div>
           </sc-for>
+          </sc-if>
+          <sc-if value="{{ isReset }}">
+            <div style="background:#14141C; border:1px dashed rgba(255,255,255,.14); border-radius:16px; padding:26px 18px; text-align:center;">
+              <div style="font-size:26px; margin-bottom:8px;">💵</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">100% cash</div>
+              <div style="font-size:12px; color:rgba(255,255,255,.5); margin-top:6px; line-height:1.45; max-width:250px; margin-left:auto; margin-right:auto;">Strategy reset — all positions closed to cash. New agent picks will open here from a clean slate.</div>
+            </div>
+          </sc-if>
         </div>
       </div>
       </sc-if>
@@ -240,9 +259,30 @@
         <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:32px; letter-spacing:-1px; line-height:1;">The Desk</div>
         <div style="font-size:12.5px; color:rgba(255,255,255,.48); margin-top:7px; line-height:1.4;">Six analysts. Independent research, in parallel — <span style="color:#F2F2F5;">no analyst sees the others.</span></div>
 
-        <div style="display:flex; flex-direction:column; gap:10px; margin-top:20px;">
+        <!-- reward pool -->
+        <div style="margin-top:18px; background:linear-gradient(135deg, rgba(255,210,77,.16), rgba(255,210,77,.03)); border:1px solid rgba(255,210,77,.34); border-radius:20px; padding:18px;">
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <div>
+              <div style="font-size:11px; font-weight:700; letter-spacing:.8px; color:#FFD24D;">🏆 REWARD POOL · WINNER-TAKE-ALL</div>
+              <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:30px; margin-top:5px; letter-spacing:-.5px;">$56.01</div>
+              <div style="font-size:11.5px; color:rgba(255,255,255,.5); margin-top:2px;">20% of firm profit → leading analyst</div>
+            </div>
+            <div style="text-align:center; flex-shrink:0;">
+              <div style="width:54px; height:54px; border-radius:16px; background:rgba(255,77,157,.14); border:1px solid rgba(255,77,157,.4); display:flex; align-items:center; justify-content:center; font-size:26px;">📡</div>
+              <div style="font-size:10.5px; color:#FF4D9D; margin-top:5px; font-weight:600;">Sentiment</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin:24px 2px 11px;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">Standings</span>
+          <span style="font-size:10.5px; color:rgba(255,255,255,.4); font-family:'JetBrains Mono',monospace;">RANKED BY REALIZED P&amp;L</span>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px;">
           <!-- Sentiment -->
-          <div onClick="{{ openSentiment }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,77,157,.28); border-radius:18px; padding:15px; display:flex; align-items:center; gap:14px;">
+          <div onClick="{{ openSentiment }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,77,157,.28); border-radius:18px; padding:15px; display:flex; align-items:center; gap:13px;">
+            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:16px; color:#FFD24D; width:15px; flex-shrink:0; text-align:center;">1</span>
             <div style="width:48px; height:48px; border-radius:14px; background:rgba(255,77,157,.14); border:1px solid rgba(255,77,157,.4); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">📡</div>
             <div style="flex:1; min-width:0;">
               <div style="display:flex; align-items:center; gap:7px;"><span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">Sentiment Scout</span><span style="font-size:13px;">⭐</span></div>
@@ -254,7 +294,8 @@
             </div>
           </div>
           <!-- Contrarian -->
-          <div onClick="{{ openContrarian }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:15px; display:flex; align-items:center; gap:14px;">
+          <div onClick="{{ openContrarian }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:15px; display:flex; align-items:center; gap:13px;">
+            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:16px; color:rgba(255,255,255,.4); width:15px; flex-shrink:0; text-align:center;">2</span>
             <div style="width:48px; height:48px; border-radius:14px; background:rgba(160,92,255,.14); border:1px solid rgba(160,92,255,.4); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">🃏</div>
             <div style="flex:1; min-width:0;">
               <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">Contrarian</div>
@@ -266,7 +307,8 @@
             </div>
           </div>
           <!-- Catalyst -->
-          <div onClick="{{ openCatalyst }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:15px; display:flex; align-items:center; gap:14px;">
+          <div onClick="{{ openCatalyst }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:15px; display:flex; align-items:center; gap:13px;">
+            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:16px; color:rgba(255,255,255,.4); width:15px; flex-shrink:0; text-align:center;">3</span>
             <div style="width:48px; height:48px; border-radius:14px; background:rgba(77,124,255,.14); border:1px solid rgba(77,124,255,.4); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">⏱</div>
             <div style="flex:1; min-width:0;">
               <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">Catalyst Agent</div>
@@ -278,7 +320,8 @@
             </div>
           </div>
           <!-- Macro -->
-          <div onClick="{{ openMacro }}" style="cursor:pointer; background:#101017; border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:15px; display:flex; align-items:center; gap:14px; opacity:.72;">
+          <div onClick="{{ openMacro }}" style="cursor:pointer; background:#101017; border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:15px; display:flex; align-items:center; gap:13px; opacity:.72;">
+            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:16px; color:rgba(255,255,255,.4); width:15px; flex-shrink:0; text-align:center;">4</span>
             <div style="width:48px; height:48px; border-radius:14px; background:rgba(245,183,49,.1); border:1px solid rgba(245,183,49,.3); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">🌐</div>
             <div style="flex:1; min-width:0;">
               <div style="display:flex; align-items:center; gap:7px;"><span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">Macro Strategist</span><span style="font-size:9px; font-weight:700; color:#FF5C6A; background:rgba(255,92,106,.14); border:1px solid rgba(255,92,106,.3); padding:1.5px 6px; border-radius:6px; letter-spacing:.5px;">BENCHED</span></div>
@@ -290,7 +333,8 @@
             </div>
           </div>
           <!-- Crypto -->
-          <div onClick="{{ openCrypto }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:15px; display:flex; align-items:center; gap:14px;">
+          <div onClick="{{ openCrypto }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,255,255,.08); border-radius:18px; padding:15px; display:flex; align-items:center; gap:13px;">
+            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:16px; color:rgba(255,255,255,.4); width:15px; flex-shrink:0; text-align:center;">5</span>
             <div style="width:48px; height:48px; border-radius:14px; background:rgba(247,147,26,.13); border:1px solid rgba(247,147,26,.4); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">₿</div>
             <div style="flex:1; min-width:0;">
               <div style="display:flex; align-items:center; gap:7px;"><span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">Crypto Analyst</span><span style="font-size:9px; font-weight:700; color:#F7931A; background:rgba(247,147,26,.12); border:1px solid rgba(247,147,26,.3); padding:1.5px 6px; border-radius:6px; letter-spacing:.5px;">STOCKS ONLY</span></div>
@@ -302,7 +346,8 @@
             </div>
           </div>
           <!-- Quant -->
-          <div onClick="{{ openQuant }}" style="cursor:pointer; background:#101017; border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:15px; display:flex; align-items:center; gap:14px; opacity:.72;">
+          <div onClick="{{ openQuant }}" style="cursor:pointer; background:#101017; border:1px solid rgba(255,255,255,.06); border-radius:18px; padding:15px; display:flex; align-items:center; gap:13px; opacity:.72;">
+            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:16px; color:rgba(255,255,255,.4); width:15px; flex-shrink:0; text-align:center;">6</span>
             <div style="width:48px; height:48px; border-radius:14px; background:rgba(45,212,212,.1); border:1px solid rgba(45,212,212,.3); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0;">📊</div>
             <div style="flex:1; min-width:0;">
               <div style="display:flex; align-items:center; gap:7px;"><span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">Momentum Quant</span><span style="font-size:9px; font-weight:700; color:#FF5C6A; background:rgba(255,92,106,.14); border:1px solid rgba(255,92,106,.3); padding:1.5px 6px; border-radius:6px; letter-spacing:.5px;">SUSPENDED</span></div>
@@ -314,6 +359,16 @@
             </div>
           </div>
         </div>
+
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin:24px 2px 11px;">The Soul · non-negotiables</div>
+        <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:18px; padding:6px 16px;">
+          <div style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">Cut losses fast.</span> A small loss is a gift.</div>
+          <div style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">Let winners run.</span> Don’t panic-sell a working position.</div>
+          <div style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">Never average down.</span> More wrong, more money.</div>
+          <div style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">Sit on your hands.</span> Most days, doing nothing wins.</div>
+          <div style="padding:11px 0; font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">The market is never wrong.</span> Price is truth.</div>
+        </div>
+        <div style="height:8px;"></div>
       </div>
       </sc-if>
 
@@ -347,9 +402,9 @@
             <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:21px;">{{ a.picks }}</div>
             <div style="font-size:11px; color:rgba(255,255,255,.45); margin-top:2px;">Recommendations</div>
           </div>
-          <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:15px; padding:13px 15px;">
-            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:21px;">{{ a.executed }}</div>
-            <div style="font-size:11px; color:rgba(255,255,255,.45); margin-top:2px;">Executed</div>
+          <div onClick="{{ openTxns }}" style="cursor:pointer; background:#14141C; border:1px solid {{ a.tintBorder }}; border-radius:15px; padding:13px 15px;">
+            <div style="display:flex; align-items:center; justify-content:space-between;"><span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:21px;">{{ a.executed }}</span><span style="font-size:15px; color:{{ a.color }};">›</span></div>
+            <div style="font-size:11px; color:{{ a.color }}; margin-top:2px;">Executed · view trades</div>
           </div>
         </div>
 
@@ -394,6 +449,72 @@
       </div>
       </sc-if>
 
+      <!-- ════════════════ AGENT TRANSACTIONS ════════════════ -->
+      <sc-if value="{{ showTxns }}">
+      <div style="padding:0 18px; animation:afFadeUp .35s ease both;">
+        <div onClick="{{ closeTxns }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:5px; color:rgba(255,255,255,.6); font-size:13px; font-weight:600; margin-bottom:16px;"><span style="font-size:18px; line-height:1;">‹</span> {{ a.name }}</div>
+
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:44px; height:44px; border-radius:13px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; background:{{ a.tintBg }}; border:1px solid {{ a.tintBorder }};">{{ a.emoji }}</div>
+          <div style="flex:1; min-width:0;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:21px; letter-spacing:-.5px; line-height:1;">Executed trades</div>
+            <div style="font-size:12px; color:{{ a.color }}; margin-top:3px;">{{ a.name }} · {{ tx.summary }}</div>
+          </div>
+        </div>
+
+        <div style="margin-top:16px; background:{{ tx.realizedBg }}; border:1px solid {{ tx.realizedBorder }}; border-radius:18px; padding:16px;">
+          <div style="font-size:11px; font-weight:700; letter-spacing:.6px; color:{{ tx.realizedColor }};">REALIZED P&amp;L · CLOSED TRADES</div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:30px; letter-spacing:-.5px; margin-top:5px; color:{{ tx.realizedColor }};">{{ tx.realized }}</div>
+          <div style="display:flex; gap:18px; margin-top:10px;">
+            <div><span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px;">{{ tx.openCount }}</span><span style="font-size:11px; color:rgba(255,255,255,.45); margin-left:5px;">open</span></div>
+            <div><span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px;">{{ tx.closedCount }}</span><span style="font-size:11px; color:rgba(255,255,255,.45); margin-left:5px;">closed</span></div>
+            <div><span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px;">{{ a.winRate }}</span><span style="font-size:11px; color:rgba(255,255,255,.45); margin-left:5px;">win rate</span></div>
+          </div>
+        </div>
+
+        <sc-if value="{{ tx.hasOpen }}" hint-placeholder-val="{{ true }}">
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin:22px 2px 10px;">Open · unrealized</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ tx.open }}" as="t" hint-placeholder-count="1">
+            <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:15px; padding:13px 15px; display:flex; align-items:center; gap:12px;">
+              <div style="flex:1; min-width:0;">
+                <div style="display:flex; align-items:center; gap:8px;"><span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px;">{{ t.ticker }}</span><span style="font-size:8.5px; font-weight:700; letter-spacing:.5px; color:{{ a.color }}; background:{{ a.tintBg }}; border:1px solid {{ a.tintBorder }}; padding:1.5px 6px; border-radius:6px;">OPEN</span></div>
+                <div style="font-size:11px; color:rgba(255,255,255,.42); margin-top:2px;">{{ t.sub }}</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px; color:{{ t.color }};">{{ t.pnl }}</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:{{ t.color }}; margin-top:1px;">{{ t.ret }}</div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin:22px 2px 10px;">Closed · realized</div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ tx.closed }}" as="t" hint-placeholder-count="4">
+            <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:15px; padding:13px 15px; display:flex; align-items:center; gap:12px;">
+              <div style="flex:1; min-width:0;">
+                <div style="display:flex; align-items:center; gap:8px;"><span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px;">{{ t.ticker }}</span><span style="font-size:8.5px; font-weight:700; letter-spacing:.5px; color:rgba(255,255,255,.5); background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); padding:1.5px 6px; border-radius:6px;">SOLD</span></div>
+                <div style="font-size:11px; color:rgba(255,255,255,.42); margin-top:2px;">{{ t.sub }}</div>
+              </div>
+              <div style="text-align:right;">
+                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px; color:{{ t.color }};">{{ t.pnl }}</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:{{ t.color }}; margin-top:1px;">{{ t.ret }}</div>
+              </div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ tx.hasEarlier }}" hint-placeholder-val="{{ false }}">
+            <div style="display:flex; align-items:center; justify-content:space-between; padding:11px 15px; border:1px dashed rgba(255,255,255,.12); border-radius:15px;">
+              <span style="font-size:12px; color:rgba(255,255,255,.5);">{{ tx.earlierLabel }}</span>
+              <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13px; color:{{ tx.earlierColor }};">{{ tx.earlierPnl }}</span>
+            </div>
+          </sc-if>
+        </div>
+        <div style="height:10px;"></div>
+      </div>
+      </sc-if>
+
       <!-- ════════════════ LIVE MARKET CHECK ════════════════ -->
       <sc-if value="{{ showLive }}">
       <div style="padding:0 18px; animation:afFadeUp .4s ease both;">
@@ -426,7 +547,7 @@
           <!-- agent grid -->
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
             <sc-for list="{{ liveAgents }}" as="g" hint-placeholder-count="6">
-              <div style="background:#14141C; border:1px solid {{ g.border }}; border-radius:15px; padding:12px; opacity:{{ g.opacity }};">
+              <div onClick="{{ g.open }}" style="cursor:{{ g.cursor }}; background:#14141C; border:1px solid {{ g.border }}; border-radius:15px; padding:12px; opacity:{{ g.opacity }};">
                 <div style="display:flex; align-items:center; gap:8px;">
                   <span style="font-size:18px;">{{ g.emoji }}</span>
                   <span style="font-size:11.5px; font-weight:600; color:rgba(255,255,255,.7);">{{ g.name }}</span>
@@ -438,7 +559,7 @@
                     <span style="font-family:'JetBrains Mono',monospace; font-size:11px; color:rgba(255,255,255,.5);">conv {{ g.conv }}</span>
                   </div>
                   <div style="margin-top:6px; height:4px; border-radius:3px; background:rgba(255,255,255,.08); overflow:hidden;"><div style="height:100%; border-radius:3px; width:{{ g.convPct }}; background:{{ g.color }}; animation:afGrow .6s ease both;"></div></div>
-                  <div style="margin-top:6px; font-size:10px; color:rgba(255,255,255,.4);">{{ g.note }}</div>
+                  <div style="margin-top:6px; display:flex; align-items:center; justify-content:space-between;"><span style="font-size:10px; color:rgba(255,255,255,.4);">{{ g.note }}</span><span style="font-size:13px; color:rgba(255,255,255,.3);">›</span></div>
                 </sc-if>
                 <sc-if value="{{ scanning }}" hint-placeholder-val="{{ true }}">
                   <div style="margin-top:11px; height:8px; border-radius:4px; background:linear-gradient(90deg, rgba(255,255,255,.05), rgba(255,255,255,.16), rgba(255,255,255,.05)); background-size:200px 100%; animation:afShimmer 1.1s linear infinite;"></div>
@@ -494,86 +615,356 @@
       </div>
       </sc-if>
 
-      <!-- ════════════════ LEAGUE ════════════════ -->
-      <sc-if value="{{ showLeague }}">
+      <!-- ════════════════ PICK DETAIL ════════════════ -->
+      <sc-if value="{{ showPick }}">
+      <div style="padding:0 18px; animation:afFadeUp .35s ease both;">
+        <div onClick="{{ closePick }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:5px; color:rgba(255,255,255,.6); font-size:13px; font-weight:600; margin-bottom:16px;"><span style="font-size:18px; line-height:1;">‹</span> Market Check</div>
+
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+          <div style="min-width:0;">
+            <div style="display:flex; align-items:center; gap:9px;">
+              <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:27px; letter-spacing:-.5px; line-height:1;">{{ k.ticker }}</span>
+              <span style="font-size:10px; font-weight:700; letter-spacing:.5px; color:{{ k.outColor }}; background:{{ k.outBg }}; border:1px solid {{ k.outBorder }}; padding:3px 9px; border-radius:8px;">{{ k.outcome }}</span>
+            </div>
+            <div style="font-size:12.5px; color:rgba(255,255,255,.55); margin-top:5px;">{{ k.company }}</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:7px; flex-shrink:0;">
+            <span style="font-size:10px; font-weight:600; color:rgba(255,255,255,.6); background:#14141C; border:1px solid rgba(255,255,255,.1); padding:4px 9px; border-radius:8px;">{{ k.sector }}</span>
+            <div style="width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:17px; background:{{ k.agentTintBg }}; border:1px solid {{ k.agentTintBorder }};">{{ k.emoji }}</div>
+          </div>
+        </div>
+
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:40px; letter-spacing:-1.5px; margin-top:16px; line-height:1;">{{ k.priceStr }}</div>
+        <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13.5px; color:{{ pkchart.color }};">{{ pkchart.changeStr }}</span>
+          <span style="font-size:12.5px; color:rgba(255,255,255,.45);">{{ pkchart.periodLabel }}</span>
+        </div>
+
+        <div style="position:relative; margin:14px -4px 0; height:152px;">
+          <svg viewBox="0 0 340 150" preserveAspectRatio="none" style="width:100%; height:100%; overflow:visible;">
+            <defs>
+              <linearGradient id="afPkUp" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2BD98A" stop-opacity=".26"></stop><stop offset="100%" stop-color="#2BD98A" stop-opacity="0"></stop></linearGradient>
+              <linearGradient id="afPkDown" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#FF5C6A" stop-opacity=".24"></stop><stop offset="100%" stop-color="#FF5C6A" stop-opacity="0"></stop></linearGradient>
+            </defs>
+            <sc-if value="{{ pkchart.hasEntry }}" hint-placeholder-val="{{ false }}">
+              <line x1="0" y1="{{ pkchart.entryY }}" x2="340" y2="{{ pkchart.entryY }}" stroke="rgba(255,255,255,.2)" stroke-width="1.2" stroke-dasharray="3 4"></line>
+            </sc-if>
+            <path d="{{ pkchart.area }}" fill="{{ pkchart.areaFillPk }}"></path>
+            <path d="{{ pkchart.line }}" fill="none" stroke="{{ pkchart.color }}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+            <circle cx="{{ pkchart.dotX }}" cy="{{ pkchart.dotY }}" r="3.4" fill="{{ pkchart.color }}"></circle>
+          </svg>
+          <sc-if value="{{ pkchart.hasEntry }}" hint-placeholder-val="{{ false }}"><span style="position:absolute; right:2px; font-family:'JetBrains Mono',monospace; font-size:9.5px; color:rgba(255,255,255,.5); top:{{ pkchart.entryLabelTop }};">rec {{ k.recStr }}</span></sc-if>
+        </div>
+
+        <div style="display:flex; gap:3px; margin-top:12px;">
+          <sc-for list="{{ pkPeriods }}" as="pb" hint-placeholder-count="7">
+            <div onClick="{{ pb.onTap }}" style="cursor:pointer; flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:11.5px; padding:7px 0; border-radius:8px; color:{{ pb.color }}; background:{{ pb.bg }};">{{ pb.label }}</div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:18px;">
+          <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:12px 14px;">
+            <div style="font-size:10.5px; color:rgba(255,255,255,.45);">Recommended at</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px; margin-top:3px;">{{ k.recStr }}</div>
+          </div>
+          <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:12px 14px;">
+            <div style="font-size:10.5px; color:rgba(255,255,255,.45);">Since rec</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px; margin-top:3px; color:{{ k.sinceColor }};">{{ k.sinceStr }}</div>
+          </div>
+          <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:12px 14px;">
+            <div style="font-size:10.5px; color:rgba(255,255,255,.45);">Conviction</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px; margin-top:3px; color:{{ k.color }};">{{ k.conv }}/10</div>
+          </div>
+          <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:12px 14px;">
+            <div style="font-size:10.5px; color:rgba(255,255,255,.45);">Target / horizon</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px; margin-top:3px;">{{ k.target }} · {{ k.horizon }}</div>
+          </div>
+        </div>
+
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin:22px 2px 9px;">What is {{ k.ticker }}?</div>
+        <div style="font-size:13px; line-height:1.55; color:rgba(255,255,255,.7);">{{ k.what }}</div>
+
+        <div style="margin-top:18px; background:{{ k.agentTintBg }}; border:1px solid {{ k.agentTintBorder }}; border-radius:16px; padding:15px 16px;">
+          <div style="display:flex; align-items:center; gap:9px; margin-bottom:9px;">
+            <div style="width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:16px; background:{{ k.agentTintBg }};">{{ k.emoji }}</div>
+            <div style="flex:1;"><div style="font-size:13px; font-weight:700; color:{{ k.color }};">Why {{ k.agent }} picked it</div><div style="font-size:10.5px; color:rgba(255,255,255,.45); font-family:'JetBrains Mono',monospace;">conviction {{ k.conv }}/10 · raw score {{ k.raw }}</div></div>
+          </div>
+          <div style="font-size:12.5px; line-height:1.5; color:rgba(255,255,255,.78);">{{ k.agentWhy }}</div>
+          <div style="display:flex; gap:6px; margin-top:11px; flex-wrap:wrap;">
+            <span style="font-size:9.5px; font-family:'JetBrains Mono',monospace; color:{{ k.color }}; background:{{ k.agentTintBg }}; border:1px solid {{ k.agentTintBorder }}; padding:3px 8px; border-radius:7px;">⚡ {{ k.catalyst }}</span>
+            <span style="font-size:9.5px; font-family:'JetBrains Mono',monospace; color:rgba(255,255,255,.6); background:#14141C; border:1px solid rgba(255,255,255,.1); padding:3px 8px; border-radius:7px;">🎯 {{ k.target }}</span>
+          </div>
+        </div>
+
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin:22px 2px 11px;">How the PM read it</div>
+        <div style="background:#14141C; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:6px 16px;">
+          <div style="padding:12px 0; border-bottom:1px solid rgba(255,255,255,.06);"><div style="font-size:10px; font-weight:700; letter-spacing:.6px; color:rgba(255,255,255,.4);">CORE CLAIM</div><div style="font-size:12.5px; line-height:1.5; color:rgba(255,255,255,.82); margin-top:4px;">{{ k.claim }}</div></div>
+          <div style="padding:12px 0; border-bottom:1px solid rgba(255,255,255,.06);"><div style="font-size:10px; font-weight:700; letter-spacing:.6px; color:rgba(255,255,255,.4); margin-bottom:6px;">SUPPORTING FACTS</div>
+            <sc-for list="{{ k.facts }}" as="f" hint-placeholder-count="3"><div style="display:flex; gap:8px; align-items:flex-start; margin-top:5px;"><span style="color:{{ k.color }}; font-size:12px; line-height:1.5;">▪</span><span style="font-size:12px; line-height:1.5; color:rgba(255,255,255,.72);">{{ f.v }}</span></div></sc-for>
+          </div>
+          <div style="display:flex; gap:10px; padding:12px 0; border-bottom:1px solid rgba(255,255,255,.06);"><div style="flex:1;"><div style="font-size:10px; font-weight:700; letter-spacing:.6px; color:rgba(255,255,255,.4);">WHY NOW</div><div style="font-size:12px; line-height:1.45; color:rgba(255,255,255,.72); margin-top:4px;">{{ k.whyNow }}</div></div></div>
+          <div style="padding:12px 0;"><div style="font-size:10px; font-weight:700; letter-spacing:.6px; color:#FF5C6A;">WHAT WOULD DISPROVE IT</div><div style="font-size:12px; line-height:1.45; color:rgba(255,255,255,.72); margin-top:4px;">{{ k.disprove }}</div></div>
+        </div>
+
+        <div style="margin-top:11px; background:{{ k.outBg }}; border:1px solid {{ k.outBorder }}; border-radius:16px; padding:15px 16px;">
+          <div style="display:flex; align-items:center; gap:9px; margin-bottom:8px;">
+            <div style="width:30px; height:30px; border-radius:9px; background:{{ k.outBg }}; border:1px solid {{ k.outBorder }}; display:flex; align-items:center; justify-content:center; font-size:15px;">{{ k.outIcon }}</div>
+            <div style="flex:1;"><div style="font-size:13px; font-weight:700; color:{{ k.outColor }};">PM decision · {{ k.outcome }}</div><div style="font-size:10.5px; color:rgba(255,255,255,.45); font-family:'JetBrains Mono',monospace;">{{ k.outMeta }}</div></div>
+          </div>
+          <div style="font-size:12.5px; line-height:1.5; color:rgba(255,255,255,.78);">{{ k.pmWhy }}</div>
+        </div>
+        <div style="height:10px;"></div>
+      </div>
+      </sc-if>
+
+      <!-- ════════════════ MARKETS ════════════════ -->
+      <sc-if value="{{ showMarkets }}">
       <div style="padding:0 18px; animation:afFadeUp .4s ease both;">
-        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:32px; letter-spacing:-1px; line-height:1;">Standings</div>
-        <div style="font-size:12.5px; color:rgba(255,255,255,.48); margin-top:7px; line-height:1.4;">Agents earn influence through track record. Bad analysts get discounted — automatically.</div>
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:32px; letter-spacing:-1px; line-height:1;">Markets</div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:rgba(255,255,255,.5); background:#14141C; border:1px solid rgba(255,255,255,.08); padding:5px 9px; border-radius:8px;">3:45 · CLOSE</span>
+        </div>
+        <div style="font-size:12.5px; color:rgba(255,255,255,.48); margin-top:7px; line-height:1.4;">The backdrop the desk trades against — <span style="color:#F2F2F5;">equities, gold, crypto and rates.</span></div>
 
-        <!-- reward pool -->
-        <div style="margin-top:18px; background:linear-gradient(135deg, rgba(255,210,77,.16), rgba(255,210,77,.03)); border:1px solid rgba(255,210,77,.34); border-radius:20px; padding:18px;">
-          <div style="display:flex; align-items:center; justify-content:space-between;">
-            <div>
-              <div style="font-size:11px; font-weight:700; letter-spacing:.8px; color:#FFD24D;">🏆 REWARD POOL · WINNER-TAKE-ALL</div>
-              <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:30px; margin-top:5px; letter-spacing:-.5px;">$56.01</div>
-              <div style="font-size:11.5px; color:rgba(255,255,255,.5); margin-top:2px;">20% of firm profit → leading analyst</div>
-            </div>
-            <div style="text-align:center; flex-shrink:0;">
-              <div style="width:54px; height:54px; border-radius:16px; background:rgba(255,77,157,.14); border:1px solid rgba(255,77,157,.4); display:flex; align-items:center; justify-content:center; font-size:26px;">📡</div>
-              <div style="font-size:10.5px; color:#FF4D9D; margin-top:5px; font-weight:600;">Sentiment</div>
-            </div>
+        <!-- regime read -->
+        <div style="margin-top:18px; background:linear-gradient(135deg, rgba(245,183,49,.14), rgba(245,183,49,.03)); border:1px solid rgba(245,183,49,.3); border-radius:20px; padding:17px 18px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:15px;">🌐</span>
+            <span style="font-size:11px; font-weight:700; letter-spacing:.7px; color:#F5B731;">MACRO REGIME READ</span>
+          </div>
+          <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:24px; letter-spacing:-.5px; margin-top:7px;">Risk-on, narrowing</div>
+          <div style="font-size:12px; line-height:1.5; color:rgba(255,255,255,.6); margin-top:5px;">Equities drift up on thin breadth while gold stays bid and yields hold firm — a late-cycle tape. The desk stays index-aware.</div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin:24px 2px 12px;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:19px;">Key benchmarks</span>
+          <div onClick="{{ openMktEdit }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:5px; font-size:10.5px; font-weight:700; letter-spacing:.5px; color:#2BD98A; background:rgba(43,217,138,.12); border:1px solid rgba(43,217,138,.3); padding:5px 10px; border-radius:9px; font-family:'JetBrains Mono',monospace;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M4 20h4L18 10l-4-4L4 16v4z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            EDIT · {{ selCount }}
           </div>
         </div>
 
-        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin:22px 2px 12px;">Agent leaderboard</div>
         <div style="display:flex; flex-direction:column; gap:8px;">
-          <div style="background:#14141C; border:1px solid rgba(255,77,157,.28); border-radius:15px; padding:13px 14px; display:flex; align-items:center; gap:13px;">
-            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; color:#FFD24D; width:20px;">1</span>
-            <span style="font-size:20px;">📡</span>
-            <div style="flex:1; min-width:0;"><div style="font-weight:600; font-size:14px;">Sentiment</div><div style="font-size:10.5px; color:rgba(255,255,255,.42); font-family:'JetBrains Mono',monospace;">58.3% win · 17 exec</div></div>
-            <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:#2BD98A;">+$211.70</span>
-          </div>
-          <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:15px; padding:13px 14px; display:flex; align-items:center; gap:13px;">
-            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; color:rgba(255,255,255,.4); width:20px;">2</span>
-            <span style="font-size:20px;">🃏</span>
-            <div style="flex:1; min-width:0;"><div style="font-weight:600; font-size:14px;">Contrarian</div><div style="font-size:10.5px; color:rgba(255,255,255,.42); font-family:'JetBrains Mono',monospace;">33.3% win · 14 exec</div></div>
-            <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:#2BD98A;">+$90.69</span>
-          </div>
-          <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:15px; padding:13px 14px; display:flex; align-items:center; gap:13px;">
-            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; color:rgba(255,255,255,.4); width:20px;">3</span>
-            <span style="font-size:20px;">⏱</span>
-            <div style="flex:1; min-width:0;"><div style="font-weight:600; font-size:14px;">Catalyst</div><div style="font-size:10.5px; color:rgba(255,255,255,.42); font-family:'JetBrains Mono',monospace;">23.3% win · 3 exec</div></div>
-            <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:#2BD98A;">+$17.32</span>
-          </div>
-          <div style="background:#101017; border:1px solid rgba(255,255,255,.06); border-radius:15px; padding:13px 14px; display:flex; align-items:center; gap:13px; opacity:.78;">
-            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; color:rgba(255,255,255,.4); width:20px;">4</span>
-            <span style="font-size:20px;">🌐</span>
-            <div style="flex:1; min-width:0;"><div style="font-weight:600; font-size:14px; display:flex; align-items:center; gap:6px;">Macro <span style="font-size:8.5px; font-weight:700; color:#FF5C6A; background:rgba(255,92,106,.14); padding:1px 5px; border-radius:5px;">BENCHED</span></div><div style="font-size:10.5px; color:rgba(255,255,255,.42); font-family:'JetBrains Mono',monospace;">10.0% win · 1 exec</div></div>
-            <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:#FF5C6A;">−$2.16</span>
-          </div>
-          <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:15px; padding:13px 14px; display:flex; align-items:center; gap:13px;">
-            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; color:rgba(255,255,255,.4); width:20px;">5</span>
-            <span style="font-size:20px;">₿</span>
-            <div style="flex:1; min-width:0;"><div style="font-weight:600; font-size:14px;">Crypto</div><div style="font-size:10.5px; color:rgba(255,255,255,.42); font-family:'JetBrains Mono',monospace;">62.0% win · 8 exec</div></div>
-            <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:#FF5C6A;">−$51.55</span>
-          </div>
-          <div style="background:#101017; border:1px solid rgba(255,255,255,.06); border-radius:15px; padding:13px 14px; display:flex; align-items:center; gap:13px; opacity:.78;">
-            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:17px; color:rgba(255,255,255,.4); width:20px;">6</span>
-            <span style="font-size:20px;">📊</span>
-            <div style="flex:1; min-width:0;"><div style="font-weight:600; font-size:14px; display:flex; align-items:center; gap:6px;">Quant <span style="font-size:8.5px; font-weight:700; color:#FF5C6A; background:rgba(255,92,106,.14); padding:1px 5px; border-radius:5px;">SUSPENDED</span></div><div style="font-size:10.5px; color:rgba(255,255,255,.42); font-family:'JetBrains Mono',monospace;">42.6% win · 15 exec</div></div>
-            <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px; color:#FF5C6A;">−$106.98</span>
-          </div>
-        </div>
-
-        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin:24px 2px 11px;">The Soul · non-negotiables</div>
-        <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:18px; padding:6px 16px;">
-          <div style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">Cut losses fast.</span> A small loss is a gift.</div>
-          <div style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">Let winners run.</span> Don’t panic-sell a working position.</div>
-          <div style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">Never average down.</span> More wrong, more money.</div>
-          <div style="padding:11px 0; border-bottom:1px solid rgba(255,255,255,.06); font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">Sit on your hands.</span> Most days, doing nothing wins.</div>
-          <div style="padding:11px 0; font-size:13px; color:rgba(255,255,255,.78);"><span style="color:#2BD98A; font-weight:700;">The market is never wrong.</span> Price is truth.</div>
+          <sc-for list="{{ markets }}" as="mm" hint-placeholder-count="4">
+            <div onClick="{{ mm.open }}" style="cursor:pointer; background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:16px; padding:13px 15px;">
+              <div style="display:flex; align-items:center; gap:12px;">
+                <div style="width:38px; height:38px; border-radius:11px; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:11px; flex-shrink:0; color:{{ mm.color }}; background:{{ mm.tintBg }}; border:1px solid {{ mm.tintBorder }};">{{ mm.glyph }}</div>
+                <div style="min-width:0; flex-shrink:0;">
+                  <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:15px;">{{ mm.name }}</div>
+                  <div style="font-size:10.5px; color:rgba(255,255,255,.42); margin-top:1px;">{{ mm.sector }}</div>
+                </div>
+                <div style="flex:1; height:32px; min-width:0;">
+                  <svg viewBox="0 0 120 34" preserveAspectRatio="none" style="width:100%; height:100%; overflow:visible;">
+                    <path d="{{ mm.spark }}" fill="none" stroke="{{ mm.sparkColor }}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+                  </svg>
+                </div>
+                <div style="text-align:right; flex-shrink:0;">
+                  <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px;">{{ mm.levelStr }}</div>
+                  <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:11px; color:{{ mm.dayColor }}; margin-top:2px;">{{ mm.dayStr }}</div>
+                </div>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px; margin-top:11px; padding-top:11px; border-top:1px solid rgba(255,255,255,.06);">
+                <span style="width:6px; height:6px; border-radius:50%; background:{{ mm.headTagColor }}; flex-shrink:0; box-shadow:0 0 6px {{ mm.headTagColor }};"></span>
+                <span style="font-size:11.5px; color:rgba(255,255,255,.66); line-height:1.35; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ mm.headline }}</span>
+              </div>
+            </div>
+          </sc-for>
         </div>
         <div style="height:8px;"></div>
       </div>
       </sc-if>
 
-    </div>
+      <!-- ════════════════ CUSTOMIZE MARKETS ════════════════ -->
+      <sc-if value="{{ showMktEdit }}">
+      <div style="padding:0 18px; animation:afFadeUp .35s ease both;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div onClick="{{ closeMktEdit }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:5px; color:rgba(255,255,255,.6); font-size:13px; font-weight:600;"><span style="font-size:18px; line-height:1;">‹</span> Markets</div>
+          <div onClick="{{ closeMktEdit }}" style="cursor:pointer; font-size:12px; font-weight:700; color:#2BD98A; background:rgba(43,217,138,.12); border:1px solid rgba(43,217,138,.3); padding:6px 15px; border-radius:10px;">Done</div>
+        </div>
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:28px; letter-spacing:-.8px; margin-top:12px; line-height:1;">Customize markets</div>
+        <div style="font-size:12.5px; color:rgba(255,255,255,.5); margin-top:7px; line-height:1.4;">Pick the tickers your Markets tab tracks. <span style="color:#F2F2F5;">{{ selCount }} of {{ maxMkt }} selected.</span></div>
+
+        <div style="display:flex; flex-direction:column; gap:7px; margin-top:18px;">
+          <sc-for list="{{ catalogRows }}" as="c" hint-placeholder-count="12">
+            <div onClick="{{ c.toggle }}" style="cursor:pointer; opacity:{{ c.rowOpacity }}; background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:11px 13px; display:flex; align-items:center; gap:12px;">
+              <div style="width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10.5px; flex-shrink:0; color:{{ c.color }}; background:{{ c.tintBg }}; border:1px solid {{ c.tintBorder }};">{{ c.glyph }}</div>
+              <div style="flex:1; min-width:0;">
+                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14px;">{{ c.name }}</div>
+                <div style="font-size:10.5px; color:rgba(255,255,255,.42); margin-top:1px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">{{ c.full }}</div>
+              </div>
+              <div style="text-align:right; flex-shrink:0; margin-right:2px;">
+                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:12.5px;">{{ c.levelStr }}</div>
+                <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:10px; color:{{ c.dayColor }}; margin-top:2px;">{{ c.dayStr }}</div>
+              </div>
+              <div style="width:27px; height:27px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; line-height:1; color:{{ c.togColor }}; background:{{ c.togBg }}; border:1.5px solid {{ c.togBorder }};">{{ c.togGlyph }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="height:10px;"></div>
+      </div>
+      </sc-if>
+
+      <!-- ════════════════ MARKET DETAIL ════════════════ -->
+      <sc-if value="{{ showMarket }}">
+      <div style="padding:0 18px; animation:afFadeUp .35s ease both;">
+        <div onClick="{{ closeMkt }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:5px; color:rgba(255,255,255,.6); font-size:13px; font-weight:600; margin-bottom:16px;"><span style="font-size:18px; line-height:1;">‹</span> Markets</div>
+
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:12px;">
+          <div style="min-width:0;">
+            <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:27px; letter-spacing:-.5px; line-height:1;">{{ m.name }}</div>
+            <div style="font-size:12.5px; color:rgba(255,255,255,.55); margin-top:5px;">{{ m.full }}</div>
+          </div>
+          <div style="display:flex; align-items:center; gap:7px; flex-shrink:0;">
+            <span style="font-size:10px; font-weight:600; color:rgba(255,255,255,.6); background:#14141C; border:1px solid rgba(255,255,255,.1); padding:4px 9px; border-radius:8px;">{{ m.sector }}</span>
+            <div style="width:34px; height:34px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:11px; color:{{ m.color }}; background:{{ m.tintBg }}; border:1px solid {{ m.tintBorder }};">{{ m.glyph }}</div>
+          </div>
+        </div>
+
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:40px; letter-spacing:-1.5px; margin-top:16px; line-height:1;">{{ m.levelStr }}</div>
+        <div style="display:flex; align-items:center; gap:8px; margin-top:8px;">
+          <span style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:13.5px; color:{{ mchart.color }};">{{ mchart.changeStr }}</span>
+          <span style="font-size:12.5px; color:rgba(255,255,255,.45);">{{ mchart.periodLabel }}</span>
+        </div>
+
+        <div style="position:relative; margin:14px -4px 0; height:152px;">
+          <svg viewBox="0 0 340 150" preserveAspectRatio="none" style="width:100%; height:100%; overflow:visible;">
+            <defs>
+              <linearGradient id="afMkt" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="{{ m.color }}" stop-opacity=".22"></stop><stop offset="100%" stop-color="{{ m.color }}" stop-opacity="0"></stop></linearGradient>
+            </defs>
+            <path d="{{ mchart.area }}" fill="url(#afMkt)"></path>
+            <path d="{{ mchart.line }}" fill="none" stroke="{{ mchart.color }}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></path>
+            <circle cx="{{ mchart.dotX }}" cy="{{ mchart.dotY }}" r="3.4" fill="{{ mchart.color }}"></circle>
+          </svg>
+        </div>
+
+        <div style="display:flex; gap:3px; margin-top:12px;">
+          <sc-for list="{{ mktPeriods }}" as="pb" hint-placeholder-count="7">
+            <div onClick="{{ pb.onTap }}" style="cursor:pointer; flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:11.5px; padding:7px 0; border-radius:8px; color:{{ pb.color }}; background:{{ pb.bg }};">{{ pb.label }}</div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:18px;">
+          <sc-for list="{{ m.stats }}" as="s" hint-placeholder-count="4">
+            <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:14px; padding:12px 14px;">
+              <div style="font-size:10.5px; color:rgba(255,255,255,.45);">{{ s.label }}</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:16px; margin-top:3px; color:{{ s.color }};">{{ s.val }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px; margin:22px 2px 9px;">What is {{ m.name }}?</div>
+        <div style="font-size:13px; line-height:1.55; color:rgba(255,255,255,.7);">{{ m.what }}</div>
+
+        <div style="margin-top:18px; background:{{ m.tintBg }}; border:1px solid {{ m.tintBorder }}; border-radius:16px; padding:15px 16px;">
+          <div style="display:flex; align-items:center; gap:9px; margin-bottom:9px;">
+            <div style="width:30px; height:30px; border-radius:9px; display:flex; align-items:center; justify-content:center; font-size:16px; background:{{ m.tintBg }};">🌐</div>
+            <div style="flex:1;"><div style="font-size:13px; font-weight:700; color:{{ m.color }};">What it means for the book</div><div style="font-size:10.5px; color:rgba(255,255,255,.45); font-family:'JetBrains Mono',monospace;">Macro desk read</div></div>
+          </div>
+          <div style="font-size:12.5px; line-height:1.5; color:rgba(255,255,255,.78);">{{ m.read }}</div>
+        </div>
+
+        <div style="display:flex; align-items:center; justify-content:space-between; margin:22px 2px 11px;">
+          <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:16px;">What's moving it</span>
+          <span style="font-size:10.5px; color:rgba(255,255,255,.4); font-family:'JetBrains Mono',monospace;">TOP HEADLINES</span>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <sc-for list="{{ m.news }}" as="n" hint-placeholder-count="3">
+            <div style="background:#14141C; border:1px solid rgba(255,255,255,.07); border-radius:15px; padding:13px 15px;">
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                <span style="font-size:9px; font-weight:700; letter-spacing:.5px; color:{{ n.tagColor }}; background:{{ n.tagBg }}; border:1px solid {{ n.tagBorder }}; padding:2px 7px; border-radius:6px;">{{ n.tag }}</span>
+                <span style="font-size:10.5px; color:rgba(255,255,255,.4); font-family:'JetBrains Mono',monospace;">{{ n.source }}</span>
+                <span style="font-size:10.5px; color:rgba(255,255,255,.3); font-family:'JetBrains Mono',monospace; margin-left:auto;">{{ n.time }}</span>
+              </div>
+              <div style="font-size:13px; line-height:1.4; color:rgba(255,255,255,.85); font-weight:500;">{{ n.title }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="height:10px;"></div>
+      </div>
+      </sc-if>
+
+      <!-- ════════════════ PROFILE / ACCOUNT ════════════════ -->
+      <sc-if value="{{ showProfile }}">
+      <div style="padding:0 18px; animation:afFadeUp .35s ease both;">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:22px;">
+          <div onClick="{{ closeProfile }}" style="cursor:pointer; display:inline-flex; align-items:center; gap:5px; color:rgba(255,255,255,.6); font-size:13px; font-weight:600;"><span style="font-size:18px; line-height:1;">‹</span> Back</div>
+          <span style="font-family:'JetBrains Mono',monospace; font-size:10.5px; color:rgba(255,255,255,.4); letter-spacing:.6px;">ACCOUNT</span>
+        </div>
+
+        <div style="display:flex; align-items:center; gap:14px;">
+          <div style="width:56px; height:56px; border-radius:18px; background:linear-gradient(135deg,#2BD98A,#1a7f5a); display:flex; align-items:center; justify-content:center; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:22px; color:#0B0B11; border:1px solid rgba(255,255,255,.15);">AM</div>
+          <div>
+            <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:23px; letter-spacing:-.5px; line-height:1;">Alex Morgan</div>
+            <div style="font-size:12px; color:rgba(255,255,255,.5); margin-top:6px;">Alpha Firm · <span style="color:#2BD98A;">Simulated fund</span></div>
+          </div>
+        </div>
+
+        <!-- capital -->
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; margin:26px 2px 4px;">Capital allocated</div>
+        <div style="font-size:12px; color:rgba(255,255,255,.5); margin-bottom:12px; line-height:1.45;">The virtual cash the six agents manage. Change it any time — the book scales to match.</div>
+
+        <div style="background:#14141C; border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:16px 18px;">
+          <div style="font-size:10.5px; color:rgba(255,255,255,.45); letter-spacing:.6px; font-weight:600;">INVESTMENT AMOUNT</div>
+          <div style="display:flex; align-items:center; gap:6px; margin-top:9px;">
+            <span style="font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:33px; color:rgba(255,255,255,.5); letter-spacing:-1px; line-height:1;">$</span>
+            <input type="text" inputMode="numeric" value="{{ capital }}" onInput="{{ onCapInput }}" style="flex:1; min-width:0; width:100%; background:transparent; border:none; outline:none; color:#F2F2F5; font-family:'Bricolage Grotesque',sans-serif; font-weight:800; font-size:33px; letter-spacing:-1px; padding:0; line-height:1;"/>
+            <div style="display:flex; gap:6px; flex-shrink:0;">
+              <div onClick="{{ capDown }}" style="cursor:pointer; width:34px; height:34px; border-radius:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:rgba(255,255,255,.7); line-height:1;">−</div>
+              <div onClick="{{ capUp }}" style="cursor:pointer; width:34px; height:34px; border-radius:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:700; color:rgba(255,255,255,.7); line-height:1;">+</div>
+            </div>
+          </div>
+          <div style="display:flex; gap:6px; margin-top:14px;">
+            <sc-for list="{{ capPresets }}" as="p" hint-placeholder-count="5">
+              <div onClick="{{ p.set }}" style="cursor:pointer; flex:1; text-align:center; font-family:'JetBrains Mono',monospace; font-weight:700; font-size:12px; padding:8px 0; border-radius:9px; color:{{ p.color }}; background:{{ p.bg }}; border:1px solid {{ p.border }};">{{ p.label }}</div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- strategy tracking -->
+        <div style="font-family:'Bricolage Grotesque',sans-serif; font-weight:700; font-size:17px; margin:26px 2px 4px;">Strategy tracking</div>
+        <div style="font-size:12px; color:rgba(255,255,255,.5); margin-bottom:12px; line-height:1.45;">Changed your agents? Reset to judge the new lineup from a clean slate — past losses won't be carried over.</div>
+
+        <div style="background:#14141C; border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:16px 18px;">
+          <div style="display:flex; align-items:center; justify-content:space-between;">
+            <div style="min-width:0;">
+              <div style="font-size:10.5px; color:rgba(255,255,255,.45); letter-spacing:.6px; font-weight:600;">TRACKING SINCE</div>
+              <div style="font-family:'JetBrains Mono',monospace; font-weight:700; font-size:14.5px; margin-top:5px;">{{ trackingLine }}</div>
+            </div>
+            <span style="font-size:9.5px; font-weight:700; letter-spacing:.5px; color:{{ trackStatusColor }}; background:{{ trackStatusBg }}; border:1px solid {{ trackStatusBorder }}; padding:4px 9px; border-radius:8px; flex-shrink:0;">{{ trackStatus }}</span>
+          </div>
+
+          <sc-if value="{{ showResetBtn }}">
+            <div onClick="{{ askReset }}" style="cursor:pointer; margin-top:16px; display:flex; align-items:center; justify-content:center; gap:8px; padding:13px 0; border-radius:12px; background:rgba(255,92,106,.1); border:1px solid rgba(255,92,106,.32); color:#FF5C6A; font-weight:700; font-size:14px;">↻ Reset strategy</div>
+          </sc-if>
+
+          <sc-if value="{{ confirmReset }}">
+            <div style="margin-top:16px; background:rgba(255,92,106,.08); border:1px solid rgba(255,92,106,.28); border-radius:12px; padding:13px 14px;">
+              <div style="font-size:12.5px; line-height:1.5; color:rgba(255,255,255,.8);">This closes all positions to <span style="color:#F2F2F5; font-weight:700;">100% cash</span>, zeroes your P&amp;L and resets NAV to <span style="color:#F2F2F5; font-weight:700;">{{ capStr }}</span>, tracking from today. Agent scorecards keep their history.</div>
+              <div style="display:flex; gap:8px; margin-top:12px;">
+                <div onClick="{{ cancelReset }}" style="cursor:pointer; flex:1; text-align:center; padding:11px 0; border-radius:10px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.14); color:rgba(255,255,255,.75); font-weight:700; font-size:13px;">Cancel</div>
+                <div onClick="{{ doReset }}" style="cursor:pointer; flex:1; text-align:center; padding:11px 0; border-radius:10px; background:#FF5C6A; color:#0B0B11; font-weight:700; font-size:13px;">Reset now</div>
+              </div>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ isReset }}">
+            <div onClick="{{ restoreHistory }}" style="cursor:pointer; margin-top:14px; text-align:center; font-size:12.5px; color:rgba(255,255,255,.5); text-decoration:underline; text-underline-offset:3px;">Restore full simulated history</div>
+          </sc-if>
+        </div>
+        <div style="height:16px;"></div>
+      </div>
+      </sc-if>
 
     <!-- ════════════════ TAB BAR ════════════════ -->
+    <sc-if value="{{ showTabs }}" hint-placeholder-val="{{ true }}">
     <div style="flex-shrink:0; display:flex; padding:9px 10px 26px; background:rgba(10,10,16,.82); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border-top:1px solid rgba(255,255,255,.07);">
       <div onClick="{{ goPortfolio }}" style="cursor:pointer; flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; color:{{ pColor }}; font-family:'Space Grotesk';">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 20V12M9.3 20V5M14.6 20V14M20 20V8" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg>
         <span style="font-size:10px; font-weight:600;">Portfolio</span>
+      </div>
+      <div onClick="{{ goMarkets }}" style="cursor:pointer; flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; color:{{ mColor }}; font-family:'Space Grotesk';">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 3.4v3.6M7 14.6v6M17 3.4v6M17 17v3.6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="4.6" y="7" width="4.8" height="7.6" rx="1.3" stroke="currentColor" stroke-width="2"/><rect x="14.6" y="9" width="4.8" height="8" rx="1.3" stroke="currentColor" stroke-width="2"/></svg>
+        <span style="font-size:10px; font-weight:600;">Markets</span>
       </div>
       <div onClick="{{ goAnalysts }}" style="cursor:pointer; flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; color:{{ aColor }}; font-family:'Space Grotesk';">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="7" r="2.6" stroke="currentColor" stroke-width="2.1"/><circle cx="17" cy="7" r="2.6" stroke="currentColor" stroke-width="2.1"/><path d="M3 19c0-2.5 1.8-4.2 4-4.2s4 1.7 4 4.2M13 19c0-2.5 1.8-4.2 4-4.2s4 1.7 4 4.2" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"/></svg>
@@ -583,11 +974,8 @@
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M7 7a7 7 0 000 10M17 7a7 7 0 010 10M4 4a11 11 0 000 16M20 4a11 11 0 010 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         <span style="font-size:10px; font-weight:600;">Live</span>
       </div>
-      <div onClick="{{ goLeague }}" style="cursor:pointer; flex:1; display:flex; flex-direction:column; align-items:center; gap:4px; color:{{ gColor }}; font-family:'Space Grotesk';">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M7 4h10v4a5 5 0 01-10 0V4Z" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"/><path d="M7 6H4v1.5a3.5 3.5 0 003.5 3.5M17 6h3v1.5a3.5 3.5 0 01-3.5 3.5M9.5 14.5L9 20h6l-.5-5.5" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span style="font-size:10px; font-weight:600;">League</span>
-      </div>
     </div>
+    </sc-if>
   </div>
   <div style="position:absolute; bottom:8px; left:50%; transform:translateX(-50%); width:139px; height:5px; border-radius:100px; background:rgba(255,255,255,.7); z-index:60; pointer-events:none;"></div>
 </div>
@@ -2200,9 +2588,79 @@
 </script>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;402px&quot;,&quot;height&quot;:&quot;874px&quot;}}">
 class Component extends DCLogic {
-  state = { tab: 'portfolio', selA: null, liveStep: 0, selPos: null, chartPeriod: '1Y', homePeriod: '1Y' };
+  state = { tab: 'portfolio', selA: null, liveStep: 0, selPos: null, chartPeriod: '1Y', homePeriod: '1Y', selPick: null, pickPeriod: '3M', txns: false, selMkt: null, mktPeriod: '3M', mktSel: ['SPY','QQQ','GLD','BTC','US10Y','DXY'], mktEdit: false, capital: 10000, resetAt: null, confirmReset: false, prevTab: 'portfolio' };
 
-  open(id) { this.setState({ tab: 'analysts', selA: id, selPos: null }); }
+  open(id) { this.setState({ tab: 'analysts', selA: id, selPos: null, selMkt: null, txns: false }); }
+
+  componentDidMount(){
+    try {
+      const s = localStorage.getItem('af_mkt_sel');
+      if (s) { const a = JSON.parse(s); if (Array.isArray(a) && a.length) this.setState({ mktSel: a }); }
+      const c = localStorage.getItem('af_capital');
+      if (c) { const n = parseInt(c, 10); if (n > 0) this.setState({ capital: n }); }
+      const r = localStorage.getItem('af_reset_at');
+      if (r) this.setState({ resetAt: r });
+    } catch (e) {}
+  }
+
+  _toggleMkt(id){
+    this.setState(s => {
+      let sel = (s.mktSel || []).slice();
+      if (sel.includes(id)) { if (sel.length <= 1) return null; sel = sel.filter(x => x !== id); }
+      else { if (sel.length >= 12) return null; sel.push(id); }
+      try { localStorage.setItem('af_mkt_sel', JSON.stringify(sel)); } catch (e) {}
+      return { mktSel: sel };
+    });
+  }
+
+  _setCapital(n){
+    n = Math.max(0, Math.min(100000000, Math.round(n || 0)));
+    try { localStorage.setItem('af_capital', String(n)); } catch (e) {}
+    this.setState({ capital: n });
+  }
+
+  _doReset(){
+    const d = new Date();
+    const iso = d.toISOString().slice(0,10);
+    try { localStorage.setItem('af_reset_at', iso); } catch (e) {}
+    this.setState({ resetAt: iso, confirmReset: false });
+  }
+
+  _restoreHistory(){
+    try { localStorage.removeItem('af_reset_at'); } catch (e) {}
+    this.setState({ resetAt: null, confirmReset: false });
+  }
+
+  _transactions(){
+    // open positions are real (from portfolio); closed are representative recent trades.
+    // earlier = the remaining older closed trades, collapsed to one net row so totals reconcile.
+    return {
+      sentiment:{ realized:211.70,
+        open:[ {t:'TGLS',sh:13,avg:38.61,last:43.75}, {t:'FCN',sh:4,avg:153.18,last:158.57}, {t:'NCLH',sh:40,avg:20.22,last:20.44} ],
+        closed:[ {t:'ANF',sh:6,avg:108.20,exit:121.30}, {t:'DKS',sh:3,avg:214.60,exit:232.65}, {t:'RCL',sh:5,avg:132.80,exit:141.04}, {t:'CROX',sh:7,avg:96.50,exit:101.33}, {t:'ULTA',sh:2,avg:364.20,exit:352.90} ],
+        earlier:9 },
+      contrarian:{ realized:90.69,
+        open:[ {t:'SYK',sh:1,avg:294.50,last:308.69} ],
+        closed:[ {t:'BMY',sh:10,avg:51.20,exit:57.32}, {t:'CVS',sh:6,avg:58.40,exit:64.48}, {t:'PFE',sh:14,avg:26.80,exit:28.83}, {t:'INTC',sh:12,avg:34.10,exit:32.03}, {t:'WBA',sh:8,avg:18.60,exit:14.71} ],
+        earlier:8 },
+      catalyst:{ realized:17.32,
+        open:[ {t:'CAT',sh:1,avg:828.79,last:985.82} ],
+        closed:[ {t:'LLY',sh:1,avg:884.30,exit:928.40}, {t:'MRNA',sh:9,avg:42.10,exit:39.13} ],
+        earlier:0 },
+      macro:{ realized:-2.16,
+        open:[],
+        closed:[ {t:'TLT',sh:6,avg:88.40,exit:88.04} ],
+        earlier:0 },
+      crypto:{ realized:-51.55,
+        open:[ {t:'CLSK',sh:43,avg:17.36,last:17.24} ],
+        closed:[ {t:'MSTR',sh:1,avg:412.30,exit:371.10}, {t:'MARA',sh:18,avg:23.40,exit:21.27}, {t:'COIN',sh:2,avg:248.60,exit:262.90}, {t:'RIOT',sh:21,avg:14.80,exit:13.50}, {t:'IBIT',sh:9,avg:61.20,exit:63.40} ],
+        earlier:2 },
+      quant:{ realized:-106.98,
+        open:[ {t:'MU',sh:1,avg:1055.89,last:1133.99}, {t:'FDX',sh:3,avg:331.82,last:326.20} ],
+        closed:[ {t:'SMCI',sh:13,avg:48.10,exit:42.62}, {t:'ON',sh:11,avg:72.40,exit:67.95}, {t:'DELL',sh:5,avg:127.30,exit:120.68}, {t:'AVGO',sh:1,avg:1642.00,exit:1666.60}, {t:'ANET',sh:4,avg:108.90,exit:113.50} ],
+        earlier:8 },
+    };
+  }
 
   _hash(s){ let h=2166136261; for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619);} return h>>>0; }
   _rng(seed){ let a=seed>>>0; return function(){ a=a+0x6D2B79F5|0; let t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
@@ -2240,14 +2698,15 @@ class Component extends DCLogic {
       periodLabel:labels[period],
     };
   }
-  _navSeries(period){
+  _navSeries(period, cap, nav, reset){
+    cap = cap || 10000; nav = (nav==null?cap:nav);
     const N=70, W=340, H=120, padT=8, padB=10;
     const pRetMap={LIVE:0.0008,'1D':0.004,'1W':0.011,'1M':0.019,'3M':0.026,YTD:0.028,'1Y':0.028};
     const sRetMap={LIVE:0.001,'1D':0.006,'1W':0.018,'1M':0.07,'3M':0.16,YTD:0.34,'1Y':0.3439};
-    const pCur=10280.03, sCur=13439.0;
-    const pRet=pRetMap[period], sRet=sRetMap[period];
-    let pStart=pCur/(1+pRet); if(period==='1Y'){ pStart=10000.00; }
-    const sStart=sCur/(1+sRet);
+    const pCur=nav, sCur=cap*1.3439;
+    const pRet=reset?0:pRetMap[period], sRet=reset?0:sRetMap[period];
+    let pStart=reset?nav:pCur/(1+pRet); if(!reset && period==='1Y'){ pStart=cap; }
+    const sStart=reset?cap:sCur/(1+sRet);
     const vol={LIVE:0.003,'1D':0.006,'1W':0.012,'1M':0.018,'3M':0.024,YTD:0.03,'1Y':0.03}[period];
     const mkWalk=(seed,start,end,v)=>{
       const rng=this._rng(this._hash(seed));
@@ -2266,16 +2725,161 @@ class Component extends DCLogic {
     const line=toPath(pP); const area=line+' L '+W+' '+H+' L 0 '+H+' Z'; const spyLine=toPath(sP);
     const dotY=+Y(pCur).toFixed(1);
     const fmt=n=>Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-    const changeAbs=pCur-pStart, pct=(pCur/pStart-1)*100, spyPct=sRet*100;
+    const changeAbs=pCur-pStart, pct=pStart>0?(pCur/pStart-1)*100:0, spyPct=sRet*100;
     const labels={LIVE:'Past hour','1D':'Today','1W':'Past week','1M':'Past month','3M':'Past 3 months',YTD:'Year to date','1Y':'Since inception'};
     return {
       line, area, spyLine, dotX:+X(N-1).toFixed(1), dotY,
       color:'#2BD98A', pillBg:'rgba(43,217,138,.12)', pillBorder:'rgba(43,217,138,.3)',
-      changeStr:'▲ +$'+fmt(changeAbs)+' (+'+pct.toFixed(2)+'%)',
-      changePctStr:'+'+pct.toFixed(1)+'%', spyChangeStr:'+'+spyPct.toFixed(1)+'%',
+      changeStr:(changeAbs>=0?'▲ +$':'▼ −$')+fmt(changeAbs)+' ('+(pct>=0?'+':'−')+Math.abs(pct).toFixed(2)+'%)',
+      changePctStr:(pct>=0?'+':'−')+Math.abs(pct).toFixed(1)+'%', spyChangeStr:(spyPct>=0?'+':'')+spyPct.toFixed(1)+'%',
       periodLabel:labels[period], youLabelTop:Math.max(6,Math.min(92,dotY-16))+'px',
     };
   }
+  _markets(){
+    return [
+      { id:'SPY', name:'SPY', full:'SPDR S&P 500 ETF Trust', kind:'price', sector:'US large-cap', color:'#4D7CFF', latest:660.80, up:true, dayPct:0.42, ytd:'+18.2%', oneY:'+34.4%', range52:'498 – 664', volMul:0.55,
+        what:"The benchmark S&P 500 index fund — broad US large-cap exposure, and the firm's own alpha benchmark.",
+        read:"The line every pick has to beat. Alpha Firm sits −29.6% behind it — a bull run the desk under-participated while building a track record.",
+        headline:'S&P 500 notches fresh record close as megacap tech leads',
+        news:[
+          { tag:'BULLISH', time:'2h', source:'Bloomberg', title:'S&P 500 closes at a record as AI leaders extend gains; breadth stays narrow.' },
+          { tag:'NEUTRAL', time:'5h', source:'Reuters', title:'Fund managers trim cash to lowest since 2021, BofA survey shows.' },
+          { tag:'BEARISH', time:'1d', source:'WSJ', title:'Just five names now drive over a third of the index — concentration risk rising.' },
+        ] },
+      { id:'GLD', name:'GLD', full:'SPDR Gold Shares', kind:'price', sector:'Gold · safe haven', color:'#F5B731', latest:312.45, up:true, dayPct:0.81, ytd:'+22.7%', oneY:'+29.1%', range52:'241 – 315', volMul:0.7,
+        what:'SPDR Gold Shares — each unit tracks roughly 1/10 oz of gold. The classic safe-haven and real-rate hedge.',
+        read:"A rising gold tape flags risk-off rotation and real-rate pressure. The book holds none — a gap the Macro desk keeps flagging.",
+        headline:'Gold pushes to new high as central banks keep buying',
+        news:[
+          { tag:'BULLISH', time:'3h', source:'FT', title:'Gold hits fresh all-time high as central-bank buying and ETF inflows accelerate.' },
+          { tag:'BULLISH', time:'8h', source:'Reuters', title:'Softer real yields and a weaker dollar keep the bid under bullion.' },
+          { tag:'NEUTRAL', time:'1d', source:'Kitco', title:'Analysts split on whether the rally has run ahead of fundamentals.' },
+        ] },
+      { id:'BTC', name:'BTC', full:'Bitcoin / USD', kind:'price', sector:'Crypto · risk appetite', color:'#F7931A', latest:109240, up:false, dayPct:-1.24, ytd:'+41.6%', oneY:'+68.3%', range52:'52.4k – 118.9k', volMul:1.7,
+        what:'Bitcoin — the highest-beta read on global risk appetite and liquidity. Trades 24/7, no close.',
+        read:"Risk-appetite gauge. The desk expresses it through miners (CLSK), not spot — and crypto's realized P&L is red, so it's watch, not chase.",
+        headline:'Bitcoin slips as spot-ETF flows turn negative for the week',
+        news:[
+          { tag:'BEARISH', time:'1h', source:'CoinDesk', title:'BTC dips below $110k as US spot-ETF flows post their first weekly outflow in a month.' },
+          { tag:'BULLISH', time:'6h', source:'The Block', title:'Exchange reserves fall to a multi-year low, tightening available supply.' },
+          { tag:'NEUTRAL', time:'1d', source:'Bloomberg', title:'Post-halving hash rate prints a record as miners defend margins.' },
+        ] },
+      { id:'US10Y', name:'10Y', full:'US 10-Year Treasury', kind:'yield', sector:'Rates · discount rate', color:'#2DD4D4', latest:4.28, up:true, dayBps:6, ytd:'−0.34 pp', oneY:'+0.12 pp', range52:'3.62 – 4.74%', volMul:0.5,
+        what:"The US 10-Year Treasury yield — the market's risk-free discount rate and the gravity behind every equity multiple.",
+        read:"Rising yields compress growth multiples across the book. Firm at 4.28% keeps pressure on the desk's higher-multiple names.",
+        headline:'10-year yield firms after hotter-than-expected jobs data',
+        news:[
+          { tag:'BEARISH', time:'2h', source:'Reuters', title:'Yields climb as a strong payrolls print trims the odds of a near-term rate cut.' },
+          { tag:'NEUTRAL', time:'7h', source:'Bloomberg', title:'Treasury auction sees soft demand; term premium edges higher.' },
+          { tag:'BULLISH', time:'1d', source:'WSJ', title:'Fed officials signal patience, keeping a cut on the table for later this year.' },
+        ] },
+      { id:'QQQ', name:'QQQ', full:'Invesco QQQ Trust (Nasdaq-100)', kind:'price', sector:'US tech growth', color:'#9B7BFF', latest:598.20, up:true, dayPct:0.68, ytd:'+21.4%', oneY:'+38.9%', range52:'402 – 601', volMul:0.8,
+        what:'Invesco QQQ — the Nasdaq-100, a tech-heavy read on US large-cap growth and the AI trade.',
+        read:"The desk's growth names live or die with the Nasdaq. A leading QQQ flatters the book's beta but raises the bar on stock selection.",
+        headline:'Nasdaq 100 leads again as chipmakers extend the AI rally',
+        news:[
+          { tag:'BULLISH', time:'1h', source:'Bloomberg', title:'Nasdaq 100 outpaces the S&P as semiconductor names log fresh highs.' },
+          { tag:'NEUTRAL', time:'4h', source:'Reuters', title:'Options desks flag crowded positioning across the megacap complex.' },
+          { tag:'BEARISH', time:'1d', source:'CNBC', title:'Valuations on the top ten now sit two standard deviations above trend.' },
+        ] },
+      { id:'IWM', name:'IWM', full:'iShares Russell 2000 ETF', kind:'price', sector:'US small-cap', color:'#E0729F', latest:244.60, up:false, dayPct:-0.35, ytd:'+9.2%', oneY:'+16.1%', range52:'188 – 249', volMul:0.95,
+        what:'iShares Russell 2000 — US small caps, the most rate- and domestic-economy-sensitive corner of equities.',
+        read:"Small-cap breadth is a tell for risk appetite. Weak IWM says the rally is narrow — a caution flag for the desk's smaller positions.",
+        headline:'Small caps lag again as higher-for-longer rates bite',
+        news:[
+          { tag:'BEARISH', time:'2h', source:'Reuters', title:'Russell 2000 slips as rate-sensitive small caps trail the mega caps.' },
+          { tag:'NEUTRAL', time:'6h', source:'WSJ', title:'Heavy regional-bank weighting keeps the index tied to the yield curve.' },
+          { tag:'BULLISH', time:'1d', source:'Bloomberg', title:'Strategists say a rate cut would disproportionately help small caps.' },
+        ] },
+      { id:'VIX', name:'VIX', full:'Cboe Volatility Index', kind:'level', sector:'Volatility · fear gauge', color:'#FF6B57', latest:14.80, up:false, dayPct:-3.20, ytd:'−18.5%', oneY:'−22.4%', range52:'11.8 – 34.6', volMul:2.4,
+        what:'The Cboe VIX — the market\u2019s 30-day expected volatility, the classic \u201cfear gauge.\u201d',
+        read:"Cheap volatility means cheap hedges. With VIX this low the Macro desk flags it as a moment to protect gains, not chase.",
+        headline:'Volatility drifts near multi-year lows as the tape grinds higher',
+        news:[
+          { tag:'NEUTRAL', time:'1h', source:'Cboe', title:'VIX holds in the mid-teens as realized volatility stays subdued.' },
+          { tag:'BEARISH', time:'5h', source:'Bloomberg', title:'Complacency warning: hedging costs at cycle lows leave the tape exposed.' },
+          { tag:'NEUTRAL', time:'1d', source:'Reuters', title:'Dealers remain long gamma, dampening intraday swings.' },
+        ] },
+      { id:'DXY', name:'DXY', full:'US Dollar Index', kind:'level', sector:'FX · global liquidity', color:'#5FB0A8', latest:98.40, up:true, dayPct:0.18, ytd:'−2.1%', oneY:'−1.4%', range52:'96.4 – 107.3', volMul:0.45,
+        what:'The US Dollar Index — the greenback against a basket of majors; a headwind for risk when it rises.',
+        read:"A firm dollar pressures the book's commodity and EM-linked names and tightens global liquidity. Worth watching, not owned.",
+        headline:'Dollar steadies as rate-cut bets get pushed further out',
+        news:[
+          { tag:'BULLISH', time:'2h', source:'Reuters', title:'Dollar index firms after resilient US data trims easing expectations.' },
+          { tag:'NEUTRAL', time:'7h', source:'Bloomberg', title:'Euro and yen tread water ahead of central-bank meetings.' },
+          { tag:'BEARISH', time:'1d', source:'FT', title:'Structural bears point to widening twin deficits as a longer-term drag.' },
+        ] },
+      { id:'WTI', name:'WTI', full:'WTI Crude Oil', kind:'price', sector:'Energy · growth read', color:'#C98A4B', latest:68.90, up:true, dayPct:1.42, ytd:'+4.6%', oneY:'−8.2%', range52:'61.2 – 84.5', volMul:1.2,
+        what:'West Texas Intermediate crude — the US oil benchmark and a live read on growth and inflation.',
+        read:"Crude sets the tone for energy holdings and headline inflation. A rising tape supports the desk's energy exposure.",
+        headline:'Crude rebounds on tighter supply signals from OPEC+',
+        news:[
+          { tag:'BULLISH', time:'1h', source:'Reuters', title:'WTI climbs as OPEC+ signals it will hold output cuts through the quarter.' },
+          { tag:'NEUTRAL', time:'6h', source:'Bloomberg', title:'Inventory draw slightly larger than expected, EIA data shows.' },
+          { tag:'BEARISH', time:'1d', source:'WSJ', title:'Demand-growth downgrades from the IEA cap the upside.' },
+        ] },
+      { id:'TLT', name:'TLT', full:'iShares 20+ Year Treasury ETF', kind:'price', sector:'Long-duration bonds', color:'#6E8BE0', latest:92.10, up:false, dayPct:-0.28, ytd:'−3.4%', oneY:'−1.9%', range52:'85.3 – 99.7', volMul:0.6,
+        what:'iShares 20+ Year Treasury — long-duration government bonds, highly sensitive to the long end of the curve.',
+        read:"Long bonds mirror the 10-Y read — falling TLT confirms rate pressure on every growth multiple in the book.",
+        headline:'Long bonds slip as the 30-year yield tests its range top',
+        news:[
+          { tag:'BEARISH', time:'2h', source:'Bloomberg', title:'TLT falls as the 30-year yield tests the top of its recent range.' },
+          { tag:'NEUTRAL', time:'8h', source:'Reuters', title:'Duration demand soft at this week\u2019s long-bond auction.' },
+          { tag:'BULLISH', time:'1d', source:'WSJ', title:'Some allocators add duration as a recession hedge.' },
+        ] },
+      { id:'EEM', name:'EEM', full:'iShares MSCI Emerging Markets ETF', kind:'price', sector:'Emerging markets', color:'#E0A93F', latest:46.20, up:true, dayPct:0.54, ytd:'+12.8%', oneY:'+19.3%', range52:'37.1 – 47.0', volMul:0.9,
+        what:'iShares Emerging Markets — equity exposure across China, India, Brazil and more; a dollar and risk-appetite play.',
+        read:"EM strength usually rides a softer dollar and better risk appetite — a tailwind the desk expresses through select names, not the index.",
+        headline:'Emerging markets firm on a softer dollar and China stimulus',
+        news:[
+          { tag:'BULLISH', time:'3h', source:'Bloomberg', title:'EM equities rally as Beijing signals fresh stimulus and the dollar eases.' },
+          { tag:'NEUTRAL', time:'7h', source:'Reuters', title:'Flows into EM funds turn positive for a third straight week.' },
+          { tag:'BEARISH', time:'1d', source:'FT', title:'Analysts caution that trade-policy risk still clouds the outlook.' },
+        ] },
+      { id:'ETH', name:'ETH', full:'Ethereum / USD', kind:'price', sector:'Crypto · risk appetite', color:'#7E7CF0', latest:3980, up:false, dayPct:-1.90, ytd:'+28.4%', oneY:'+44.7%', range52:'2.1k – 4.6k', volMul:1.8,
+        what:'Ethereum — the largest smart-contract chain; higher-beta than bitcoin and the core of DeFi.',
+        read:"The desk watches ETH as a second crypto-risk gauge. Underperformance versus bitcoin signals cooling speculative appetite.",
+        headline:'Ether underperforms bitcoin as ETF inflows cool',
+        news:[
+          { tag:'BEARISH', time:'1h', source:'CoinDesk', title:'ETH lags as spot-ETF inflows slow and the ETH/BTC ratio slides.' },
+          { tag:'BULLISH', time:'6h', source:'The Block', title:'Staking ratio hits a record as validators lock up supply.' },
+          { tag:'NEUTRAL', time:'1d', source:'Bloomberg', title:'Layer-2 activity climbs even as base-layer fees stay low.' },
+        ] },
+    ];
+  }
+
+  _mktSeries(asset, period, W, H){
+    const N=70, padT=8, padB=8;
+    const ret=this._periodRet(asset.id, period, asset.up);
+    const start=asset.latest/(1+ret);
+    const rng=this._rng(this._hash(asset.id+'|'+period+'|mwalk'));
+    const vol=({LIVE:0.004,'1D':0.012,'1W':0.02,'1M':0.03,'3M':0.045,YTD:0.06,'1Y':0.08}[period])*(asset.volMul||1);
+    const walk=[0]; for(let i=1;i<N;i++) walk.push(walk[i-1]+(rng()*2-1));
+    const w0=walk[0], wN=walk[N-1]; const prices=[];
+    for(let i=0;i<N;i++){ const t=i/(N-1); const br=walk[i]-w0-(wN-w0)*t; prices.push(start+(asset.latest-start)*t + br*vol*asset.latest*0.5); }
+    prices[0]=start; prices[N-1]=asset.latest;
+    let mn=Math.min.apply(null,prices), mx=Math.max.apply(null,prices); const pad=(mx-mn)*0.14||1; mn-=pad; mx+=pad;
+    const X=i=>(i/(N-1))*W; const Y=p=>H-padB-((p-mn)/(mx-mn))*(H-padT-padB);
+    const pts=prices.map((p,i)=>[+X(i).toFixed(1), +Y(p).toFixed(1)]);
+    let line='M '+pts[0][0]+' '+pts[0][1]; for(let i=1;i<pts.length;i++) line+=' L '+pts[i][0]+' '+pts[i][1];
+    const area=line+' L '+W+' '+H+' L 0 '+H+' Z';
+    const up=ret>=0, pct=ret*100;
+    const color = asset.kind==='yield' ? asset.color : (up?'#2BD98A':'#FF5C6A');
+    const labels={LIVE:'Past hour','1D':'Today','1W':'Past week','1M':'Past month','3M':'Past 3 months',YTD:'Year to date','1Y':'Past year'};
+    let changeStr;
+    if(asset.kind==='yield'){
+      const bps=(asset.latest-start)*100, u=bps>=0;
+      changeStr=(u?'▲ ':'▼ ')+(u?'+':'−')+Math.abs(bps).toFixed(0)+' bps ('+(u?'+':'−')+Math.abs(pct).toFixed(2)+'%)';
+    } else if(asset.kind==='level'){
+      const ch=Math.abs(asset.latest-start);
+      changeStr=(up?'▲ ':'▼ ')+(up?'+':'−')+ch.toFixed(2)+' ('+(up?'+':'−')+Math.abs(pct).toFixed(2)+'%)';
+    } else {
+      const dec=asset.latest>=1000?0:2, ch=Math.abs(asset.latest-start);
+      changeStr=(up?'▲ ':'▼ ')+'$'+ch.toLocaleString('en-US',{minimumFractionDigits:dec,maximumFractionDigits:dec})+' ('+(up?'+':'−')+Math.abs(pct).toFixed(2)+'%)';
+    }
+    return { line, area, color, dotX:pts[N-1][0], dotY:pts[N-1][1], changeStr, periodLabel:labels[period] };
+  }
+
   _positions(){
     return [
       { ticker:'CAT', company:'Caterpillar Inc.', sector:'Industrials', agent:'Catalyst', color:'#4D7CFF', emoji:'⏱',
@@ -2337,6 +2941,65 @@ class Component extends DCLogic {
     ];
   }
 
+  _picks(){
+    return [
+      { id:'sentiment', ticker:'PLTR', company:'Palantir Technologies', sector:'Software · AI', agent:'Sentiment', color:'#FF4D9D', emoji:'📡', conv:8, raw:'8.2', rec:152.40, latest:155.10, target:'+16%', horizon:'3–6 weeks',
+        outcome:'BOUGHT', outIcon:'✅',
+        what:'Data-analytics and AI software for government and enterprise. A high-multiple growth name levered to the AI-defense narrative.',
+        agentWhy:'Form-4 insider buying cluster — 3 executives bought inside 14 days, post-dating the recent run, so it is fresh information not yet in the price. Fresh 28-DTE call flow, not crowded retail. The highest-hit-rate sentiment signal stacked with accelerating buzz.',
+        catalyst:'Insider cluster + AI-defense', claim:'Insider buying after the rally signals management sees upside the market has not yet priced.',
+        facts:[{v:'3 insider buys (Form-4) within a 14-day window, all above the prior-month VWAP.'},{v:'Unusual 28-day call flow on the offer, distinct from standing retail open interest.'},{v:'Narrative still early — analyst coverage breadth flat while volume rises.'}],
+        whyNow:'The insider window opened after the run, not before — waiting a week risks the re-rating happening without us.', disprove:'No follow-through volume within 5 sessions, or insiders filing 10b5-1 sales, would void the signal.',
+        outMeta:'final 8.4 · 18% of cash · daily buy used',
+        pmWhy:'Cleared every gate: 2+ hard facts, a falsification condition, and a dated trigger. The bear flagged factor crowding and "already priced," but the bull rebutted with the post-rally insider timing. Risk Chair → BUY_ELIGIBLE at 1.05×. Won the day’s single buy slot.' },
+      { id:'crypto', ticker:'IREN', company:'IREN Limited', sector:'Bitcoin mining', agent:'Crypto', color:'#F7931A', emoji:'₿', conv:7, raw:'7.4', rec:17.90, latest:18.35, target:'+22%', horizon:'3–6 weeks',
+        outcome:'PASSED', outIcon:'⏸',
+        what:'Bitcoin miner running self-operated hash rate plus a growing AI/HPC data-centre business — a levered proxy on BTC and compute demand.',
+        agentWhy:'On-chain divergence: exchange BTC reserves falling while price is flat, plus IREN hash rate at a new high into the post-halving difficulty reset. ETF picks are banned for me now, so this is the equity expression of the thesis.',
+        catalyst:'Hash-rate breakout + BTC reserves', claim:'Falling exchange reserves into a hash-rate high precede a BTC supply squeeze that miners lever.',
+        facts:[{v:'Aggregate exchange BTC reserves at a multi-month low while spot price is range-bound.'},{v:'IREN realised hash rate printed an all-time high this week.'},{v:'AI/HPC contract pipeline adds a non-BTC revenue leg.'}],
+        whyNow:'The difficulty reset and reserve drawdown are converging now; the setup decays once price catches up.', disprove:'A reserve reversal (inflows resuming) or BTC breaking below the range invalidates the squeeze thesis.',
+        outMeta:'final 7.4 · queued · not executed',
+        pmWhy:'Strong, well-evidenced setup — but the daily one-buy limit was already spent on PLTR, which scored higher. Crypto’s negative realised P&L also applies a 0.8× track-record modifier. Logged to the outcomes ledger and re-considered next session.' },
+      { id:'catalyst', ticker:'NVDA', company:'NVIDIA Corporation', sector:'Semiconductors', agent:'Catalyst', color:'#4D7CFF', emoji:'⏱', conv:8, raw:'8.0', rec:176.20, latest:178.40, target:'+9%', horizon:'1–2 weeks',
+        outcome:'PASSED', outIcon:'⏸',
+        what:'Dominant designer of AI accelerators (GPUs) and the CUDA software stack — the core compute supplier of the AI build-out.',
+        agentWhy:'Earnings in 3 days with a known date. The options market is pricing a ~50% chance of a beat-and-raise; I model 70%+ on supply-chain channel checks and hyperscaler capex commentary. Asymmetric into a dated, quantifiable event.',
+        catalyst:'Q earnings in 3 days', claim:'The market under-prices the probability of a beat-and-raise given locked-in hyperscaler capex.',
+        facts:[{v:'Earnings date confirmed (T-3); implied move ~8% from the straddle.'},{v:'Three hyperscalers reiterated raised capex guides in the prior two weeks.'},{v:'Channel checks show data-centre GPU lead times extending, not easing.'}],
+        whyNow:'The asymmetry only exists in the 3-day window before the print; after it the event is resolved.', disprove:'A pre-announcement, or the straddle widening past my modeled edge, removes the asymmetry.',
+        outMeta:'final 8.0 · sizing-capped · not executed',
+        pmWhy:'Genuinely asymmetric, but it is a binary event — house rules cap binary catalysts at 15–20% sizing and the daily buy was already used on PLTR. Holding fire avoids paying the elevated pre-earnings premium. Tracked for the post-print reaction.' },
+      { id:'contrarian', ticker:'PYPL', company:'PayPal Holdings', sector:'Fintech', agent:'Contrarian', color:'#A05CFF', emoji:'🃏', conv:7, raw:'7.0', rec:78.90, latest:77.60, target:'+18%', horizon:'4–8 weeks',
+        outcome:'PASSED', outIcon:'⏸',
+        what:'Digital-payments platform (PayPal, Venmo, Braintree). A fallen growth darling trading at a deep discount to its history.',
+        agentWhy:'The market hates it on margin-compression fears, but branded-checkout volume is quietly stabilising and new management is buying back stock aggressively. Cheap + improving — but I am still hunting the hard catalyst.',
+        catalyst:'Branded-checkout stabilisation', claim:'Volume stabilisation plus buybacks set up a re-rating from trough multiples.',
+        facts:[{v:'Forward P/E near a 5-year low versus a still-double-digit FCF yield.'},{v:'Branded-checkout volume growth turned sequentially positive last quarter.'},{v:'Buyback authorisation accelerated; share count falling.'}],
+        whyNow:'Valuation is at a trough now, but without a dated catalyst the timing edge is weak.', disprove:'Another quarter of branded-volume deceleration would confirm a falling knife, not a turn.',
+        outMeta:'final 5.95 · below 7.5 threshold · not executed',
+        pmWhy:'Cheap and improving, but the missing dated catalyst tripped the narrative penalty (0.85×) — "the market will realise" is not a trigger. That pushed it under the 7.5 execution threshold. A real catalyst would change the math; for now, no trade.' },
+      { id:'quant', ticker:'AMD', company:'Advanced Micro Devices', sector:'Semiconductors', agent:'Quant', color:'#2DD4D4', emoji:'📊', conv:6, raw:'6.4', rec:211.50, latest:209.80, target:'+10%', horizon:'2–3 weeks',
+        outcome:'INELIGIBLE', outIcon:'🚫',
+        what:'Designer of CPUs and GPUs competing in data-centre, client and gaming — a momentum-and-share-gain story versus Intel and NVIDIA.',
+        agentWhy:'Momentum (3×) and relative strength (2×) score well on the MI-series ramp, but volume confirmation is slightly soft this session — a 6, not an 8.',
+        catalyst:'MI-series data-centre ramp', claim:'Share-gain momentum continues as data-centre GPU revenue inflects.',
+        facts:[{v:'Price momentum in the top quartile of the coverage universe.'},{v:'Relative strength versus SOXX positive over the trailing month.'},{v:'Volume confirmation below the model’s threshold this session.'}],
+        whyNow:'Momentum is intact now, but the soft volume argues for patience rather than a chase.', disprove:'A momentum-factor reversal or a break of the trailing-20-day line invalidates the setup.',
+        outMeta:'execution suspended → Jul 8',
+        pmWhy:'Quant execution is suspended until July 8 after the worst realised P&L on the desk (−$106.98). The recommendation is still logged to the outcomes ledger so the scorecard keeps learning — but it cannot be traded right now.' },
+      { id:'macro', ticker:'SPY', company:'SPDR S&P 500 ETF', sector:'US large-cap ETF', agent:'Macro', color:'#F5B731', emoji:'🌐', conv:5, raw:'2.5', rec:658.20, latest:660.80, target:'+5%', horizon:'4–8 weeks',
+        outcome:'INELIGIBLE', outIcon:'🚫',
+        what:'The benchmark S&P 500 index fund — broad US large-cap equity exposure, and the firm’s own alpha benchmark.',
+        agentWhy:'Soft risk-on tilt: easing financial conditions and a benign CPI path argue for staying long beta. But signals are mixed and conviction is only a 5.',
+        catalyst:'Easing financial conditions', claim:'A benign macro regime supports continued index drift higher.',
+        facts:[{v:'Financial-conditions index loosening over the past month.'},{v:'CPI trend consistent with no near-term policy shock.'},{v:'Breadth mixed — leadership still narrow.'}],
+        whyNow:'The regime read is current, but nothing forces the trade this session.', disprove:'A hot CPI print or a financial-conditions tightening would flip the regime call.',
+        outMeta:'benched · 0.5× · conviction-8 floor',
+        pmWhy:'Macro is benched — a 0.5× modifier and a conviction-8 floor after a 10% win rate. At conviction 5 this falls well short, and the SPY Baseline Test asks every pick to beat the index, not be it. No action; logged only.' },
+    ];
+  }
+
   runCheck() {
     this.setState({ liveStep: 1 });
     this._t1 = setTimeout(() => this.setState({ liveStep: 2 }), 1600);
@@ -2349,14 +3012,24 @@ class Component extends DCLogic {
   renderVals() {
     const ACT = '#2BD98A', INA = 'rgba(255,255,255,.4)';
     const GREEN = '#2BD98A', RED = '#FF5C6A';
+    // ── shared capital / reset scalars (drive the whole book) ──
+    const capital = this.state.capital != null ? this.state.capital : 10000;
+    const resetAt = this.state.resetAt || null;
+    const isReset = !!resetAt;
+    const factor = capital / 10000;
+    const fmtSh = n => { const r = Math.round(n*100)/100; return Number.isInteger(r) ? String(r) : r.toFixed(2); };
     const tint = (c) => ({ bg: c.replace('#', '').length === 6 ? `rgba(${parseInt(c.slice(1,3),16)},${parseInt(c.slice(3,5),16)},${parseInt(c.slice(5,7),16)},.13)` : c, border: c });
 
     const mk = (o) => {
       const r = parseInt(o.color.slice(1,3),16), g = parseInt(o.color.slice(3,5),16), b = parseInt(o.color.slice(5,7),16);
       const sr = parseInt(o.statusColor.slice(1,3),16), sg = parseInt(o.statusColor.slice(3,5),16), sb = parseInt(o.statusColor.slice(5,7),16);
       const holds = o.recent && o.recent.length > 0;
+      const _real = isReset ? 0 : (o.realizedRaw || 0) * factor;
+      const _rup = _real >= 0;
       return {
         ...o,
+        pnl: (_rup?'+':'−')+'$'+Math.abs(_real).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),
+        pnlColor: isReset ? 'rgba(255,255,255,.6)' : (_rup?GREEN:RED),
         tintBg: `rgba(${r},${g},${b},.13)`,
         tintBorder: `rgba(${r},${g},${b},.4)`,
         statusBg: `rgba(${sr},${sg},${sb},.12)`,
@@ -2370,7 +3043,7 @@ class Component extends DCLogic {
     const A = {
       sentiment: mk({ name: 'Sentiment Scout', tag: 'The Whisperer', emoji: '📡', color: '#FF4D9D',
         status: '⭐ FIRM LEADER', statusColor: '#FFD24D', picks: 37, executed: 17, winRate: '58.3%',
-        pnl: '+$211.70', pnlColor: GREEN,
+        realizedRaw: 211.70,
         blurb: 'Reads the room — social buzz, insider buying clusters, unusual options flow and narrative momentum. Ranks signals by historical reliability.',
         edge: 'Insider buying clusters have the highest historical hit rate of any sentiment signal — it captures information flow before it shows up in price.',
         c910: 'Insider cluster + social buzz accelerating + narrative still early.',
@@ -2379,7 +3052,7 @@ class Component extends DCLogic {
         recent: [{ t: 'TGLS', r: '+13.3%', up: true }, { t: 'FCN', r: '+3.5%', up: true }, { t: 'NCLH', r: '+1.1%', up: true }] }),
       contrarian: mk({ name: 'Contrarian', tag: 'The Rebel', emoji: '🃏', color: '#A05CFF',
         status: 'CONVICTION 8+ TO EXECUTE', statusColor: '#A05CFF', picks: 32, executed: 14, winRate: '33.3%',
-        pnl: '+$90.69', pnlColor: GREEN,
+        realizedRaw: 90.69,
         blurb: 'Hunts beaten-down names with improving fundamentals. Every thesis needs all three: cheap + improving + catalyst.',
         edge: 'Captures the highest-magnitude moves when consensus is wrong — and is naturally uncorrelated with the other agents.',
         c910: 'Extreme pessimism + clear fundamental improvement + a catalyst forcing re-rating.',
@@ -2388,7 +3061,7 @@ class Component extends DCLogic {
         recent: [{ t: 'SYK', r: '+4.8%', up: true }] }),
       catalyst: mk({ name: 'Catalyst Agent', tag: 'The Clockwatcher', emoji: '⏱', color: '#4D7CFF',
         status: 'CONVICTION 8+ TO EXECUTE', statusColor: '#4D7CFF', picks: 15, executed: 3, winRate: '23.3%',
-        pnl: '+$17.32', pnlColor: GREEN,
+        realizedRaw: 17.32,
         blurb: 'Trades known future events before the market fully prices them — earnings, FDA dates, FOMC, launches. Models both outcomes, only acts on mispricing.',
         edge: 'Forward-looking specificity — known dates and quantifiable outcomes, not vibes. No date = no trade.',
         c910: 'Known date + specific asymmetry (market ~50%, you assess 75%+) + bounded downside.',
@@ -2397,7 +3070,7 @@ class Component extends DCLogic {
         recent: [{ t: 'CAT', r: '+18.9%', up: true }] }),
       macro: mk({ name: 'Macro Strategist', tag: 'The Big Picture', emoji: '🌐', color: '#F5B731',
         status: 'BENCHED · 0.5× · CONV 8+ FLOOR', statusColor: '#FF5C6A', picks: 25, executed: 1, winRate: '10.0%',
-        pnl: '−$2.16', pnlColor: RED,
+        realizedRaw: -2.16,
         blurb: 'The big picture — Fed policy, Treasury yields, geopolitical risk, currency and commodity cycles. Trades broad instruments on regime shifts.',
         edge: 'Identifies regime transitions before they’re consensus — risk-on→risk-off, growth→stagflation.',
         c910: 'Clear regime shift or policy pivot with asymmetric risk/reward.',
@@ -2406,7 +3079,7 @@ class Component extends DCLogic {
         recent: [] }),
       crypto: mk({ name: 'Crypto Analyst', tag: 'On-Chain', emoji: '₿', color: '#F7931A',
         status: 'STOCKS ONLY · ETF PICKS BANNED', statusColor: '#F7931A', picks: 30, executed: 8, winRate: '62.0%',
-        pnl: '−$51.55', pnlColor: RED,
+        realizedRaw: -51.55,
         blurb: 'Bitcoin on-chain metrics, mining equities, ETF flows and regulatory catalysts. Watches exchange reserves, MVRV Z-Score and hash rate.',
         edge: 'On-chain data provides signals — exchange outflows, hash-rate trends — that traditional analysts miss entirely.',
         c910: 'On-chain divergence (exchange outflows while price flat) + an upcoming catalyst.',
@@ -2415,7 +3088,7 @@ class Component extends DCLogic {
         recent: [{ t: 'CLSK', r: '−0.7%', up: false }] }),
       quant: mk({ name: 'Momentum Quant', tag: 'The Machine', emoji: '📊', color: '#2DD4D4',
         status: 'SUSPENDED → JUL 8', statusColor: '#FF5C6A', picks: 30, executed: 15, winRate: '42.6%',
-        pnl: '−$106.98', pnlColor: RED,
+        realizedRaw: -106.98,
         blurb: 'Pure technicals — a weighted model: momentum (3×), volume (2×), relative strength (2×), volatility (1×), catalyst proximity (2×).',
         edge: 'Systematic scoring removes emotional bias and catches trend acceleration early.',
         c910: 'Multi-factor alignment — momentum, volume, relative strength all confirm + near-term catalyst.',
@@ -2428,22 +3101,83 @@ class Component extends DCLogic {
     const selPos = this.state.selPos, chartPeriod = this.state.chartPeriod || '1Y', homePeriod = this.state.homePeriod || '1Y';
     const rgbaOf = (c,al) => 'rgba('+parseInt(c.slice(1,3),16)+','+parseInt(c.slice(3,5),16)+','+parseInt(c.slice(5,7),16)+','+al+')';
     const fmtUSD = n => '$' + n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+    const txnsOpen = this.state.txns;
+    let tx = null;
+    if (selA && txnsOpen) {
+      const ag = A[selA];
+      const raw = this._transactions()[selA];
+      const sgn = n => (n>=0?'+':'−');
+      const money = n => sgn(n)+'$'+Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+      const openRows = (isReset ? [] : raw.open).map(o => {
+        const avg = isReset ? o.last : o.avg;
+        const sh = o.sh*factor;
+        const pnl=(o.last-avg)*sh, ret=(o.last/avg-1)*100, up=pnl>=0;
+        return { ticker:o.t, sub:fmtSh(sh)+' sh · avg '+fmtUSD(avg)+' · now '+fmtUSD(o.last),
+          pnl:money(pnl), ret:sgn(ret)+Math.abs(ret).toFixed(1)+'%', color: isReset?'rgba(255,255,255,.55)':(up?GREEN:RED) };
+      });
+      let baseClosed=0;
+      const closedRowsAll = raw.closed.map(c => {
+        const pnlBase=(c.exit-c.avg)*c.sh; baseClosed+=pnlBase;
+        const pnl=pnlBase*factor, ret=(c.exit/c.avg-1)*100, up=pnl>=0;
+        return { ticker:c.t, sub:fmtSh(c.sh*factor)+' sh · avg '+fmtUSD(c.avg)+' → '+fmtUSD(c.exit),
+          pnl:money(pnl), ret:sgn(ret)+Math.abs(ret).toFixed(1)+'%', color:up?GREEN:RED };
+      });
+      const closedRows = isReset ? [] : closedRowsAll;
+      const realizedNum = isReset ? 0 : raw.realized*factor;
+      const earlierPnl = isReset ? 0 : (raw.realized - baseClosed)*factor;
+      const closedCount = isReset ? 0 : (raw.closed.length + raw.earlier);
+      const realUp = realizedNum>=0;
+      tx = {
+        summary: isReset ? (raw.open.length+' open · fresh since reset') : (closedCount+' closed · '+raw.open.length+' open'),
+        realized: money(realizedNum), realizedColor: isReset?'rgba(255,255,255,.6)':(realUp?GREEN:RED),
+        realizedBg: isReset?'rgba(255,255,255,.05)':(realUp?rgbaOf(GREEN,0.1):rgbaOf(RED,0.1)),
+        realizedBorder: isReset?'rgba(255,255,255,.14)':(realUp?rgbaOf(GREEN,0.3):rgbaOf(RED,0.3)),
+        openCount: raw.open.length, closedCount,
+        hasOpen: openRows.length>0, open: openRows, closed: closedRows,
+        hasEarlier: !isReset && raw.earlier>0,
+        earlierLabel: '+ '+raw.earlier+' earlier closed',
+        earlierPnl: money(earlierPnl), earlierColor: earlierPnl>=0?GREEN:RED,
+      };
+    }
     const POS = this._positions();
-    const positions = POS.map(p => ({
+    // ── recompute NAV / cash / P&L from the capital base ──
+    let _baseCost=0, _baseMV=0;
+    for(const _p of POS){ _baseCost += _p.shares*_p.entry; _baseMV += _p.shares*_p.latest; }
+    const _TXD = this._transactions();
+    let _baseReal=0; for(const _k in _TXD){ _baseReal += _TXD[_k].realized; }
+    const _baseUnreal = _baseMV - _baseCost;
+    const _baseNav = 10000 + _baseReal + _baseUnreal;
+    const navNum = isReset ? capital : _baseNav*factor;
+    const investedMV = isReset ? 0 : _baseMV*factor;
+    const cashNum = navNum - investedMV;
+    const cashPctNum = navNum>0 ? Math.round(cashNum/navNum*100) : 0;
+    const incPct = isReset ? 0 : (_baseNav/10000 - 1)*100;
+    const scaleP = p => {
+      const entry = isReset ? p.latest : p.entry;
+      const shares = p.shares * factor;
+      const ret = isReset ? 0 : p.ret;
+      const up = isReset ? true : p.up;
+      return { entry, shares, ret, up, mv: p.latest*shares, cost: entry*shares, pnl: (p.latest-entry)*shares };
+    };
+    const posCount = isReset ? 0 : POS.length;
+    const hasPositions = posCount > 0;
+    const positions = (isReset ? [] : POS).map(p => { const s=scaleP(p); return {
       ticker:p.ticker, color:p.color, agent:p.agent,
       dotGlow:'0 0 8px '+rgbaOf(p.color,0.6),
-      sub:p.shares+' sh · '+fmtUSD(p.entry)+' → '+fmtUSD(p.latest),
-      retStr:(p.up?'+':'−')+Math.abs(p.ret).toFixed(1)+'%',
-      retColor:p.up?GREEN:RED,
-      open:()=>this.setState({ tab:'portfolio', selA:null, selPos:p.ticker }),
-    }));
+      sub:fmtSh(s.shares)+' sh · '+fmtUSD(s.entry)+' → '+fmtUSD(p.latest),
+      retStr:(s.up?'+':'−')+Math.abs(s.ret).toFixed(1)+'%',
+      retColor: isReset ? 'rgba(255,255,255,.55)' : (s.up?GREEN:RED),
+      open:()=>this.setState({ tab:'portfolio', selA:null, selMkt:null, selPos:p.ticker }),
+    }; });
     let d=null, chart=null, periods=null;
     if(selPos){
       const p = POS.find(x=>x.ticker===selPos) || POS[0];
-      chart = this._series(p.ticker, chartPeriod, p.latest, p.entry, p.up);
+      const s = scaleP(p);
+      chart = this._series(p.ticker, chartPeriod, p.latest, s.entry, s.up);
       d = Object.assign({}, p, {
-        priceStr:fmtUSD(p.latest), entryStr:fmtUSD(p.entry), mktStr:fmtUSD(p.latest*p.shares),
-        totalRetStr:(p.up?'+':'−')+Math.abs(p.ret).toFixed(1)+'%', totalRetColor:p.up?GREEN:RED,
+        shares: fmtSh(s.shares),
+        priceStr:fmtUSD(p.latest), entryStr:fmtUSD(s.entry), mktStr:fmtUSD(s.mv),
+        totalRetStr:(s.up?'+':'−')+Math.abs(s.ret).toFixed(1)+'%', totalRetColor: isReset ? 'rgba(255,255,255,.55)' : (s.up?GREEN:RED),
         agentTintBg:rgbaOf(p.color,0.12), agentTintBorder:rgbaOf(p.color,0.34),
         mgmtTone: p.mgmt.tone==='good'?GREEN:(p.mgmt.tone==='warn'?'#F5B731':RED),
         mgmtToneBg: p.mgmt.tone==='good'?rgbaOf(GREEN,0.1):(p.mgmt.tone==='warn'?'rgba(245,183,49,.1)':rgbaOf(RED,0.1)),
@@ -2457,41 +3191,207 @@ class Component extends DCLogic {
         bg: label===chartPeriod ? (chart.color===GREEN?rgbaOf(GREEN,0.16):rgbaOf(RED,0.16)) : 'transparent',
       }));
     }
-    const homeChart = this._navSeries(homePeriod);
+    const homeChart = this._navSeries(homePeriod, capital, navNum, isReset);
     const homePeriods = ['LIVE','1D','1W','1M','3M','YTD','1Y'].map(label=>({
       label, onTap:()=>this.setState({ homePeriod: label }),
       color: label===homePeriod ? GREEN : 'rgba(255,255,255,.5)',
       bg: label===homePeriod ? rgbaOf(GREEN,0.16) : 'transparent',
     }));
 
+    const selMkt = this.state.selMkt, mktPeriod = this.state.mktPeriod || '3M';
+    const mktEdit = !!this.state.mktEdit;
+    const selMktIds = this.state.mktSel || [];
+    const MK = this._markets();
+    const glyphOf = id => ({ SPY:'S&P', GLD:'Au', BTC:'\u20bf', US10Y:'%', ETH:'\u039e' }[id] || id);
+    const mktLevel = a => a.kind==='yield' ? a.latest.toFixed(2)+'%' : (a.kind==='level' ? a.latest.toFixed(2) : ('$'+a.latest.toLocaleString('en-US',{ minimumFractionDigits:a.latest>=1000?0:2, maximumFractionDigits:a.latest>=1000?0:2 })));
+    const dayLabel = a => {
+      if(a.kind==='yield'){ const u=a.dayBps>=0; return { str:(u?'+':'\u2212')+Math.abs(a.dayBps)+' bps', color:'#F5B731' }; }
+      const u=a.dayPct>=0; return { str:(u?'\u25b2 ':'\u25bc ')+(u?'+':'\u2212')+Math.abs(a.dayPct).toFixed(2)+'%', color:u?GREEN:RED };
+    };
+    const tagStyle = t => t==='BULLISH' ? { c:GREEN } : (t==='BEARISH' ? { c:RED } : { c:'#F5B731' });
+    const markets = selMktIds.map(id => MK.find(x => x.id === id)).filter(Boolean).map(a => {
+      const sp = this._mktSeries(a, '3M', 120, 34);
+      const dl = dayLabel(a);
+      const ht = tagStyle(a.news[0].tag);
+      return {
+        name:a.name, sector:a.sector, color:a.color, glyph:glyphOf(a.id),
+        tintBg:rgbaOf(a.color,0.13), tintBorder:rgbaOf(a.color,0.4),
+        spark:sp.line, sparkColor: a.kind==='yield' ? a.color : sp.color,
+        levelStr: mktLevel(a), dayStr: dl.str, dayColor: dl.color,
+        headline: a.headline, headTagColor: ht.c,
+        open:()=>this.setState({ tab:'markets', selMkt:a.id }),
+      };
+    });
+    let m=null, mchart=null, mktPeriods=null;
+    if(selMkt){
+      const a = MK.find(x=>x.id===selMkt) || MK[0];
+      mchart = this._mktSeries(a, mktPeriod, 340, 150);
+      const dl = dayLabel(a);
+      const stats = [
+        { label:'Today', val:dl.str, color:dl.color },
+        { label:'Year to date', val:a.ytd, color:'#F2F2F5' },
+        { label:'1-year', val:a.oneY, color:'#F2F2F5' },
+        { label:'52-wk range', val:a.range52, color:'#F2F2F5' },
+      ];
+      const news = a.news.map(n => { const ts=tagStyle(n.tag); return { ...n, tagColor:ts.c, tagBg:rgbaOf(ts.c,0.12), tagBorder:rgbaOf(ts.c,0.32) }; });
+      m = Object.assign({}, a, { glyph:glyphOf(a.id), levelStr:mktLevel(a), tintBg:rgbaOf(a.color,0.12), tintBorder:rgbaOf(a.color,0.34), stats, news });
+      const PER=['LIVE','1D','1W','1M','3M','YTD','1Y'];
+      mktPeriods = PER.map(label=>({
+        label, onTap:()=>this.setState({ mktPeriod: label }),
+        color: label===mktPeriod ? mchart.color : 'rgba(255,255,255,.5)',
+        bg: label===mktPeriod ? rgbaOf(mchart.color,0.16) : 'transparent',
+      }));
+    }
+
+    // ── customize-markets picker rows ──
+    const atMax = selMktIds.length >= 12;
+    const catalogRows = MK.map(a => {
+      const on = selMktIds.includes(a.id);
+      const dl = dayLabel(a);
+      return {
+        name:a.name, full:a.full, color:a.color, glyph:glyphOf(a.id),
+        tintBg:rgbaOf(a.color,0.13), tintBorder:rgbaOf(a.color,0.4),
+        levelStr:mktLevel(a), dayStr:dl.str, dayColor:dl.color,
+        rowOpacity: (!on && atMax) ? 0.42 : 1,
+        togGlyph: on ? '✓' : '+',
+        togColor: on ? '#0B0B11' : 'rgba(255,255,255,.55)',
+        togBg: on ? GREEN : 'rgba(255,255,255,.05)',
+        togBorder: on ? GREEN : 'rgba(255,255,255,.18)',
+        toggle: () => this._toggleMkt(a.id),
+      };
+    });
+
+    // ── capital / strategy-reset model ──
+    const navWhole = Math.floor(navNum);
+    const navCents = Math.round((navNum - navWhole) * 100).toString().padStart(2, '0');
+    const capStr = '$' + capital.toLocaleString('en-US');
+    const cashStr = '$' + (cashNum >= 1000 ? (cashNum/1000).toFixed(1) + 'k' : Math.round(Math.max(0,cashNum)).toString());
+    const cashPct = cashPctNum + '%';
+    const tradesTotal = isReset ? 0 : 61;
+    const strat = incPct;
+    const stratStr = (strat>=0?'+':'−') + Math.abs(strat).toFixed(2) + '%';
+    const alphaStr = isReset ? '0.00%' : '−29.56%';
+    const alphaColor = isReset ? 'rgba(255,255,255,.55)' : '#FF5C6A';
+    const alphaBg = isReset ? 'linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02))' : 'linear-gradient(135deg, rgba(255,92,106,.14), rgba(255,92,106,.04))';
+    const alphaBorder = isReset ? 'rgba(255,255,255,.12)' : 'rgba(255,92,106,.26)';
+    const alphaNote = isReset
+      ? 'Fresh start — no history carried over. Agent scorecards keep learning while P&L tracks from today.'
+      : 'Behind the index in a bull run. Still simulated — building a track record before risking capital.';
+    const fmtDate = iso => { try { const d=new Date(iso+'T00:00:00'); return d.toLocaleDateString('en-US',{month:'short',day:'numeric'}).toUpperCase(); } catch(e){ return iso; } };
+    const daysSince = iso => { try { const d=new Date(iso+'T00:00:00'); return Math.max(1, Math.round((Date.now()-d.getTime())/86400000)+1); } catch(e){ return 1; } };
+    const headerDate = isReset ? (fmtDate(resetAt) + ' · DAY ' + daysSince(resetAt)) : 'JUN\u00a024 · DAY\u00a088';
+    const trackingLine = isReset ? ('Tracking from ' + fmtDate(resetAt)) : 'Simulated since inception · Day 88';
+    const capPresets = [5000, 10000, 25000, 50000, 100000].map(v => ({
+      label: v >= 1000 ? '$' + (v/1000) + 'k' : '$' + v,
+      active: capital === v,
+      set: () => this._setCapital(v),
+      color: capital === v ? '#0B0B11' : 'rgba(255,255,255,.7)',
+      bg: capital === v ? GREEN : 'rgba(255,255,255,.05)',
+      border: capital === v ? GREEN : 'rgba(255,255,255,.12)',
+    }));
+
+    const selPick = this.state.selPick, pickPeriod = this.state.pickPeriod || '3M';
+    const recsReadyNow = step >= 2;
     const liveAgents = [
-      { name: 'Macro', emoji: '🌐', color: '#F5B731', ticker: 'SPY', conv: 5, convPct: '50%', note: 'benched · 0.5×', dim: true },
-      { name: 'Crypto', emoji: '₿', color: '#F7931A', ticker: 'IREN', conv: 7, convPct: '70%', note: 'hash-rate breakout', dim: false },
-      { name: 'Quant', emoji: '📊', color: '#2DD4D4', ticker: 'AMD', conv: 6, convPct: '60%', note: 'suspended', dim: true },
-      { name: 'Sentiment', emoji: '📡', color: '#FF4D9D', ticker: 'PLTR', conv: 8, convPct: '80%', note: 'insider cluster', dim: false, star: true },
-      { name: 'Contrarian', emoji: '🃏', color: '#A05CFF', ticker: 'PYPL', conv: 7, convPct: '70%', note: 'cheap + turning', dim: false },
-      { name: 'Catalyst', emoji: '⏱', color: '#4D7CFF', ticker: 'NVDA', conv: 8, convPct: '80%', note: 'earnings in 3d', dim: false },
+      { id:'macro', name: 'Macro', emoji: '🌐', color: '#F5B731', ticker: 'SPY', conv: 5, convPct: '50%', note: 'benched · 0.5×', dim: true },
+      { id:'crypto', name: 'Crypto', emoji: '₿', color: '#F7931A', ticker: 'IREN', conv: 7, convPct: '70%', note: 'hash-rate breakout', dim: false },
+      { id:'quant', name: 'Quant', emoji: '📊', color: '#2DD4D4', ticker: 'AMD', conv: 6, convPct: '60%', note: 'suspended', dim: true },
+      { id:'sentiment', name: 'Sentiment', emoji: '📡', color: '#FF4D9D', ticker: 'PLTR', conv: 8, convPct: '80%', note: 'insider cluster', dim: false, star: true },
+      { id:'contrarian', name: 'Contrarian', emoji: '🃏', color: '#A05CFF', ticker: 'PYPL', conv: 7, convPct: '70%', note: 'cheap + turning', dim: false },
+      { id:'catalyst', name: 'Catalyst', emoji: '⏱', color: '#4D7CFF', ticker: 'NVDA', conv: 8, convPct: '80%', note: 'earnings in 3d', dim: false },
     ].map(g => {
       const r = parseInt(g.color.slice(1,3),16), gg = parseInt(g.color.slice(3,5),16), b = parseInt(g.color.slice(5,7),16);
-      return { ...g, border: `rgba(${r},${gg},${b},.3)`, opacity: g.dim ? 0.5 : 1, star: !!g.star };
+      return { ...g, border: `rgba(${r},${gg},${b},.3)`, opacity: g.dim ? 0.5 : 1, star: !!g.star,
+        cursor: recsReadyNow ? 'pointer' : 'default',
+        open: recsReadyNow ? (() => this.setState({ selPick: g.id })) : (() => {}) };
     });
+
+    const PICKS = this._picks();
+    let k=null, pkchart=null, pkPeriods=null;
+    if(selPick){
+      const p = PICKS.find(x=>x.id===selPick) || PICKS[0];
+      const up = p.latest >= p.rec;
+      pkchart = this._series(p.ticker+'PK', pickPeriod, p.latest, p.rec, up);
+      pkchart.areaFillPk = pkchart.color===GREEN ? 'url(#afPkUp)' : 'url(#afPkDown)';
+      pkchart.entryLabelTop = Math.max(2, Math.min(132, pkchart.entryY - 13)) + 'px';
+      const sincePct = (p.latest/p.rec - 1) * 100;
+      const outMap = {
+        BOUGHT:{c:GREEN}, PASSED:{c:'#F5B731'}, INELIGIBLE:{c:'rgba(255,255,255,.5)'},
+      };
+      const oc = outMap[p.outcome] || outMap.PASSED;
+      const ocHex = oc.c.startsWith('#') ? oc.c : '#8A8A92';
+      k = Object.assign({}, p, {
+        priceStr:fmtUSD(p.latest), recStr:fmtUSD(p.rec),
+        sinceStr:(sincePct>=0?'+':'−')+Math.abs(sincePct).toFixed(1)+'%', sinceColor:sincePct>=0?GREEN:RED,
+        agentTintBg:rgbaOf(p.color,0.12), agentTintBorder:rgbaOf(p.color,0.34),
+        outColor:oc.c,
+        outBg: p.outcome==='BOUGHT'?rgbaOf(GREEN,0.12):(p.outcome==='PASSED'?'rgba(245,183,49,.12)':'rgba(255,255,255,.05)'),
+        outBorder: p.outcome==='BOUGHT'?rgbaOf(GREEN,0.34):(p.outcome==='PASSED'?'rgba(245,183,49,.32)':'rgba(255,255,255,.1)'),
+      });
+      const PER=['LIVE','1D','1W','1M','3M','YTD','1Y'];
+      pkPeriods = PER.map(label=>({
+        label, onTap:()=>this.setState({ pickPeriod: label }),
+        color: label===pickPeriod ? pkchart.color : 'rgba(255,255,255,.5)',
+        bg: label===pickPeriod ? (pkchart.color===GREEN?rgbaOf(GREEN,0.16):rgbaOf(RED,0.16)) : 'transparent',
+      }));
+    }
 
     return {
       showPortfolio: tab === 'portfolio' && !selPos,
       showPosition: tab === 'portfolio' && !!selPos,
       positions, d, chart, periods, homeChart, homePeriods,
+      posCount, hasPositions, tradesTotal,
+      posCountStr: String(posCount),
       closePos: () => this.setState({ selPos: null }),
       showRoster: tab === 'analysts' && !selA,
-      showDetail: tab === 'analysts' && !!selA,
-      showLive: tab === 'live',
-      showLeague: tab === 'league',
+      showDetail: tab === 'analysts' && !!selA && !txnsOpen,
+      showTxns: tab === 'analysts' && !!selA && txnsOpen,
+      tx,
+      openTxns: () => this.setState({ txns: true }),
+      closeTxns: () => this.setState({ txns: false }),
+      showLive: tab === 'live' && !selPick,
+      showPick: tab === 'live' && !!selPick,
+      k, pkchart, pkPeriods,
+      closePick: () => this.setState({ selPick: null }),
+      showMarkets: tab === 'markets' && !selMkt && !mktEdit,
+      showMarket: tab === 'markets' && !!selMkt,
+      showMktEdit: tab === 'markets' && mktEdit && !selMkt,
+      markets, m, mchart, mktPeriods, catalogRows,
+      selCount: selMktIds.length, maxMkt: 12,
+      openMktEdit: () => this.setState({ mktEdit: true, selMkt: null }),
+      closeMktEdit: () => this.setState({ mktEdit: false }),
+      closeMkt: () => this.setState({ selMkt: null }),
       a: selA ? A[selA] : null,
 
-      goPortfolio: () => this.setState({ tab: 'portfolio', selA: null, selPos: null }),
-      goAnalysts: () => this.setState({ tab: 'analysts', selA: null, selPos: null }),
-      goLive: () => this.setState({ tab: 'live', selPos: null }),
-      goLeague: () => this.setState({ tab: 'league', selPos: null }),
-      closeA: () => this.setState({ selA: null }),
+      showProfile: tab === 'profile',
+      showTabs: tab !== 'profile',
+      capital, capStr, navWhole: navWhole.toLocaleString('en-US'), navCents,
+      cashStr, cashPct, stratStr, stratColor: strat >= 0 ? GREEN : RED,
+      alphaStr, alphaColor, alphaBg, alphaBorder, alphaNote,
+      headerDate, trackingLine, isReset,
+      capPresets,
+      confirmReset: !!this.state.confirmReset,
+      showResetBtn: !this.state.confirmReset,
+      capUp: () => this._setCapital((capital || 0) + 1000),
+      capDown: () => this._setCapital(Math.max(0, (capital || 0) - 1000)),
+      trackStatus: isReset ? 'RESET' : 'LIVE',
+      trackStatusColor: isReset ? '#2BD98A' : 'rgba(255,255,255,.6)',
+      trackStatusBg: isReset ? 'rgba(43,217,138,.12)' : 'rgba(255,255,255,.05)',
+      trackStatusBorder: isReset ? 'rgba(43,217,138,.3)' : 'rgba(255,255,255,.14)',
+      goProfile: () => this.setState({ prevTab: (tab === 'profile' ? this.state.prevTab : tab), tab: 'profile', selPos: null, selA: null, selMkt: null, selPick: null, mktEdit: false, confirmReset: false }),
+      closeProfile: () => this.setState({ tab: this.state.prevTab || 'portfolio', confirmReset: false }),
+      onCapInput: (e) => { const v = parseInt(String(e.target.value).replace(/[^0-9]/g, ''), 10); this._setCapital(isNaN(v) ? 0 : v); },
+      capBump: (delta) => this._setCapital((capital || 0) + delta),
+      askReset: () => this.setState({ confirmReset: true }),
+      cancelReset: () => this.setState({ confirmReset: false }),
+      doReset: () => this._doReset(),
+      restoreHistory: () => this._restoreHistory(),
+
+      goPortfolio: () => this.setState({ tab: 'portfolio', selA: null, selPos: null, selPick: null, selMkt: null, mktEdit: false }),
+      goAnalysts: () => this.setState({ tab: 'analysts', selA: null, selPos: null, selPick: null, selMkt: null, mktEdit: false }),
+      goLive: () => this.setState({ tab: 'live', selPos: null, selPick: null, selMkt: null, mktEdit: false }),
+      goMarkets: () => this.setState({ tab: 'markets', selA: null, selPos: null, selPick: null, selMkt: null, mktEdit: false }),
+      closeA: () => this.setState({ selA: null, txns: false }),
       openSentiment: () => this.open('sentiment'),
       openContrarian: () => this.open('contrarian'),
       openCatalyst: () => this.open('catalyst'),
@@ -2502,7 +3402,7 @@ class Component extends DCLogic {
       pColor: tab === 'portfolio' ? ACT : INA,
       aColor: tab === 'analysts' ? ACT : INA,
       lColor: tab === 'live' ? ACT : INA,
-      gColor: tab === 'league' ? ACT : INA,
+      mColor: tab === 'markets' ? ACT : INA,
 
       liveIdle: step === 0,
       liveRunning: step >= 1,
