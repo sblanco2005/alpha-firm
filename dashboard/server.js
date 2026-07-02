@@ -13,6 +13,87 @@ const STATE_DIR = join(__dirname, "..", "state");
 const MEMORY_DIR = join(__dirname, "..", "memory");
 const INITIAL_CAPITAL = 10000;
 
+// ── Personal account overlay (capital base + strategy reset) ─────────────────────
+// Non-destructive: the firm's real $10k book keeps running; these transforms derive the
+// *displayed* figures. factor = capital/10000 scales every dollar amount; a reset shows a
+// clean 100%-cash slate. Percentages (returns, alpha) are factor-invariant.
+const ACCOUNT_FILE = join(STATE_DIR, "account.json");
+function getAccount() {
+  const a = readJSON(ACCOUNT_FILE) || {};
+  return { capital: Number.isFinite(a.capital) ? a.capital : INITIAL_CAPITAL, resetAt: a.resetAt || null };
+}
+function daysSince(iso) {
+  return Math.max(1, Math.floor((Date.now() - Date.parse(iso + "T00:00:00Z")) / 86400000) + 1); // inclusive
+}
+function scalePosition(p, f) {
+  return {
+    ...p,
+    shares: p.shares != null ? +(p.shares * f).toFixed(4) : p.shares,
+    current_value: p.current_value != null ? +(p.current_value * f).toFixed(2) : p.current_value,
+    unrealized_pnl: p.unrealized_pnl != null ? +(p.unrealized_pnl * f).toFixed(2) : p.unrealized_pnl,
+  };
+}
+function applyAccount(enriched) {
+  const { capital, resetAt } = getAccount();
+  const meta = { capital, reset: !!resetAt, trackingSince: resetAt, dayN: resetAt ? daysSince(resetAt) : null };
+  if (resetAt) {
+    return { ...enriched, ...meta, positions: [], nav: capital, cash: capital, high_water_mark: capital, alpha: 0, portfolio_pnl_pct: 0 };
+  }
+  const f = capital / INITIAL_CAPITAL;
+  return {
+    ...enriched, ...meta,
+    nav: +(enriched.nav * f).toFixed(2),
+    cash: +(enriched.cash * f).toFixed(2),
+    high_water_mark: enriched.high_water_mark != null ? +(enriched.high_water_mark * f).toFixed(2) : enriched.high_water_mark,
+    positions: (enriched.positions || []).map((p) => scalePosition(p, f)),
+  };
+}
+function applyAccountNav(navData) {
+  const { capital, resetAt } = getAccount();
+  if (resetAt) {
+    return { ...navData, points: (navData.points || []).map((p) => ({ ...p, nav: capital })), spy: (navData.spy || []).map((p) => ({ ...p, value: capital })) };
+  }
+  const f = capital / INITIAL_CAPITAL;
+  if (f === 1) return navData;
+  return {
+    ...navData,
+    points: (navData.points || []).map((p) => ({ ...p, nav: +(p.nav * f).toFixed(2) })),
+    spy: (navData.spy || []).map((p) => ({ ...p, value: +(p.value * f).toFixed(2) })),
+  };
+}
+function applyAccountRoster(roster) {
+  const { capital, resetAt } = getAccount();
+  if (resetAt) return roster.map((a) => ({ ...a, realizedPnl: 0, holdings: [] }));
+  const f = capital / INITIAL_CAPITAL;
+  if (f === 1) return roster;
+  return roster.map((a) => ({ ...a, realizedPnl: a.realizedPnl != null ? +(a.realizedPnl * f).toFixed(2) : a.realizedPnl }));
+}
+function applyAccountTxns(t) {
+  const { capital, resetAt } = getAccount();
+  if (resetAt) return { ...t, realizedTotal: 0, open: [], closed: [], earlierClosedCount: 0, closedTotalCount: 0 };
+  const f = capital / INITIAL_CAPITAL;
+  if (f === 1) return t;
+  return {
+    ...t,
+    realizedTotal: +(t.realizedTotal * f).toFixed(2),
+    open: (t.open || []).map((o) => ({ ...o, shares: +(o.shares * f).toFixed(4) })),
+    closed: (t.closed || []).map((c) => ({ ...c, shares: +(c.shares * f).toFixed(4), realizedPnl: +(c.realizedPnl * f).toFixed(2) })),
+  };
+}
+function applyAccountPositionDetail(d) {
+  const f = getAccount().capital / INITIAL_CAPITAL;
+  if (f === 1) return d;
+  return {
+    ...d,
+    shares: d.shares != null ? +(d.shares * f).toFixed(4) : d.shares,
+    marketValue: d.marketValue != null ? +(d.marketValue * f).toFixed(2) : d.marketValue,
+    totalReturnAbs: d.totalReturnAbs != null ? +(d.totalReturnAbs * f).toFixed(2) : d.totalReturnAbs,
+    transactions: Array.isArray(d.transactions)
+      ? d.transactions.map((t) => ({ ...t, shares: t.shares != null ? +(t.shares * f).toFixed(4) : t.shares }))
+      : d.transactions,
+  };
+}
+
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -183,12 +264,28 @@ async function enrichPortfolio(portfolio, { force = false } = {}) {
   };
 }
 
+// Personal account (capital base + strategy reset). Non-destructive overlay.
+app.get("/api/account", (_, res) => res.json(getAccount()));
+app.post("/api/account", (req, res) => {
+  const cur = getAccount();
+  const body = req.body || {};
+  let { capital, resetAt } = cur;
+  if (body.capital !== undefined) {
+    const n = Math.round(Number(body.capital));
+    if (!Number.isFinite(n) || n < 0 || n > 100000000) return res.status(400).json({ error: "capital must be 0–100,000,000" });
+    capital = n;
+  }
+  if (body.resetAt !== undefined) resetAt = body.resetAt ? String(body.resetAt).slice(0, 10) : null;
+  writeJSON(ACCOUNT_FILE, { capital, resetAt });
+  res.json({ capital, resetAt });
+});
+
 app.get("/api/portfolio", async (_, res) => {
   const data = readJSON(join(STATE_DIR, "portfolio.json"));
   if (!data) return res.status(404).json({ error: "not found" });
   try {
     const enriched = await enrichPortfolio(data);
-    res.json(enriched);
+    res.json(applyAccount(enriched));
   } catch {
     res.json(data);
   }
@@ -420,11 +517,11 @@ function buildRoster() {
 }
 
 app.get("/api/analysts", (_, res) => {
-  res.json(buildRoster());
+  res.json(applyAccountRoster(buildRoster()));
 });
 
 app.get("/api/analysts/:id", (req, res) => {
-  const analyst = buildRoster().find((a) => a.id === req.params.id);
+  const analyst = applyAccountRoster(buildRoster()).find((a) => a.id === req.params.id);
   analyst ? res.json(analyst) : res.status(404).json({ error: "unknown analyst" });
 });
 
@@ -471,7 +568,7 @@ app.get("/api/analysts/:id/transactions", async (req, res) => {
     ? lb[agentId].total_pnl
     : +allClosed.reduce((sum, x) => sum + (x.realized_pnl || 0), 0).toFixed(2);
 
-  res.json({
+  res.json(applyAccountTxns({
     agentId,
     name: meta.name,
     emoji: meta.emoji,
@@ -482,7 +579,7 @@ app.get("/api/analysts/:id/transactions", async (req, res) => {
     closed,
     earlierClosedCount,
     closedTotalCount: allClosed.length,
-  });
+  }));
 });
 
 // Most recent market check — the six analysts' latest recommendations.
@@ -653,7 +750,7 @@ app.get("/api/positions/:ticker", async (req, res) => {
     const heldSince = pos.entry_date || (transactions.find((t) => t.action === "buy")?.date) || null;
     const heldDays = heldSince ? Math.max(0, Math.round((Date.now() - Date.parse(heldSince + "T00:00:00Z")) / 86400000)) : null;
 
-    res.json({
+    res.json(applyAccountPositionDetail({
       ticker,
       company: narrative.company || ticker,
       sector: narrative.sector || "—",
@@ -682,7 +779,7 @@ app.get("/api/positions/:ticker", async (req, res) => {
       heldDays,
       transactions,
       history: { daily, intraday },
-    });
+    }));
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -695,7 +792,7 @@ app.get("/api/nav-history", async (_, res) => {
   try {
     const enriched = await enrichPortfolio(portfolio);
     const data = await getNavHistory(portfolio, { cash: enriched.cash, nav: enriched.nav });
-    res.json(data);
+    res.json(applyAccountNav(data));
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

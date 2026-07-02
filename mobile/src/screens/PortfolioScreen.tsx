@@ -12,7 +12,7 @@ import { PeriodKey, NAV_LABEL, windowStartIndex, pctChange } from "../chart";
 
 const INITIAL_CAPITAL = 10000;
 
-function Header() {
+function Header({ onProfile }: { onProfile: () => void }) {
   const date = new Date().toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase();
   return (
     <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginBottom: 22 }}>
@@ -20,7 +20,12 @@ function Header() {
         <Dot color={C.gain} size={8} />
         <Text style={{ fontFamily: F.display800, fontSize: 16, letterSpacing: -0.3, color: C.text }}>ALPHA FIRM</Text>
       </View>
-      <Text style={{ fontFamily: F.mono, fontSize: 11.5, color: rgba("#FFFFFF", 0.42), letterSpacing: 0.3 }}>{date}</Text>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: 12 }}>
+        <Text style={{ fontFamily: F.mono, fontSize: 11.5, color: rgba("#FFFFFF", 0.42), letterSpacing: 0.3 }}>{date}</Text>
+        <Touchable onPress={onProfile} style={{ width: 34, height: 34, borderRadius: 17, backgroundColor: rgba(C.gain, 0.14), borderWidth: 1, borderColor: rgba(C.gain, 0.4), alignItems: "center", justifyContent: "center" }}>
+          <Text style={{ fontSize: 15 }}>👤</Text>
+        </Touchable>
+      </View>
     </View>
   );
 }
@@ -57,6 +62,8 @@ export function PortfolioScreen({ navigation }: any) {
   if (error || !portfolio) return <Screen><ErrorState error={error} onRetry={reload} /></Screen>;
 
   const nav = portfolio.nav ?? portfolio.cash;
+  const capital = portfolio.capital ?? INITIAL_CAPITAL;
+  const isReset = !!portfolio.reset;
   const cashPct = nav ? (portfolio.cash / nav) * 100 : 0;
   const [dollars, cents] = nav.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }).split(".");
   const positions = [...(portfolio.positions || [])].sort(
@@ -81,15 +88,24 @@ export function PortfolioScreen({ navigation }: any) {
       periodAlpha = +(changePct - spyChangePct).toFixed(2);
     }
   } else {
-    changeAbs = nav - INITIAL_CAPITAL;
-    changePct = (changeAbs / INITIAL_CAPITAL) * 100;
+    changeAbs = nav - capital;
+    changePct = capital ? (changeAbs / capital) * 100 : 0;
     up = changeAbs >= 0;
   }
 
   return (
     <Screen>
       <FadeInView>
-        <Header />
+        <Header onProfile={() => navigation.navigate("Profile")} />
+
+        {isReset && (
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 8, backgroundColor: rgba(C.gain, 0.1), borderWidth: 1, borderColor: rgba(C.gain, 0.28), borderRadius: 12, paddingVertical: 8, paddingHorizontal: 12, marginBottom: 16 }}>
+            <Dot color={C.gain} size={7} />
+            <Text style={{ fontFamily: F.ui600, fontSize: 12, color: C.gain, letterSpacing: 0.2 }}>
+              FRESH START · {portfolio.trackingSince}{portfolio.dayN ? ` · DAY ${portfolio.dayN}` : ""}
+            </Text>
+          </View>
+        )}
 
         <Text style={{ fontSize: 12.5, color: rgba("#FFFFFF", 0.5), letterSpacing: 1.4, fontFamily: F.ui600 }}>NET ASSET VALUE</Text>
         <Text style={{ marginTop: 4, fontFamily: F.display800, fontSize: 52, letterSpacing: -2, color: C.text }}>
@@ -130,8 +146,9 @@ export function PortfolioScreen({ navigation }: any) {
                 <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.4), fontFamily: F.mono, marginTop: 2 }}>{NAV_LABEL[period]}</Text>
               </View>
               <Text style={{ maxWidth: 150, textAlign: "right", fontSize: 11.5, lineHeight: 17, color: rgba("#FFFFFF", 0.5), fontFamily: F.ui }}>
-                {periodAlpha != null && periodAlpha < 0 ? "Behind the index this window. " : "Ahead of the index this window. "}
-                Still <Text style={{ color: C.text }}>simulated</Text> — building a track record before risking capital.
+                {isReset
+                  ? <>Fresh start — <Text style={{ color: C.text }}>no track record yet.</Text> Tracking from {portfolio.trackingSince}.</>
+                  : <>{periodAlpha != null && periodAlpha < 0 ? "Behind the index this window. " : "Ahead of the index this window. "}Still <Text style={{ color: C.text }}>simulated</Text> — building a track record before risking capital.</>}
               </Text>
             </View>
           </LinearGradient>
@@ -151,9 +168,18 @@ export function PortfolioScreen({ navigation }: any) {
         </View>
 
         <View style={{ gap: 8 }}>
-          {positions.map((p: any) => (
-            <PositionRow key={p.ticker} p={p} onPress={() => navigation.navigate("PositionDetail", { ticker: p.ticker })} />
-          ))}
+          {positions.length === 0 ? (
+            <View style={{ backgroundColor: C.card, borderWidth: 1, borderColor: C.hair, borderRadius: 16, paddingVertical: 24, paddingHorizontal: 16, alignItems: "center" }}>
+              <Text style={{ fontFamily: F.display, fontSize: 15, color: C.text }}>{cashPct >= 100 ? "100% cash" : "No open positions"}</Text>
+              <Text style={{ fontSize: 12, color: rgba("#FFFFFF", 0.45), marginTop: 5, textAlign: "center", lineHeight: 17, fontFamily: F.ui }}>
+                {isReset ? "Fresh slate — waiting for the desk's first pick." : "Nothing held right now — the desk is waiting for a setup."}
+              </Text>
+            </View>
+          ) : (
+            positions.map((p: any) => (
+              <PositionRow key={p.ticker} p={p} onPress={() => navigation.navigate("PositionDetail", { ticker: p.ticker })} />
+            ))
+          )}
         </View>
       </FadeInView>
     </Screen>

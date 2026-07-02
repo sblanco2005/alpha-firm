@@ -9,10 +9,12 @@ import { AnalystDetailScreen } from "../screens/AnalystDetailScreen";
 import { AgentTransactionsScreen } from "../screens/AgentTransactionsScreen";
 import { MarketCheckScreen } from "../screens/MarketCheckScreen";
 import { PickDetailScreen } from "../screens/PickDetailScreen";
+import { ProfileScreen } from "../screens/ProfileScreen";
 import { PortfolioIcon, AnalystsIcon, LiveIcon } from "./TabIcons";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
+const RootStack = createNativeStackNavigator();
 
 // Portfolio tab is a native stack so tapping a position pushes its detail page.
 function PortfolioStack() {
@@ -46,7 +48,9 @@ function AnalystsStack() {
   );
 }
 
-export function RootNavigator() {
+// The tab bar lives inside a root stack so the Profile/Account page can be pushed
+// ABOVE the tabs — a full-screen page with no bottom tab bar, per the handoff.
+function Tabs() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -88,5 +92,14 @@ export function RootNavigator() {
         })}
       />
     </Tab.Navigator>
+  );
+}
+
+export function RootNavigator() {
+  return (
+    <RootStack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg } }}>
+      <RootStack.Screen name="Tabs" component={Tabs} />
+      <RootStack.Screen name="Profile" component={ProfileScreen} options={{ presentation: "card" }} />
+    </RootStack.Navigator>
   );
 }

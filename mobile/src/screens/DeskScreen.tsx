@@ -62,7 +62,8 @@ export function DeskScreen({ navigation }: any) {
   const ranked = [...analysts].sort((a, b) => (b.realizedPnl ?? -1e9) - (a.realizedPnl ?? -1e9));
   const leader = ranked[0];
   const nav = portfolio?.nav;
-  const profit = nav != null ? nav - 10000 : null;
+  const capital = portfolio?.capital ?? 10000;
+  const profit = nav != null ? nav - capital : null;
   const rewardPool = profit != null ? Math.max(0, profit * 0.2) : null;
 
   return (
