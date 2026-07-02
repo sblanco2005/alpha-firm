@@ -62,6 +62,25 @@ The Step 1.5 table is hand-maintained. **`state/lessons-learned.json`** is its a
 
 **Log every rule that fires** in the decision output (rule `id`, which candidate, and the action taken). Active lessons override default scoring exactly like the Step 1.5 restrictions. Rules are self-expiring: once an agent's win rate for that pattern recovers (≥15pt improvement), the promote step retires them, so the constraint lifts automatically — no manual cleanup.
 
+### Step 1.7: PM Self-Adjustments & Scorecard (added 2026-07-02)
+
+The agents are audited weekly — and so is the PM. Every Saturday `scripts/run-pm-review.sh` measures every PASS, debate kill, and buy against the exact counterfactual (the SPY sweep) and writes:
+- `state/scorecards/pm.json` — the PM's own scorecard (pass/kill/buy accuracy, foregone alpha)
+- `state/pm-lessons.json` — bounded self-adjustments promoted from repeated error patterns (≥3 corroborating decisions across ≥2 weeks)
+
+**At the start of every market check:**
+1. Read `state/scorecards/pm.json` and hold it in context, exactly as agents hold theirs. If pass accuracy is low, your bar may be miscalibrated high; if buy accuracy is low, tighten. Metrics tagged `INSUFFICIENT_SAMPLE` inform nothing — do not react to them.
+2. Read `state/pm-lessons.json` and apply every `status: "active"` adjustment:
+
+| `adjustment.type` | PM action |
+|---|---|
+| `threshold_delta` | Add `delta` to the execution threshold (result always within [7.0, 8.5]; never stacks) |
+| `kill_downgrade` | For picks matching the pattern, a debate kill becomes BUY_ELIGIBLE_REDUCED_SIZE (0.90x, 75% size). **fatal_flaw VETO is never downgradeable.** |
+| `penalty_disable` | Skip the named penalty (narrative / spy_baseline) for picks matching the pattern |
+| `penalty_restore` | Re-apply a previously disabled penalty |
+
+Log every adjustment that fires (id + candidate + action), the same as Step 1.6 lessons. Bounds are enforced by `scripts/pm_review.py` at promotion time — if a rule in the file somehow exceeds them, ignore it and flag it in the session log. See `skills/pm-review.md` for the full protocol.
+
 ### Step 2: Structured Evaluation Template
 
 **Do NOT score based on how compelling the prose sounds.** Instead, extract these 7 answers from each recommendation, then score the answers:

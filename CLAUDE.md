@@ -346,6 +346,16 @@ If found, create ~/alpha-firm/alerts/{today}-stop-loss.md with the alert details
 Also check if any position has hit its target return from the trade log.
 ```
 
+## PM Decision Review (the PM audits itself)
+
+Agents aren't the only ones who get graded. Every Saturday (10:00 UTC, after the agent post-mortem) `scripts/run-pm-review.sh` audits the **PM's own decisions** — every PASS, debate kill, and buy — against the exact counterfactual: the SPY sweep. A passed pick that beat SPY was a **bad pass** and its foregone alpha is priced; a passed pick that lost to SPY was good discipline.
+
+- Weekly: root causes assigned per error (`skills/pm-review.md` taxonomy), PM scorecard regenerated (`state/scorecards/pm.json` — read at every market check via orchestrator Step 1.7), report to `reports/{week}-pm-review.md`
+- Monthly (first Saturday): threshold curve, penalty audit, and debate-gate value (alpha saved by kills minus alpha lost to bad kills)
+- Repeated error patterns (≥3 decisions, ≥2 weeks) auto-promote into `state/pm-lessons.json` as **bounded** self-adjustments: threshold moves max ±0.5 within [7.0, 8.5], debate kills downgradeable to reduced-size only (never fatal-flaw vetoes), penalties can be disabled but never inverted. Max 3 active adjustments; each auto-retires after 45 days.
+
+This closes the last open loop: agents learn from losing trades, the PM learns from wrong decisions, and neither requires manual monitoring.
+
 ## Weekly Post-Mortem & Learning Loop
 
 Every losing trade feeds a **fully-automated weekly review** that converts losses into enforced trading rules — closing the learning loop with zero manual editing of `orchestrator.md`. This is how mistakes become permanent guardrails.
