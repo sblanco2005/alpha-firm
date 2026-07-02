@@ -99,11 +99,11 @@
   "inception_date": "2026-03-28",
   "last_updated": "2026-06-26T19:45:01Z",
   "high_water_mark": 11431.25,
-  "spy_inception_price": 555.66,
-  "spy_closing_price": 733.58,
-  "spy_return_pct": 32.02,
+  "spy_inception_price": 634.09,
+  "spy_closing_price": 728.99,
+  "spy_return_pct": 14.97,
   "portfolio_pnl_pct": 4.79,
-  "alpha": -27.23,
+  "alpha": -10.18,
   "nav_note": "NAV 2026-06-26 CLOSING: $10479.35. Cash $4314.45. 8 positions all above stops. MTM winners: CAT(+20.7%)/TGLS(+15.8%)/SYK(+12.5%)/MU(+8.9%); losers: CLSK(-7.0%, catalyst-day held)/FDX(-4.1%, tight to $315 stop)/FCN(-1.8%). SPY $733.58 (-1.76%, closed AT/below 50-day MA ~734 breakdown test; above 200-day). VIX 18.85 (+9.1%, <25). QQQ -3.90%, GLD -3.55%, BTC -6.48%. Portfolio +4.79%. Alpha -27.23% (SPY +32.02%). CLOSING PASS - 3rd disciplined PASS of day. 5/6 agents self-PASS (risk-off breakdown-test tape, no edge); quant UNH(conv8) PAPER-ONLY (suspended to 07-08 + 0.5x track-record => final ~3.5 < 7.5). SPY/QQQ index tranche declined for timing (SPY AT 50-day breakdown test + VIX rising = not follow-through; deploy on 50-day reclaim + VIX roll). No sells - all 8 above stops. CLSK survived today's production catalyst ($16.14, BTC $59,808 > $58K, stop $14). FDX tight to $315 stop - watch.",
   "sold_positions": [
     {
@@ -478,5 +478,6 @@
       "agent": "crypto",
       "reason": "Trailing stop $27.50 triggered: RIOT closed $27.38 < $27.50 stop on June 16. Selling at open June 17 at $27.78. Stop discipline honored. +6.6% in 5 days."
     }
-  ]
+  ],
+  "benchmark_correction_note": "2026-07-02 AUDIT: spy_inception_price corrected 555.66 -> 634.09 (actual SPY close 2026-03-27, last trading day before 2026-03-28 inception; 555.66 never traded \u2014 fabricated at inception). spy_closing_price corrected 733.58 -> 728.99 (733.58 was the Jun 23 close, logged as Jun 26 \u2014 evidence of stale Brave/LLM price fetches). Corrected SPY return since inception as of 2026-06-26: +14.97%; alpha -10.18% (was reported -27.23%). Entry/exit prices in trade-log pending reconciliation via scripts/reconcile_prices.py (e.g. CAT entry 828.79 on 2026-04-28 was the Apr 27 close; Apr 28 range 805-825). See REMEDIATION-PLAN.md."
 }

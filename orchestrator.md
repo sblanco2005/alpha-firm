@@ -81,7 +81,7 @@ This template levels the field between narrative-heavy agents (contrarian, senti
 
 ### Step 2.5: SPY Baseline Test (Anti-Index-Underperformance)
 
-SPY is in a strong bull market (+34.39% since inception). Every stock pick must clear this hurdle:
+SPY is in a bull market (+17.6% since inception as of 2026-07-02, measured from the corrected baseline of $634.09 — the prior "+34.39%" figure was computed from a fabricated $555.66 baseline; see REMEDIATION-PLAN.md). Every stock pick must clear this hurdle:
 
 **The question:** "Why will this ticker beat just buying SPY over the same horizon?"
 
@@ -93,7 +93,7 @@ SPY is in a strong bull market (+34.39% since inception). Every stock pick must 
 
 This penalty is separate from the Narrative Penalty and stacks multiplicatively.
 
-**Note:** In a bull market, doing nothing and holding SPY would have returned +34%. Any trade that doesn't clearly beat that is destroying alpha.
+**Note:** In a bull market, doing nothing and holding SPY would have returned ~+18%. Any trade that doesn't clearly beat that is destroying alpha.
 
 ### Step 3: Scoring Framework (6 Categories)
 
@@ -160,6 +160,8 @@ Apply a **0.85x modifier** if 2 or more of the following are true:
 This penalty exists specifically because LLMs are good at producing coherent, tension-filled stories. Contrarian and sentiment theses are the most likely to trigger this penalty — that's by design.
 
 ### Step 5: Agent Track Record Modifier
+
+> **FROZEN AT 1.0x AS OF 2026-07-02 (see REMEDIATION-PLAN.md Phase 1).** Scorecards were built on (a) a broken win metric (peak-touched-target) and (b) unreconciled price data, at sample sizes of 1-17 executed trades per agent — statistically indistinguishable from coin flips. Until an agent accumulates **30+ executed trades** under the corrected realized-R-multiple metric, `track_record_modifier = 1.0` for ALL agents (including macro's 0.5x, which was based on n=1). The tables below are retained for when modifiers re-enable. Scorecards remain visible to agents for self-calibration, but must display n and must not affect scoring.
 
 Read `state/scorecards/` and `state/leaderboard.json` for each agent. The modifier now uses **both** win rate AND realized P&L, whichever is lower:
 
@@ -241,7 +243,7 @@ Run the **3-Stage Debate** from `skills/debate.md` on the top 2-3 candidates by 
 ```
 final_score =
   raw_pm_score
-  × track_record_modifier    (0.5x to 1.2x, uses min of win_rate and realized_pnl modifiers)
+  × track_record_modifier    (FROZEN at 1.0x for all agents until 30+ executed trades under corrected metric — see Step 5)
   × fundamental_modifier     (0.7x to 1.3x, stocks only)
   × debate_modifier           (0.0x if VETO/PASS, 0.90x if reduced, 1.05x if eligible)
   × narrative_penalty         (0.85x if triggered, else 1.0x)

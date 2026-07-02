@@ -5,7 +5,7 @@ import json
 PORT = '/home/clawd/alpha-firm/state/portfolio.json'
 TODAY = '2026-06-25'
 TS = '2026-06-25T11:00:02Z'
-SPY_INCEPTION = 555.66
+SPY_INCEPTION = 634.09  # corrected 2026-07-02 (was fabricated 555.66)
 
 # Fresh prices (Finnhub, 2026-06-25)
 PRICES = {

@@ -1,7 +1,14 @@
 # Skill: Price Fetching
 
 ## Purpose
-This skill defines how to fetch current market prices for stocks, crypto, and ETFs using the Fetch MCP tool.
+This skill defines how to fetch current market prices for stocks, crypto, and ETFs.
+
+## HARD RULES (added 2026-07-02 — see REMEDIATION-PLAN.md)
+
+1. **Single source of truth**: all numeric prices (fills, checkpoints, NAV marks, SPY benchmark, VIX) come from the price-fetch MCP (`mcp/price_server.py` — Yahoo Finance / CoinGecko) or a direct Yahoo Finance chart-API fetch. **Brave Search is BANNED for price data.** It may be used for news/qualitative research only. The 2026-07-02 audit found search-mediated prices stale by 1-3 trading days (SPY's "Jun 26 close" was the Jun 23 close; CAT's Apr 28 entry was the Apr 27 close).
+2. **OHLC sanity check on every fill**: before recording a buy or sell, fetch the ticker's OHLC for the trade date and verify the fill price lies within [low, high]. Out of range → re-fetch; never record an unverified number.
+3. **No fabricated fallbacks**: if a price cannot be fetched, record `price_unavailable` and skip/defer the action. Never estimate, recall from memory, or copy from a search snippet.
+4. **Benchmark**: SPY inception baseline is **$634.09** (close 2026-03-27). Fetch current SPY via the MCP each session.
 
 ## Price Sources
 
@@ -45,8 +52,8 @@ Note: Polymarket API may require specific endpoints for individual markets. Sear
 
 If a fetch fails:
 1. Try once more with the same URL
-2. If still failing, try a Brave Search for "[TICKER] stock price today" as fallback
-3. If all fails, note "price unverified" in your recommendation and set conviction -= 2
+2. If still failing, record `price_unavailable` — do NOT fall back to Brave Search (see HARD RULES above)
+3. Note "price unverified" in your recommendation and set conviction -= 2
 
 ## Price Data to Include in Recommendation
 

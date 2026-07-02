@@ -155,7 +155,7 @@ These two agents are complementary, not overlapping. Sentiment Scout finds *curr
 - **Position sizing**: VIX-adjusted — 15-30% of cash (VIX<=25), max 15% (VIX 25-35), max 10% (VIX>35)
 - **Sector concentration cap**: No single GICS sector may exceed 40% of portfolio NAV (hard constraint, new buys blocked)
 - **Agent dominance cap**: No more than 2 consecutive buys from the same agent
-- **SPY benchmark**: Track SPY return from inception ($555.66 on 2026-03-28) in every log. Calculate alpha = portfolio return - SPY return.
+- **SPY benchmark**: Track SPY return from inception ($634.09, actual close of 2026-03-27, the last trading day before inception — corrected 2026-07-02; prior $555.66 figure was fabricated) in every log. Calculate alpha = portfolio return - SPY return.
 - **Incentive**: Best-performing analyst gets 20% of total firm profits
 
 ## How a Market Check Works
@@ -272,7 +272,7 @@ Append all 6 agent recommendations to `state/outcomes.json` following the schema
 
 ### Step 6: Write Summary
 Write a summary to `logs/{today}.md` and update all state files. Include:
-- **SPY benchmark**: Fetch SPY price, calculate `spy_return = (spy_price / 555.66 - 1) * 100`, calculate `alpha = portfolio_pnl_pct - spy_return`. Log both in the summary.
+- **SPY benchmark**: Fetch SPY price via the price MCP (never Brave Search), calculate `spy_return = (spy_price / 634.09 - 1) * 100`, calculate `alpha = portfolio_pnl_pct - spy_return`. Log both in the summary.
 
 ## Subagent vs Agent Teams — Why Subagents
 

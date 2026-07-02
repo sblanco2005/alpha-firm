@@ -12,7 +12,7 @@ The system operates in **simulated mode** -- it tracks real market prices but do
 - **Open Positions:** CAT, SYK, TGLS, FCN, NCLH, MU, FDX, CLSK
 - **Total Trades:** 44 buys, 31 sells
 - **Days Active:** 96
-- **SPY Return (same period):** +32.02% | **Alpha:** -27.23%
+- **SPY Return (same period):** +14.97% | **Alpha:** -10.18% (corrected 2026-07-02: prior +32.02%/-27.23% used fabricated $555.66 baseline)
 - **Infrastructure:** Claude Code (Anthropic) on a dedicated VPS
 - *Portfolio figures as of the latest recorded session, 2026-06-26.*
 
@@ -344,7 +344,7 @@ Each session spawns all 6 analysts in parallel, collects recommendations, runs t
 | No leverage | Long-only, no margin, no shorting, no options |
 | Prediction market cap | Max 10% of portfolio |
 | Weekend/holiday skip | No trading on non-market days |
-| SPY benchmark | Track SPY return from inception ($555.66 on 2026-03-28). Log alpha = portfolio return - SPY return every session. |
+| SPY benchmark | Track SPY return from inception ($634.09, close of 2026-03-27 — corrected 2026-07-02). Log alpha = portfolio return - SPY return every session. |
 | Memory pruning | Agent memory capped at 20 most recent sessions |
 | Atomic writes | All state JSON writes go to .tmp first, validated with jq, then mv into place |
 
@@ -411,8 +411,8 @@ Key features:
 | **Total Trades** | 44 buys, 31 sells |
 | **Days Active** | 96 |
 | **High Water Mark** | $11,431.25 |
-| **SPY Return (same period)** | +32.02% |
-| **Alpha** | **-27.23%** |
+| **SPY Return (same period)** | +14.97% (corrected baseline $634.09) |
+| **Alpha** | **-10.18%** (corrected 2026-07-02) |
 
 ### Open Positions
 
@@ -438,7 +438,7 @@ Key features:
 | Crypto | 30 | 8 | 2 | 2 | -$51.55 | 62.0% |
 | Quant | 30 | 15 | 3 | 6 | **-$106.98** | 42.6% |
 
-**Key issue:** Portfolio +4.79% vs SPY +32.02%. The alpha gap (-27.23%) is driven by over-trading individual stocks in a bull market and tight stop-losses generating realized losses. Sentiment is the only consistently profitable agent. Quant has the most executed trades but worst realized P&L. Macro has a 10% win rate and should be silenced.
+**Key issue:** Portfolio +4.79% vs SPY +14.97% (corrected 2026-07-02). The alpha gap (-10.18%) is driven by over-trading individual stocks in a bull market and tight stop-losses generating realized losses. NOTE (2026-07-02): per-agent win rates are unreliable — computed on the deprecated peak-touched-target metric, unreconciled prices, and samples of 1-17 executed trades. Track-record modifiers frozen at 1.0x pending scorecard rebuild (REMEDIATION-PLAN.md).
 
 **Changes implemented 2026-06-25:**
 - Macro agent: 0.5x modifier, conviction 8+ floor, effectively silenced
