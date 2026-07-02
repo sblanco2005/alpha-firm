@@ -1,0 +1,162 @@
+{
+  "agent_id": "quant",
+  "last_updated": "2026-06-09",
+  "total_evaluated": 83,
+  "total_tracking": 25,
+  "wins": 32,
+  "losses": 33,
+  "partials": 18,
+  "win_rate": 38.6,
+  "partial_rate": 21.7,
+  "loss_rate": 39.8,
+  "avg_horizon_return_pct": -0.93,
+  "avg_peak_return_pct": 16.81,
+  "track_record_modifier": 0.8,
+  "conviction_calibration": {
+    "8": {
+      "total": 33,
+      "wins": 16,
+      "losses": 13,
+      "partials": 4,
+      "win_rate": 48.5
+    },
+    "7": {
+      "total": 33,
+      "wins": 9,
+      "losses": 14,
+      "partials": 10,
+      "win_rate": 27.3
+    },
+    "9": {
+      "total": 2,
+      "wins": 1,
+      "losses": 1,
+      "partials": 0,
+      "win_rate": 50.0
+    },
+    "6": {
+      "total": 15,
+      "wins": 6,
+      "losses": 5,
+      "partials": 4,
+      "win_rate": 40.0
+    }
+  },
+  "by_asset_type": {
+    "stock": {
+      "total": 76,
+      "wins": 31,
+      "losses": 31,
+      "partials": 14,
+      "win_rate": 40.8
+    },
+    "etf": {
+      "total": 7,
+      "wins": 1,
+      "losses": 2,
+      "partials": 4,
+      "win_rate": 14.3
+    }
+  },
+  "recent_picks": [
+    {
+      "id": "quant-2026-07-02-premarket",
+      "date": "2026-07-02",
+      "ticker": "JPM",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-07-02-midday",
+      "date": "2026-07-02",
+      "ticker": "LLY",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-07-02-closing",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-29-premarket",
+      "date": "2026-06-29",
+      "ticker": "UNH",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": -0.32,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-26-premarket",
+      "date": "2026-06-26",
+      "ticker": "UNH",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 2.97,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-26-midday",
+      "date": "2026-06-26",
+      "ticker": "UNH",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 0.72,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-26-closing",
+      "date": "2026-06-26",
+      "ticker": "UNH",
+      "conviction": 8,
+      "final_verdict": null,
+      "peak_return_pct": 0.39,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-25-premarket",
+      "date": "2026-06-25",
+      "ticker": "XLI",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 2.22,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-25-midday",
+      "date": "2026-06-25",
+      "ticker": "XLI",
+      "conviction": 6,
+      "final_verdict": null,
+      "peak_return_pct": 2.22,
+      "was_executed": false
+    },
+    {
+      "id": "quant-2026-06-25-closing",
+      "date": "2026-06-25",
+      "ticker": "XLI",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": 0.25,
+      "was_executed": false
+    }
+  ],
+  "patterns": {
+    "strengths": [],
+    "weaknesses": [
+      "Win rate 38.6% below breakeven \u2014 review thesis quality",
+      "Negative avg horizon return (-0.93%)",
+      "Etf picks only 14.3% win rate \u2014 consider avoiding"
+    ],
+    "adjustment_suggestions": []
+  }
+}

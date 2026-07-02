@@ -1,0 +1,169 @@
+{
+  "agent_id": "crypto",
+  "last_updated": "2026-06-09",
+  "total_evaluated": 60,
+  "total_tracking": 27,
+  "wins": 33,
+  "losses": 15,
+  "partials": 11,
+  "win_rate": 55.0,
+  "partial_rate": 18.3,
+  "loss_rate": 25.0,
+  "avg_horizon_return_pct": 16.84,
+  "avg_peak_return_pct": 29.08,
+  "track_record_modifier": 1.0,
+  "conviction_calibration": {
+    "7": {
+      "total": 35,
+      "wins": 20,
+      "losses": 10,
+      "partials": 5,
+      "win_rate": 57.1
+    },
+    "8": {
+      "total": 14,
+      "wins": 6,
+      "losses": 4,
+      "partials": 4,
+      "win_rate": 42.9
+    },
+    "6": {
+      "total": 9,
+      "wins": 6,
+      "losses": 1,
+      "partials": 2,
+      "win_rate": 66.7
+    },
+    "5": {
+      "total": 1,
+      "wins": 1,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 100.0
+    },
+    "4": {
+      "total": 1,
+      "wins": 0,
+      "losses": 0,
+      "partials": 0,
+      "win_rate": 0.0
+    }
+  },
+  "by_asset_type": {
+    "etf": {
+      "total": 22,
+      "wins": 6,
+      "losses": 9,
+      "partials": 7,
+      "win_rate": 27.3
+    },
+    "stock": {
+      "total": 38,
+      "wins": 27,
+      "losses": 6,
+      "partials": 4,
+      "win_rate": 71.1
+    }
+  },
+  "recent_picks": [
+    {
+      "id": "crypto-2026-07-02-premarket",
+      "date": "2026-07-02",
+      "ticker": "MSTR",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-07-02-midday",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-07-02-closing",
+      "date": "2026-07-02",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": null,
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-06-29-premarket",
+      "date": "2026-06-29",
+      "ticker": "PASS",
+      "conviction": 4,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-06-26-premarket",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-06-26-midday",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-06-26-closing",
+      "date": "2026-06-26",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": "pass",
+      "peak_return_pct": 0.0,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-06-25-premarket",
+      "date": "2026-06-25",
+      "ticker": "MARA",
+      "conviction": 7,
+      "final_verdict": null,
+      "peak_return_pct": -0.86,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-06-25-midday",
+      "date": "2026-06-25",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    },
+    {
+      "id": "crypto-2026-06-25-closing",
+      "date": "2026-06-25",
+      "ticker": "PASS",
+      "conviction": 5,
+      "final_verdict": "no_recommendation",
+      "peak_return_pct": null,
+      "was_executed": false
+    }
+  ],
+  "patterns": {
+    "strengths": [
+      "Stock picks win rate 71.1% \u2014 continue focus"
+    ],
+    "weaknesses": [
+      "Etf picks only 27.3% win rate \u2014 consider avoiding"
+    ],
+    "adjustment_suggestions": []
+  }
+}

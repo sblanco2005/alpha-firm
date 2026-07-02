@@ -1,0 +1,136 @@
+{
+  "macro": {
+    "picks": 25,
+    "picks_executed": 1,
+    "wins": 0,
+    "losses": 1,
+    "total_pnl": -2.16,
+    "best_trade": null,
+    "worst_trade": {
+      "ticker": "GLD",
+      "pnl": -2.16,
+      "pnl_pct": -0.17,
+      "date": "2026-04-22"
+    },
+    "current_streak": -1,
+    "reward_earned": 0.0
+  },
+  "crypto": {
+    "picks": 30,
+    "picks_executed": 8,
+    "wins": 2,
+    "losses": 3,
+    "total_pnl": -212.37,
+    "best_trade": {
+      "ticker": "RIOT",
+      "pnl": 81.31,
+      "pnl_pct": 6.63,
+      "date": "2026-06-17",
+      "note": "Trailing stop honored: RIOT $27.78 sell (stop triggered $27.38 < $27.50). +6.6% in 5 days."
+    },
+    "worst_trade": {
+      "ticker": "CLSK",
+      "pnl": -160.82,
+      "pnl_pct": -21.54,
+      "date": "2026-07-02",
+      "note": "Hard stop $14 triggered: CLSK $13.62 (-21.5%). BTC $61194 > $58K but miner margin compression. 14-day hold."
+    },
+    "current_streak": -1,
+    "reward_earned": 0.0,
+    "open_positions_notes": "No open crypto positions after CLSK stop-out. MSTR tracked (conv7, BTC reclaimed $61K + NAV-premium V-bounce off $81.81 low) — killed by 0.5x track modifier (crypto pnl -$212 < -$100)."
+  },
+  "quant": {
+    "picks": 30,
+    "picks_executed": 15,
+    "wins": 3,
+    "losses": 8,
+    "total_pnl": -239.12,
+    "best_trade": {
+      "ticker": "HUM",
+      "pnl": 40.86,
+      "pnl_pct": 3.77,
+      "date": "2026-06-15",
+      "note": "Stop discipline at $370 (triggered intraday $363.79). Sold at recovered $374.62. +3.77% in 4 days."
+    },
+    "worst_trade": {
+      "ticker": "MU",
+      "pnl": -78.35,
+      "pnl_pct": -7.42,
+      "date": "2026-07-02",
+      "note": "Stop $985 breached midday: MU $977.55 (-7.4%). Post-earnings drift lower 16 days; quant suspended, thesis not re-confirmed."
+    },
+    "current_streak": -1,
+    "reward_earned": 0.0,
+    "open_positions_notes": "MU SOLD at stop $985 breach ($977.55, -7.4%). No open quant positions. LLY paper-only (conv7, XLV/Healthcare RS leader, +1.45% vs SPY -0.37%; suspended to 07-08). JPM paper-only (suspended)."
+  },
+  "sentiment": {
+    "picks": 37,
+    "picks_executed": 17,
+    "wins": 5,
+    "losses": 7,
+    "total_pnl": 211.7,
+    "best_trade": {
+      "ticker": "META",
+      "pnl": 629.34,
+      "pnl_pct": 30.24,
+      "date": "2026-04-28",
+      "note": "Final close — all 4 shares of META. Total realized gain $629.34."
+    },
+    "worst_trade": {
+      "ticker": "EYE",
+      "pnl": -219.96,
+      "pnl_pct": -21.36,
+      "date": "2026-06-10",
+      "note": "Hard stop $18 triggered same-day: EYE $17.23. CPI 4.2% + VIX 22.21 risk-off flush."
+    },
+    "current_streak": -3,
+    "reward_earned": 24.01,
+    "open_positions_notes": "TGLS 13sh@$38.61(+21.6% let run), FCN 4sh@$153.18(-2.5%), NCLH 40sh@$20.22(+2.2% stop $19). KMX tracked AGAIN (conv8, 5-insider cluster intact 7 days, below buy range) — final 6.35 < 8.0 bull bar (weak fundamentals net margin 0.84%)."
+  },
+  "contrarian": {
+    "picks": 32,
+    "picks_executed": 14,
+    "wins": 5,
+    "losses": 6,
+    "total_pnl": 90.69,
+    "best_trade": {
+      "ticker": "NOW",
+      "pnl": 210.9,
+      "pnl_pct": 39.08,
+      "date": "2026-06-04",
+      "note": "Trailing stop $125 executed: NOW locked +39.08% from $89.85 entry over 38 days."
+    },
+    "worst_trade": {
+      "ticker": "NOC",
+      "pnl": -63.66,
+      "pnl_pct": -10.79,
+      "date": "2026-06-03",
+      "note": "Hard stop $531 triggered at $526.34 close. Iran ceasefire pressure."
+    },
+    "current_streak": -1,
+    "reward_earned": 0.0,
+    "open_positions_notes": "SYK 1sh@$294.50 (+7.3%). SMCI tracked (conviction 8, eliminated by PM — poor R:R 1.06:1 + narrative penalty)."
+  },
+  "catalyst": {
+    "picks": 15,
+    "picks_executed": 3,
+    "wins": 1,
+    "losses": 0,
+    "total_pnl": 17.32,
+    "best_trade": {
+      "ticker": "GOOGL",
+      "pnl": 17.32,
+      "pnl_pct": 5.19,
+      "date": "2026-04-28",
+      "note": "Sold ahead of April 29 AMC earnings."
+    },
+    "worst_trade": null,
+    "current_streak": 1,
+    "reward_earned": 0.0,
+    "open_positions_notes": "CAT 1sh@$828.79 (+19.9% trailing stop $940, earnings Aug 4). NKE pre-earnings thesis tracked (conv8, Jun30 earnings) - NOT executed, below 8.0 bar + contrarian self-rejected."
+  },
+  "reward_pool_pct": 0.2,
+  "reward_pool_usd": 24.01,
+  "reward_pool_note": "2026-07-02 CLOSING: PASS (3rd of day). ALL 6 analysts self-PASS into binary NFP tomorrow + half-day/July-4 holiday illiquidity (macro conv2, crypto conv5, quant conv5 paper-only suspended 07-08, sentiment conv3 KMX fundamentally blocked, contrarian conv3 rout=profit-taking, catalyst conv3 earnings priced-in). No candidate >= conv6 -> debate skipped. No sells (5 holdings above stops). MTM NAV $10108.18 (+1.08%), alpha -32.88% (SPY +33.96% @ $744.42). Leader sentiment (total_pnl $211.70), reward_earned $24.01. Next: re-evaluate post-NFP Monday 7/6 - index tranche (SPY/QQQ) deploy ONLY on follow-through (SPY holds >50-day $736 on falling VIX); KMX unblocked only on fundamental improvement/lower entry; quant execution resumes 07-08.",
+  "last_updated": "2026-07-02T19:45:01Z"
+}

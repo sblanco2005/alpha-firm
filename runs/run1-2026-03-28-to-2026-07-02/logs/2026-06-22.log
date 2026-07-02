@@ -1,0 +1,84 @@
+[2026-06-22T11:00:02] INFO: ANTHROPIC_API_KEY saved for quota fallback. Running subscription mode first.
+[2026-06-22T11:00:02] Resetting daily state (was 2026-06-19, now 2026-06-22)
+[2026-06-22T11:00:02] Pruning memory files older than 20 sessions...
+[2026-06-22T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/macro/2026-06-10-closing.json
+[2026-06-22T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/crypto/2026-06-10-closing.json
+[2026-06-22T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/quant/2026-06-10-closing.json
+[2026-06-22T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/sentiment/2026-06-10-closing.json
+[2026-06-22T11:00:02]   Pruned: /home/clawd/alpha-firm/memory/contrarian/2026-06-10-closing.json
+[2026-06-22T11:00:02] ═══════════════════════════════════════
+[2026-06-22T11:00:02] MARKET CHECK: premarket
+[2026-06-22T11:00:02] Date: 2026-06-22 | Time: 2026-06-22T11:00:02
+[2026-06-22T11:00:02] Mode: Subscription (Max plan) | API fallback: configured (claude-sonnet-4-6)
+[2026-06-22T11:00:02] ═══════════════════════════════════════
+[2026-06-22T11:00:02] Refreshing portfolio prices...
+Refreshing prices for 8 positions...
+  CAT: $985.82 (18.00% from entry) — 1 shares = $985.82
+  SYK: $307.8 (4.00% from entry) — 1 shares = $307.80
+  TGLS: $45.97 (19.00% from entry) — 13 shares = $597.61
+  FCN: $145.58 (-4.00% from entry) — 4 shares = $582.32
+  NCLH: $20.44 (1.00% from entry) — 40 shares = $817.60
+  MU: $1133.99 (7.00% from entry) — 1 shares = $1133.99
+  FDX: $326.2 (-1.00% from entry) — 3 shares = $978.60
+  CLSK: $17.24 (0% from entry) — 43 shares = $741.32
+  SPY Benchmark: $746.74 (34.38% from inception)
+  NAV: $10483.5 → $10459.51 (updated 2026-06-22T11:00:02Z)
+[2026-06-22T11:00:08] Price refresh complete
+Failed to authenticate. API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"},"request_id":"req_011CcJBXnkbs9E9cpyCBuQgc"}
+[2026-06-22T11:00:15] ERROR: Claude Code exited with code 1
+[2026-06-22T11:00:15] ═══════════════════════════════════════
+[2026-06-22T11:00:15] MARKET CHECK COMPLETE: premarket
+[2026-06-22T11:00:15] ═══════════════════════════════════════
+[2026-06-22T11:00:15] STATUS: NAV=38371{NAV} | Cash=38371{CASH} | Positions=8
+[2026-06-22T16:30:01] INFO: ANTHROPIC_API_KEY saved for quota fallback. Running subscription mode first.
+[2026-06-22T16:30:01] Pruning memory files older than 20 sessions...
+[2026-06-22T16:30:01] ═══════════════════════════════════════
+[2026-06-22T16:30:01] MARKET CHECK: midday
+[2026-06-22T16:30:01] Date: 2026-06-22 | Time: 2026-06-22T16:30:01
+[2026-06-22T16:30:01] Mode: Subscription (Max plan) | API fallback: configured (claude-sonnet-4-6)
+[2026-06-22T16:30:01] ═══════════════════════════════════════
+[2026-06-22T16:30:02] Refreshing portfolio prices...
+Refreshing prices for 8 positions...
+  CAT: $1020.86 (23.00% from entry) — 1 shares = $1020.86
+  SYK: $305.865 (3.00% from entry) — 1 shares = $305.86
+  TGLS: $46.5 (20.00% from entry) — 13 shares = $604.50
+  FCN: $139.745 (-8.00% from entry) — 4 shares = $558.98
+  NCLH: $20.54 (1.00% from entry) — 40 shares = $821.60
+  MU: $1199.645 (13.00% from entry) — 1 shares = $1199.65
+  FDX: $331.195 (0% from entry) — 3 shares = $993.59
+  CLSK: $17.525 (0% from entry) — 43 shares = $753.58
+  SPY Benchmark: $744.72 (34.02% from inception)
+  NAV: $10459.51 → $10573.06 (updated 2026-06-22T16:30:02Z)
+[2026-06-22T16:30:05] Price refresh complete
+Failed to authenticate. API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"},"request_id":"req_011CcJch3HtBhS8HtPjjBYwJ"}
+[2026-06-22T16:30:11] ERROR: Claude Code exited with code 1
+[2026-06-22T16:30:11] ═══════════════════════════════════════
+[2026-06-22T16:30:11] MARKET CHECK COMPLETE: midday
+[2026-06-22T16:30:11] ═══════════════════════════════════════
+[2026-06-22T16:30:11] STATUS: NAV=74000{NAV} | Cash=74000{CASH} | Positions=8
+[2026-06-22T19:45:01] INFO: ANTHROPIC_API_KEY saved for quota fallback. Running subscription mode first.
+[2026-06-22T19:45:01] Pruning memory files older than 20 sessions...
+[2026-06-22T19:45:01] ═══════════════════════════════════════
+[2026-06-22T19:45:01] MARKET CHECK: closing
+[2026-06-22T19:45:01] Date: 2026-06-22 | Time: 2026-06-22T19:45:01
+[2026-06-22T19:45:01] Mode: Subscription (Max plan) | API fallback: configured (claude-sonnet-4-6)
+[2026-06-22T19:45:01] ═══════════════════════════════════════
+[2026-06-22T19:45:01] Refreshing portfolio prices...
+Refreshing prices for 8 positions...
+  CAT: $1017.42 (22.00% from entry) — 1 shares = $1017.42
+  SYK: $304.05 (3.00% from entry) — 1 shares = $304.05
+  TGLS: $46.21 (19.00% from entry) — 13 shares = $600.73
+  FCN: $140.005 (-8.00% from entry) — 4 shares = $560.02
+  NCLH: $19.99 (-1.00% from entry) — 40 shares = $799.60
+  MU: $1193.43 (13.00% from entry) — 1 shares = $1193.43
+  FDX: $327.1 (-1.00% from entry) — 3 shares = $981.30
+  CLSK: $17.519 (0% from entry) — 43 shares = $753.32
+  SPY Benchmark: $743.28 (33.76% from inception)
+  NAV: $10573.06 → $10524.32 (updated 2026-06-22T19:45:01Z)
+[2026-06-22T19:45:04] Price refresh complete
+Failed to authenticate. API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"},"request_id":"req_011CcJsZMsMLApzehDx84b6U"}
+[2026-06-22T19:45:09] ERROR: Claude Code exited with code 1
+[2026-06-22T19:45:09] ═══════════════════════════════════════
+[2026-06-22T19:45:09] MARKET CHECK COMPLETE: closing
+[2026-06-22T19:45:09] ═══════════════════════════════════════
+[2026-06-22T19:45:09] STATUS: NAV=94880{NAV} | Cash=94880{CASH} | Positions=8

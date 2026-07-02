@@ -1,0 +1,41 @@
+{
+  "capital": 10000,
+  "resetAt": null,
+  "markets": [
+    "SPY",
+    "QQQ",
+    "GLD",
+    "BTC",
+    "US10Y",
+    "WTI",
+    "STRC",
+    "SATA",
+    "MU"
+  ],
+  "customMarkets": [
+    {
+      "id": "STRC",
+      "yahoo": "STRC",
+      "name": "Strategy Inc - Variable Rate Se",
+      "full": "Strategy Inc",
+      "sector": "Custom",
+      "color": "#8BA6FF"
+    },
+    {
+      "id": "SATA",
+      "yahoo": "SATA",
+      "name": "Strive, Inc. - Variable Rate Se",
+      "full": "Strive, Inc.",
+      "sector": "Custom",
+      "color": "#59C3C3"
+    },
+    {
+      "id": "MU",
+      "yahoo": "MU",
+      "name": "Micron Technology, Inc.",
+      "full": "Micron Technology, Inc.",
+      "sector": "Custom",
+      "color": "#E8A0BF"
+    }
+  ]
+}

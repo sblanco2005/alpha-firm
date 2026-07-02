@@ -1,9 +1,9 @@
 {
-  "last_updated": "2026-07-02",
+  "last_updated": "2026-06-25",
   "rules": [
     {
       "id": "quant-min-conviction-8",
-      "status": "candidate",
+      "status": "active",
       "category": "conviction_floor",
       "applies_to": "quant",
       "root_cause": "calibration_error",
@@ -55,12 +55,6 @@
           "from": "candidate",
           "to": "active",
           "evidence_count": 3
-        },
-        {
-          "date": "2026-07-02",
-          "from": "active",
-          "to": "candidate",
-          "reason": "run-2 fresh start \u2014 must re-earn promotion with fresh evidence"
         }
       ]
     },
