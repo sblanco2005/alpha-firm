@@ -1,5 +1,5 @@
 {
-  "cash": 4736.14,
+  "cash": 4314.45,
   "positions": [
     {
       "ticker": "CAT",
@@ -95,29 +95,28 @@
       "stop_loss": 14.0
     }
   ],
-  "nav": 10901.05,
+  "nav": 10479.35,
   "inception_date": "2026-03-28",
   "last_updated": "2026-06-26T19:45:01Z",
   "high_water_mark": 11431.25,
   "spy_inception_price": 634.09,
   "spy_closing_price": 728.99,
   "spy_return_pct": 14.97,
-  "portfolio_pnl_pct": 9.01,
-  "alpha": -5.96,
+  "portfolio_pnl_pct": 4.79,
+  "alpha": -10.18,
   "nav_note": "NAV 2026-06-26 CLOSING: $10479.35. Cash $4314.45. 8 positions all above stops. MTM winners: CAT(+20.7%)/TGLS(+15.8%)/SYK(+12.5%)/MU(+8.9%); losers: CLSK(-7.0%, catalyst-day held)/FDX(-4.1%, tight to $315 stop)/FCN(-1.8%). SPY $733.58 (-1.76%, closed AT/below 50-day MA ~734 breakdown test; above 200-day). VIX 18.85 (+9.1%, <25). QQQ -3.90%, GLD -3.55%, BTC -6.48%. Portfolio +4.79%. Alpha -27.23% (SPY +32.02%). CLOSING PASS - 3rd disciplined PASS of day. 5/6 agents self-PASS (risk-off breakdown-test tape, no edge); quant UNH(conv8) PAPER-ONLY (suspended to 07-08 + 0.5x track-record => final ~3.5 < 7.5). SPY/QQQ index tranche declined for timing (SPY AT 50-day breakdown test + VIX rising = not follow-through; deploy on 50-day reclaim + VIX roll). No sells - all 8 above stops. CLSK survived today's production catalyst ($16.14, BTC $59,808 > $58K, stop $14). FDX tight to $315 stop - watch.",
   "sold_positions": [
     {
       "ticker": "RTX",
       "shares": 2,
-      "entry_price": 187.17,
+      "entry_price": 200.0,
       "sell_price": 179.93,
       "entry_date": "2026-04-21",
       "sell_date": "2026-04-23",
-      "realized_pnl": -14.48,
-      "realized_pnl_pct": -3.87,
+      "realized_pnl": -40.14,
+      "realized_pnl_pct": -10.04,
       "agent": "quant",
-      "reason": "Stop-loss: -10.04% from entry.",
-      "entry_price_original": 200.0
+      "reason": "Stop-loss: -10.04% from entry."
     },
     {
       "ticker": "PFE",
@@ -218,42 +217,38 @@
     {
       "ticker": "CSCO",
       "shares": 6,
-      "entry_price": 98.72,
+      "entry_price": 93.82,
       "sell_price": 98.72,
       "entry_date": "2026-05-11",
       "sell_date": "2026-05-12",
-      "realized_pnl": 0.0,
-      "realized_pnl_pct": 0.0,
+      "realized_pnl": 29.4,
+      "realized_pnl_pct": 5.22,
       "agent": "quant",
-      "reason": "Pre-guided EPS beat priced into consensus. Locked in +5.2% gain.",
-      "entry_price_original": 93.82
+      "reason": "Pre-guided EPS beat priced into consensus. Locked in +5.2% gain."
     },
     {
       "ticker": "IREN",
       "shares": 12,
-      "entry_price": 47.37,
-      "sell_price": 52.71,
+      "entry_price": 43.07,
+      "sell_price": 47.94,
       "entry_date": "2026-04-14",
       "sell_date": "2026-05-20",
-      "realized_pnl": 64.08,
-      "realized_pnl_pct": 11.27,
+      "realized_pnl": 58.44,
+      "realized_pnl_pct": 11.31,
       "agent": "crypto",
-      "reason": "Stop-loss: $52.00 stop triggered at $47.94. Q3 earnings miss -34%. Thesis broken.",
-      "entry_price_original": 43.07,
-      "sell_price_original": 47.94
+      "reason": "Stop-loss: $52.00 stop triggered at $47.94. Q3 earnings miss -34%. Thesis broken."
     },
     {
       "ticker": "ORCL",
       "shares": 6,
-      "entry_price": 146.38,
+      "entry_price": 149.9,
       "sell_price": 181.33,
       "entry_date": "2026-04-02",
       "sell_date": "2026-05-20",
-      "realized_pnl": 209.7,
-      "realized_pnl_pct": 23.88,
+      "realized_pnl": 188.58,
+      "realized_pnl_pct": 20.97,
       "agent": "contrarian",
-      "reason": "Stop-loss: $185 stop triggered at $181.33. AI spending fears.",
-      "entry_price_original": 149.9
+      "reason": "Stop-loss: $185 stop triggered at $181.33. AI spending fears."
     },
     {
       "ticker": "IBIT",
@@ -294,42 +289,38 @@
     {
       "ticker": "NOC",
       "shares": 1,
-      "entry_price": 575.11,
+      "entry_price": 590.0,
       "sell_price": 526.34,
       "entry_date": "2026-04-24",
       "sell_date": "2026-06-03",
-      "realized_pnl": -48.77,
-      "realized_pnl_pct": -8.48,
+      "realized_pnl": -63.66,
+      "realized_pnl_pct": -10.79,
       "agent": "contrarian",
-      "reason": "Hard stop-limit $531 triggered: NOC closed $526.34. Iran ceasefire persistent.",
-      "entry_price_original": 590.0
+      "reason": "Hard stop-limit $531 triggered: NOC closed $526.34. Iran ceasefire persistent."
     },
     {
       "ticker": "UNH",
       "shares": 1,
-      "entry_price": 382.48,
-      "sell_price": 396.47,
+      "entry_price": 390.38,
+      "sell_price": 371.99,
       "entry_date": "2026-05-21",
       "sell_date": "2026-06-04",
-      "realized_pnl": 13.99,
-      "realized_pnl_pct": 3.66,
+      "realized_pnl": -18.39,
+      "realized_pnl_pct": -4.71,
       "agent": "sentiment",
-      "reason": "Hard stop $375 triggered at open ($371.99). Massachusetts Medicaid lawsuit + Ninth Circuit ruling pending.",
-      "entry_price_original": 390.38,
-      "sell_price_original": 371.99
+      "reason": "Hard stop $375 triggered at open ($371.99). Massachusetts Medicaid lawsuit + Ninth Circuit ruling pending."
     },
     {
       "ticker": "LRCX",
       "shares": 2,
       "entry_price": 339.77,
-      "sell_price": 336.41,
+      "sell_price": 318.0,
       "entry_date": "2026-06-03",
       "sell_date": "2026-06-04",
-      "realized_pnl": -6.72,
-      "realized_pnl_pct": -0.99,
+      "realized_pnl": -43.54,
+      "realized_pnl_pct": -6.41,
       "agent": "quant",
-      "reason": "Stop $318 triggered: AVBO -12% post-earnings semiconductor contagion.",
-      "sell_price_original": 318.0
+      "reason": "Stop $318 triggered: AVBO -12% post-earnings semiconductor contagion."
     },
     {
       "ticker": "XYZ",
@@ -370,16 +361,14 @@
     {
       "ticker": "CHRW",
       "shares": 3,
-      "entry_price": 184.59,
-      "sell_price": 184.09,
+      "entry_price": 179.89,
+      "sell_price": 178.0,
       "entry_date": "2026-06-04",
       "sell_date": "2026-06-05",
-      "realized_pnl": -1.5,
-      "realized_pnl_pct": -0.27,
+      "realized_pnl": -3.78,
+      "realized_pnl_pct": -0.7,
       "agent": "sentiment",
-      "reason": "3-agent consensus sell (midday): post-ex-div below $179 thesis-break, oil headwind. Dividend $1.89 captured.",
-      "entry_price_original": 179.89,
-      "sell_price_original": 178.0
+      "reason": "3-agent consensus sell (midday): post-ex-div below $179 thesis-break, oil headwind. Dividend $1.89 captured."
     },
     {
       "ticker": "STRL",
@@ -408,41 +397,38 @@
     {
       "ticker": "IREN",
       "shares": 19,
-      "entry_price": 54.35,
+      "entry_price": 60.75,
       "sell_price": 52.65,
       "entry_date": "2026-06-05",
       "sell_date": "2026-06-10",
-      "realized_pnl": -32.3,
-      "realized_pnl_pct": -3.13,
+      "realized_pnl": -153.9,
+      "realized_pnl_pct": -13.3,
       "agent": "crypto",
-      "reason": "Hard stop $54 triggered: IREN premarket $52.65 below $54 hard stop. Stop discipline honored.",
-      "entry_price_original": 60.75
+      "reason": "Hard stop $54 triggered: IREN premarket $52.65 below $54 hard stop. Stop discipline honored."
     },
     {
       "ticker": "MAR",
       "shares": 2,
       "entry_price": 391.62,
-      "sell_price": 386.23,
+      "sell_price": 373.76,
       "entry_date": "2026-06-09",
       "sell_date": "2026-06-10",
-      "realized_pnl": -10.78,
-      "realized_pnl_pct": -1.38,
+      "realized_pnl": -35.72,
+      "realized_pnl_pct": -4.56,
       "agent": "quant",
-      "reason": "Hard stop $381 triggered: MAR $373.76 below $381 stop. Post-CPI consumer discretionary pressure.",
-      "sell_price_original": 373.76
+      "reason": "Hard stop $381 triggered: MAR $373.76 below $381 stop. Post-CPI consumer discretionary pressure."
     },
     {
       "ticker": "EYE",
       "shares": 47,
-      "entry_price": 17.58,
+      "entry_price": 21.91,
       "sell_price": 17.23,
       "entry_date": "2026-06-10",
       "sell_date": "2026-06-10",
-      "realized_pnl": -16.45,
-      "realized_pnl_pct": -1.99,
+      "realized_pnl": -219.96,
+      "realized_pnl_pct": -21.36,
       "agent": "sentiment",
-      "reason": "Hard stop $18 triggered: EYE $17.23 midday. Same-day buy and stop. CPI 4.2% YoY warm + VIX spike 22.21.",
-      "entry_price_original": 21.91
+      "reason": "Hard stop $18 triggered: EYE $17.23 midday. Same-day buy and stop. CPI 4.2% YoY warm + VIX spike 22.21."
     },
     {
       "ticker": "META",
@@ -460,14 +446,13 @@
       "ticker": "XLE",
       "shares": 9,
       "entry_price": 57.64,
-      "sell_price": 55.55,
+      "sell_price": 56.82,
       "entry_date": "2026-05-14",
       "sell_date": "2026-06-15",
-      "realized_pnl": -18.81,
-      "realized_pnl_pct": -3.63,
+      "realized_pnl": -7.38,
+      "realized_pnl_pct": -1.42,
       "agent": "quant",
-      "reason": "Thesis broken: US-Iran peace MOU signed at G7 Switzerland, WTI -5.1% to $80.53. Original thesis negated. Exit at -1.4%.",
-      "sell_price_original": 56.82
+      "reason": "Thesis broken: US-Iran peace MOU signed at G7 Switzerland, WTI -5.1% to $80.53. Original thesis negated. Exit at -1.4%."
     },
     {
       "ticker": "HUM",
@@ -484,19 +469,15 @@
     {
       "ticker": "RIOT",
       "shares": 47,
-      "entry_price": 26.61,
+      "entry_price": 26.05,
       "sell_price": 27.78,
       "entry_date": "2026-06-12",
       "sell_date": "2026-06-17",
-      "realized_pnl": 54.99,
-      "realized_pnl_pct": 4.4,
+      "realized_pnl": 81.31,
+      "realized_pnl_pct": 6.63,
       "agent": "crypto",
-      "reason": "Trailing stop $27.50 triggered: RIOT closed $27.38 < $27.50 stop on June 16. Selling at open June 17 at $27.78. Stop discipline honored. +6.6% in 5 days.",
-      "entry_price_original": 26.05
+      "reason": "Trailing stop $27.50 triggered: RIOT closed $27.38 < $27.50 stop on June 16. Selling at open June 17 at $27.78. Stop discipline honored. +6.6% in 5 days."
     }
   ],
-  "benchmark_correction_note": "2026-07-02 AUDIT: spy_inception_price corrected 555.66 -> 634.09 (actual SPY close 2026-03-27, last trading day before 2026-03-28 inception; 555.66 never traded \u2014 fabricated at inception). spy_closing_price corrected 733.58 -> 728.99 (733.58 was the Jun 23 close, logged as Jun 26 \u2014 evidence of stale Brave/LLM price fetches). Corrected SPY return since inception as of 2026-06-26: +14.97%; alpha -10.18% (was reported -27.23%). Entry/exit prices in trade-log pending reconciliation via scripts/reconcile_prices.py (e.g. CAT entry 828.79 on 2026-04-28 was the Apr 27 close; Apr 28 range 805-825). See REMEDIATION-PLAN.md.",
-  "cash_original": 4314.45,
-  "nav_original": 10479.35,
-  "reconciliation_note": "Prices reconciled 2026-07-02 vs actual OHLC; 33 fills corrected, 2 baseline fixes in trade-log. Backups: *.pre-reconcile.bak"
+  "benchmark_correction_note": "2026-07-02 AUDIT: spy_inception_price corrected 555.66 -> 634.09 (actual SPY close 2026-03-27, last trading day before 2026-03-28 inception; 555.66 never traded \u2014 fabricated at inception). spy_closing_price corrected 733.58 -> 728.99 (733.58 was the Jun 23 close, logged as Jun 26 \u2014 evidence of stale Brave/LLM price fetches). Corrected SPY return since inception as of 2026-06-26: +14.97%; alpha -10.18% (was reported -27.23%). Entry/exit prices in trade-log pending reconciliation via scripts/reconcile_prices.py (e.g. CAT entry 828.79 on 2026-04-28 was the Apr 27 close; Apr 28 range 805-825). See REMEDIATION-PLAN.md."
 }
