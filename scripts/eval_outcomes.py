@@ -4,7 +4,7 @@ Idempotent: only fills checkpoints whose date<=TODAY and price is null."""
 import json, urllib.request, sys, subprocess, time, os, datetime
 
 BASE = "/home/clawd/alpha-firm"
-TODAY = "2026-06-29"
+TODAY = "2026-07-02"
 FHKEY = "d8u7c0pr01qinhug9jv0d8u7c0pr01qinhug9jvg"
 AGENTS = ["macro", "crypto", "quant", "sentiment", "contrarian", "catalyst"]
 
@@ -155,7 +155,7 @@ for o in data.get("outcomes", []):
         print(f"  simplified {o['id']} {o['ticker']}: {ret:.2f}% -> {o['verdict']}")
 
 data["last_evaluated"] = TODAY
-data["last_updated"] = "2026-06-29T11:00:02Z"
+data["last_updated"] = "2026-07-02T11:00:01Z"
 
 ok = atomic_write(f"{BASE}/state/outcomes.json", data)
 print(f"outcomes.json written: {ok}")

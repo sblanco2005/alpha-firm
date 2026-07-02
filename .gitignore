@@ -31,3 +31,27 @@ memory/sentiment/*
 !memory/sentiment/.gitkeep
 memory/contrarian/*
 !memory/contrarian/.gitkeep
+memory/catalyst/*
+!memory/catalyst/.gitkeep
+
+# NOTE: blanket-ignoring *.json is deliberately avoided — it would drop
+# package.json / package-lock.json / tsconfig.json / app.json / eas.json and
+# break npm & Expo installs. Instead we ignore only build cache, regenerable
+# backtest output, and the volatile runtime state below.
+
+# Build cache
+.vite/
+
+# Backtest output (regenerable — one dir per run)
+backtest/results/
+
+# Volatile runtime state: recomputable snapshots that change every market check.
+# Kept tracked (durable record): trade-log.json, leaderboard.json,
+# lessons-learned.json, retrospectives/
+state/portfolio.json
+state/outcomes.json
+state/daily-state.json
+state/cron-status.json
+state/account.json
+state/debate-*
+state/scorecards/
