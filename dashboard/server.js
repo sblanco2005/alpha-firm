@@ -6,7 +6,7 @@ import { fileURLToPath } from "url";
 import { getNavHistory, fetchDailyCloses, fetchIntraday } from "./navHistory.js";
 import { POSITION_NARRATIVES } from "./positionNarratives.js";
 import { startRun, getRunStatus, isRunning } from "./runCheck.js";
-import { getMarkets, getMarketDetail, MARKET_IDS } from "./markets.js";
+import { getMarkets, getMarketDetail, MARKET_IDS, resolveCustom } from "./markets.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT_DIR = join(__dirname, "..");
@@ -23,7 +23,8 @@ const DEFAULT_MARKETS = ["SPY", "QQQ", "GLD", "BTC", "US10Y", "DXY"];
 function getAccount() {
   const a = readJSON(ACCOUNT_FILE) || {};
   const markets = Array.isArray(a.markets) && a.markets.length ? a.markets : DEFAULT_MARKETS;
-  return { capital: Number.isFinite(a.capital) ? a.capital : INITIAL_CAPITAL, resetAt: a.resetAt || null, markets };
+  const customMarkets = Array.isArray(a.customMarkets) ? a.customMarkets : [];
+  return { capital: Number.isFinite(a.capital) ? a.capital : INITIAL_CAPITAL, resetAt: a.resetAt || null, markets, customMarkets };
 }
 function daysSince(iso) {
   return Math.max(1, Math.floor((Date.now() - Date.parse(iso + "T00:00:00Z")) / 86400000) + 1); // inclusive
@@ -269,23 +270,50 @@ async function enrichPortfolio(portfolio, { force = false } = {}) {
 
 // Personal account (capital base + strategy reset). Non-destructive overlay.
 app.get("/api/account", (_, res) => res.json(getAccount()));
-app.post("/api/account", (req, res) => {
+app.post("/api/account", async (req, res) => {
   const cur = getAccount();
   const body = req.body || {};
-  let { capital, resetAt, markets } = cur;
+  let { capital, resetAt, markets, customMarkets } = cur;
   if (body.capital !== undefined) {
     const n = Math.round(Number(body.capital));
     if (!Number.isFinite(n) || n < 0 || n > 100000000) return res.status(400).json({ error: "capital must be 0–100,000,000" });
     capital = n;
   }
   if (body.resetAt !== undefined) resetAt = body.resetAt ? String(body.resetAt).slice(0, 10) : null;
+
+  // Add a custom Yahoo-Finance ticker → validate it returns data, then select it.
+  if (body.addCustom !== undefined) {
+    const raw = String(body.addCustom || "").trim().toUpperCase();
+    if (MARKET_IDS.has(raw)) {                       // already a built-in — just select it
+      if (!markets.includes(raw)) { if (markets.length >= 12) return res.status(400).json({ error: "at maximum (12) — remove one first" }); markets = [...markets, raw]; }
+    } else if (customMarkets.some((c) => c.id === raw)) {
+      if (!markets.includes(raw)) { if (markets.length >= 12) return res.status(400).json({ error: "at maximum (12) — remove one first" }); markets = [...markets, raw]; }
+    } else {
+      if (markets.length >= 12) return res.status(400).json({ error: "at maximum (12) — remove one first" });
+      const entry = await resolveCustom(raw, customMarkets.length);
+      if (!entry) return res.status(400).json({ error: `Couldn't find "${raw}" on Yahoo Finance. Use the Yahoo symbol (e.g. NVDA, ^GSPC, EURUSD=X).` });
+      customMarkets = [...customMarkets, entry];
+      markets = [...markets, entry.id];
+    }
+  }
+
+  // Remove a custom ticker entirely (from the library + the selection).
+  if (body.removeCustom !== undefined) {
+    const rid = String(body.removeCustom).toUpperCase();
+    customMarkets = customMarkets.filter((c) => c.id !== rid);
+    markets = markets.filter((x) => x !== rid);
+    if (markets.length === 0) markets = DEFAULT_MARKETS;
+  }
+
   if (body.markets !== undefined) {
-    const ids = Array.isArray(body.markets) ? [...new Set(body.markets.map(String))].filter((x) => MARKET_IDS.has(x)) : [];
+    const valid = new Set([...MARKET_IDS, ...customMarkets.map((c) => c.id)]);
+    const ids = Array.isArray(body.markets) ? [...new Set(body.markets.map(String))].filter((x) => valid.has(x)) : [];
     if (ids.length < 1 || ids.length > 12) return res.status(400).json({ error: "markets must have 1–12 valid tickers" });
     markets = ids;
   }
-  writeJSON(ACCOUNT_FILE, { capital, resetAt, markets });
-  res.json({ capital, resetAt, markets });
+
+  writeJSON(ACCOUNT_FILE, { capital, resetAt, markets, customMarkets });
+  res.json({ capital, resetAt, markets, customMarkets });
 });
 
 app.get("/api/portfolio", async (_, res) => {
@@ -809,7 +837,7 @@ app.get("/api/nav-history", async (_, res) => {
 // Markets tab — all 12 benchmarks (live quote + sparkline + desk read) + macro regime.
 app.get("/api/markets", async (_, res) => {
   try {
-    res.json(await getMarkets());
+    res.json(await getMarkets(getAccount()));
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -818,7 +846,7 @@ app.get("/api/markets", async (_, res) => {
 // One benchmark's detail — period series, stats, definition, desk read, news feed.
 app.get("/api/markets/:id", async (req, res) => {
   try {
-    const detail = await getMarketDetail(req.params.id.toUpperCase(), req.query.period || "3M", FINNHUB_KEY);
+    const detail = await getMarketDetail(req.params.id.toUpperCase(), req.query.period || "3M", getAccount());
     detail ? res.json(detail) : res.status(404).json({ error: "unknown market" });
   } catch (e) {
     res.status(500).json({ error: e.message });

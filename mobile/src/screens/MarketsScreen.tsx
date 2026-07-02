@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { View, Text } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import { useApi } from "../api";
 import { C, F, rgba, pnlColor, signed, money } from "../theme";
@@ -62,7 +63,10 @@ function BenchmarkCard({ m, onPress }: { m: any; onPress: () => void }) {
 
 export function MarketsScreen({ navigation }: any) {
   const { data, error, loading, reload } = useApi<any>("/api/markets", { pollMs: 60000 });
-  const { data: account } = useApi<any>("/api/account", { pollMs: 30000 });
+  const { data: account, reload: reloadAccount } = useApi<any>("/api/account", { pollMs: 30000 });
+
+  // Refetch when the tab regains focus so edits made in the picker show immediately.
+  useFocusEffect(useCallback(() => { reload(); reloadAccount(); }, [reload, reloadAccount]));
 
   if (loading) return <Screen><Loading label="Loading markets…" /></Screen>;
   if (error || !data) return <Screen><ErrorState error={error} onRetry={reload} /></Screen>;

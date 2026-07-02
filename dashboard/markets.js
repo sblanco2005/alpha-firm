@@ -17,22 +17,22 @@ export const CATALOG = [
   { id: "GLD",   yahoo: "GLD",       kind: "price", name: "Gold",       full: "SPDR Gold Shares",        sector: "Metals",         color: "#F5B731",
     what: "Physical gold in ETF form — the classic store-of-value hedge.",
     read: "A read on real yields and fear. Strength here often means the market is hedging the dollar or policy risk." },
-  { id: "BTC",   yahoo: "BTC-USD",   kind: "price", name: "Bitcoin",    full: "Bitcoin / US Dollar",     sector: "Crypto",         color: "#F7931A",
+  { id: "BTC",   yahoo: "BTC-USD",   kind: "price", name: "Bitcoin",    full: "Bitcoin / US Dollar",     sector: "Crypto",         color: "#F7931A", newsq: "Bitcoin",
     what: "The largest cryptocurrency — 24/7 risk sentiment and liquidity gauge.",
     read: "The high-beta risk barometer. Moves before equities on liquidity shifts; the crypto desk watches it closely." },
-  { id: "US10Y", yahoo: "^TNX",      kind: "yield", name: "US 10Y",     full: "10-Year Treasury Yield",  sector: "Rates",          color: "#2DD4D4",
+  { id: "US10Y", yahoo: "^TNX",      kind: "yield", name: "US 10Y",     full: "10-Year Treasury Yield",  sector: "Rates",          color: "#2DD4D4", newsq: "treasury yield",
     what: "The benchmark US government bond yield — the price of money for everything else.",
     read: "The gravity behind every valuation. Rising yields pressure growth multiples; falling yields lift them." },
-  { id: "DXY",   yahoo: "DX-Y.NYB",  kind: "level", name: "US Dollar",  full: "US Dollar Index",         sector: "FX",             color: "#5FB0A8",
+  { id: "DXY",   yahoo: "DX-Y.NYB",  kind: "level", name: "US Dollar",  full: "US Dollar Index",         sector: "FX",             color: "#5FB0A8", newsq: "US dollar index",
     what: "The dollar against a basket of major currencies — global liquidity tide.",
     read: "A strong dollar tightens global conditions and pressures commodities, crypto and EM. Watch the direction." },
   { id: "IWM",   yahoo: "IWM",       kind: "price", name: "Russell 2K", full: "iShares Russell 2000 ETF", sector: "Small Caps",    color: "#E0729F",
     what: "2,000 US small-cap companies — the domestic, rate-sensitive economy.",
     read: "Breadth and risk appetite. When small caps lead, the rally is broad; when they lag, it's narrow and fragile." },
-  { id: "VIX",   yahoo: "^VIX",      kind: "level", name: "VIX",        full: "CBOE Volatility Index",   sector: "Volatility",     color: "#FF6B57",
+  { id: "VIX",   yahoo: "^VIX",      kind: "level", name: "VIX",        full: "CBOE Volatility Index",   sector: "Volatility",     color: "#FF6B57", newsq: "VIX",
     what: "The market's 30-day expected volatility — Wall Street's fear gauge.",
     read: "Drives the book's position sizing: under 25 = full size, 25–35 = trimmed, over 35 = defensive." },
-  { id: "WTI",   yahoo: "CL=F",      kind: "price", name: "Crude Oil",  full: "WTI Crude Futures",       sector: "Energy",         color: "#C98A4B",
+  { id: "WTI",   yahoo: "CL=F",      kind: "price", name: "Crude Oil",  full: "WTI Crude Futures",       sector: "Energy",         color: "#C98A4B", newsq: "crude oil",
     what: "West Texas Intermediate crude — the pulse of global growth and inflation.",
     read: "An inflation and demand signal. Spikes feed into rates and squeeze the consumer; slides ease both." },
   { id: "TLT",   yahoo: "TLT",       kind: "price", name: "20Y+ Bonds", full: "iShares 20+ Year Treasury", sector: "Long Bonds",   color: "#6E8BE0",
@@ -41,13 +41,56 @@ export const CATALOG = [
   { id: "EEM",   yahoo: "EEM",       kind: "price", name: "Emerging",   full: "iShares MSCI Emerging Mkts", sector: "EM Equities",  color: "#E0A93F",
     what: "A basket of emerging-market equities — China, India, Brazil and more.",
     read: "A leveraged play on a weak dollar and global growth. Leads when liquidity is easy and DXY is falling." },
-  { id: "ETH",   yahoo: "ETH-USD",   kind: "price", name: "Ethereum",   full: "Ethereum / US Dollar",    sector: "Crypto",         color: "#7E7CF0",
+  { id: "ETH",   yahoo: "ETH-USD",   kind: "price", name: "Ethereum",   full: "Ethereum / US Dollar",    sector: "Crypto",         color: "#7E7CF0", newsq: "Ethereum",
     what: "The second-largest crypto and the leading smart-contract platform.",
     read: "Higher beta than bitcoin on risk-on days. The desk reads the ETH/BTC ratio for appetite within crypto." },
 ];
 
-const byId = Object.fromEntries(CATALOG.map((c) => [c.id, c]));
 export const MARKET_IDS = new Set(CATALOG.map((c) => c.id));
+
+// ── Custom benchmarks: any Yahoo Finance symbol the user adds. ────────────────────
+const YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart";
+const CUSTOM_COLORS = ["#8BA6FF", "#59C3C3", "#E8A0BF", "#B9995E", "#7FB4E0", "#C58AE0", "#5FBF97", "#E0A05F"];
+
+// Turn a stored custom-ticker record into a full catalog entry.
+function toEntry(c) {
+  return {
+    id: c.id, yahoo: c.yahoo, kind: c.kind || "price", name: c.name, full: c.full || c.name,
+    sector: c.sector || "Custom", color: c.color || CUSTOM_COLORS[0], custom: true,
+    what: `${c.name} — a custom benchmark you track from Yahoo Finance (${c.yahoo}).`,
+    read: "A custom benchmark you added; tracked live, outside the desk's core watchlist.",
+  };
+}
+
+// Resolve the merged catalog (built-in 12 + the account's custom tickers).
+function resolveCatalog(account) {
+  const custom = Array.isArray(account?.customMarkets) ? account.customMarkets.map(toEntry) : [];
+  return [...CATALOG, ...custom];
+}
+
+// Validate a user-typed Yahoo symbol (does it return price data?) and build a record.
+export async function resolveCustom(symbol, index = 0) {
+  const yahoo = String(symbol || "").trim().toUpperCase();
+  if (!/^[A-Z0-9.^=-]{1,15}$/.test(yahoo)) return null;
+  try {
+    const res = await fetch(`${YAHOO}/${encodeURIComponent(yahoo)}?range=5d&interval=1d`, { headers: { "User-Agent": "Mozilla/5.0" } });
+    if (!res.ok) return null;
+    const j = await res.json();
+    const r = j?.chart?.result?.[0];
+    const closes = (r?.indicators?.quote?.[0]?.close || []).filter((x) => x != null);
+    if (!r || closes.length < 2) return null;
+    const m = r.meta || {};
+    return {
+      id: yahoo, yahoo,
+      name: m.shortName || yahoo,
+      full: m.longName || m.shortName || yahoo,
+      sector: "Custom",
+      color: CUSTOM_COLORS[index % CUSTOM_COLORS.length],
+    };
+  } catch {
+    return null;
+  }
+}
 
 // ── Period → Yahoo range + interval for the detail chart. ─────────────────────────
 const PERIOD_MAP = {
@@ -85,7 +128,7 @@ function quoteFrom(entry, series) {
   const isYield = entry.kind === "yield";
   return {
     id: entry.id, name: entry.name, full: entry.full, kind: entry.kind,
-    sector: entry.sector, color: entry.color,
+    sector: entry.sector, color: entry.color, custom: !!entry.custom,
     latest: round(latest, isYield || entry.kind === "level" ? 2 : 2),
     up: latest >= prev,
     dayPct: round((latest / prev - 1) * 100),
@@ -98,18 +141,21 @@ function quoteFrom(entry, series) {
   };
 }
 
-// A single 10-minute cache for the whole 12-ticker board.
-let LIST_CACHE = { at: 0, data: null };
-const TTL = 10 * 60 * 1000;
+// Cache the board, keyed by the resolved symbol set (so adding a custom ticker busts it).
+// Short TTL so the list price stays as live as the detail view (which fetches uncached).
+let LIST_CACHE = { at: 0, sig: "", data: null };
+const TTL = 90 * 1000;
 
-export async function getMarkets({ force = false } = {}) {
-  if (!force && LIST_CACHE.data && Date.now() - LIST_CACHE.at < TTL) return LIST_CACHE.data;
-  const seriesAll = await Promise.all(CATALOG.map((c) => fetchDailyCloses(c.yahoo, "1y").catch(() => [])));
-  const markets = CATALOG.map((c, i) => quoteFrom(c, seriesAll[i])).filter(Boolean);
+export async function getMarkets(account = {}, { force = false } = {}) {
+  const catalog = resolveCatalog(account);
+  const sig = catalog.map((c) => c.yahoo).join(",");
+  if (!force && LIST_CACHE.data && LIST_CACHE.sig === sig && Date.now() - LIST_CACHE.at < TTL) return LIST_CACHE.data;
+  const seriesAll = await Promise.all(catalog.map((c) => fetchDailyCloses(c.yahoo, "1y").catch(() => [])));
+  const markets = catalog.map((c, i) => quoteFrom(c, seriesAll[i])).filter(Boolean);
   const spy = markets.find((m) => m.id === "SPY");
   const vix = markets.find((m) => m.id === "VIX");
   const data = { asOf: new Date().toISOString(), regime: regimeFrom(spy, vix), markets };
-  LIST_CACHE = { at: Date.now(), data };
+  LIST_CACHE = { at: Date.now(), sig, data };
   return data;
 }
 
@@ -128,8 +174,8 @@ function regimeFrom(spy, vix) {
 }
 
 // ── Detail: series for a period + stats + editorial + news. ───────────────────────
-export async function getMarketDetail(id, period = "3M", finnhubKey = "") {
-  const entry = byId[id];
+export async function getMarketDetail(id, period = "3M", account = {}) {
+  const entry = resolveCatalog(account).find((c) => c.id === id);
   if (!entry) return null;
   const p = PERIOD_MAP[period] || PERIOD_MAP["3M"];
 
@@ -138,7 +184,7 @@ export async function getMarketDetail(id, period = "3M", finnhubKey = "") {
       ? fetchIntraday(entry.yahoo).then((rows) => rows.map((r) => ({ t: r.t, value: r.value })))
       : fetchDailyCloses(entry.yahoo, p.range).then((rows) => rows.map((r) => ({ date: r.date, value: round(r.close) }))),
     fetchDailyCloses(entry.yahoo, "1y").catch(() => []),
-    fetchNews(entry, finnhubKey).catch(() => []),
+    fetchNews(entry).catch(() => []),
   ]);
 
   const quote = quoteFrom(entry, yearRows) || {};
@@ -148,7 +194,7 @@ export async function getMarketDetail(id, period = "3M", finnhubKey = "") {
 
   return {
     id: entry.id, name: entry.name, full: entry.full, kind: entry.kind,
-    sector: entry.sector, color: entry.color,
+    sector: entry.sector, color: entry.color, custom: !!entry.custom,
     latest: quote.latest ?? (vals.length ? vals[vals.length - 1] : null),
     up: (changePct ?? 0) >= 0,
     period, changePct, changeBps,
@@ -164,31 +210,25 @@ export async function getMarketDetail(id, period = "3M", finnhubKey = "") {
   };
 }
 
-// News feed. Company-news for plain equity/ETF tickers; general market news otherwise
-// (indices/futures/FX have no per-symbol feed on the free tier). Honest NEUTRAL tags —
-// we don't fabricate a bull/bear read on real headlines.
-async function fetchNews(entry, finnhubKey) {
-  if (!finnhubKey) return [];
-  const isEquity = /^[A-Z]{1,5}$/.test(entry.yahoo); // SPY, QQQ, GLD, IWM, TLT, EEM
+// Per-symbol news from Yahoo Finance search (keyless, relevant to THIS ticker — works
+// for equities, indices, futures, FX and crypto alike). Honest NEUTRAL tags; we don't
+// fabricate a bull/bear read. Returns [] rather than showing unrelated headlines.
+async function fetchNews(entry) {
   try {
-    let url;
-    if (isEquity) {
-      const to = new Date().toISOString().slice(0, 10);
-      const from = new Date(Date.now() - 14 * 86400000).toISOString().slice(0, 10);
-      url = `https://finnhub.io/api/v1/company-news?symbol=${entry.yahoo}&from=${from}&to=${to}&token=${finnhubKey}`;
-    } else {
-      url = `https://finnhub.io/api/v1/news?category=general&token=${finnhubKey}`;
-    }
-    const res = await fetch(url);
+    const q = entry.newsq || entry.yahoo;   // topic term for non-stock symbols, else the ticker
+    const res = await fetch(
+      `https://query1.finance.yahoo.com/v1/finance/search?q=${encodeURIComponent(q)}&quotesCount=0&newsCount=6`,
+      { headers: { "User-Agent": "Mozilla/5.0" } }
+    );
     if (!res.ok) return [];
-    const arr = await res.json();
-    if (!Array.isArray(arr)) return [];
+    const j = await res.json();
+    const arr = Array.isArray(j?.news) ? j.news : [];
     return arr.slice(0, 3).map((n) => ({
       tag: "NEUTRAL",
-      title: n.headline || n.summary || "—",
-      source: n.source || "—",
-      time: n.datetime ? relTime(n.datetime * 1000) : "",
-      url: n.url || null,
+      title: n.title || "—",
+      source: n.publisher || "—",
+      time: n.providerPublishTime ? relTime(n.providerPublishTime * 1000) : "",
+      url: n.link || null,
     }));
   } catch {
     return [];
