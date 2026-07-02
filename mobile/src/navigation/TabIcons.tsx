@@ -1,5 +1,16 @@
 import React from "react";
-import Svg, { Path, Circle } from "react-native-svg";
+import Svg, { Path, Circle, Rect } from "react-native-svg";
+
+// Candlestick glyph for the Markets tab (distinct from Portfolio's bar chart).
+export function MarketsIcon({ color }: { color: string }) {
+  return (
+    <Svg width={24} height={24} viewBox="0 0 24 24" fill="none">
+      <Path d="M8 3v4M8 15v6M16 3v6M16 17v4" stroke={color} strokeWidth={2} strokeLinecap="round" />
+      <Rect x={5.2} y={7} width={5.6} height={8} rx={1.4} stroke={color} strokeWidth={2} />
+      <Rect x={13.2} y={9} width={5.6} height={8} rx={1.4} stroke={color} strokeWidth={2} />
+    </Svg>
+  );
+}
 
 export function PortfolioIcon({ color }: { color: string }) {
   return (

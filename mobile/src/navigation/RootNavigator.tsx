@@ -10,7 +10,10 @@ import { AgentTransactionsScreen } from "../screens/AgentTransactionsScreen";
 import { MarketCheckScreen } from "../screens/MarketCheckScreen";
 import { PickDetailScreen } from "../screens/PickDetailScreen";
 import { ProfileScreen } from "../screens/ProfileScreen";
-import { PortfolioIcon, AnalystsIcon, LiveIcon } from "./TabIcons";
+import { MarketsScreen } from "../screens/MarketsScreen";
+import { MarketsCustomizeScreen } from "../screens/MarketsCustomizeScreen";
+import { MarketDetailScreen } from "../screens/MarketDetailScreen";
+import { PortfolioIcon, AnalystsIcon, LiveIcon, MarketsIcon } from "./TabIcons";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -22,6 +25,17 @@ function PortfolioStack() {
     <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg } }}>
       <Stack.Screen name="PortfolioHome" component={PortfolioScreen} />
       <Stack.Screen name="PositionDetail" component={PositionDetailScreen} />
+    </Stack.Navigator>
+  );
+}
+
+// Markets tab: list → detail, plus the customize picker, all in one native stack.
+function MarketsStack() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg } }}>
+      <Stack.Screen name="MarketsHome" component={MarketsScreen} />
+      <Stack.Screen name="MarketDetail" component={MarketDetailScreen} />
+      <Stack.Screen name="MarketsCustomize" component={MarketsCustomizeScreen} />
     </Stack.Navigator>
   );
 }
@@ -72,6 +86,14 @@ function Tabs() {
         options={{ tabBarIcon: ({ color }) => <PortfolioIcon color={color} /> }}
         listeners={({ navigation }) => ({
           tabPress: () => navigation.navigate("Portfolio", { screen: "PortfolioHome" }),
+        })}
+      />
+      <Tab.Screen
+        name="Markets"
+        component={MarketsStack}
+        options={{ tabBarIcon: ({ color }) => <MarketsIcon color={color} /> }}
+        listeners={({ navigation }) => ({
+          tabPress: () => navigation.navigate("Markets", { screen: "MarketsHome" }),
         })}
       />
       <Tab.Screen
