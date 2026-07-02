@@ -258,9 +258,15 @@ Debate modifiers:
 ### Step 10: Decision
 
 ```
-1. Are there any positions to SELL first?
-   → Check each position: hit target? thesis broken? stop-loss? stale?
-   → Execute sells BEFORE considering new buys
+1. Position review (SELL SYMMETRY — rewritten 2026-07-02, Phase 2.3)
+   → A sell requires an affirmative trigger, verified against real prices:
+     (a) falsification condition met, (b) target hit, (c) -20% disaster stop,
+     (d) justified pre-binary-event stop (10-12%)
+   → NO stale-position sells. NO "sell first" reflex. A position above entry
+     with an intact thesis needs a POSITIVE case to sell, argued like a buy.
+   → Verify any trigger price via the price MCP against the day's OHLC —
+     stops only fire on prices that actually printed.
+   → Sell proceeds may fund a SAME-DAY buy; leftover cash sweeps to SPY at close.
 
 2. Rank all passing candidates by final_score
 
@@ -272,9 +278,18 @@ Debate modifiers:
 4. Final decision: BUY or PASS
    → **Minimum final_score to BUY: 7.5** (raised from 6.0 as of 2026-06-25)
    → PASS is always valid — no trade is better than a bad trade
-   → Passing multiple days in a row is fine. Cash earns by avoiding losses.
+   → Passing multiple days in a row is fine. **PASS no longer means idle cash** —
+     unallocated capital sits in the SPY sweep earning beta (see step 5).
    → Only buy when evidence is strong AND the setup is asymmetric
    → **In a bull market (SPY above 50-day MA), the bar is 8.0.** Stock picks must clearly beat SPY.
+
+5. SPY Sweep (CLOSING SESSION ONLY — added 2026-07-02, Phase 2.1)
+   → After all buys/sells settle: if cash > 5% of NAV, buy SPY with the excess
+     (agent: "index", role: "benchmark_sweep")
+   → Stock buys fund from the sweep when cash is short (SPY sell doesn't count
+     as the daily buy and needs no debate)
+   → Sweep is exempt from sector cap, VIX caps, 1-buy/day, and leaderboard
+   → See skills/trade-execution.md "SPY Sweep" for mechanics
 ```
 
 ### Step 10.5: Trend-Following Override (Bull/Bear Market Mode)
@@ -292,24 +307,24 @@ Before final scoring, assess the market regime:
 **Bear Market Mode** (SPY below 50-day MA):
 - Standard execution threshold (7.5)
 - Contrarian and catalyst agents get priority (mean reversion works better in bear markets)
-- Tighten stops to 8-10% (volatility is higher)
+- Exit framework unchanged (falsification-first, -20% disaster stop) — do NOT tighten stops; that recreates the whipsaw machine
 - Reduce position sizes by 25%
+- SPY sweep still applies — riding the index down at low cost beats panic cash
 
 **Transitional Mode** (SPY between 50-day and 200-day MA, or MAs crossing):
 - Execution threshold 7.5
 - Standard rules apply
 - Extra caution on momentum picks
 
-To determine the regime, search: "SPY current price vs 50 day moving average vs 200 day moving average"
+To determine the regime, fetch SPY's price history via the price MCP and compute the 50-day and 200-day MAs from actual closes. Do not use search snippets for MA values.
 
-### Position Management
-For each existing position, ask:
-1. **Has it hit the target return?** → Sell and take profit
-2. **Is the thesis broken?** → Sell regardless of P&L
-3. **Has it been held for 2+ weeks with no movement?** → Consider selling for opportunity cost
-4. **Is it down 12%+ from entry?** → Likely thesis is broken, sell (was 10% — widened to reduce whipsaw)
-5. **Is it down 15%+ from entry?** → Hard stop, sell immediately, no exceptions
-6. **Is it up but the catalyst hasn't happened yet?** → Hold
+### Position Management (Rewritten 2026-07-02 — Phase 2.2)
+For each existing position, ask **in this order**:
+1. **Is the falsification condition met?** → Sell regardless of P&L (verify the triggering data via price MCP / primary source)
+2. **Has it hit the target return?** → Sell, or switch to a trailing stop (per the agent's stated plan at entry)
+3. **Is it down 20%+ from entry?** → Disaster stop: sell AND file a lesson candidate — the falsification condition failed to catch this first
+4. **Pre-binary-event position (earnings/FDA/ruling within 5 days) with a weakening thesis?** → Exit BEFORE the event; justified 10-12% stops allowed on these only
+5. **Otherwise → HOLD.** No stale-position sells (removed — the SPY sweep handles opportunity cost). No selling winners "for discipline." Time is the thesis's friend or enemy; let the falsification condition decide which.
 
 ## Reward Calculation (20% Profit Sharing)
 

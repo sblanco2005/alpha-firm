@@ -50,13 +50,21 @@ def build_scorecard(agent_id, entries):
     partial_rate = round(len(partials) / total * 100, 1) if total > 0 else 0.0
     loss_rate = round(len(losses) / total * 100, 1) if total > 0 else 0.0
 
-    # Track record modifier
-    if win_rate >= 60:
-        track_record_modifier = 1.2
-    elif win_rate >= 40:
-        track_record_modifier = 1.0
+    # Track record modifier — FROZEN at 1.0x (REMEDIATION-PLAN.md Phase 1.1, 2026-07-02).
+    # Historical win rates were computed on the deprecated peak-touched-target metric
+    # and partially corrupted prices. Re-enable only when the agent has >= 30 EXECUTED
+    # trades under the corrected realized-R metric (see MODIFIER_UNFREEZE_THRESHOLD).
+    MODIFIER_UNFREEZE_THRESHOLD = 30
+    executed_count = len([e for e in evaluated if e.get('was_executed')])
+    if executed_count >= MODIFIER_UNFREEZE_THRESHOLD:
+        if win_rate >= 60:
+            track_record_modifier = 1.2
+        elif win_rate >= 40:
+            track_record_modifier = 1.0
+        else:
+            track_record_modifier = 0.8
     else:
-        track_record_modifier = 0.8
+        track_record_modifier = 1.0  # frozen
 
     # Avg horizon return
     horizon_returns = [get_horizon_return(e) for e in evaluated]
@@ -155,6 +163,12 @@ def build_scorecard(agent_id, entries):
         'avg_horizon_return_pct': avg_horizon_return,
         'avg_peak_return_pct': avg_peak_return,
         'track_record_modifier': track_record_modifier,
+        'modifier_frozen': executed_count < MODIFIER_UNFREEZE_THRESHOLD,
+        'executed_trades': executed_count,
+        'modifier_note': (f"FROZEN at 1.0x until {MODIFIER_UNFREEZE_THRESHOLD} executed trades "
+                          f"under corrected metric (currently {executed_count}). Win rates below are "
+                          "informational only — computed on the deprecated peak-touched-target metric."
+                          if executed_count < MODIFIER_UNFREEZE_THRESHOLD else "active"),
         'conviction_calibration': conviction_cal,
         'by_asset_type': asset_types,
         'recent_picks': recent,

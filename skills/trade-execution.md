@@ -84,7 +84,7 @@ Before executing any buy, check if this would create 3 consecutive buys from the
 
 ### VIX-Adjusted Position Sizing
 
-Before calculating position size, fetch current VIX level via Brave Search ("VIX index level today").
+Before calculating position size, fetch current VIX level via the price MCP (ticker `^VIX`). Never use Brave Search for the VIX number.
 
 | VIX Level | Max Allocation (% of cash) | Rationale |
 |-----------|---------------------------|-----------|
@@ -96,24 +96,23 @@ If VIX cannot be fetched, assume VIX > 25 (conservative default).
 
 Log the VIX level and resulting size cap in the trade record.
 
-### Stop-Loss Guidelines (Updated 2026-06-25)
+### Exit Framework (Rewritten 2026-07-02 — REMEDIATION-PLAN.md Phase 2.2)
 
-**Previous stops (8-10%) were too tight and caused excessive whipsaw.** New framework:
+**Price stops are no longer the primary exit.** Run-1 post-mortem: tight stops (8-15%) + 3x/day sell evaluation + slow redeploy = systematic sell-low whipsaw (31 buys/30 sells in 61 days, >$1,100 given back from the high-water mark). Reconciliation also showed several "stop-outs" fired on phantom prices (UNH, EYE, MAR) that never actually printed.
 
-| Position Type | Stop-Loss % | Rationale |
-|---------------|-------------|-----------|
-| Standard (non-event) | **12-15%** from entry | Allows normal volatility without triggering premature exits |
-| Pre-event (earnings within 5 days) | 8-10% | Binary risk — if thesis is wrong, exit fast |
-| Post-event (after earnings/FDA) | 8% | Event passed — if move is against you, thesis is broken |
-| Crypto mining stocks | 15-20% | Higher baseline volatility |
-| ETFs (SPY, QQQ, sector) | 10-12% | Lower single-name risk, slightly wider than before |
+**Exit triggers, in priority order:**
 
-**Rules:**
-- Default to 12% for standard stock positions unless the agent specifies otherwise
-- Hard stop at 15% max for any non-crypto position — thesis is definitively broken
-- Trailing stops activate after +5% gain — set trail at 8% from peak (for standard) or 5% (for event positions)
-- Never set stops tighter than 8% on non-event positions (whipsaw risk)
-- **The EYE trade (-21.4% same-day stop) must never happen again.** Binary event positions must be exited before the event if thesis weakens.
+1. **Falsification condition (PRIMARY).** Every position's `falsification_condition` — required at buy time — is the sell trigger. Checked each session against verified data (price MCP for prices; news search for events). If falsified → sell, regardless of P&L.
+2. **Target hit.** Sell or activate trailing stop (agent's choice, stated at entry).
+3. **Disaster stop: -20% from entry.** Backstop only, not a strategy. If a position falls 20% without the falsification condition triggering, the condition was badly specified — sell AND log it as a lesson candidate.
+4. **Pre-binary-event exception.** Positions held into a dated binary event (earnings, FDA, ruling) may carry a tighter stop (10-12%) if the agent justifies it at entry — the EYE lesson: exit *before* the event if the thesis weakens, don't ride a stop through it.
+
+**Explicitly removed (do NOT enforce):**
+- ~~Stale-position rule (14 days / <2% → sell)~~ — winners need time; opportunity cost is now handled by the SPY sweep, not forced sales
+- ~~12-15% standard stops~~ — replaced by falsification + disaster stop
+- Trailing stops before +15% unrealized — trail only after +15%, set by the agent
+
+**Verification rule:** before executing ANY stop or falsification sell, confirm the trigger price via the price MCP and check it against the day's OHLC range. A stop may only fire on a price that actually printed.
 
 ### Position Sizing
 - Fetch VIX and determine max allocation tier (see above)
@@ -131,9 +130,20 @@ alpha = portfolio_pnl_pct - spy_return_pct
 ```
 Include SPY return and alpha in the daily log summary.
 
+### SPY Sweep (Default = Beta, Not Cash — added 2026-07-02, Phase 2.1)
+
+Idle capital's default home is **SPY, not cash**. Run-1's largest loss driver was ~40% cash during a +15% SPY run.
+
+**Mechanics:**
+1. At every **closing session**, after all buys/sells settle: if `cash > 5% of NAV`, buy SPY with the excess. Record it as a position with `"agent": "index"`, `"role": "benchmark_sweep"`.
+2. The sweep position is **exempt** from: sector concentration cap, VIX sizing caps, the 1-buy-per-day limit, leaderboard/scorecard attribution, and all exit rules except funding buys.
+3. **Stock buys fund from the sweep**: if cash < order size, sell SPY sweep shares to cover (same session — this does not count as the daily buy, and the SPY sell needs no debate). Every pick is therefore an explicit bet that it beats the index — the SPY Baseline Test made mechanical.
+4. Proceeds from any stock sell return to cash intraday and may fund a same-day buy; whatever remains sweeps back to SPY at close.
+5. Alpha attribution: sweep P&L is reported separately from picks P&L. `picks_alpha = picks_pnl_pct - spy_return_pct_over_same_windows`.
+
 ### Buying
 
-1. Fetch current price via Brave Search
+1. Fetch current price via the price MCP (Yahoo chart API fallback). Never Brave Search.
 2. Calculate position size and shares
 3. Write to `state/portfolio.json.tmp`:
    ```json

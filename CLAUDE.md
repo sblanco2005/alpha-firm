@@ -150,7 +150,8 @@ These two agents are complementary, not overlapping. Sentiment Scout finds *curr
 - **Starting capital**: $10,000
 - **Instruments**: US stocks, crypto, ETFs, prediction markets
 - **Long-only** — no shorting, no options
-- **1 buy per day max** — can sell any position anytime
+- **1 buy per day max** — can sell any position anytime; sell proceeds may fund a same-day buy (added 2026-07-02)
+- **SPY sweep (default = beta, not cash)**: at each closing session, cash above a 5% operational buffer is swept into SPY (agent: "index"). Stock buys fund from the sweep. Sweep is exempt from sector cap, VIX caps, 1-buy/day, and leaderboard. See skills/trade-execution.md. (Phase 2.1, 2026-07-02)
 - **3 market checks per day** — morning (9:30am ET), midday (12:30pm ET), closing (3:45pm ET)
 - **Position sizing**: VIX-adjusted — 15-30% of cash (VIX<=25), max 15% (VIX 25-35), max 10% (VIX>35)
 - **Sector concentration cap**: No single GICS sector may exceed 40% of portfolio NAV (hard constraint, new buys blocked)
@@ -257,7 +258,7 @@ Once all 6 subagents return (or timeout after 90 seconds):
    - **Contrarian**: Conviction 8+ required for execution
    - **Crypto**: Stock picks only, ETFs banned
    - **Catalyst**: Conviction 8+ required for execution
-   - **Stop-losses**: 12-15% standard, 8-10% pre-event positions only
+   - **Exits**: falsification condition is the PRIMARY sell trigger; -20% disaster stop as backstop; 10-12% stops only on justified pre-binary-event positions; NO stale-position rule (Phase 2.2, 2026-07-02)
 
 ### Step 4: Execute Trade (Simulation Mode)
 If buying:
