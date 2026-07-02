@@ -18,11 +18,7 @@ For each tracking recommendation, check if today's date matches (or has passed) 
 If a checkpoint date has passed but is still `null`, it's due for evaluation.
 
 ### 3. Fetch Current Prices
-Use Brave Search to fetch the current price for each unique ticker that has a due checkpoint:
-```
-"[TICKER] stock price today"
-"[TICKER] price USD today"  (for crypto)
-```
+Use the **price-fetch MCP** (`mcp/price_server.py`, Yahoo Finance / CoinGecko) for each unique ticker that has a due checkpoint. **Never use Brave Search for numeric price data** — audit on 2026-07-02 found Brave/LLM-mediated lookups returned prices stale by 1-3 trading days (see REMEDIATION-PLAN.md Phase 0.2). If the MCP fails after retry, mark the checkpoint `"price_unavailable"` and re-evaluate next session rather than filling in a searched number.
 
 **Batch efficiently**: If multiple recommendations share the same ticker, fetch the price once.
 
@@ -40,13 +36,27 @@ if return_pct > (peak_return_pct or 0):
 ```
 
 ### 5. Set Final Verdict (horizon checkpoint only)
+
+> **METRIC CORRECTED 2026-07-02** (see REMEDIATION-PLAN.md Phase 0.4). The old definition — win = `peak_return_pct >= target` — counted a position that spiked intraday then got stopped out at a loss as a "win". That inflated win rates (e.g. crypto 62% alongside negative realized P&L) and corrupted every track-record modifier built on it. `peak_return_pct` is now a **diagnostic only** and must never determine a verdict.
+
 When the `horizon` checkpoint is filled, set `final_verdict`:
+
+**Executed trades** — realized outcome is ground truth. Use the realized exit price (or horizon price if still open):
 
 | Condition | Verdict |
 |-----------|---------|
-| `peak_return_pct >= target_return_pct` | `"win"` — target was reached at some point |
-| `horizon return_pct > 0` but `peak_return_pct < target_return_pct` | `"partial"` — right direction, wrong magnitude |
-| `horizon return_pct <= 0` | `"loss"` — thesis was wrong |
+| `return_pct >= target_return_pct` | `"win"` |
+| `return_pct > 0` but below target | `"partial"` — right direction, wrong magnitude |
+| `return_pct <= 0` | `"loss"` — thesis was wrong |
+
+Also record the R-multiple on every executed outcome:
+```
+stop_distance_pct = abs(entry_price - stop_loss) / entry_price * 100
+r_multiple = return_pct / stop_distance_pct
+```
+Agent quality = **mean realized R-multiple**, not win rate.
+
+**Paper (unexecuted) picks** — same table, using horizon `return_pct`. Never `peak_return_pct`.
 
 Set `status` to `"evaluated"`.
 

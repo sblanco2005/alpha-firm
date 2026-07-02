@@ -142,7 +142,7 @@ Execute these steps:
 7. Execute any trades (update portfolio.json, leaderboard.json, trade-log.json)
 7.5. Sync every BUY/SELL to Portclaude via mcp__portclaude__create_transaction (see skills/trade-execution.md)
 8. Record ALL 6 recommendations to state/outcomes.json (follow skills/outcome-evaluation.md for schema)
-9. Write a summary to logs/${TODAY}.md — include SPY benchmark return and alpha (SPY inception price: 555.66)
+9. Write a summary to logs/${TODAY}.md — include SPY benchmark return and alpha (SPY inception price: 634.09 — corrected 2026-07-02, close of 2026-03-27)
 
 IMPORTANT: When updating any state JSON file, write to a .tmp file first, validate with jq, then mv into place.
 Example: write to state/portfolio.json.tmp → validate → mv state/portfolio.json.tmp state/portfolio.json

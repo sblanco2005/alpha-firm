@@ -49,7 +49,7 @@ CURRENT_PRICES = {
 }
 
 SPY_PREMARKET  = 743.69
-SPY_INCEPTION  = 555.66
+SPY_INCEPTION  = 634.09  # corrected 2026-07-02 (was fabricated 555.66)
 SPY_RETURN_PCT = round((SPY_PREMARKET / SPY_INCEPTION - 1) * 100, 2)  # 33.85%
 VIX            = 18.56
 
