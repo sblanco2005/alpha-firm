@@ -25,8 +25,13 @@ function StatBox({ label, value, color }: { label: string; value: React.ReactNod
   );
 }
 
+const SECTION_LABEL = { fontSize: 10, fontFamily: F.ui700, letterSpacing: 0.7, color: rgba("#FFFFFF", 0.42), marginBottom: 7 } as const;
+
 function Detail({ d, onBack }: { d: any; onBack: () => void }) {
   const [period, setPeriod] = useState<PeriodKey>("3M");
+  const [showFacts, setShowFacts] = useState(false);
+  const [showThesis, setShowThesis] = useState(false);
+  const factsLong = Array.isArray(d.supportingFacts) && d.supportingFacts.some((f: string) => (f?.length || 0) > 88);
 
   // Build the value series for the selected period.
   const daily: { date: string; close: number }[] = d.history?.daily || [];
@@ -113,34 +118,57 @@ function Detail({ d, onBack }: { d: any; onBack: () => void }) {
                 <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.45), fontFamily: F.mono, marginTop: 1 }}>conviction {d.conviction ?? "—"}/10{d.horizon ? ` · ${d.horizon}` : ""}</Text>
               </View>
             </View>
-            {/* lead — the structured one-line claim if the agent emitted it, else its catalyst one-liner */}
+            {/* THE CLAIM — the agent's one-line thesis (structured), else its catalyst one-liner */}
             {d.coreClaim ? (
-              <Text style={{ fontSize: 13.5, lineHeight: 19, fontFamily: F.ui600, color: C.text, marginBottom: 10 }}>{d.coreClaim}</Text>
+              <>
+                <Text style={SECTION_LABEL}>THE CLAIM</Text>
+                <Text style={{ fontSize: 14.5, lineHeight: 20.5, fontFamily: F.ui600, color: C.text, marginBottom: 14 }}>{d.coreClaim}</Text>
+              </>
             ) : d.catalyst ? (
-              <Text style={{ fontSize: 12.5, lineHeight: 18, fontFamily: F.ui600, color: d.color, marginBottom: 9 }}>⚡ {d.catalyst}</Text>
+              <Text style={{ fontSize: 13, lineHeight: 19, fontFamily: F.ui600, color: d.color, marginBottom: 12 }}>⚡ {d.catalyst}</Text>
             ) : null}
 
-            {/* supporting facts (structured) */}
+            {/* KEY FACTS — each clamped to 2 lines so the list stays scannable; one toggle reveals full detail */}
             {d.supportingFacts && d.supportingFacts.length > 0 && (
-              <View style={{ gap: 5, marginBottom: 10 }}>
-                {d.supportingFacts.map((f: string, i: number) => (
-                  <View key={i} style={{ flexDirection: "row", gap: 8 }}>
-                    <Text style={{ color: d.color, fontSize: 12, lineHeight: 18 }}>▪</Text>
-                    <Text style={{ flex: 1, fontSize: 12, lineHeight: 18, color: rgba("#FFFFFF", 0.72), fontFamily: F.ui }}>{f}</Text>
-                  </View>
-                ))}
+              <>
+                <Text style={SECTION_LABEL}>KEY FACTS</Text>
+                <View style={{ gap: 9, marginBottom: factsLong ? 6 : 12 }}>
+                  {d.supportingFacts.map((f: string, i: number) => (
+                    <View key={i} style={{ flexDirection: "row", gap: 9 }}>
+                      <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: d.color, marginTop: 7 }} />
+                      <Text numberOfLines={showFacts ? undefined : 2} style={{ flex: 1, fontSize: 12.5, lineHeight: 19, color: rgba("#FFFFFF", 0.78), fontFamily: F.ui }}>{f}</Text>
+                    </View>
+                  ))}
+                </View>
+                {factsLong && (
+                  <Text onPress={() => setShowFacts((s) => !s)} suppressHighlighting style={{ fontSize: 11.5, fontFamily: F.ui600, color: d.color, marginBottom: 12 }}>
+                    {showFacts ? "Show less ▴" : "Show full detail ▾"}
+                  </Text>
+                )}
+              </>
+            )}
+
+            {/* WHY NOW — short, clamped */}
+            {d.whyNow && (
+              <View style={{ marginBottom: 12 }}>
+                <Text style={SECTION_LABEL}>WHY NOW</Text>
+                <ExpandableText lines={2} threshold={110} moreColor={d.color}>{d.whyNow}</ExpandableText>
               </View>
             )}
 
-            {/* why now (structured) */}
-            {d.whyNow && (
-              <Text style={{ fontSize: 12, lineHeight: 18, color: rgba("#FFFFFF", 0.62), fontFamily: F.ui, marginBottom: 10 }}>
-                <Text style={{ fontFamily: F.ui700, color: rgba("#FFFFFF", 0.78) }}>Why now — </Text>{d.whyNow}
-              </Text>
-            )}
-
-            {/* full thesis, collapsed */}
-            <ExpandableText lines={4} moreColor={d.color}>{d.agentWhy}</ExpandableText>
+            {/* Full thesis — tucked behind a link when structured fields already summarize it */}
+            {d.agentWhy && (d.coreClaim ? (
+              <View>
+                <Text onPress={() => setShowThesis((s) => !s)} suppressHighlighting style={{ fontSize: 11.5, fontFamily: F.ui600, color: rgba("#FFFFFF", 0.5) }}>
+                  {showThesis ? "Hide full thesis ▴" : `Read ${d.agent}'s full thesis ▾`}
+                </Text>
+                {showThesis && (
+                  <Text style={{ fontSize: 12.5, lineHeight: 19, color: rgba("#FFFFFF", 0.7), fontFamily: F.ui, marginTop: 9 }}>{d.agentWhy}</Text>
+                )}
+              </View>
+            ) : (
+              <ExpandableText lines={4} moreColor={d.color}>{d.agentWhy}</ExpandableText>
+            ))}
             {d.target && (
               <View style={{ flexDirection: "row", gap: 6, marginTop: 11, flexWrap: "wrap" }}>
                 <View style={{ backgroundColor: C.card, borderWidth: 1, borderColor: rgba("#FFFFFF", 0.1), paddingVertical: 3, paddingHorizontal: 8, borderRadius: 7 }}>
