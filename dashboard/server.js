@@ -440,7 +440,7 @@ const AGENT_ORDER = ["sentiment", "contrarian", "catalyst", "macro", "crypto", "
 const ANALYST_META = {
   sentiment: {
     name: "Sentiment Scout", nickname: "The Whisperer", tagline: "reads the room",
-    emoji: "📡", color: "#FF4D9D", baseStatus: "CONVICTION-WEIGHTED", statusType: "active",
+    emoji: "📡", color: "#FF4D9D", baseStatus: "ACTIVE", statusType: "active",
     blurb: "Reads the room — social buzz, insider buying clusters, unusual options flow and narrative momentum. Ranks signals by historical reliability.",
     edge: "Insider buying clusters have the highest historical hit rate of any sentiment signal — it captures information flow before it shows up in price.",
     calibration: {
@@ -451,7 +451,7 @@ const ANALYST_META = {
   },
   contrarian: {
     name: "Contrarian", nickname: "The Rebel", tagline: "buys what's hated",
-    emoji: "🃏", color: "#A05CFF", baseStatus: "CONVICTION 8+ TO EXECUTE", statusType: "active",
+    emoji: "🃏", color: "#A05CFF", baseStatus: "ACTIVE", statusType: "active",
     blurb: "Hunts beaten-down names with improving fundamentals. Every thesis needs all three: cheap + improving + catalyst.",
     edge: "Captures the highest-magnitude moves when consensus is wrong — and is naturally uncorrelated with the other agents.",
     calibration: {
@@ -462,7 +462,7 @@ const ANALYST_META = {
   },
   catalyst: {
     name: "Catalyst Agent", nickname: "The Clockwatcher", tagline: "trades dates",
-    emoji: "⏱", color: "#4D7CFF", baseStatus: "CONVICTION 8+ TO EXECUTE", statusType: "active",
+    emoji: "⏱", color: "#4D7CFF", baseStatus: "ACTIVE", statusType: "active",
     blurb: "Trades known future events before the market fully prices them — earnings, FDA dates, FOMC, launches. Models both outcomes, only acts on mispricing.",
     edge: "Forward-looking specificity — known dates and quantifiable outcomes, not vibes. No date = no trade.",
     calibration: {
@@ -472,8 +472,8 @@ const ANALYST_META = {
     },
   },
   macro: {
-    name: "Macro Strategist", nickname: "The Big Picture", tagline: "0.5× muted",
-    emoji: "🌐", color: "#F5B731", baseStatus: "BENCHED · 0.5× · CONV 8+ FLOOR", statusType: "benched",
+    name: "Macro Strategist", nickname: "The Big Picture", tagline: "the big picture",
+    emoji: "🌐", color: "#F5B731", baseStatus: "ACTIVE", statusType: "active",
     blurb: "The big picture — Fed policy, Treasury yields, geopolitical risk, currency and commodity cycles. Trades broad instruments on regime shifts.",
     edge: "Identifies regime transitions before they're consensus — risk-on→risk-off, growth→stagflation.",
     calibration: {
@@ -484,7 +484,7 @@ const ANALYST_META = {
   },
   crypto: {
     name: "Crypto Analyst", nickname: "On-Chain", tagline: "reads the chain",
-    emoji: "₿", color: "#F7931A", baseStatus: "STOCKS ONLY · ETF PICKS BANNED", statusType: "restricted",
+    emoji: "₿", color: "#F7931A", baseStatus: "ACTIVE", statusType: "active",
     blurb: "Bitcoin on-chain metrics, mining equities, ETF flows and regulatory catalysts. Watches exchange reserves, MVRV Z-Score and hash rate.",
     edge: "On-chain data provides signals — exchange outflows, hash-rate trends — that traditional analysts miss entirely.",
     calibration: {
@@ -494,8 +494,8 @@ const ANALYST_META = {
     },
   },
   quant: {
-    name: "Momentum Quant", nickname: "The Machine", tagline: "resumes Jul 8",
-    emoji: "📊", color: "#2DD4D4", baseStatus: "SUSPENDED → JUL 8", statusType: "suspended",
+    name: "Momentum Quant", nickname: "The Machine", tagline: "the machine",
+    emoji: "📊", color: "#2DD4D4", baseStatus: "ACTIVE", statusType: "active",
     blurb: "Pure technicals — a weighted model: momentum (3×), volume (2×), relative strength (2×), volatility (1×), catalyst proximity (2×).",
     edge: "Systematic scoring removes emotional bias and catches trend acceleration early.",
     calibration: {
@@ -506,6 +506,8 @@ const ANALYST_META = {
   },
 };
 
+// Run 2 (2026-07-02): all agent restrictions cleared — statuses hardcoded to ACTIVE above.
+// If the lessons pipeline restores a restriction, set statusType/baseStatus there again.
 const BADGE_FOR_STATUS = { benched: "BENCHED", suspended: "SUSPENDED", restricted: "STOCKS ONLY" };
 
 function buildRoster() {
