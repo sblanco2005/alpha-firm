@@ -33,6 +33,25 @@ export function ProfileScreen({ navigation }: any) {
   const [saving, setSaving] = useState(false);
   const [confirmReset, setConfirmReset] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [confirmFirm, setConfirmFirm] = useState(false);
+  const [firmBusy, setFirmBusy] = useState(false);
+  const [firmMsg, setFirmMsg] = useState<string | null>(null);
+
+  const firmReset = useCallback(async () => {
+    setFirmBusy(true);
+    setFirmMsg(null);
+    try {
+      const r = await apiPost<any>("/api/firm/reset", { confirm: true });
+      setFirmMsg(r?.ok ? "✓ Fresh start complete — run archived, book reset to $10,000." : "Reset failed.");
+      setResetAt(null);
+      reload();
+    } catch (e: any) {
+      setFirmMsg(`Reset failed: ${e?.message || "server error"}`);
+    } finally {
+      setFirmBusy(false);
+      setConfirmFirm(false);
+    }
+  }, [reload]);
 
   // Seed local editable state once the account loads.
   useEffect(() => {
@@ -159,7 +178,7 @@ export function ProfileScreen({ navigation }: any) {
         </View>
 
         {/* ── Strategy reset ─────────────────────────────── */}
-        <Text style={{ fontFamily: F.display, fontSize: 19, color: C.text, marginTop: 26, marginBottom: 12 }}>Strategy reset</Text>
+        <Text style={{ fontFamily: F.display, fontSize: 19, color: C.text, marginTop: 26, marginBottom: 12 }}>Reset my view</Text>
 
         {resetAt ? (
           <View style={{ backgroundColor: C.card, borderWidth: 1, borderColor: rgba(C.gain, 0.28), borderRadius: 18, padding: 16 }}>
@@ -204,6 +223,51 @@ export function ProfileScreen({ navigation }: any) {
             )}
           </View>
         )}
+
+        {/* ── Firm fresh start (REAL reset) ─────────────── */}
+        <Text style={{ fontFamily: F.display, fontSize: 19, color: C.text, marginTop: 26, marginBottom: 12 }}>Firm fresh start</Text>
+
+        <View style={{ backgroundColor: C.card, borderWidth: 1, borderColor: rgba(C.loss, 0.35), borderRadius: 18, padding: 16 }}>
+          <Text style={{ fontSize: 12.5, color: rgba("#FFFFFF", 0.6), lineHeight: 18, fontFamily: F.ui }}>
+            This resets the firm's REAL book — not just your view. The current run is archived to runs/, the portfolio restarts at $10,000 (100% cash), the SPY benchmark re-baselines to the latest close, agent restrictions and modifiers stay cleared, and agent memory carries over. This is what launched Run 2 on Jul 2, 2026. It cannot run while a market check is in progress.
+          </Text>
+          {firmMsg ? (
+            <Text style={{ fontFamily: F.ui600, fontSize: 12.5, color: firmMsg.startsWith("✓") ? C.gain : C.loss, marginTop: 12, textAlign: "center" }}>{firmMsg}</Text>
+          ) : null}
+          {firmBusy ? (
+            <View style={{ marginTop: 14, alignItems: "center", paddingVertical: 13 }}>
+              <ActivityIndicator color={C.loss} />
+              <Text style={{ fontFamily: F.ui600, fontSize: 12, color: rgba("#FFFFFF", 0.5), marginTop: 8 }}>Archiving run and resetting the book…</Text>
+            </View>
+          ) : !confirmFirm ? (
+            <Touchable
+              onPress={() => setConfirmFirm(true)}
+              style={{ marginTop: 14, borderRadius: 13, paddingVertical: 13, alignItems: "center", backgroundColor: rgba(C.loss, 0.16), borderWidth: 1, borderColor: rgba(C.loss, 0.45) }}
+            >
+              <Text style={{ fontFamily: F.ui700, fontSize: 14, color: C.loss }}>Reset the firm's real book</Text>
+            </Touchable>
+          ) : (
+            <View style={{ marginTop: 14, gap: 8 }}>
+              <Text style={{ fontFamily: F.ui600, fontSize: 12.5, color: C.loss, textAlign: "center" }}>
+                Archive the current run and restart the REAL portfolio at $10,000? This affects every device.
+              </Text>
+              <View style={{ flexDirection: "row", gap: 8 }}>
+                <Touchable
+                  onPress={() => setConfirmFirm(false)}
+                  style={{ flex: 1, borderRadius: 13, paddingVertical: 13, alignItems: "center", backgroundColor: C.cardDim, borderWidth: 1, borderColor: C.hair }}
+                >
+                  <Text style={{ fontFamily: F.ui600, fontSize: 14, color: rgba("#FFFFFF", 0.6) }}>Cancel</Text>
+                </Touchable>
+                <Touchable
+                  onPress={firmReset}
+                  style={{ flex: 1, borderRadius: 13, paddingVertical: 13, alignItems: "center", backgroundColor: rgba(C.loss, 0.22), borderWidth: 1, borderColor: rgba(C.loss, 0.55) }}
+                >
+                  <Text style={{ fontFamily: F.ui700, fontSize: 14, color: C.loss }}>Yes, fresh start</Text>
+                </Touchable>
+              </View>
+            </View>
+          )}
+        </View>
 
         <View style={{ height: 12 }} />
       </FadeInView>

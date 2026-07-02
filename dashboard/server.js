@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import { spawn } from "child_process";
 import { readFileSync, writeFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
@@ -914,6 +915,35 @@ app.post("/api/check/run", express.json(), (req, res) => {
 
 app.get("/api/check/run-status", (_, res) => {
   res.json(getRunStatus());
+});
+
+// ── Firm fresh start (DESTRUCTIVE) ──────────────────────────────────────────
+// Runs scripts/reset_fresh_start.py --apply: archives the current run to runs/,
+// resets the REAL book to $10,000 with a live-fetched SPY baseline, keeps agent
+// memory, demotes lessons-learned rules to candidate. Requires { confirm: true }.
+app.post("/api/firm/reset", express.json(), (req, res) => {
+  if (req.body?.confirm !== true) {
+    return res.status(400).json({ error: "confirm:true required — this archives the current run and resets the real book" });
+  }
+  if (isRunning()) {
+    return res.status(409).json({ error: "a market check is running — reset after it finishes", run: getRunStatus() });
+  }
+  const py = spawn("python3", [join(ROOT_DIR, "scripts", "reset_fresh_start.py"), "--apply"], { cwd: ROOT_DIR });
+  let out = "", errOut = "";
+  py.stdout.on("data", (d) => (out += d));
+  py.stderr.on("data", (d) => (errOut += d));
+  py.on("error", (e) => { if (!res.headersSent) res.status(500).json({ ok: false, error: e.message }); });
+  py.on("close", (code) => {
+    if (res.headersSent) return;
+    if (code === 0) {
+      // Clear the personal overlay too, so the app shows the real fresh book.
+      const cur = getAccount();
+      writeJSON(ACCOUNT_FILE, { ...cur, resetAt: null });
+      res.json({ ok: true, output: out.trim() });
+    } else {
+      res.status(500).json({ ok: false, code, output: out.trim(), error: errOut.trim() });
+    }
+  });
 });
 
 const PORT = process.env.PORT || 3001;
