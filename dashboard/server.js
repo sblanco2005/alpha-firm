@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import { spawn } from "child_process";
-import { readFileSync, writeFileSync, readdirSync } from "fs";
+import { readFileSync, writeFileSync, readdirSync, appendFileSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { getNavHistory, fetchDailyCloses, fetchIntraday } from "./navHistory.js";
@@ -910,13 +910,24 @@ app.get("/api/sessions", (_, res) => {
 // block-if-bought guard) that this session did not execute a buy. Once daily-state shows the
 // session as not-run, run-check.sh's own "3 checks done" guard passes and the orchestrator
 // re-runs it normally — so no changes to run-check.sh or the orchestrator are needed.
+// Append a timestamped line to the day's run log (same file + format run-check.sh uses),
+// so a forced rollback is visible inline with the run it precedes.
+function appendRunLog(today, line) {
+  try {
+    appendFileSync(join(ROOT_DIR, "logs", `${today}.log`), `[${new Date().toISOString().slice(0, 19)}] ${line}\n`);
+  } catch { /* logging is best-effort */ }
+}
+
 function rollbackSession(session, today) {
+  const summary = { checksFrom: null, checksTo: null, prunedOutcomes: 0 };
   const dsPath = join(STATE_DIR, "daily-state.json");
   const daily = readJSON(dsPath);
   if (daily) {
     const wasCompleted = Array.isArray(daily.sessions_completed) && daily.sessions_completed.includes(session);
+    summary.checksFrom = daily.checks ?? null;
     if (Array.isArray(daily.sessions_completed)) daily.sessions_completed = daily.sessions_completed.filter((s) => s !== session);
     if (wasCompleted && Number.isFinite(daily.checks)) daily.checks = Math.max(0, daily.checks - 1);
+    summary.checksTo = daily.checks ?? null;
     delete daily[`${session}_session`];
     writeJSON(dsPath, daily);
   }
@@ -927,8 +938,11 @@ function rollbackSession(session, today) {
     outcomes.recommendations = outcomes.recommendations.filter(
       (r) => !(String(r.date || "").slice(0, 10) === today && String(r.session || "").toLowerCase() === session)
     );
-    if (outcomes.recommendations.length !== before) writeJSON(ocPath, outcomes);
+    summary.prunedOutcomes = before - outcomes.recommendations.length;
+    if (summary.prunedOutcomes) writeJSON(ocPath, outcomes);
   }
+  appendRunLog(today, `FORCE RE-RUN (app): rolled back ${session} — checks ${summary.checksFrom}→${summary.checksTo}, pruned ${summary.prunedOutcomes} outcome(s). Re-running now.`);
+  return summary;
 }
 
 // Trigger a market check manually (runs the full pipeline on Claude Max, ~15-30 min).
