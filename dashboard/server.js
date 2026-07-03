@@ -866,7 +866,7 @@ const SESSION_META = [
 app.get("/api/sessions", (_, res) => {
   const daily = readJSON(join(STATE_DIR, "daily-state.json")) || {};
   const cron = readJSON(join(STATE_DIR, "cron-status.json")) || { runs: [] };
-  const today = new Date().toISOString().slice(0, 10);
+  const today = marketToday().date; // US Eastern — matches how daily-state.date is written
   // Always surface the most recent recorded day (the "last run"), flagged stale if
   // it isn't today — so the app shows the latest summaries even before today runs.
   const stale = daily.date !== today;
@@ -874,10 +874,12 @@ app.get("/api/sessions", (_, res) => {
   const sessions = SESSION_META.map((m) => {
     const s = daily[`${m.key}_session`];
     const run = (cron.runs || []).filter((r) => r.session === m.key).pop();
-    // A session counts as run only if its OWN timestamp matches the board's date.
-    // Otherwise it's a stale leftover from a previous day (e.g. premarket ran today but
-    // midday/closing still hold yesterday's objects) → show it as not-run-yet.
-    const ranToday = !!(s?.completed && s?.timestamp && String(s.timestamp).slice(0, 10) === daily.date);
+    // A session counts as run if it's in the day's sessions_completed list (authoritative,
+    // reset each trading day) OR its own timestamp matches the board's date. Trusting
+    // sessions_completed avoids a UTC/ET skew between daily-state.date and the session's
+    // timestamp; the timestamp check still excludes stale leftover objects from a prior day.
+    const inCompleted = Array.isArray(daily.sessions_completed) && daily.sessions_completed.includes(m.key);
+    const ranToday = !!s?.completed && (inCompleted || String(s?.timestamp || "").slice(0, 10) === daily.date);
     const decisionRaw = ranToday && s?.decision ? String(s.decision).toLowerCase() : null;
     const isBuy = decisionRaw === "buy";
     return {
