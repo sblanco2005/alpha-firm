@@ -28,7 +28,7 @@ LOG_FILE="$LOG_DIR/${TODAY}.log"
 mkdir -p "$LOG_DIR" "$SCRIPT_DIR/reports" "$SCRIPT_DIR/alerts"
 
 log() {
-    echo "[$(date +%Y-%m-%dT%H:%M:%S)] $1" | tee -a "$LOG_FILE"
+    echo "[$(TZ="America/New_York" date +%Y-%m-%dT%H:%M:%S)] $1" | tee -a "$LOG_FILE"
 }
 
 # ─── Save API key for fallback, then unset to run on subscription first ───
@@ -148,6 +148,8 @@ Execute these steps:
 
 IMPORTANT: When updating any state JSON file, write to a .tmp file first, validate with jq, then mv into place.
 Example: write to state/portfolio.json.tmp → validate → mv state/portfolio.json.tmp state/portfolio.json
+
+IMPORTANT: The firm's clock is US Eastern (market time). EVERY timestamp you write to a state file — daily-state session objects, trade-log, portfolio, outcomes, scorecards, memory — MUST be US Eastern. Generate it with \`TZ=\"America/New_York\" date +%Y-%m-%dT%H:%M:%S\` (or reuse the Timestamp below). Never write a UTC timestamp.
 
 Session: $SESSION
 Timestamp: $TIMESTAMP"

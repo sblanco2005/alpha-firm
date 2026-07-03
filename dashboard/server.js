@@ -916,7 +916,9 @@ app.get("/api/sessions", (_, res) => {
 // so a forced rollback is visible inline with the run it precedes.
 function appendRunLog(today, line) {
   try {
-    appendFileSync(join(ROOT_DIR, "logs", `${today}.log`), `[${new Date().toISOString().slice(0, 19)}] ${line}\n`);
+    // US Eastern timestamp to match run-check.sh's log() prefix.
+    const ts = new Intl.DateTimeFormat("sv-SE", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit", hour12: false }).format(new Date()).replace(" ", "T");
+    appendFileSync(join(ROOT_DIR, "logs", `${today}.log`), `[${ts}] ${line}\n`);
   } catch { /* logging is best-effort */ }
 }
 
