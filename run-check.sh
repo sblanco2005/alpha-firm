@@ -18,8 +18,10 @@ if [ -f "$SCRIPT_DIR/.env" ]; then
 fi
 
 SESSION="${1:-morning}"
-TODAY=$(date +%Y-%m-%d)
-TIMESTAMP=$(date +%Y-%m-%dT%H:%M:%S)
+# The firm's trading day is US Eastern (market time), not the VPS clock (UTC) — otherwise
+# the date/holiday/weekend flips at 8pm ET when UTC rolls to the next day.
+TODAY=$(TZ="America/New_York" date +%Y-%m-%d)
+TIMESTAMP=$(TZ="America/New_York" date +%Y-%m-%dT%H:%M:%S)
 LOG_DIR="$SCRIPT_DIR/logs"
 LOG_FILE="$LOG_DIR/${TODAY}.log"
 
@@ -37,7 +39,7 @@ if [ -n "$SAVED_API_KEY" ]; then
 fi
 
 # ─── Skip weekends (stocks closed, crypto could run separately) ───
-DAY_OF_WEEK=$(date +%u)
+DAY_OF_WEEK=$(TZ="America/New_York" date +%u)
 if [ "$DAY_OF_WEEK" -gt 5 ]; then
     log "SKIP: Weekend (day $DAY_OF_WEEK)"
     # To enable crypto-only weekend checks, uncomment:

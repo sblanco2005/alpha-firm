@@ -950,11 +950,15 @@ const US_HOLIDAYS = new Set([
   "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25",
   "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25",
 ]);
-// Local calendar date + weekday, matching how run-check.sh writes daily-state (`date`).
-function localToday() {
-  const n = new Date();
-  const p = (x) => String(x).padStart(2, "0");
-  return { date: `${n.getFullYear()}-${p(n.getMonth() + 1)}-${p(n.getDate())}`, dow: n.getDay() };
+// The firm's trading day is US Eastern (market time) — NOT the VPS clock (UTC), which
+// rolls over at 8pm ET and would wrongly flip the date/holiday mid-evening. run-check.sh
+// computes TODAY the same way (TZ=America/New_York).
+function marketToday() {
+  const now = new Date();
+  const date = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York", year: "numeric", month: "2-digit", day: "2-digit" }).format(now);
+  const wd = new Intl.DateTimeFormat("en-US", { timeZone: "America/New_York", weekday: "short" }).format(now);
+  const dow = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 }[wd];
+  return { date, dow };
 }
 
 // Trigger a market check manually (runs the full pipeline on Claude Max, ~15-30 min).
@@ -969,7 +973,7 @@ app.post("/api/check/run", express.json(), (req, res) => {
   const force = req.body?.force === true;
   if (!["premarket", "midday", "closing"].includes(session)) return res.status(400).json({ error: "invalid session" });
 
-  const { date: today, dow } = localToday();
+  const { date: today, dow } = marketToday();
   if (dow === 0 || dow === 6) return res.status(409).json({ error: "Markets are closed this weekend — checks run Mon–Fri.", blocked: "closed" });
   if (US_HOLIDAYS.has(today)) return res.status(409).json({ error: `${today} is a US market holiday — no market check runs today.`, blocked: "closed" });
 
