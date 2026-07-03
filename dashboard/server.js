@@ -945,18 +945,34 @@ function rollbackSession(session, today) {
   return summary;
 }
 
+// US market holidays run-check.sh skips (keep in sync with run-check.sh's HOLIDAYS).
+const US_HOLIDAYS = new Set([
+  "2026-01-01", "2026-01-19", "2026-02-16", "2026-04-03", "2026-05-25",
+  "2026-07-03", "2026-09-07", "2026-11-26", "2026-12-25",
+]);
+// Local calendar date + weekday, matching how run-check.sh writes daily-state (`date`).
+function localToday() {
+  const n = new Date();
+  const p = (x) => String(x).padStart(2, "0");
+  return { date: `${n.getFullYear()}-${p(n.getMonth() + 1)}-${p(n.getDate())}`, dow: n.getDay() };
+}
+
 // Trigger a market check manually (runs the full pipeline on Claude Max, ~15-30 min).
-// A session that already ran today is refused with { blocked:"duplicate", canForce:true } so
-// the app can offer an explicit override; { force:true } re-runs it after rolling back its
-// state — but a session that executed a BUY is blocked (unwinding a real trade is the firm
-// reset's job, not a re-run's).
+// Refuses up front for the same reasons run-check.sh would silently skip (weekend, holiday)
+// so the app gets a clear message instead of a no-op. A session that already ran today is
+// refused with { blocked:"duplicate", canForce:true } so the app can offer an explicit
+// override; { force:true } re-runs it after rolling back its state — but a session that
+// executed a BUY is blocked (unwinding a real trade is the firm reset's job, not a re-run's).
 app.post("/api/check/run", express.json(), (req, res) => {
   if (isRunning()) return res.status(409).json({ error: "a market check is already running", run: getRunStatus() });
   const session = String(req.body?.session || "midday").toLowerCase();
   const force = req.body?.force === true;
   if (!["premarket", "midday", "closing"].includes(session)) return res.status(400).json({ error: "invalid session" });
 
-  const today = new Date().toISOString().slice(0, 10);
+  const { date: today, dow } = localToday();
+  if (dow === 0 || dow === 6) return res.status(409).json({ error: "Markets are closed this weekend — checks run Mon–Fri.", blocked: "closed" });
+  if (US_HOLIDAYS.has(today)) return res.status(409).json({ error: `${today} is a US market holiday — no market check runs today.`, blocked: "closed" });
+
   const daily = readJSON(join(STATE_DIR, "daily-state.json")) || {};
   const sessObj = daily[`${session}_session`] || {};
   const completedToday =
