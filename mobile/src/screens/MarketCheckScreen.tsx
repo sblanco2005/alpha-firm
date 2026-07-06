@@ -39,22 +39,35 @@ function PendingBadge() {
   );
 }
 
-// One session row. Completed sessions show their decision + a clamped summary of the PM's
-// reason; sessions that haven't run today read "Hasn't run yet" so it's clear where we are.
-function SessionCard({ s }: { s: any }) {
-  const ran = s.completed;
-  const dotColor = ran ? (s.status === "error" ? C.loss : C.gain) : rgba("#FFFFFF", 0.2);
+function RunningBadge() {
   return (
-    <View style={{ backgroundColor: ran ? C.card : C.cardDim, borderWidth: 1, borderColor: C.hair, borderRadius: 16, padding: 15, opacity: ran ? 1 : 0.72 }}>
+    <View style={{ flexDirection: "row", alignItems: "center", gap: 6, backgroundColor: rgba(C.gain, 0.14), borderWidth: 1, borderColor: rgba(C.gain, 0.34), paddingVertical: 3, paddingHorizontal: 8, borderRadius: 7 }}>
+      <PulseDot color={C.gain} />
+      <Text style={{ fontSize: 10.5, fontFamily: F.ui700, color: C.gain, letterSpacing: 0.4 }}>RUNNING</Text>
+    </View>
+  );
+}
+
+// One session row. Completed sessions show their decision + a clamped summary of the PM's
+// reason; a session in progress reads RUNNING; ones that haven't run read "Hasn't run yet".
+function SessionCard({ s }: { s: any }) {
+  const running = !!s.running;
+  const ran = s.completed;
+  const active = running || ran;
+  const dotColor = running ? C.gain : ran ? (s.status === "error" ? C.loss : C.gain) : rgba("#FFFFFF", 0.2);
+  return (
+    <View style={{ backgroundColor: active ? C.card : C.cardDim, borderWidth: 1, borderColor: running ? rgba(C.gain, 0.3) : C.hair, borderRadius: 16, padding: 15, opacity: active ? 1 : 0.72 }}>
       <View style={{ flexDirection: "row", alignItems: "center", gap: 11 }}>
         <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: dotColor }} />
         <View style={{ flex: 1 }}>
-          <Text style={{ fontFamily: F.ui700, fontSize: 14, color: ran ? C.text : rgba("#FFFFFF", 0.6) }}>{s.label}</Text>
+          <Text style={{ fontFamily: F.ui700, fontSize: 14, color: active ? C.text : rgba("#FFFFFF", 0.6) }}>{s.label}</Text>
           <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.42), fontFamily: F.mono, marginTop: 1 }}>{s.timeET}{ran && s.vix != null ? ` · VIX ${s.vix}` : ""}</Text>
         </View>
-        {ran ? <DecisionBadge s={s} /> : <PendingBadge />}
+        {running ? <RunningBadge /> : ran ? <DecisionBadge s={s} /> : <PendingBadge />}
       </View>
-      {ran ? (
+      {running ? (
+        <Text style={{ marginTop: 9, fontSize: 11.5, color: rgba(C.gain, 0.85), fontFamily: F.ui, fontStyle: "italic" }}>Running now — dispatching the six analysts…</Text>
+      ) : ran ? (
         s.reason ? <View style={{ marginTop: 11 }}><ExpandableText lines={2} threshold={120}>{s.reason}</ExpandableText></View> : null
       ) : (
         <Text style={{ marginTop: 9, fontSize: 11.5, color: rgba("#FFFFFF", 0.35), fontFamily: F.ui, fontStyle: "italic" }}>Hasn't run yet.</Text>

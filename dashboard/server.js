@@ -863,9 +863,40 @@ const SESSION_META = [
   { key: "closing", label: "Closing", timeET: "3:45 PM ET" },
 ];
 
+// A run started by cron OR the CLI cron-wrapper — which the dashboard's own tracker
+// doesn't see. cron-wrapper.sh writes a status:"running" entry at start and flips it at
+// the end, so that's the signal. Ignore a stale "running" left by a crash (a full check
+// runs well under 45 min).
+function cronActiveRun() {
+  const cs = readJSON(join(STATE_DIR, "cron-status.json"));
+  if (!cs || !Array.isArray(cs.runs)) return null;
+  const r = [...cs.runs].reverse().find((x) => x.status === "running");
+  if (!r) return null;
+  const started = r.started_at ? Date.parse(r.started_at) : NaN;
+  if (Number.isFinite(started) && Date.now() - started > 45 * 60 * 1000) return null;
+  return { session: r.session, startedAt: r.started_at || null };
+}
+function tailTodayLog() {
+  try {
+    const text = readFileSync(join(ROOT_DIR, "logs", `${marketToday().date}.log`), "utf-8");
+    const lines = text.trimEnd().split("\n");
+    return lines[lines.length - 1] || null;
+  } catch { return null; }
+}
+// Dashboard-initiated run status, falling back to a cron/CLI run in progress.
+function mergedRunStatus() {
+  const dash = getRunStatus();
+  if (dash.running) return dash;
+  const cron = cronActiveRun();
+  if (!cron) return dash;
+  const elapsedSec = cron.startedAt ? Math.max(0, Math.round((Date.now() - Date.parse(cron.startedAt)) / 1000)) : null;
+  return { running: true, session: cron.session, status: "running", startedAt: cron.startedAt, elapsedSec, exitCode: null, lastLine: tailTodayLog(), source: "cron" };
+}
+
 app.get("/api/sessions", (_, res) => {
   const daily = readJSON(join(STATE_DIR, "daily-state.json")) || {};
   const cron = readJSON(join(STATE_DIR, "cron-status.json")) || { runs: [] };
+  const active = mergedRunStatus();
   const today = marketToday().date; // US Eastern — matches how daily-state.date is written
   // Always surface the most recent recorded day (the "last run"), flagged stale if
   // it isn't today — so the app shows the latest summaries even before today runs.
@@ -880,6 +911,7 @@ app.get("/api/sessions", (_, res) => {
     // timestamp; the timestamp check still excludes stale leftover objects from a prior day.
     const inCompleted = Array.isArray(daily.sessions_completed) && daily.sessions_completed.includes(m.key);
     const ranToday = !!s?.completed && (inCompleted || String(s?.timestamp || "").slice(0, 10) === daily.date);
+    const isRunning = active.running && active.session === m.key;
     const decisionRaw = ranToday && s?.decision ? String(s.decision).toLowerCase() : null;
     const isBuy = decisionRaw === "buy";
     return {
@@ -887,12 +919,13 @@ app.get("/api/sessions", (_, res) => {
       label: m.label,
       timeET: m.timeET,
       completed: ranToday,
+      running: isRunning,
       decision: decisionRaw ? (isBuy ? "buy" : "pass") : null,
       ticker: isBuy ? (daily.last_buy?.ticker || null) : null,
       reason: ranToday ? (s?.reason || null) : null,
       vix: ranToday ? (s?.vix_level ?? null) : null,
       ranAt: ranToday ? (s?.timestamp || null) : null,
-      status: ranToday ? (run?.status || "success") : "pending",
+      status: isRunning ? "running" : ranToday ? (run?.status || "success") : "pending",
     };
   });
 
@@ -902,7 +935,7 @@ app.get("/api/sessions", (_, res) => {
     checks: daily.checks ?? 0,
     bought: !!daily.bought,
     sessions,
-    run: getRunStatus(),
+    run: active,
   });
 });
 
@@ -1019,7 +1052,7 @@ app.post("/api/check/run", express.json(), (req, res) => {
 });
 
 app.get("/api/check/run-status", (_, res) => {
-  res.json(getRunStatus());
+  res.json(mergedRunStatus());
 });
 
 // ── Firm fresh start (DESTRUCTIVE) ──────────────────────────────────────────
