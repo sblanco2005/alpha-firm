@@ -893,18 +893,53 @@ function mergedRunStatus() {
   return { running: true, session: cron.session, status: "running", startedAt: cron.startedAt, elapsedSec, exitCode: null, lastLine: tailTodayLog(), source: "cron" };
 }
 
-// outcomes.json holds every agent's rec per (agent, session, date) — the authoritative
-// per-session record (Run-2 keys it `outcomes`; older builds used `recommendations`).
+// trade-log.decisions is the authoritative per-session record — it keeps EVERY session
+// (not deduped like outcomes), each with the PM's reasoning + an agents_reviewed map of all
+// six agents (ticker, conviction, rejection_reason). This is the primary source.
+function readDecisions() {
+  const t = readJSON(join(STATE_DIR, "trade-log.json"));
+  return t && Array.isArray(t.decisions) ? t.decisions : [];
+}
+// outcomes.json is a fallback (Run-2 keys it `outcomes`; older builds used `recommendations`).
+// It's deduped to the latest session/day, so decisions above is preferred.
 function readOutcomes() {
   const o = readJSON(join(STATE_DIR, "outcomes.json"));
   if (!o) return [];
   return Array.isArray(o.outcomes) ? o.outcomes : Array.isArray(o.recommendations) ? o.recommendations : [];
 }
-// One session's 6 agent picks (+ derived decision) from outcomes.json.
+const clip = (t, n = 72) => (t && t.length > n ? t.slice(0, n) + "…" : t || null);
+function leadLine(t) {
+  if (!t) return null;
+  const first = String(t).split(/(?<=[.!?])\s/)[0];
+  return first.length > 200 ? first.slice(0, 200) + "…" : first;
+}
+
+// One session's decision + reasoning + 6 agent calls, from trade-log.decisions
+// (falls back to outcomes.json for legacy days without a decision entry).
 function sessionPicks(session, date) {
+  const dec = readDecisions().find((x) => String(x.date || "").slice(0, 10) === date && String(x.session || "").toLowerCase() === session);
+  if (dec && dec.agents_reviewed) {
+    const decVal = String(dec.decision || "").toLowerCase() || null;
+    const execTicker = decVal === "buy" ? (dec.ticker || dec.executed_ticker || null) : null;
+    const agents = AGENT_ORDER.map((id) => {
+      const r = dec.agents_reviewed[id];
+      if (!r) return null;
+      const meta = ANALYST_META[id] || {};
+      const thesis = r.rejection_reason || r.thesis || r.thesis_summary || null;
+      const isPass = String(r.ticker || "PASS").toUpperCase() === "PASS";
+      return {
+        agentId: id, name: (meta.name || id).split(" ")[0], emoji: meta.emoji || "•", color: meta.color || "#888",
+        statusType: meta.statusType || "active",
+        ticker: r.ticker ?? null, conviction: r.conviction ?? null,
+        status: isPass ? "pass" : "buy", executed: !!execTicker && r.ticker === execTicker,
+        note: clip(thesis), thesis,
+      };
+    }).filter(Boolean);
+    return { session, date, decision: decVal, ticker: execTicker, reasoning: dec.reasoning || null, regime: dec.regime || null, vix: dec.vix_level ?? null, alpha: dec.alpha ?? null, count: agents.length, agents };
+  }
   const rows = readOutcomes().filter((o) => String(o.date || "").slice(0, 10) === date && String(o.session || "").toLowerCase() === session);
   const byAgent = {};
-  for (const r of rows) byAgent[r.agent_id || r.agentId] = r; // last write wins per agent
+  for (const r of rows) byAgent[r.agent_id || r.agentId] = r;
   const agents = AGENT_ORDER.map((id) => {
     const r = byAgent[id];
     if (!r) return null;
@@ -915,18 +950,18 @@ function sessionPicks(session, date) {
       statusType: meta.statusType || "active",
       ticker: r.ticker ?? null, conviction: r.conviction ?? null,
       status: String(r.status || "").toLowerCase() || null, executed: !!r.was_executed,
-      note: thesis ? (thesis.length > 72 ? thesis.slice(0, 72) + "…" : thesis) : null,
-      thesis,
+      note: clip(thesis), thesis,
     };
   }).filter(Boolean);
   const exec = rows.find((r) => r.was_executed);
-  return { session, date, decision: rows.length ? (exec ? "buy" : "pass") : null, ticker: exec ? exec.ticker : null, count: agents.length, agents };
+  return { session, date, decision: rows.length ? (exec ? "buy" : "pass") : null, ticker: exec ? exec.ticker : null, reasoning: null, count: agents.length, agents };
 }
 
 app.get("/api/sessions", (_, res) => {
   const daily = readJSON(join(STATE_DIR, "daily-state.json")) || {};
   const cron = readJSON(join(STATE_DIR, "cron-status.json")) || { runs: [] };
   const active = mergedRunStatus();
+  const dayDecisions = readDecisions().filter((x) => String(x.date || "").slice(0, 10) === daily.date);
   const dayOutcomes = readOutcomes().filter((o) => String(o.date || "").slice(0, 10) === daily.date);
   const today = marketToday().date; // US Eastern — matches how daily-state.date is written
   // Always surface the most recent recorded day (the "last run"), flagged stale if
@@ -947,12 +982,15 @@ app.get("/api/sessions", (_, res) => {
     const inCompleted = Array.isArray(daily.sessions_completed) && daily.sessions_completed.includes(m.key);
     const ranToday = inCompleted || (!!s?.completed && String(s?.timestamp || "").slice(0, 10) === daily.date);
     const isRunning = active.running && active.session === m.key;
-    // Decision: prefer a {session}_session object (legacy); else derive from outcomes.json.
+    // Decision/summary/picks: prefer trade-log.decisions (keeps every session), then a
+    // {session}_session object (legacy), then outcomes.json.
+    const dec = dayDecisions.find((x) => String(x.session || "").toLowerCase() === m.key);
     const oRows = dayOutcomes.filter((o) => String(o.session || "").toLowerCase() === m.key);
     const oExec = oRows.find((o) => o.was_executed);
-    const oDecision = oRows.length ? (oExec ? "buy" : "pass") : null;
-    const decisionRaw = ranToday ? ((s?.decision ? String(s.decision).toLowerCase() : null) || oDecision) : null;
+    const derived = dec ? (String(dec.decision || "").toLowerCase() || null) : (oRows.length ? (oExec ? "buy" : "pass") : null);
+    const decisionRaw = ranToday ? ((s?.decision ? String(s.decision).toLowerCase() : null) || derived) : null;
     const isBuy = decisionRaw === "buy";
+    const picks = dec?.agents_reviewed ? Object.keys(dec.agents_reviewed).length : oRows.length;
     return {
       key: m.key,
       label: m.label,
@@ -960,10 +998,10 @@ app.get("/api/sessions", (_, res) => {
       completed: ranToday,
       running: isRunning,
       decision: decisionRaw ? (isBuy ? "buy" : "pass") : null,
-      ticker: isBuy ? (daily.last_buy?.ticker || oExec?.ticker || null) : null,
-      picks: oRows.length,
-      reason: ranToday ? (s?.reason || null) : null,
-      vix: ranToday ? (s?.vix_level ?? null) : null,
+      ticker: isBuy ? (daily.last_buy?.ticker || dec?.ticker || oExec?.ticker || null) : null,
+      picks,
+      reason: ranToday ? (s?.reason || leadLine(dec?.reasoning) || null) : null,
+      vix: ranToday ? (s?.vix_level ?? dec?.vix_level ?? null) : null,
       ranAt: ranToday ? (s?.timestamp || null) : null,
       status: isRunning ? "running" : ranToday ? (run?.status || "success") : "pending",
     };

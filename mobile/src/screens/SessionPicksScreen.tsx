@@ -66,8 +66,22 @@ export function SessionPicksScreen({ route, navigation }: any) {
           </View>
         </View>
 
-        <Text style={{ fontSize: 12, color: rgba("#FFFFFF", 0.45), lineHeight: 17, fontFamily: F.ui, marginTop: 10, marginBottom: 16 }}>
-          What each of the six analysts said this session — tap a thesis to expand.
+        {(data.regime || data.vix != null || data.alpha != null) && (
+          <Text style={{ fontSize: 11, color: rgba("#FFFFFF", 0.42), fontFamily: F.mono, marginTop: 8 }}>
+            {[data.regime ? `${String(data.regime).toUpperCase()} regime` : null, data.vix != null ? `VIX ${data.vix}` : null, data.alpha != null ? `alpha ${data.alpha > 0 ? "+" : ""}${data.alpha}%` : null].filter(Boolean).join(" · ")}
+          </Text>
+        )}
+
+        {/* The PM's decision write-up for this session */}
+        {data.reasoning ? (
+          <View style={{ marginTop: 14, backgroundColor: C.card, borderWidth: 1, borderColor: C.hair, borderRadius: 16, padding: 15 }}>
+            <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: rgba("#FFFFFF", 0.5), marginBottom: 7 }}>HOW THE PM READ IT</Text>
+            <ExpandableText lines={5} threshold={200}>{data.reasoning}</ExpandableText>
+          </View>
+        ) : null}
+
+        <Text style={{ fontSize: 12, color: rgba("#FFFFFF", 0.45), lineHeight: 17, fontFamily: F.ui, marginTop: 20, marginBottom: 14 }}>
+          What each of the six analysts said — tap a thesis to expand.
         </Text>
 
         <View style={{ gap: 9 }}>
