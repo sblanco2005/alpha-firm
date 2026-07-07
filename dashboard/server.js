@@ -935,7 +935,7 @@ function sessionPicks(session, date) {
         note: clip(thesis), thesis,
       };
     }).filter(Boolean);
-    return { session, date, decision: decVal, ticker: execTicker, reasoning: dec.reasoning || null, regime: dec.regime || null, vix: dec.vix_level ?? null, alpha: dec.alpha ?? null, count: agents.length, agents };
+    return { session, date, decision: decVal, ticker: execTicker, summary: leadLine(dec.reasoning), reasoning: dec.reasoning || null, regime: dec.regime || null, vix: dec.vix_level ?? null, alpha: dec.alpha ?? null, count: agents.length, agents };
   }
   const rows = readOutcomes().filter((o) => String(o.date || "").slice(0, 10) === date && String(o.session || "").toLowerCase() === session);
   const byAgent = {};

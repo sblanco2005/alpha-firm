@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { useApi } from "../api";
 import { C, F, rgba } from "../theme";
@@ -39,6 +39,7 @@ function AgentPick({ a }: { a: any }) {
 export function SessionPicksScreen({ route, navigation }: any) {
   const { session, label, date } = route.params;
   const { data, error, loading, reload } = useApi<any>(`/api/sessions/${session}/picks${date ? `?date=${date}` : ""}`);
+  const [showFull, setShowFull] = useState(false);
 
   if (loading) return <Screen><Loading label="Loading picks…" /></Screen>;
   if (error || !data) return <Screen><ErrorState error={error} onRetry={reload} /></Screen>;
@@ -72,11 +73,21 @@ export function SessionPicksScreen({ route, navigation }: any) {
           </Text>
         )}
 
-        {/* The PM's decision write-up for this session */}
-        {data.reasoning ? (
+        {/* The PM's decision — a legible one-line summary, full note behind a toggle. */}
+        {(data.summary || data.reasoning) ? (
           <View style={{ marginTop: 14, backgroundColor: C.card, borderWidth: 1, borderColor: C.hair, borderRadius: 16, padding: 15 }}>
-            <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: rgba("#FFFFFF", 0.5), marginBottom: 7 }}>HOW THE PM READ IT</Text>
-            <ExpandableText lines={5} threshold={200}>{data.reasoning}</ExpandableText>
+            <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: rgba("#FFFFFF", 0.5), marginBottom: 8 }}>HOW THE PM READ IT</Text>
+            <Text style={{ fontSize: 14, lineHeight: 20, fontFamily: F.ui600, color: C.text }}>{data.summary || data.reasoning}</Text>
+            {data.reasoning && data.reasoning !== data.summary && (data.reasoning.length > (data.summary || "").length + 20) && (
+              <>
+                <Text onPress={() => setShowFull((v) => !v)} suppressHighlighting style={{ fontSize: 11.5, fontFamily: F.ui600, color: rgba("#FFFFFF", 0.5), marginTop: 10 }}>
+                  {showFull ? "Hide full note ▴" : "Show the PM's full note ▾"}
+                </Text>
+                {showFull && (
+                  <Text style={{ fontSize: 12.5, lineHeight: 19, color: rgba("#FFFFFF", 0.68), fontFamily: F.ui, marginTop: 10 }}>{data.reasoning}</Text>
+                )}
+              </>
+            )}
           </View>
         ) : null}
 
