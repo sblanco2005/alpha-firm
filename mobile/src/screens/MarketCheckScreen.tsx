@@ -48,15 +48,17 @@ function RunningBadge() {
   );
 }
 
-// One session row. Completed sessions show their decision + a clamped summary of the PM's
-// reason; a session in progress reads RUNNING; ones that haven't run read "Hasn't run yet".
-function SessionCard({ s }: { s: any }) {
+// One session row. A completed session shows its decision and is tappable → the six agent
+// picks for that session; a session in progress reads RUNNING; not-yet-run reads SCHEDULED.
+function SessionCard({ s, onPress }: { s: any; onPress?: () => void }) {
   const running = !!s.running;
   const ran = s.completed;
   const active = running || ran;
   const dotColor = running ? C.gain : ran ? (s.status === "error" ? C.loss : C.gain) : rgba("#FFFFFF", 0.2);
+  const tappable = ran && !!onPress && (s.picks || 0) > 0;
+  const Wrap: any = tappable ? Touchable : View;
   return (
-    <View style={{ backgroundColor: active ? C.card : C.cardDim, borderWidth: 1, borderColor: running ? rgba(C.gain, 0.3) : C.hair, borderRadius: 16, padding: 15, opacity: active ? 1 : 0.72 }}>
+    <Wrap {...(tappable ? { onPress } : {})} style={{ backgroundColor: active ? C.card : C.cardDim, borderWidth: 1, borderColor: running ? rgba(C.gain, 0.3) : C.hair, borderRadius: 16, padding: 15, opacity: active ? 1 : 0.72 }}>
       <View style={{ flexDirection: "row", alignItems: "center", gap: 11 }}>
         <View style={{ width: 8, height: 8, borderRadius: 4, backgroundColor: dotColor }} />
         <View style={{ flex: 1 }}>
@@ -64,15 +66,18 @@ function SessionCard({ s }: { s: any }) {
           <Text style={{ fontSize: 10.5, color: rgba("#FFFFFF", 0.42), fontFamily: F.mono, marginTop: 1 }}>{s.timeET}{ran && s.vix != null ? ` · VIX ${s.vix}` : ""}</Text>
         </View>
         {running ? <RunningBadge /> : ran ? <DecisionBadge s={s} /> : <PendingBadge />}
+        {tappable && <Text style={{ color: rgba("#FFFFFF", 0.25), fontSize: 17, marginLeft: 1 }}>›</Text>}
       </View>
       {running ? (
         <Text style={{ marginTop: 9, fontSize: 11.5, color: rgba(C.gain, 0.85), fontFamily: F.ui, fontStyle: "italic" }}>Running now — dispatching the six analysts…</Text>
       ) : ran ? (
-        s.reason ? <View style={{ marginTop: 11 }}><ExpandableText lines={2} threshold={120}>{s.reason}</ExpandableText></View> : null
+        s.reason
+          ? <View style={{ marginTop: 11 }}><ExpandableText lines={2} threshold={120}>{s.reason}</ExpandableText></View>
+          : (s.picks ? <Text style={{ marginTop: 9, fontSize: 11.5, color: rgba("#FFFFFF", 0.4), fontFamily: F.ui }}>{s.picks} analysts · tap to see each call</Text> : null)
       ) : (
         <Text style={{ marginTop: 9, fontSize: 11.5, color: rgba("#FFFFFF", 0.35), fontFamily: F.ui, fontStyle: "italic" }}>Hasn't run yet.</Text>
       )}
-    </View>
+    </Wrap>
   );
 }
 
@@ -202,12 +207,13 @@ export function MarketCheckScreen({ navigation }: any) {
           </View>
         )}
 
-        {/* This session's real picks — tap any to see why the agent picked it */}
+        {/* Latest session's picks — tap any to see why the agent picked it. (Per-session
+            picks for premarket/midday/closing are under each session card below.) */}
         {latest && latest.agents && latest.agents.length > 0 && (
           <>
             <View style={{ flexDirection: "row", alignItems: "center", justifyContent: "space-between", marginTop: 24, marginBottom: 12, marginHorizontal: 2 }}>
-              <Text style={{ fontFamily: F.display, fontSize: 19, color: C.text }}>This session's picks</Text>
-              <Text style={{ fontSize: 11, color: rgba("#FFFFFF", 0.4), fontFamily: F.mono }}>{latest.agents.length} · tap for why</Text>
+              <Text style={{ fontFamily: F.display, fontSize: 19, color: C.text }}>Latest picks</Text>
+              <Text style={{ fontSize: 11, color: rgba("#FFFFFF", 0.4), fontFamily: F.mono }}>{(latest.agents.find((a: any) => a.session)?.session || "").toUpperCase() || `${latest.agents.length} · tap for why`}</Text>
             </View>
             <View style={{ gap: 8 }}>
               {[[0, 1], [2, 3], [4, 5]].map((row, ri) => (
@@ -230,7 +236,9 @@ export function MarketCheckScreen({ navigation }: any) {
           <Text style={{ fontSize: 11, color: rgba("#FFFFFF", 0.4), fontFamily: F.mono }}>{sessions.sessions.filter((s: any) => s.completed).length} of 3 run</Text>
         </View>
         <View style={{ gap: 8 }}>
-          {sessions.sessions.map((s: any) => <SessionCard key={s.key} s={s} />)}
+          {sessions.sessions.map((s: any) => (
+            <SessionCard key={s.key} s={s} onPress={() => navigation.push("SessionPicks", { session: s.key, label: s.label, date: sessions.date })} />
+          ))}
         </View>
 
         <View style={{ height: 8 }} />

@@ -893,10 +893,41 @@ function mergedRunStatus() {
   return { running: true, session: cron.session, status: "running", startedAt: cron.startedAt, elapsedSec, exitCode: null, lastLine: tailTodayLog(), source: "cron" };
 }
 
+// outcomes.json holds every agent's rec per (agent, session, date) — the authoritative
+// per-session record (Run-2 keys it `outcomes`; older builds used `recommendations`).
+function readOutcomes() {
+  const o = readJSON(join(STATE_DIR, "outcomes.json"));
+  if (!o) return [];
+  return Array.isArray(o.outcomes) ? o.outcomes : Array.isArray(o.recommendations) ? o.recommendations : [];
+}
+// One session's 6 agent picks (+ derived decision) from outcomes.json.
+function sessionPicks(session, date) {
+  const rows = readOutcomes().filter((o) => String(o.date || "").slice(0, 10) === date && String(o.session || "").toLowerCase() === session);
+  const byAgent = {};
+  for (const r of rows) byAgent[r.agent_id || r.agentId] = r; // last write wins per agent
+  const agents = AGENT_ORDER.map((id) => {
+    const r = byAgent[id];
+    if (!r) return null;
+    const meta = ANALYST_META[id] || {};
+    const thesis = r.thesis_summary || r.entry_thesis || null;
+    return {
+      agentId: id, name: (meta.name || id).split(" ")[0], emoji: meta.emoji || "•", color: meta.color || "#888",
+      statusType: meta.statusType || "active",
+      ticker: r.ticker ?? null, conviction: r.conviction ?? null,
+      status: String(r.status || "").toLowerCase() || null, executed: !!r.was_executed,
+      note: thesis ? (thesis.length > 72 ? thesis.slice(0, 72) + "…" : thesis) : null,
+      thesis,
+    };
+  }).filter(Boolean);
+  const exec = rows.find((r) => r.was_executed);
+  return { session, date, decision: rows.length ? (exec ? "buy" : "pass") : null, ticker: exec ? exec.ticker : null, count: agents.length, agents };
+}
+
 app.get("/api/sessions", (_, res) => {
   const daily = readJSON(join(STATE_DIR, "daily-state.json")) || {};
   const cron = readJSON(join(STATE_DIR, "cron-status.json")) || { runs: [] };
   const active = mergedRunStatus();
+  const dayOutcomes = readOutcomes().filter((o) => String(o.date || "").slice(0, 10) === daily.date);
   const today = marketToday().date; // US Eastern — matches how daily-state.date is written
   // Always surface the most recent recorded day (the "last run"), flagged stale if
   // it isn't today — so the app shows the latest summaries even before today runs.
@@ -916,7 +947,11 @@ app.get("/api/sessions", (_, res) => {
     const inCompleted = Array.isArray(daily.sessions_completed) && daily.sessions_completed.includes(m.key);
     const ranToday = inCompleted || (!!s?.completed && String(s?.timestamp || "").slice(0, 10) === daily.date);
     const isRunning = active.running && active.session === m.key;
-    const decisionRaw = ranToday && s?.decision ? String(s.decision).toLowerCase() : null;
+    // Decision: prefer a {session}_session object (legacy); else derive from outcomes.json.
+    const oRows = dayOutcomes.filter((o) => String(o.session || "").toLowerCase() === m.key);
+    const oExec = oRows.find((o) => o.was_executed);
+    const oDecision = oRows.length ? (oExec ? "buy" : "pass") : null;
+    const decisionRaw = ranToday ? ((s?.decision ? String(s.decision).toLowerCase() : null) || oDecision) : null;
     const isBuy = decisionRaw === "buy";
     return {
       key: m.key,
@@ -925,7 +960,8 @@ app.get("/api/sessions", (_, res) => {
       completed: ranToday,
       running: isRunning,
       decision: decisionRaw ? (isBuy ? "buy" : "pass") : null,
-      ticker: isBuy ? (daily.last_buy?.ticker || null) : null,
+      ticker: isBuy ? (daily.last_buy?.ticker || oExec?.ticker || null) : null,
+      picks: oRows.length,
       reason: ranToday ? (s?.reason || null) : null,
       vix: ranToday ? (s?.vix_level ?? null) : null,
       ranAt: ranToday ? (s?.timestamp || null) : null,
@@ -941,6 +977,15 @@ app.get("/api/sessions", (_, res) => {
     sessions,
     run: active,
   });
+});
+
+// One session's six agent picks (+ derived decision) — what each analyst said that session.
+app.get("/api/sessions/:session/picks", (req, res) => {
+  const session = String(req.params.session).toLowerCase();
+  if (!["premarket", "midday", "closing"].includes(session)) return res.status(400).json({ error: "invalid session" });
+  const daily = readJSON(join(STATE_DIR, "daily-state.json")) || {};
+  const date = req.query.date ? String(req.query.date).slice(0, 10) : (daily.date || marketToday().date);
+  res.json(sessionPicks(session, date));
 });
 
 // Undo one completed session's state so it can be re-run cleanly, without double-counting.
@@ -973,14 +1018,16 @@ function rollbackSession(session, today) {
     writeJSON(dsPath, daily);
   }
   const ocPath = join(STATE_DIR, "outcomes.json");
-  const outcomes = readJSON(ocPath);
-  if (outcomes && Array.isArray(outcomes.recommendations)) {
-    const before = outcomes.recommendations.length;
-    outcomes.recommendations = outcomes.recommendations.filter(
+  const oc = readJSON(ocPath);
+  // Run-2 keys the array `outcomes`; older builds used `recommendations`.
+  const ocKey = oc && (Array.isArray(oc.outcomes) ? "outcomes" : Array.isArray(oc.recommendations) ? "recommendations" : null);
+  if (ocKey) {
+    const before = oc[ocKey].length;
+    oc[ocKey] = oc[ocKey].filter(
       (r) => !(String(r.date || "").slice(0, 10) === today && String(r.session || "").toLowerCase() === session)
     );
-    summary.prunedOutcomes = before - outcomes.recommendations.length;
-    if (summary.prunedOutcomes) writeJSON(ocPath, outcomes);
+    summary.prunedOutcomes = before - oc[ocKey].length;
+    if (summary.prunedOutcomes) writeJSON(ocPath, oc);
   }
   appendRunLog(today, `FORCE RE-RUN (app): rolled back ${session} — checks ${summary.checksFrom}→${summary.checksTo}, pruned ${summary.prunedOutcomes} outcome(s). Re-running now.`);
   return summary;

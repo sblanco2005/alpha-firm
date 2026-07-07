@@ -9,6 +9,7 @@ import { AnalystDetailScreen } from "../screens/AnalystDetailScreen";
 import { AgentTransactionsScreen } from "../screens/AgentTransactionsScreen";
 import { MarketCheckScreen } from "../screens/MarketCheckScreen";
 import { PickDetailScreen } from "../screens/PickDetailScreen";
+import { SessionPicksScreen } from "../screens/SessionPicksScreen";
 import { ProfileScreen } from "../screens/ProfileScreen";
 import { MarketsScreen } from "../screens/MarketsScreen";
 import { MarketsCustomizeScreen } from "../screens/MarketsCustomizeScreen";
@@ -46,6 +47,7 @@ function LiveStack() {
     <Stack.Navigator screenOptions={{ headerShown: false, contentStyle: { backgroundColor: C.bg } }}>
       <Stack.Screen name="MarketCheckHome" component={MarketCheckScreen} />
       <Stack.Screen name="PickDetail" component={PickDetailScreen} />
+      <Stack.Screen name="SessionPicks" component={SessionPicksScreen} />
     </Stack.Navigator>
   );
 }
