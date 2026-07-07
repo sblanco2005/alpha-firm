@@ -73,23 +73,29 @@ export function SessionPicksScreen({ route, navigation }: any) {
           </Text>
         )}
 
-        {/* The PM's decision — a legible one-line summary, full note behind a toggle. */}
-        {(data.summary || data.reasoning) ? (
-          <View style={{ marginTop: 14, backgroundColor: C.card, borderWidth: 1, borderColor: C.hair, borderRadius: 16, padding: 15 }}>
-            <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: rgba("#FFFFFF", 0.5), marginBottom: 8 }}>HOW THE PM READ IT</Text>
-            <Text style={{ fontSize: 14, lineHeight: 20, fontFamily: F.ui600, color: C.text }}>{data.summary || data.reasoning}</Text>
-            {data.reasoning && data.reasoning !== data.summary && (data.reasoning.length > (data.summary || "").length + 20) && (
-              <>
-                <Text onPress={() => setShowFull((v) => !v)} suppressHighlighting style={{ fontSize: 11.5, fontFamily: F.ui600, color: rgba("#FFFFFF", 0.5), marginTop: 10 }}>
-                  {showFull ? "Hide full note ▴" : "Show the PM's full note ▾"}
-                </Text>
-                {showFull && (
-                  <Text style={{ fontSize: 12.5, lineHeight: 19, color: rgba("#FFFFFF", 0.68), fontFamily: F.ui, marginTop: 10 }}>{data.reasoning}</Text>
-                )}
-              </>
-            )}
-          </View>
-        ) : null}
+        {/* The PM's decision — the readable overview; the full per-agent breakdown (which the
+            analyst cards below already cover) is behind a toggle. */}
+        {(() => {
+          const note = data.overview || data.summary || data.reasoning;
+          if (!note) return null;
+          const hasMore = data.reasoning && data.reasoning.trim().length > (note || "").trim().length + 20;
+          return (
+            <View style={{ marginTop: 14, backgroundColor: C.card, borderWidth: 1, borderColor: C.hair, borderRadius: 16, padding: 15 }}>
+              <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: rgba("#FFFFFF", 0.5), marginBottom: 8 }}>HOW THE PM READ IT</Text>
+              <Text style={{ fontSize: 13, lineHeight: 20, fontFamily: F.ui, color: rgba("#FFFFFF", 0.82) }}>{note}</Text>
+              {hasMore && (
+                <>
+                  <Text onPress={() => setShowFull((v) => !v)} suppressHighlighting style={{ fontSize: 11.5, fontFamily: F.ui600, color: rgba("#FFFFFF", 0.5), marginTop: 10 }}>
+                    {showFull ? "Hide full breakdown ▴" : "Show the full per-agent breakdown ▾"}
+                  </Text>
+                  {showFull && (
+                    <Text style={{ fontSize: 12.5, lineHeight: 19, color: rgba("#FFFFFF", 0.65), fontFamily: F.ui, marginTop: 10 }}>{data.reasoning}</Text>
+                  )}
+                </>
+              )}
+            </View>
+          );
+        })()}
 
         <Text style={{ fontSize: 12, color: rgba("#FFFFFF", 0.45), lineHeight: 17, fontFamily: F.ui, marginTop: 20, marginBottom: 14 }}>
           What each of the six analysts said — tap a thesis to expand.

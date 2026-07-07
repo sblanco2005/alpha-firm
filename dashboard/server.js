@@ -913,6 +913,14 @@ function leadLine(t) {
   const first = String(t).split(/(?<=[.!?])\s/)[0];
   return first.length > 200 ? first.slice(0, 200) + "…" : first;
 }
+// The PM note leads with an overview, then a per-agent breakdown "(1) MACRO: … (2) CRYPTO: …".
+// The per-agent part is redundant with the analyst cards, so return just the overview (the
+// digestible gist) — falling back to the whole note if there's no numbered breakdown.
+function pmOverview(t) {
+  if (!t) return null;
+  const i = String(t).search(/\(\s*1\s*\)/);
+  return i > 60 ? String(t).slice(0, i).trim() : t;
+}
 
 // One session's decision + reasoning + 6 agent calls, from trade-log.decisions
 // (falls back to outcomes.json for legacy days without a decision entry).
@@ -935,7 +943,7 @@ function sessionPicks(session, date) {
         note: clip(thesis), thesis,
       };
     }).filter(Boolean);
-    return { session, date, decision: decVal, ticker: execTicker, summary: leadLine(dec.reasoning), reasoning: dec.reasoning || null, regime: dec.regime || null, vix: dec.vix_level ?? null, alpha: dec.alpha ?? null, count: agents.length, agents };
+    return { session, date, decision: decVal, ticker: execTicker, summary: leadLine(dec.reasoning), overview: pmOverview(dec.reasoning), reasoning: dec.reasoning || null, regime: dec.regime || null, vix: dec.vix_level ?? null, alpha: dec.alpha ?? null, count: agents.length, agents };
   }
   const rows = readOutcomes().filter((o) => String(o.date || "").slice(0, 10) === date && String(o.session || "").toLowerCase() === session);
   const byAgent = {};
