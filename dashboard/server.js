@@ -921,6 +921,13 @@ function pmOverview(t) {
   const i = String(t).search(/\(\s*1\s*\)/);
   return i > 60 ? String(t).slice(0, i).trim() : t;
 }
+// The overview split into sentence-level bullets, so the app can render it like the
+// analyst KEY FACTS list instead of a paragraph. First bullet = the headline call.
+function overviewPoints(t) {
+  const ov = pmOverview(t);
+  if (!ov) return [];
+  return ov.split(/(?<=[.!?])\s+(?=[A-Z(0-9"'])/).map((s) => s.trim()).filter((s) => s.length > 4).slice(0, 7);
+}
 
 // One session's decision + reasoning + 6 agent calls, from trade-log.decisions
 // (falls back to outcomes.json for legacy days without a decision entry).
@@ -943,7 +950,7 @@ function sessionPicks(session, date) {
         note: clip(thesis), thesis,
       };
     }).filter(Boolean);
-    return { session, date, decision: decVal, ticker: execTicker, summary: leadLine(dec.reasoning), overview: pmOverview(dec.reasoning), reasoning: dec.reasoning || null, regime: dec.regime || null, vix: dec.vix_level ?? null, alpha: dec.alpha ?? null, count: agents.length, agents };
+    return { session, date, decision: decVal, ticker: execTicker, summary: leadLine(dec.reasoning), overview: pmOverview(dec.reasoning), overviewPoints: overviewPoints(dec.reasoning), reasoning: dec.reasoning || null, regime: dec.regime || null, vix: dec.vix_level ?? null, alpha: dec.alpha ?? null, count: agents.length, agents };
   }
   const rows = readOutcomes().filter((o) => String(o.date || "").slice(0, 10) === date && String(o.session || "").toLowerCase() === session);
   const byAgent = {};

@@ -76,16 +76,28 @@ export function SessionPicksScreen({ route, navigation }: any) {
         {/* The PM's decision — the readable overview; the full per-agent breakdown (which the
             analyst cards below already cover) is behind a toggle. */}
         {(() => {
-          const note = data.overview || data.summary || data.reasoning;
-          if (!note) return null;
-          const hasMore = data.reasoning && data.reasoning.trim().length > (note || "").trim().length + 20;
+          const points: string[] = (data.overviewPoints && data.overviewPoints.length ? data.overviewPoints : null)
+            || (data.overview ? [data.overview] : null)
+            || (data.summary ? [data.summary] : []);
+          if (!points.length) return null;
+          const head = points[0];
+          const rest = points.slice(1);
+          const hasMore = data.reasoning && data.reasoning.trim().length > (data.overview || head || "").trim().length + 20;
           return (
             <View style={{ marginTop: 14, backgroundColor: C.card, borderWidth: 1, borderColor: C.hair, borderRadius: 16, padding: 15 }}>
-              <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: rgba("#FFFFFF", 0.5), marginBottom: 8 }}>HOW THE PM READ IT</Text>
-              <Text style={{ fontSize: 13, lineHeight: 20, fontFamily: F.ui, color: rgba("#FFFFFF", 0.82) }}>{note}</Text>
+              <Text style={{ fontSize: 10.5, fontFamily: F.ui700, letterSpacing: 0.6, color: rgba("#FFFFFF", 0.5), marginBottom: 9 }}>HOW THE PM READ IT</Text>
+              <Text style={{ fontSize: 14, lineHeight: 20, fontFamily: F.ui600, color: C.text, marginBottom: rest.length ? 11 : 0 }}>{head}</Text>
+              <View style={{ gap: 8 }}>
+                {rest.map((p, i) => (
+                  <View key={i} style={{ flexDirection: "row", gap: 9 }}>
+                    <View style={{ width: 5, height: 5, borderRadius: 3, backgroundColor: rgba("#FFFFFF", 0.35), marginTop: 7 }} />
+                    <Text style={{ flex: 1, fontSize: 12.5, lineHeight: 19, color: rgba("#FFFFFF", 0.78), fontFamily: F.ui }}>{p}</Text>
+                  </View>
+                ))}
+              </View>
               {hasMore && (
                 <>
-                  <Text onPress={() => setShowFull((v) => !v)} suppressHighlighting style={{ fontSize: 11.5, fontFamily: F.ui600, color: rgba("#FFFFFF", 0.5), marginTop: 10 }}>
+                  <Text onPress={() => setShowFull((v) => !v)} suppressHighlighting style={{ fontSize: 11.5, fontFamily: F.ui600, color: rgba("#FFFFFF", 0.5), marginTop: 11 }}>
                     {showFull ? "Hide full breakdown ▴" : "Show the full per-agent breakdown ▾"}
                   </Text>
                   {showFull && (
