@@ -909,8 +909,12 @@ app.get("/api/sessions", (_, res) => {
     // reset each trading day) OR its own timestamp matches the board's date. Trusting
     // sessions_completed avoids a UTC/ET skew between daily-state.date and the session's
     // timestamp; the timestamp check still excludes stale leftover objects from a prior day.
+    // sessions_completed is the authoritative "this session ran" list (reset each trading
+    // day by run-check.sh), so trust it directly — don't require the {session}_session object
+    // to carry completed:true (the Run-2 orchestrator may not set it). Fall back to a
+    // completed+timestamp match for legacy days that predate sessions_completed.
     const inCompleted = Array.isArray(daily.sessions_completed) && daily.sessions_completed.includes(m.key);
-    const ranToday = !!s?.completed && (inCompleted || String(s?.timestamp || "").slice(0, 10) === daily.date);
+    const ranToday = inCompleted || (!!s?.completed && String(s?.timestamp || "").slice(0, 10) === daily.date);
     const isRunning = active.running && active.session === m.key;
     const decisionRaw = ranToday && s?.decision ? String(s.decision).toLowerCase() : null;
     const isBuy = decisionRaw === "buy";
