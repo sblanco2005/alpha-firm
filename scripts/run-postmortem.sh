@@ -106,7 +106,7 @@ CRITICAL: You only DRAFT candidate rules. Do NOT set any rule to status 'active'
 When writing any state JSON, use: write .tmp → jq validate → mv."
 
 set +e
-claude --dangerously-skip-permissions -p "$CLAUDE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS -p "$CLAUDE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 EXIT_CODE=${PIPESTATUS[0]}
 set -e
 
@@ -116,7 +116,7 @@ if [ $EXIT_CODE -ne 0 ] && grep -qi "out of extra usage" "$LOG_FILE"; then
         log "═══ QUOTA EXHAUSTED: Falling back to claude-sonnet-4-6 via API ═══"
         export ANTHROPIC_API_KEY="$SAVED_API_KEY"
         set +e
-        claude --dangerously-skip-permissions \
+        claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS \
             --model claude-sonnet-4-6 \
             -p "$CLAUDE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
         FALLBACK_EXIT=${PIPESTATUS[0]}

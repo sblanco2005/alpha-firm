@@ -78,7 +78,7 @@ hdr "4. MCP servers (must be in .mcp.json — settings.json mcpServers is IGNORE
 python3 -c "import json;json.load(open('.mcp.json'))" 2>/dev/null && ok ".mcp.json is valid JSON" || bad ".mcp.json invalid JSON"
 if command -v claude >/dev/null; then
     MCP_OUT=$(timeout 90 claude mcp list 2>&1)
-    for s in brave-search filesystem price-fetch finnhub; do
+    for s in brave-search filesystem price-fetch finnhub portclaude; do
         if echo "$MCP_OUT" | grep -qE "^${s}:.*Connected"; then ok "MCP $s connected"
         else bad "MCP $s NOT connected"; fi
     done
@@ -131,13 +131,15 @@ done
 # ─────────────────────────── 8. Deep probes ───────────────────────────
 if [ "$DEEP" = "1" ]; then
     hdr "8. Live model + tool probes (uses quota)"
+    # Probes use the EXACT invocation the firm uses ($CLAUDE_MCP_ARGS), otherwise they'd
+    # test a toolset the analysts never actually get.
     probe() {  # $1=provider  $2=prompt  $3=needle
         local out
         out=$( set -a; . ./.env 2>/dev/null; set +a
                unset ANTHROPIC_API_KEY
                export MODEL_PROVIDER="$1"
                . ./scripts/model-env.sh
-               timeout 300 claude --dangerously-skip-permissions -p "$2" 2>&1 | grep -viE "connectors are disabled" )
+               timeout 300 claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS -p "$2" 2>&1 | grep -viE "connectors are disabled" )
         echo "$out" | grep -q "$3"
     }
     probe glm    "Reply with exactly: PONG" "PONG" && ok "glm responds"    || bad "glm did NOT respond"

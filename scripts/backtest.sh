@@ -163,7 +163,7 @@ while [[ "$(date -d "$CURRENT" +%Y-%m-%d)" < "$(date -d "$END_DATE + 1 day" +%Y-
         "$RESULTS_DIR/daily-state.json" > "$TMP_DS" && mv "$TMP_DS" "$RESULTS_DIR/daily-state.json"
 
     # Run Claude Code for this simulated day
-    claude --dangerously-skip-permissions \
+    claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS \
         -p "You are running Alpha Firm in BACKTEST MODE.
 
 READ CLAUDE.md FIRST for the full system architecture, then READ skills/backtesting.md for backtest-specific rules.
@@ -219,7 +219,7 @@ jq '.status = "completed"' "$RESULTS_DIR/config.json" > "$TMP_CFG" && mv "$TMP_C
 # ─── Generate summary report ───
 log "Generating summary report..."
 
-claude --dangerously-skip-permissions \
+claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS \
     -p "Generate a backtest summary report for run $RUN_ID.
 
 READ skills/backtesting.md for the report format.

@@ -88,7 +88,7 @@ DO:
 $MONTHLY_NOTE"
 
 log "Step 2: PM self-review via claude"
-claude -p "$CLAUDE_PROMPT" --dangerously-skip-permissions 2>&1 | tee -a "$LOG_FILE" || {
+claude -p "$CLAUDE_PROMPT" --dangerously-skip-permissions $CLAUDE_MCP_ARGS 2>&1 | tee -a "$LOG_FILE" || {
     log "WARN: claude step failed — promoting with existing candidates only"; }
 
 # ─── Steps 3+4: promote (bounded) + scorecard ───

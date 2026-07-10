@@ -166,7 +166,7 @@ Timestamp: $TIMESTAMP"
 # No --model flag: uses subscription default model
 # MCP servers configured in .claude/settings.json
 set +e
-claude --dangerously-skip-permissions -p "$CLAUDE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
+claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS -p "$CLAUDE_PROMPT" 2>&1 | tee -a "$LOG_FILE"
 EXIT_CODE=${PIPESTATUS[0]}
 set -e
 
@@ -177,7 +177,7 @@ if [ $EXIT_CODE -ne 0 ] && grep -qi "out of extra usage" "$LOG_FILE"; then
         export ANTHROPIC_API_KEY="$SAVED_API_KEY"
 
         set +e
-        claude --dangerously-skip-permissions \
+        claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS \
             --model claude-sonnet-4-6 \
             -p "$CLAUDE_PROMPT" \
             2>&1 | tee -a "$LOG_FILE"

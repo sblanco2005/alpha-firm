@@ -56,3 +56,13 @@ case "$MODEL_PROVIDER" in
 esac
 
 export MODEL_PROVIDER MODEL_LABEL
+
+# ─── MCP config for every firm `claude` invocation ───────────────────────────
+# Headless `claude -p` does NOT reliably inject project .mcp.json servers (even with
+# enableAllProjectMcpServers), so the analysts silently ran with a partial toolset.
+# Pass them explicitly. --strict-mcp-config also EXCLUDES the operator's personal
+# claude.ai connectors (Gmail / Drive / Calendar / Era Context), which would otherwise
+# be handed to autonomous agents running --dangerously-skip-permissions.
+# Usage:  claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS -p "$PROMPT"
+CLAUDE_MCP_ARGS="--mcp-config $_MODEL_ROOT/.mcp.json --strict-mcp-config"
+export CLAUDE_MCP_ARGS
