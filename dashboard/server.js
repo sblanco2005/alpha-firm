@@ -932,7 +932,8 @@ function overviewPoints(t) {
 // One session's decision + reasoning + 6 agent calls, from trade-log.decisions
 // (falls back to outcomes.json for legacy days without a decision entry).
 function sessionPicks(session, date) {
-  const dec = readDecisions().find((x) => String(x.date || "").slice(0, 10) === date && String(x.session || "").toLowerCase() === session);
+  // A forced re-run appends a second decision for the same (date, session) — take the LAST.
+  const dec = readDecisions().filter((x) => String(x.date || "").slice(0, 10) === date && String(x.session || "").toLowerCase() === session).pop();
   if (dec && dec.agents_reviewed) {
     const decVal = String(dec.decision || "").toLowerCase() || null;
     const execTicker = decVal === "buy" ? (dec.ticker || dec.executed_ticker || null) : null;
@@ -999,7 +1000,8 @@ app.get("/api/sessions", (_, res) => {
     const isRunning = active.running && active.session === m.key;
     // Decision/summary/picks: prefer trade-log.decisions (keeps every session), then a
     // {session}_session object (legacy), then outcomes.json.
-    const dec = dayDecisions.find((x) => String(x.session || "").toLowerCase() === m.key);
+    // Last-wins: a forced re-run appends another decision for the same (date, session).
+    const dec = dayDecisions.filter((x) => String(x.session || "").toLowerCase() === m.key).pop();
     const oRows = dayOutcomes.filter((o) => String(o.session || "").toLowerCase() === m.key);
     const oExec = oRows.find((o) => o.was_executed);
     const derived = dec ? (String(dec.decision || "").toLowerCase() || null) : (oRows.length ? (oExec ? "buy" : "pass") : null);
