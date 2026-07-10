@@ -98,10 +98,24 @@ def cmd_gather(args):
 
     outcomes = load_json(STATE / "outcomes.json", {}).get("outcomes", [])
     tl = load_json(STATE / "trade-log.json", {})
-    decisions = [d for d in tl.get("decisions", []) if wk <= str(d.get("date", "")) < wk_end]
+    in_week = [d for d in tl.get("decisions", []) if wk <= str(d.get("date", "")) < wk_end]
+
+    # A decision marked data_integrity.exclude_from_review rested on a fabricated or
+    # corrupted premise (e.g. an invented catalyst date). Grading it against SPY would
+    # teach the PM a lesson drawn from a fact that was never true. Drop it from BOTH
+    # learning paths — the decision log AND the per-agent outcome rows for that session —
+    # but surface it in `excluded_decisions` so nothing disappears silently.
+    def _excluded(d):
+        return bool((d.get("data_integrity") or {}).get("exclude_from_review"))
+
+    excluded = [d for d in in_week if _excluded(d)]
+    decisions = [d for d in in_week if not _excluded(d)]
+    bad_keys = {(str(d.get("date", ""))[:10], str(d.get("session", "")).lower()) for d in excluded}
 
     reviewed = []
     for e in outcomes:
+        if (str(e.get("date", ""))[:10], str(e.get("session", "")).lower()) in bad_keys:
+            continue
         hr = horizon_result(e)
         if hr is None:
             continue
@@ -143,9 +157,25 @@ def cmd_gather(args):
     out = {
         "week_start": wk, "generated": datetime.now().isoformat(timespec="seconds"),
         "summary": {"counts": counts, "foregone_alpha_pct_sum": foregone,
-                    "decisions_logged": len(decisions)},
+                    "decisions_logged": len(decisions),
+                    "decisions_excluded": len(excluded)},
         "reviewed_decisions": reviewed,
         "pm_decision_log": decisions,
+        # Quarantined: do NOT draw root causes or adjustments from these — the decision
+        # rested on a premise later verified false. Listed for the audit trail only.
+        "excluded_decisions": [
+            {"date": d.get("date"), "session": d.get("session"),
+             "status": (d.get("data_integrity") or {}).get("status"),
+             "issue": (d.get("data_integrity") or {}).get("issue"),
+             "verified_by": (d.get("data_integrity") or {}).get("verified_by")}
+            for d in excluded
+        ],
+        "data_integrity_note": (
+            "excluded_decisions were made on a premise verified false after the fact. "
+            "They are quarantined from reviewed_decisions and pm_decision_log. Do not "
+            "assign root causes or draft adjustments from them — the PM's reasoning was "
+            "sound given what it believed; the defect was the input, not the judgement."
+        ) if excluded else None,
         # The Claude review step (skills/pm-review.md) fills these in:
         "root_causes": [],
         "candidate_adjustments": [],
@@ -153,6 +183,10 @@ def cmd_gather(args):
     (REVIEWS / f"{wk}.json").write_text(json.dumps(out, indent=2))
     print(f"Gathered week {wk}: {len(reviewed)} measurable decisions, "
           f"{counts}, foregone alpha sum {foregone}%")
+    if excluded:
+        print(f"   QUARANTINED {len(excluded)} decision(s) with data_integrity.exclude_from_review:")
+        for d in excluded:
+            print(f"     - {d.get('date')} {d.get('session')}")
     print(f"-> {REVIEWS / (wk + '.json')}")
 
 
