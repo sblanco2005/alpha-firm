@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": { "BRAVE_API_KEY": "${BRAVE_API_KEY}" }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "./memory",
+        "./state",
+        "./agents",
+        "./skills",
+        "./reports",
+        "./alerts",
+        "./logs"
+      ]
+    },
+    "price-fetch": {
+      "command": "/home/clawd/price-mcp/venv/bin/python3",
+      "args": ["/home/clawd/price-mcp/price_server.py"]
+    },
+    "finnhub": {
+      "command": "/home/clawd/alpha-firm/mcp/venv/bin/python3",
+      "args": ["/home/clawd/alpha-firm/mcp/finnhub_server.py"],
+      "env": { "FINNHUB_API_KEY": "${FINNHUB_API_KEY}" }
+    }
+  }
+}
