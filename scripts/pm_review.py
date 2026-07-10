@@ -110,7 +110,14 @@ def cmd_gather(args):
 
     excluded = [d for d in in_week if _excluded(d)]
     decisions = [d for d in in_week if not _excluded(d)]
-    bad_keys = {(str(d.get("date", ""))[:10], str(d.get("session", "")).lower()) for d in excluded}
+
+    # outcomes.json is deduped to the LATEST run per (date, session). So only quarantine a
+    # session's outcome rows when EVERY decision for that key is contaminated. If a clean
+    # re-run exists, the surviving outcome rows belong to it and must be reviewed normally.
+    by_key = {}
+    for d in in_week:
+        by_key.setdefault((str(d.get("date", ""))[:10], str(d.get("session", "")).lower()), []).append(d)
+    bad_keys = {k for k, v in by_key.items() if v and all(_excluded(x) for x in v)}
 
     reviewed = []
     for e in outcomes:
