@@ -34,6 +34,10 @@ if [ -f "$SCRIPT_DIR/.env" ]; then
     set +a
 fi
 
+# ─── Select model provider (glm | claude) — see scripts/model-env.sh ───
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/scripts/model-env.sh"
+
 TODAY=$(date +%Y-%m-%d)
 TIMESTAMP=$(date +%Y-%m-%dT%H:%M:%S)
 LOG_DIR="$SCRIPT_DIR/logs"

@@ -18,6 +18,10 @@ if [ -f "$SCRIPT_DIR/.env" ]; then
     set +a
 fi
 
+# ─── Select model provider (glm | claude) — see scripts/model-env.sh ───
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/scripts/model-env.sh"
+
 # ─── Unset API key to stay on subscription ───
 if [ -n "${ANTHROPIC_API_KEY:-}" ]; then
     echo "WARNING: Unsetting ANTHROPIC_API_KEY to use subscription billing"

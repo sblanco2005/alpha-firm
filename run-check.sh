@@ -31,12 +31,17 @@ log() {
     echo "[$(TZ="America/New_York" date +%Y-%m-%dT%H:%M:%S)] $1" | tee -a "$LOG_FILE"
 }
 
-# ─── Save API key for fallback, then unset to run on subscription first ───
+# ─── Save API key for fallback, then unset so we don't bill the API ───
 SAVED_API_KEY="${ANTHROPIC_API_KEY:-}"
 if [ -n "$SAVED_API_KEY" ]; then
-    log "INFO: ANTHROPIC_API_KEY saved for quota fallback. Running subscription mode first."
     unset ANTHROPIC_API_KEY
 fi
+
+# ─── Select the model provider (glm | claude). See scripts/model-env.sh. ───
+# Toggle the default with ./scripts/model.sh glm|claude, or override for one run:
+#   MODEL_PROVIDER=claude ./run-check.sh closing
+# shellcheck disable=SC1091
+source "$SCRIPT_DIR/scripts/model-env.sh"
 
 # ─── Skip weekends (stocks closed, crypto could run separately) ───
 DAY_OF_WEEK=$(TZ="America/New_York" date +%u)
@@ -99,7 +104,7 @@ done
 log "═══════════════════════════════════════"
 log "MARKET CHECK: $SESSION"
 log "Date: $TODAY | Time: $TIMESTAMP"
-log "Mode: Subscription (Max plan)$([ -n "$SAVED_API_KEY" ] && echo " | API fallback: configured (claude-sonnet-4-6)" || echo " | API fallback: not configured")"
+log "Model: $MODEL_LABEL (MODEL_PROVIDER=$MODEL_PROVIDER)$([ -n "$SAVED_API_KEY" ] && echo " | API fallback: configured (claude-sonnet-4-6)" || echo " | API fallback: not configured")"
 log "═══════════════════════════════════════"
 
 # ─── Refresh portfolio prices before Claude starts ───
@@ -150,6 +155,8 @@ IMPORTANT: When updating any state JSON file, write to a .tmp file first, valida
 Example: write to state/portfolio.json.tmp → validate → mv state/portfolio.json.tmp state/portfolio.json
 
 IMPORTANT: The firm's clock is US Eastern (market time). EVERY timestamp you write to a state file — daily-state session objects, trade-log, portfolio, outcomes, scorecards, memory — MUST be US Eastern. Generate it with \`TZ=\"America/New_York\" date +%Y-%m-%dT%H:%M:%S\` (or reuse the Timestamp below). Never write a UTC timestamp.
+
+IMPORTANT: This run executes on model provider \"$MODEL_PROVIDER\" ($MODEL_LABEL). In the decision object you append to state/trade-log.json decisions[], also record \"model_provider\": \"$MODEL_PROVIDER\" and \"model_label\": \"$MODEL_LABEL\" so sessions can be compared across models. Do not let this influence your analysis.
 
 Session: $SESSION
 Timestamp: $TIMESTAMP"
