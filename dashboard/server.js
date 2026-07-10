@@ -134,16 +134,17 @@ function writeJSON(path, data) {
 }
 
 // --- Live price fetching via Finnhub REST (same source the analyst agents use) ---
-// Key comes from FINNHUB_API_KEY, falling back to the finnhub MCP config in
-// .claude/settings.json so no extra env setup is needed.
+// Key comes from FINNHUB_API_KEY, falling back to dashboard/.env.dashboard (gitignored).
+// It used to fall back to .claude/settings.json's mcpServers block — but that file is
+// tracked in git, so the key must not live there.
 function getFinnhubKey() {
   if (process.env.FINNHUB_API_KEY) return process.env.FINNHUB_API_KEY;
   try {
-    const settings = JSON.parse(readFileSync(join(__dirname, "..", ".claude", "settings.json"), "utf-8"));
-    return settings?.mcpServers?.finnhub?.env?.FINNHUB_API_KEY || "";
-  } catch {
-    return "";
-  }
+    const txt = readFileSync(join(__dirname, ".env.dashboard"), "utf-8");
+    const m = txt.match(/^\s*FINNHUB_API_KEY\s*=\s*(.+?)\s*$/m);
+    if (m) return m[1].replace(/^["']|["']$/g, "");
+  } catch { /* no env file */ }
+  return "";
 }
 
 const FINNHUB_KEY = getFinnhubKey();
