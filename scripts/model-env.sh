@@ -28,7 +28,11 @@ if [ -f "$_MODEL_ROOT/.env.models" ]; then
     set +a
 fi
 
-MODEL_PROVIDER="${MODEL_PROVIDER:-glm}"
+# Precedence: an explicit `MODEL_PROVIDER=... ./run-check.sh` override wins; else the
+# persisted default MODEL_PROVIDER_DEFAULT (set by scripts/model.sh, stored in .env.models
+# — NOT .env, because callers source .env before this and it would clobber the override);
+# else glm. .env.models is sourced just above, so MODEL_PROVIDER_DEFAULT is in scope.
+MODEL_PROVIDER="${MODEL_PROVIDER:-${MODEL_PROVIDER_DEFAULT:-glm}}"
 
 case "$MODEL_PROVIDER" in
     glm)

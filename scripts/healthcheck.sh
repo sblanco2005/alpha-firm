@@ -69,7 +69,7 @@ for p in glm claude; do
         bad "$p profile failed to resolve"
     fi
 done
-CUR=$(grep -E '^MODEL_PROVIDER=' .env 2>/dev/null | tail -1 | cut -d= -f2)
+CUR=$(grep -E '^MODEL_PROVIDER_DEFAULT=' .env.models 2>/dev/null | tail -1 | cut -d= -f2)
 ok "current default: MODEL_PROVIDER=${CUR:-glm (implicit)}"
 
 # ─────────────────────────── 4. MCP servers ───────────────────────────

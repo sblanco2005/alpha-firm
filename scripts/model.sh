@@ -14,22 +14,28 @@
 
 set -uo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-ENV_FILE="$DIR/.env"
+# The persisted default lives in .env.models as MODEL_PROVIDER_DEFAULT — NOT in .env.
+# Runner scripts source .env BEFORE model-env.sh, so a MODEL_PROVIDER in .env would clobber
+# a one-off `MODEL_PROVIDER=claude ./run-check.sh` override. .env.models is sourced inside
+# model-env.sh (after .env), so the override survives.
+ENV_FILE="$DIR/.env.models"
 
 current() {
     local v
-    v=$(grep -E '^MODEL_PROVIDER=' "$ENV_FILE" 2>/dev/null | tail -1 | cut -d= -f2- || true)
+    v=$(grep -E '^MODEL_PROVIDER_DEFAULT=' "$ENV_FILE" 2>/dev/null | tail -1 | cut -d= -f2- || true)
     echo "${v:-glm}"
 }
 
 set_provider() {
     local p="$1"
     touch "$ENV_FILE"
-    if grep -qE '^MODEL_PROVIDER=' "$ENV_FILE" 2>/dev/null; then
-        sed -i -E "s|^MODEL_PROVIDER=.*|MODEL_PROVIDER=${p}|" "$ENV_FILE"
+    if grep -qE '^MODEL_PROVIDER_DEFAULT=' "$ENV_FILE" 2>/dev/null; then
+        sed -i -E "s|^MODEL_PROVIDER_DEFAULT=.*|MODEL_PROVIDER_DEFAULT=${p}|" "$ENV_FILE"
     else
-        printf '\n# Which model the firm runs on: glm | claude\nMODEL_PROVIDER=%s\n' "$p" >> "$ENV_FILE"
+        printf '\n# Persisted default model provider (glm | claude); overridable per-run via MODEL_PROVIDER=...\nMODEL_PROVIDER_DEFAULT=%s\n' "$p" >> "$ENV_FILE"
     fi
+    # Migrate away from a stale MODEL_PROVIDER in .env if present (it would clobber overrides).
+    [ -f "$DIR/.env" ] && sed -i -E '/^MODEL_PROVIDER=/d' "$DIR/.env" 2>/dev/null || true
 }
 
 # Fire a trivial prompt at one provider and report which model answered.
