@@ -52,7 +52,7 @@ probe() {
 }
 
 case "${1:-status}" in
-    glm|claude)
+    glm|claude|fable)
         set_provider "$1"
         echo "MODEL_PROVIDER=$1  (takes effect on the next run)"
         ;;
@@ -62,13 +62,14 @@ case "${1:-status}" in
         [ -f "$DIR/.env.models" ] || echo "  ⚠ .env.models missing — glm mode will fail"
         ;;
     test)
-        echo "Probing both providers with a 1-token prompt…"
+        echo "Probing providers with a 1-token prompt…"
         probe glm
         probe claude
+        probe fable
         echo "(current default: $(current))"
         ;;
     *)
-        echo "usage: $0 [glm|claude|status|test]" >&2
+        echo "usage: $0 [glm|claude|fable|status|test]" >&2
         exit 1
         ;;
 esac

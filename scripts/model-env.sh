@@ -53,8 +53,17 @@ case "$MODEL_PROVIDER" in
               ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL
         MODEL_LABEL="Claude (Max subscription)"
         ;;
+    fable)
+        # Max subscription login (no z.ai), but route every model tier to Fable 5 — so the PM
+        # AND all subagents run on Fable (same alias mechanism GLM uses). Fast + no z.ai cap.
+        unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN
+        export ANTHROPIC_DEFAULT_OPUS_MODEL="${FABLE_MODEL:-claude-fable-5}"
+        export ANTHROPIC_DEFAULT_SONNET_MODEL="${FABLE_MODEL:-claude-fable-5}"
+        export ANTHROPIC_DEFAULT_HAIKU_MODEL="${FABLE_MODEL:-claude-fable-5}"
+        MODEL_LABEL="Fable 5 (Max subscription)"
+        ;;
     *)
-        echo "model-env.sh: unknown MODEL_PROVIDER='$MODEL_PROVIDER' (use: glm | claude)" >&2
+        echo "model-env.sh: unknown MODEL_PROVIDER='$MODEL_PROVIDER' (use: glm | claude | fable)" >&2
         return 1 2>/dev/null || exit 1
         ;;
 esac
