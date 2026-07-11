@@ -39,6 +39,67 @@ Tooling added: `scripts/reconcile_prices.py` (OHLC audit/correction of the ledge
 
 ---
 
+## Model Providers, Tooling & Operational State (as of 2026-07-11)
+
+*This section is the operational hand-off — read it before touching anything. It captures a
+multi-day investigation into "why do the agents never pick with conviction ≥ 6?" The headline:
+**it was almost entirely a tooling problem, not the model.***
+
+### The model can be toggled: GLM (default) ↔ Claude
+
+The firm runs Claude Code (`claude` CLI) but the model behind it is swappable:
+- **`glm`** (default) — GLM 5.2 via z.ai's Anthropic-compatible endpoint (`https://api.z.ai/api/anthropic`). Paid z.ai credits, not the Max subscription.
+- **`claude`** — real Claude on the operator's **Max subscription** login.
+
+Historically GLM was pinned globally in `~/.claude/settings.json`'s `env` block, which hijacked **every** `claude` call and made `run-check.sh` log a false *"Mode: Subscription (Max plan)"* while actually running GLM. That was refactored (commit `b74c0fb`):
+- The 5 provider keys (base URL, auth token, OPUS/SONNET/HAIKU model aliases) now live in **`.env.models`** (gitignored, chmod 600).
+- **`scripts/model-env.sh`** (sourced by run-check.sh, run-postmortem.sh, run-pm-review.sh, backtest.sh) reads `MODEL_PROVIDER` and exports the right env, defaulting to `glm`.
+- **`scripts/model.sh [glm|claude|status|test]`** flips the default in `.env`; `test` probes both.
+- One-off override without changing the default: `MODEL_PROVIDER=claude ./run-check.sh closing`.
+- Each decision records `model_provider`/`model_label` in `trade-log.decisions[]`; **`scripts/model-compare.sh [date]`** reports conviction stats grouped by model.
+
+### The agents were running with almost no research tools
+
+Two independent defects, both fixed, both the real reason conviction stayed low:
+
+1. **`WebSearch` does not exist on the z.ai/GLM endpoint.** It is an Anthropic *server-side* tool. Probed directly: GLM → WebSearch FAILED; Claude → WORKED. The agents' logged *"WebSearch 429 until 7/25"* was a misread of an unavailable tool, not a rate limit.
+2. **None of the firm's MCP servers were actually loading.** They were declared under `mcpServers` in `.claude/settings.json` — a location **Claude Code v2 ignores**. Fixed by moving them to a project-scope **`.mcp.json`** (commit `8da8ece`). A second, subtler bug: headless `claude -p` does **not** auto-inject even project `.mcp.json` servers, so every firm invocation must pass **`--mcp-config <root>/.mcp.json --strict-mcp-config`** (exported as `$CLAUDE_MCP_ARGS` from model-env.sh; commit `f4cf429`). `--strict-mcp-config` also *excludes the operator's personal claude.ai connectors* (Gmail/Drive/Calendar) so autonomous `--dangerously-skip-permissions` agents can't reach personal email/files.
+
+The firm's 5 MCP servers (in `.mcp.json`): **brave-search** (news/web), **finnhub** (real-time quotes), **price-fetch** (Yahoo prices + fundamentals, `mcp/price_server.py`), **filesystem**, **portclaude** (trade sync). API keys are referenced as `${BRAVE_API_KEY}`/`${FINNHUB_API_KEY}` from the gitignored `.env` — they used to sit in plaintext in the tracked `settings.json` (removed; both keys were rotated).
+
+**Consequence:** before the fix the agents could only reach the web via `curl`. Unable to verify facts, they sometimes **fabricated** them — a fake "June CPI prints today" premise contaminated the 2026-07-09 closing and 2026-07-10 07:00 premarket decisions (real June CPI is 7/14). Those two decisions are now flagged `data_integrity.exclude_from_review` in `trade-log.json` and quarantined from the PM learning loop by `pm_review.py` so the PM doesn't learn from a false premise. **Do not trust an agent's self-report about which tools it used** — one claimed live `mcp__finnhub__*` data when no finnhub MCP was even loaded.
+
+### The A/B result: model was NOT the constraint
+
+With tooling fixed and held equal, on the identical 2026-07-10 closing session:
+
+| model | decision | max conviction | notes |
+|---|---|---|---|
+| GLM 5.2 | PASS | 6 | same reasoning, same numbers |
+| Claude (Max) | PASS | 5 | *lower*, if anything |
+
+Both produced disciplined, *sourced* PASSes with near-identical per-agent conviction. **GLM ≈ Claude on this task** — swapping models buys nothing here. The residual all-PASS behavior is the genuinely quiet VIX-15 market meeting a deliberately strict gate (bull-regime execution threshold 8.0, every stock pick must clearly beat SPY's ~+18% since inception, agent confirmation mandates like quant's ≥1.2× volume). That is a **strategy** setting, not a model or tooling limitation — and loosening it re-introduces the Run-1 over-trading failure mode.
+
+### Backtesting is now date-faithful (no lookahead)
+
+The backtester previously fetched **today's** price for simulated past days (price-fetch was hardcoded to Yahoo `range=5d`, finnhub is real-time, and the prompt told agents to Brave-search for prices), so any historical P&L was fiction. Fixed at the tool level (commit `b5ce140`):
+- **`mcp/price_server.py` → `get_historical_price(symbol, as_of)` / `get_batch_historical_prices`** query Yahoo's chart with `period1/period2` around `as_of` and compute, from bars on/before `as_of` only: close, 52-week high/low, SMA50/200, volume + volume-vs-avg20. Crypto via CoinGecko's historical endpoint. (Verified: SPY on 2026-01-05 → $687.72, not today's ~$755.)
+- **`scripts/backtest.sh`** now instructs agents to use it with `as_of=<sim date>` and passes **`--disallowedTools`** to hard-block the real-time leak tools (finnhub, current-price fetchers, WebSearch) so lookahead is impossible even if an agent ignores the prompt.
+- Remaining caveat: yfinance *fundamentals* are still current (Finnhub free tier has no point-in-time financials). Prices/technicals are the dominant lookahead source and are now faithful.
+
+**Early backtest signal (Jan 5–9 2026, GLM, faithful prices):** on real January data agents reached conviction **7–8** (vs the live July ceiling of 6) — but all six agents high simultaneously is being scrutinized as possibly an artifact of the disabled real-time tools (fewer ways to falsify → inflated confidence), not necessarily a richer market. The execution pipeline works (the SPY sweep executed at the correct historical price); whether a *single-name* pick clears the gate on faithful data is the open question a fuller backtest is answering.
+
+### Verify everything: `scripts/healthcheck.sh`
+
+`./scripts/healthcheck.sh` (fast, ~5s) checks the things that have actually broken: the `run-check.sh` executable bit (a lost `+x` caused every cron run to die with exit 126), `.env`/`.env.models` keys, both model profiles resolving, all 5 MCP servers `Connected`, state JSON validity, ET-vs-UTC date skew, the 3 market-check cron entries, and pm2 + dashboard endpoints. `--deep` additionally probes both providers live and asserts brave-search + finnhub are callable and WebSearch is (expectedly) absent on GLM. **Latest run: all checks green.**
+
+### Two operational traps worth internalizing
+
+1. **The VPS is UTC; the firm's trading day is US Eastern.** UTC rolls over at 8pm ET, which was flipping the date/holiday/weekend and breaking evening manual runs. All firm date logic (`run-check.sh`, the dashboard) now computes "today" in `America/New_York`.
+2. **`pm2` and `claude` are not on the non-interactive SSH PATH**, and `pm2 restart --update-env` inherits the *current shell's* env (a stale exported key can silently override the file). Always `export PATH="$HOME/.npm-global/bin:$PATH"` and source the env file before restarting.
+
+---
+
 ## The Six Analysts
 
 Each analyst is a specialized AI agent with a distinct research methodology, coverage universe, and conviction framework. They operate independently -- no analyst sees what the others are recommending. This prevents groupthink and ensures diversity of signal.
@@ -421,23 +482,22 @@ Key features:
 
 ---
 
-## Current Portfolio
+## Current Portfolio (Run 2 — live)
 
-*As of the latest recorded session, June 26, 2026*
+*Run 2 inception 2026-07-02 at $10,000; SPY baseline $744.78. Snapshot from the last recorded
+session, 2026-07-10 closing.*
 
 | Metric | Value |
 |--------|-------|
-| **NAV** | $10,479.35 |
-| **Cash** | $4,314.45 (41.2%) |
-| **P&L** | +$479.35 (+4.79%) |
-| **Positions** | 8 open |
-| **Total Trades** | 44 buys, 31 sells |
-| **Days Active** | 96 |
-| **High Water Mark** | $11,431.25 |
-| **SPY Return (same period)** | +14.97% (corrected baseline $634.09) |
-| **Alpha** | **-10.18%** (corrected 2026-07-02) |
+| **NAV** | ~$10,122 |
+| **Cash** | ~$1,063 (~10.5%) |
+| **Positions** | 1 — **SPY x12** (the benchmark sweep; entry $744.78) |
+| **Single-name trades in Run 2** | **0** — every session so far has been a disciplined unanimous PASS (13+ consecutive) |
+| **Alpha vs SPY** | ~ -0.04% (the book *is* the SPY sweep, so it tracks the index) |
 
-### Open Positions
+**Why the book is just SPY:** in a low-VIX bull tape with the 8.0 execution threshold and the "must clearly beat SPY" hurdle, no agent has produced a single-name pick that survives the gate — so idle cash sweeps into SPY at each close and the firm holds beta. This is the designed-correct behavior when there is no confirmed edge (see "Model Providers, Tooling & Operational State" above — with the tooling fixed, the PASSes are now *informed*, not blind). Run 1's final book (8 positions, NAV ~$10,479) is archived for attribution; the table below is that **archived Run-1** book, not the live one.
+
+### Open Positions — ARCHIVED Run-1 book (NOT live; Run 2 holds only SPY x12)
 
 | Ticker | Shares | Entry Price | Latest Price | Return | Agent | Stop |
 |--------|--------|-------------|--------------|--------|-------|------|
@@ -450,7 +510,9 @@ Key features:
 | FDX | 3 | $331.82 | $318.11 | -4.1% | Quant | $315 |
 | CLSK | 43 | $17.36 | $16.14 | -7.0% | Crypto | $14 |
 
-### Agent Leaderboard
+### Agent Leaderboard — ARCHIVED Run-1 (unreliable metrics; see note below)
+
+*Run 2 realized P&L is ~$0 (fresh start, 0 single-name trades); track-record modifiers are frozen at 1.0x for all agents until 30+ trades under the corrected win metric. The figures below are Run-1 archived data computed on the deprecated peak-touched-target metric with unreconciled prices — treat as noise, not signal.*
 
 | Agent | Picks | Executed | Wins | Losses | Realized P&L | Win Rate |
 |-------|-------|----------|------|--------|------|----------|
