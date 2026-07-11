@@ -21,7 +21,7 @@
     },
     "price-fetch": {
       "command": "/home/clawd/price-mcp/venv/bin/python3",
-      "args": ["/home/clawd/price-mcp/price_server.py"]
+      "args": ["/home/clawd/alpha-firm/mcp/price_server.py"]
     },
     "finnhub": {
       "command": "/home/clawd/alpha-firm/mcp/venv/bin/python3",

@@ -139,6 +139,12 @@ log "Trading days: $TRADING_DAYS"
 log "Results: $RESULTS_DIR"
 log "═══════════════════════════════════════════════════════"
 
+# ─── No-lookahead guardrail ───────────────────────────────────────────────
+# Hard-block the real-time price/quote tools during a backtest so agents CANNOT fetch
+# today's price for a simulated past day, even if they ignore the prompt. Only the
+# point-in-time get_historical_price / get_batch_historical_prices (as-of date) remain.
+BT_DISALLOW="mcp__finnhub__* mcp__price-fetch__get_stock_price mcp__price-fetch__get_crypto_price mcp__price-fetch__get_batch_prices WebSearch"
+
 # ─── Iterate through trading days ───
 CURRENT="$START_DATE"
 DAYS_COMPLETED=0
@@ -163,7 +169,7 @@ while [[ "$(date -d "$CURRENT" +%Y-%m-%d)" < "$(date -d "$END_DATE + 1 day" +%Y-
         "$RESULTS_DIR/daily-state.json" > "$TMP_DS" && mv "$TMP_DS" "$RESULTS_DIR/daily-state.json"
 
     # Run Claude Code for this simulated day
-    claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS \
+    claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS --disallowedTools $BT_DISALLOW \
         -p "You are running Alpha Firm in BACKTEST MODE.
 
 READ CLAUDE.md FIRST for the full system architecture, then READ skills/backtesting.md for backtest-specific rules.
@@ -173,24 +179,29 @@ SESSION: $SESSION
 BACKTEST RUN: $RUN_ID
 RESULTS DIRECTORY: $RESULTS_DIR
 
-CRITICAL DATE-FIDELITY RULES:
-1. Pretend today is $CURRENT. You MUST NOT use any information from after this date.
-2. When using Brave Search, constrain queries: add 'before:$CURRENT' or 'as of $CURRENT'
-3. Use CLOSING PRICE on $CURRENT as entry price (search: '{TICKER} stock price $CURRENT closing')
+CRITICAL DATE-FIDELITY RULES (no lookahead):
+1. Pretend today is $CURRENT. You MUST NOT use any information dated after $CURRENT.
+2. For EVERY price, entry price, 52-week range, moving average and volume figure, call the price-fetch MCP tool
+   mcp__price-fetch__get_historical_price (or get_batch_historical_prices) with as_of='$CURRENT'. It returns the
+   close on the last trading day <= $CURRENT plus 52w high/low, SMA50/200, and volume-vs-avg20 — all point-in-time.
+   Use its 'price' field as the entry/mark price. Do NOT get prices from Brave Search or any 'current' quote tool.
+3. The real-time quote tools (finnhub, get_stock_price/get_crypto_price/get_batch_prices) and WebSearch are DISABLED
+   this run precisely so no future data can leak. If you need news/sentiment, use Brave Search WITH 'before:$CURRENT'.
 4. Agent memories and state are scoped to $RESULTS_DIR — do NOT read or write live state/ or memory/ directories.
 
 EXECUTE THE FULL PIPELINE:
 1. Read state from $RESULTS_DIR/daily-state.json, $RESULTS_DIR/portfolio.json
 2. Read agent prompts from agents/*.md
-3. Spawn 5 PARALLEL analyst subagents:
-   - Each uses Brave Search with date constraints (before:$CURRENT)
+3. Spawn 6 PARALLEL analyst subagents (macro, crypto, quant, sentiment, contrarian, catalyst):
+   - Each fetches prices/technicals via mcp__price-fetch__get_historical_price(as_of='$CURRENT')
+   - Each uses Brave Search WITH 'before:$CURRENT' for news/positioning
    - Each writes recommendation to $RESULTS_DIR/memory/{agent_id}/$CURRENT.json
-4. Collect all 5 recommendations
-5. Run Bull/Bear Debate (skills/debate.md) on top 2-3 picks
-   - Append debate results to $RESULTS_DIR/debate-log.json
-6. Apply PM decision logic from orchestrator.md (including fundamental overlay + debate modifier)
-7. Execute trade if decided — update $RESULTS_DIR/portfolio.json, trade-log.json, leaderboard.json
-8. Record all 5 recommendations to $RESULTS_DIR/outcomes.json
+4. Collect all 6 recommendations
+5. Run Bull/Bear Debate (skills/debate.md) on top 2-3 picks — append to $RESULTS_DIR/debate-log.json
+6. Apply PM decision logic from orchestrator.md (fundamental overlay + debate modifier)
+7. Execute trade if decided — update $RESULTS_DIR/portfolio.json, trade-log.json, leaderboard.json.
+   Record model_provider='$MODEL_PROVIDER' on the decision.
+8. Record all 6 recommendations to $RESULTS_DIR/outcomes.json
 9. Write day summary to $RESULTS_DIR/daily/$CURRENT.json
 
 STATE FILE SAFETY: Write to .tmp first, validate with jq, then mv into place.
