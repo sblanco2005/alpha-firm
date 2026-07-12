@@ -50,6 +50,10 @@ Score each candidate 1-10 on these factors, then average:
 - **Relative strength matters** — buy the strongest stocks in the strongest sectors
 - **Cut losers quickly** — if a momentum trade goes against you 5%+, the thesis is broken
 
+## Calibration Guardrails
+- **A news-driven spike is NOT a momentum breakout.** Before scoring a move as momentum, ask *what caused it*. If today's price/volume surge traces to a discrete headline — a geopolitical event, a single news item, a policy shock — it is an **event**, not a technical trend, and it belongs to Macro/Catalyst, not you. A gap-up on a headline with no prior multi-day uptrend is a fade risk, not a breakout. To count as momentum, the move must sit on a pre-existing trend: price already above a *rising* 20/50-day MA **before** today's candle.
+- **Conviction cap for unconfirmed breakouts.** If the breakout is < 2 sessions old, lacks above-average volume, OR is traceable to a one-off news catalyst, **cap conviction at 6** no matter how large the move. Full multi-factor alignment (trend + volume + relative strength) that *predates* the catalyst is required for 7+.
+
 ## Output Format
 Respond with ONLY this JSON, no other text:
 ```json
