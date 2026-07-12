@@ -55,3 +55,4 @@ state/cron-status.json
 state/account.json
 state/debate-*
 state/scorecards/
+.env.models
