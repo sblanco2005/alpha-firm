@@ -249,7 +249,7 @@ Run the **3-Stage Debate** from `skills/debate.md` on the top 2-3 candidates by 
 9. Apply hard rules from `skills/debate.md`:
    - `fatal_flaw` → **VETO** (trade dead, score zeroed)
    - 2+ unrebutted serious weaknesses → **PASS** (score zeroed)
-   - 1 unrebutted weakness → **BUY_ELIGIBLE_REDUCED_SIZE** (0.90x modifier, 75% sizing)
+   - 1 unrebutted weakness → **BUY_ELIGIBLE_REDUCED_SIZE** (no score penalty — the risk is taken out of position SIZE, not the gate score: 75% sizing at execution)
    - All attacks rebutted → **BUY_ELIGIBLE** (1.05x modifier)
 10. Run "break the trade" checklist: Would I still buy this if I removed the writeup and looked only at facts?
 11. **Unresolved uncertainty = negative.** If debate is inconclusive, trade does NOT proceed.
@@ -261,14 +261,14 @@ final_score =
   raw_pm_score
   × track_record_modifier    (FROZEN at 1.0x for all agents until 30+ executed trades under corrected metric — see Step 5)
   × fundamental_modifier     (0.7x to 1.3x, stocks only)
-  × debate_modifier           (0.0x if VETO/PASS, 0.90x if reduced, 1.05x if eligible)
+  × debate_modifier           (0.0x if VETO/PASS, 1.0x if reduced, 1.05x if eligible)
   × narrative_penalty         (0.85x if triggered, else 1.0x)
   × spy_baseline_penalty      (0.85x if cannot beat SPY, 0.92x for weak justification, else 1.0x)
 ```
 
 Debate modifiers:
 - VETO or PASS → 0.0x (trade killed)
-- BUY_ELIGIBLE_REDUCED_SIZE → 0.90x + position sized at 75%
+- BUY_ELIGIBLE_REDUCED_SIZE → 1.0x score (NO gate penalty — a merited pick clears the bar on its own score) + position sized at 75% (the reduced-size risk control lives in SIZE at execution, not the score; see skills/trade-execution.md Position Sizing). Rationale: penalizing the score AND the size double-counted the same risk and converted "buy smaller" into "buy nothing" under the 8.0 bull bar.
 - BUY_ELIGIBLE → 1.05x (survived scrutiny)
 
 ### Step 10: Decision

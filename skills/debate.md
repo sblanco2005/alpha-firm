@@ -148,7 +148,7 @@ The debate decision maps to a modifier applied to the final score:
 | Decision | Modifier | Meaning |
 |----------|----------|---------|
 | BUY_ELIGIBLE | 1.05x | Survived scrutiny — small boost |
-| BUY_ELIGIBLE_REDUCED_SIZE | 0.90x | Approved but weakened |
+| BUY_ELIGIBLE_REDUCED_SIZE | 1.0x (score) | Approved — the 25% risk reduction is applied to POSITION SIZE at execution (0.75x, see trade-execution.md), NOT to the gate score. Penalizing both double-counted the risk. |
 | PASS | 0.00x | Trade rejected — score zeroed |
 | VETO | 0.00x | Trade killed — score zeroed |
 

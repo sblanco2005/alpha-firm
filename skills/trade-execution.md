@@ -116,7 +116,8 @@ Log the VIX level and resulting size cap in the trade record.
 
 ### Position Sizing
 - Fetch VIX and determine max allocation tier (see above)
-- Calculate: `order_amount = portfolio_cash * (allocation_pct / 100)`
+- **Reduced-size factor (debate):** if the debate verdict was `BUY_ELIGIBLE_REDUCED_SIZE`, set `reduced_size_factor = 0.75`; otherwise `1.0`. This is the ONLY place a reduced-size verdict is now enforced — it no longer penalizes the gate score (see orchestrator.md Step 9), so the 25% position cut MUST be applied here or the risk control is lost.
+- Calculate: `order_amount = portfolio_cash * (allocation_pct / 100) * reduced_size_factor`
 - Calculate shares: `shares = floor(order_amount / current_price)`
 - Actual cost: `shares * current_price`
 - Allocation capped by VIX tier
