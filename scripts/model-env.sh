@@ -5,8 +5,12 @@
 # Every script that invokes `claude` sources this. It picks the provider from
 # MODEL_PROVIDER and exports exactly the env the Claude Code CLI needs:
 #
-#   MODEL_PROVIDER=glm      → GLM (glm-5.2) via z.ai's Anthropic-compatible endpoint
-#   MODEL_PROVIDER=claude   → real Claude on the Max subscription login
+#   MODEL_PROVIDER=kimi     → Kimi K3 (kimi-k3[1m]) via Moonshot's Anthropic-compatible
+#                             endpoint (PRIMARY since 2026-08-09; pay-per-token API key)
+#   MODEL_PROVIDER=claude   → real Claude on the subscription login (Pro tier since
+#                             2026-08-09 — quota too small for primary use)
+#   MODEL_PROVIDER=fable    → Fable 5 for every model tier on the subscription login
+#   MODEL_PROVIDER=glm      → GLM (glm-5.2) via z.ai — DORMANT, account cancelled 2026-08-09
 #
 # Provider values + the z.ai token live in .env.models (gitignored, chmod 600).
 # These used to sit in ~/.claude/settings.json's `env` block, which hijacked EVERY
@@ -32,9 +36,31 @@ fi
 # persisted default MODEL_PROVIDER_DEFAULT (set by scripts/model.sh, stored in .env.models
 # — NOT .env, because callers source .env before this and it would clobber the override);
 # else glm. .env.models is sourced just above, so MODEL_PROVIDER_DEFAULT is in scope.
-MODEL_PROVIDER="${MODEL_PROVIDER:-${MODEL_PROVIDER_DEFAULT:-glm}}"
+MODEL_PROVIDER="${MODEL_PROVIDER:-${MODEL_PROVIDER_DEFAULT:-kimi}}"
 
 case "$MODEL_PROVIDER" in
+    kimi)
+        if [ -z "${KIMI_AUTH_TOKEN:-}" ]; then
+            echo "model-env.sh: MODEL_PROVIDER=kimi but .env.models is missing KIMI_AUTH_TOKEN" >&2
+            return 1 2>/dev/null || exit 1
+        fi
+        # Per Moonshot's Claude Code integration guide, EVERY model tier plus the
+        # subagent model must point at a Kimi model — a tier left unset requests a
+        # Claude model name the Kimi endpoint can't recognize and fails silently
+        # (background summarization on haiku tier, subagents, etc.).
+        KIMI_MODEL="${KIMI_MODEL:-kimi-k3[1m]}"
+        export ANTHROPIC_BASE_URL="${KIMI_BASE_URL:-https://api.moonshot.ai/anthropic}"
+        export ANTHROPIC_AUTH_TOKEN="$KIMI_AUTH_TOKEN"
+        export ANTHROPIC_MODEL="$KIMI_MODEL"
+        export ANTHROPIC_DEFAULT_OPUS_MODEL="$KIMI_MODEL"
+        export ANTHROPIC_DEFAULT_SONNET_MODEL="$KIMI_MODEL"
+        export ANTHROPIC_DEFAULT_HAIKU_MODEL="$KIMI_MODEL"
+        export ANTHROPIC_DEFAULT_FABLE_MODEL="$KIMI_MODEL"
+        export CLAUDE_CODE_SUBAGENT_MODEL="$KIMI_MODEL"
+        export CLAUDE_CODE_AUTO_COMPACT_WINDOW="${KIMI_COMPACT_WINDOW:-1048576}"
+        export CLAUDE_CODE_EFFORT_LEVEL="${KIMI_EFFORT_LEVEL:-max}"
+        MODEL_LABEL="Kimi K3 ($KIMI_MODEL via ${KIMI_BASE_URL:-https://api.moonshot.ai/anthropic})"
+        ;;
     glm)
         if [ -z "${ZAI_AUTH_TOKEN:-}" ] || [ -z "${ZAI_BASE_URL:-}" ]; then
             echo "model-env.sh: MODEL_PROVIDER=glm but .env.models is missing ZAI_BASE_URL/ZAI_AUTH_TOKEN" >&2
@@ -48,22 +74,24 @@ case "$MODEL_PROVIDER" in
         MODEL_LABEL="GLM (${GLM_SONNET_MODEL:-glm-5.2} via z.ai)"
         ;;
     claude)
-        # Clear every GLM override so the CLI uses the claude.ai Max subscription login.
-        unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN \
-              ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL
-        MODEL_LABEL="Claude (Max subscription)"
+        # Clear every third-party override so the CLI uses the claude.ai subscription login.
+        unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN ANTHROPIC_MODEL \
+              ANTHROPIC_DEFAULT_OPUS_MODEL ANTHROPIC_DEFAULT_SONNET_MODEL ANTHROPIC_DEFAULT_HAIKU_MODEL ANTHROPIC_DEFAULT_FABLE_MODEL \
+              CLAUDE_CODE_SUBAGENT_MODEL CLAUDE_CODE_AUTO_COMPACT_WINDOW CLAUDE_CODE_EFFORT_LEVEL
+        MODEL_LABEL="Claude (Pro subscription)"
         ;;
     fable)
-        # Max subscription login (no z.ai), but route every model tier to Fable 5 — so the PM
-        # AND all subagents run on Fable (same alias mechanism GLM uses). Fast + no z.ai cap.
-        unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN
+        # Subscription login (no third-party endpoint), but route every model tier to
+        # Fable 5 — so the PM AND all subagents run on Fable.
+        unset ANTHROPIC_BASE_URL ANTHROPIC_AUTH_TOKEN ANTHROPIC_MODEL \
+              CLAUDE_CODE_SUBAGENT_MODEL CLAUDE_CODE_AUTO_COMPACT_WINDOW CLAUDE_CODE_EFFORT_LEVEL
         export ANTHROPIC_DEFAULT_OPUS_MODEL="${FABLE_MODEL:-claude-fable-5}"
         export ANTHROPIC_DEFAULT_SONNET_MODEL="${FABLE_MODEL:-claude-fable-5}"
         export ANTHROPIC_DEFAULT_HAIKU_MODEL="${FABLE_MODEL:-claude-fable-5}"
-        MODEL_LABEL="Fable 5 (Max subscription)"
+        MODEL_LABEL="Fable 5 (subscription)"
         ;;
     *)
-        echo "model-env.sh: unknown MODEL_PROVIDER='$MODEL_PROVIDER' (use: glm | claude | fable)" >&2
+        echo "model-env.sh: unknown MODEL_PROVIDER='$MODEL_PROVIDER' (use: kimi | claude | fable | glm)" >&2
         return 1 2>/dev/null || exit 1
         ;;
 esac

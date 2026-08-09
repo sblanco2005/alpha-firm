@@ -45,16 +45,18 @@ Tooling added: `scripts/reconcile_prices.py` (OHLC audit/correction of the ledge
 multi-day investigation into "why do the agents never pick with conviction ≥ 6?" The headline:
 **it was almost entirely a tooling problem, not the model.***
 
-### The model can be toggled: GLM (default) ↔ Claude
+### The model can be toggled: Kimi (default, since 2026-08-09) ↔ Claude ↔ Fable ↔ GLM (dormant)
 
 The firm runs Claude Code (`claude` CLI) but the model behind it is swappable:
-- **`glm`** (default) — GLM 5.2 via z.ai's Anthropic-compatible endpoint (`https://api.z.ai/api/anthropic`). Paid z.ai credits, not the Max subscription.
-- **`claude`** — real Claude on the operator's **Max subscription** login.
+- **`kimi`** (default since 2026-08-09) — Kimi K3 (`kimi-k3`, 1M context) via an Anthropic-compatible endpoint. Pay-per-token API key (`KIMI_AUTH_TOKEN` in `.env.models`). Endpoint depends on where the key was created: Kimi platform keys (`sk-kimi-...`, ours) use `KIMI_BASE_URL=https://api.kimi.com/coding` and plain model id `kimi-k3` (the `[1m]` suffix is rejected there); Open Platform keys use `https://api.moonshot.ai/anthropic` with `kimi-k3[1m]`. Became primary when GLM was cancelled and the Claude plan was downgraded to Pro: Pro quota can't cover 6 agents × 3 sessions/day, and per-token K3 pricing (~$0.30/MTok cache-hit input) is ~an order of magnitude below the Anthropic API fallback rate.
+- **`claude`** — real Claude on the operator's subscription login (**Pro tier since 2026-08-09** — too little quota for primary use; kept for A/B probes).
+- **`fable`** — subscription login with every model tier routed to Fable 5.
+- **`glm`** (dormant) — GLM 5.2 via z.ai's Anthropic-compatible endpoint. Account cancelled 2026-08-09; config kept inert in case it is ever reactivated.
 
 Historically GLM was pinned globally in `~/.claude/settings.json`'s `env` block, which hijacked **every** `claude` call and made `run-check.sh` log a false *"Mode: Subscription (Max plan)"* while actually running GLM. That was refactored (commit `b74c0fb`):
-- The 5 provider keys (base URL, auth token, OPUS/SONNET/HAIKU model aliases) now live in **`.env.models`** (gitignored, chmod 600).
-- **`scripts/model-env.sh`** (sourced by run-check.sh, run-postmortem.sh, run-pm-review.sh, backtest.sh) reads `MODEL_PROVIDER` and exports the right env, defaulting to `glm`.
-- **`scripts/model.sh [glm|claude|status|test]`** flips the default in `.env`; `test` probes both.
+- The provider keys (base URL, auth token, model aliases) now live in **`.env.models`** (gitignored, chmod 600).
+- **`scripts/model-env.sh`** (sourced by run-check.sh, run-postmortem.sh, run-pm-review.sh, backtest.sh) reads `MODEL_PROVIDER` and exports the right env, defaulting to `kimi`.
+- **`scripts/model.sh [kimi|claude|fable|glm|status|test]`** flips the default in `.env.models`; `test` probes the providers.
 - One-off override without changing the default: `MODEL_PROVIDER=claude ./run-check.sh closing`.
 - Each decision records `model_provider`/`model_label` in `trade-log.decisions[]`; **`scripts/model-compare.sh [date]`** reports conviction stats grouped by model.
 
@@ -611,7 +613,7 @@ run-check.sh
 
 | Component | Details |
 |-----------|---------|
-| **Runtime** | Claude Code CLI on VPS (Claude Max subscription; auto-falls back to Anthropic API / Sonnet if subscription quota exhausted) |
+| **Runtime** | Claude Code CLI on VPS running **Kimi K3** (`kimi-k3`) via the Kimi platform's Anthropic-compatible endpoint (`https://api.kimi.com/coding`, pay-per-token key; switched 2026-08-09 after GLM cancellation + Claude downgrade to Pro — Pro quota can't cover 6 agents × 3 sessions/day) |
 | **Live Prices** | Finnhub REST `/quote` for the dashboard/app (15-min cached); agents fetch prices via Brave Search / Fetch during checks |
 | **Price History** | Yahoo Finance `v8/finance/chart` (keyless) — powers every chart, sparkline, and NAV reconstruction |
 | **Cron Price Refresh** | `scripts/refresh-prices.sh` (Yahoo Finance + CoinGecko) updates NAV before each session |

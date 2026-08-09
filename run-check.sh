@@ -1,7 +1,8 @@
 #!/bin/bash
 # ═══════════════════════════════════════════════════════════════
 # Alpha Firm — Market Check Entry Point
-# Runs entirely on Claude Max subscription (no API tokens)
+# Runs on the provider selected by scripts/model-env.sh (default: kimi — Kimi K3 via
+# Moonshot's Anthropic-compatible endpoint, pay-per-token key in .env.models)
 # Usage: ./run-check.sh [morning|midday|closing|premarket]
 # ═══════════════════════════════════════════════════════════════
 
@@ -37,8 +38,8 @@ if [ -n "$SAVED_API_KEY" ]; then
     unset ANTHROPIC_API_KEY
 fi
 
-# ─── Select the model provider (glm | claude). See scripts/model-env.sh. ───
-# Toggle the default with ./scripts/model.sh glm|claude, or override for one run:
+# ─── Select the model provider (kimi | claude | fable | glm). See scripts/model-env.sh. ───
+# Toggle the default with ./scripts/model.sh kimi|claude|fable|glm, or override for one run:
 #   MODEL_PROVIDER=claude ./run-check.sh closing
 # shellcheck disable=SC1091
 source "$SCRIPT_DIR/scripts/model-env.sh"

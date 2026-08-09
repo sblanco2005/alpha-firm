@@ -3,9 +3,11 @@
 # Alpha Firm — Toggle which model the firm runs on.
 #
 #   ./scripts/model.sh              # show current provider
-#   ./scripts/model.sh glm          # GLM 5.2 via z.ai (default)
-#   ./scripts/model.sh claude       # real Claude on the Max subscription
-#   ./scripts/model.sh test         # probe BOTH providers with a 1-token prompt
+#   ./scripts/model.sh kimi         # Kimi K3 via Moonshot API (default since 2026-08-09)
+#   ./scripts/model.sh claude       # real Claude on the subscription login (Pro tier)
+#   ./scripts/model.sh fable        # Fable 5 on the subscription login
+#   ./scripts/model.sh glm          # GLM 5.2 via z.ai (dormant — account cancelled)
+#   ./scripts/model.sh test         # probe providers with a 1-token prompt
 #
 # Writes MODEL_PROVIDER into .env; every claude-invoking script sources
 # scripts/model-env.sh and honours it. Takes effect on the NEXT run (cron or manual).
@@ -32,7 +34,7 @@ set_provider() {
     if grep -qE '^MODEL_PROVIDER_DEFAULT=' "$ENV_FILE" 2>/dev/null; then
         sed -i -E "s|^MODEL_PROVIDER_DEFAULT=.*|MODEL_PROVIDER_DEFAULT=${p}|" "$ENV_FILE"
     else
-        printf '\n# Persisted default model provider (glm | claude); overridable per-run via MODEL_PROVIDER=...\nMODEL_PROVIDER_DEFAULT=%s\n' "$p" >> "$ENV_FILE"
+        printf '\n# Persisted default model provider (kimi | claude | fable | glm); overridable per-run via MODEL_PROVIDER=...\nMODEL_PROVIDER_DEFAULT=%s\n' "$p" >> "$ENV_FILE"
     fi
     # Migrate away from a stale MODEL_PROVIDER in .env if present (it would clobber overrides).
     [ -f "$DIR/.env" ] && sed -i -E '/^MODEL_PROVIDER=/d' "$DIR/.env" 2>/dev/null || true
@@ -52,7 +54,7 @@ probe() {
 }
 
 case "${1:-status}" in
-    glm|claude|fable)
+    kimi|glm|claude|fable)
         set_provider "$1"
         echo "MODEL_PROVIDER=$1  (takes effect on the next run)"
         ;;
@@ -63,13 +65,14 @@ case "${1:-status}" in
         ;;
     test)
         echo "Probing providers with a 1-token prompt…"
-        probe glm
+        probe kimi
         probe claude
         probe fable
+        probe glm
         echo "(current default: $(current))"
         ;;
     *)
-        echo "usage: $0 [glm|claude|fable|status|test]" >&2
+        echo "usage: $0 [kimi|glm|claude|fable|status|test]" >&2
         exit 1
         ;;
 esac

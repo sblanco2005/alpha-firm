@@ -44,17 +44,20 @@ done
 if [ -f .env.models ]; then
     ok ".env.models present"
     [ "$(stat -c %a .env.models 2>/dev/null)" = "600" ] && ok ".env.models is chmod 600" || warn ".env.models is not 600"
+    for k in KIMI_AUTH_TOKEN; do
+        grep -qE "^${k}=.+" .env.models && ok ".env.models has $k" || bad ".env.models missing $k (kimi — the primary provider — will fail)"
+    done
     for k in ZAI_BASE_URL ZAI_AUTH_TOKEN; do
-        grep -qE "^${k}=.+" .env.models && ok ".env.models has $k" || bad ".env.models missing $k (glm mode will fail)"
+        grep -qE "^${k}=.+" .env.models && ok ".env.models has $k" || warn ".env.models missing $k (glm dormant since 2026-08-09 — account cancelled)"
     done
 else
-    bad ".env.models MISSING (glm mode will fail)"
+    bad ".env.models MISSING (kimi mode will fail)"
 fi
 [ -f "$HOME/.claude/.credentials.json" ] && ok "Claude Max subscription login present" || warn "no ~/.claude/.credentials.json (claude mode will fail)"
 
 # ─────────────────────────── 3. Model provider ────────────────────────
 hdr "3. Model provider selection"
-for p in glm claude; do
+for p in kimi glm claude; do
     out=$( set -a; . ./.env 2>/dev/null; set +a
            unset ANTHROPIC_API_KEY
            MODEL_PROVIDER=$p . ./scripts/model-env.sh >/dev/null 2>&1 \
@@ -62,15 +65,18 @@ for p in glm claude; do
     if [ -n "$out" ]; then
         label="${out%%|*}"; url="${out##*|}"
         case "$p" in
+            kimi)   [ "$url" != "<unset>" ] && ok "kimi   → $label ($url)"     || bad "kimi resolved but ANTHROPIC_BASE_URL unset" ;;
             glm)    [ "$url" != "<unset>" ] && ok "glm    → $label ($url)"     || bad "glm resolved but ANTHROPIC_BASE_URL unset" ;;
             claude) [ "$url"  = "<unset>" ] && ok "claude → $label (no base_url override)" || bad "claude mode still has ANTHROPIC_BASE_URL=$url" ;;
         esac
+    elif [ "$p" = "glm" ]; then
+        warn "glm profile failed to resolve (dormant since 2026-08-09 — account cancelled)"
     else
         bad "$p profile failed to resolve"
     fi
 done
 CUR=$(grep -E '^MODEL_PROVIDER_DEFAULT=' .env.models 2>/dev/null | tail -1 | cut -d= -f2)
-ok "current default: MODEL_PROVIDER=${CUR:-glm (implicit)}"
+ok "current default: MODEL_PROVIDER=${CUR:-kimi (implicit)}"
 
 # ─────────────────────────── 4. MCP servers ───────────────────────────
 hdr "4. MCP servers (must be in .mcp.json — settings.json mcpServers is IGNORED by v2)"
@@ -142,22 +148,23 @@ if [ "$DEEP" = "1" ]; then
                timeout 300 claude --dangerously-skip-permissions $CLAUDE_MCP_ARGS -p "$2" 2>&1 | grep -viE "connectors are disabled" )
         echo "$out" | grep -q "$3"
     }
-    probe glm    "Reply with exactly: PONG" "PONG" && ok "glm responds"    || bad "glm did NOT respond"
+    probe kimi   "Reply with exactly: PONG" "PONG" && ok "kimi responds"   || bad "kimi did NOT respond"
     probe claude "Reply with exactly: PONG" "PONG" && ok "claude responds" || bad "claude did NOT respond"
 
-    probe "${CUR:-glm}" "Use the brave-search MCP tool to web-search 'SPY ETF'. Last line EXACTLY: SEARCH=WORKED or SEARCH=FAILED" "SEARCH=WORKED" \
-        && ok "brave-search usable by the model (${CUR:-glm})" || bad "brave-search NOT usable (${CUR:-glm})"
-    probe "${CUR:-glm}" "Use a finnhub MCP tool to quote AAPL. Last line EXACTLY: FINNHUB=WORKED or FINNHUB=FAILED" "FINNHUB=WORKED" \
-        && ok "finnhub usable by the model (${CUR:-glm})" || bad "finnhub NOT usable (${CUR:-glm})"
+    probe "${CUR:-kimi}" "Use the brave-search MCP tool to web-search 'SPY ETF'. Last line EXACTLY: SEARCH=WORKED or SEARCH=FAILED" "SEARCH=WORKED" \
+        && ok "brave-search usable by the model (${CUR:-kimi})" || bad "brave-search NOT usable (${CUR:-kimi})"
+    probe "${CUR:-kimi}" "Use a finnhub MCP tool to quote AAPL. Last line EXACTLY: FINNHUB=WORKED or FINNHUB=FAILED" "FINNHUB=WORKED" \
+        && ok "finnhub usable by the model (${CUR:-kimi})" || bad "finnhub NOT usable (${CUR:-kimi})"
 
-    # WebSearch is an Anthropic server-side tool — expected to fail on z.ai. Informational.
+    # WebSearch is an Anthropic server-side tool — informational only on the moonshot
+    # endpoint; agents use the brave-search MCP regardless.
     if probe claude "Use WebSearch for 'SPY ETF price'. Last line EXACTLY: WS=WORKED or WS=FAILED" "WS=WORKED"; then
         ok "WebSearch works on claude"
     else
         warn "WebSearch failed on claude (usually a real quota issue)"
     fi
-    probe glm "Use WebSearch for 'SPY ETF price'. Last line EXACTLY: WS=WORKED or WS=FAILED" "WS=WORKED" \
-        && warn "WebSearch unexpectedly works on glm" || ok "WebSearch unavailable on glm (expected — use brave-search MCP)"
+    probe kimi "Use WebSearch for 'SPY ETF price'. Last line EXACTLY: WS=WORKED or WS=FAILED" "WS=WORKED" \
+        && ok "WebSearch works on kimi" || warn "WebSearch unavailable on kimi (agents use the brave-search MCP anyway)"
 fi
 
 # ─────────────────────────── Summary ──────────────────────────────────
