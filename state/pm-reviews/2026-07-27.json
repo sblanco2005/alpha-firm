@@ -1,0 +1,16 @@
+{
+  "week_start": "2026-07-27",
+  "generated": "2026-08-08T10:00:01",
+  "summary": {
+    "counts": {},
+    "foregone_alpha_pct_sum": 0,
+    "decisions_logged": 0,
+    "decisions_excluded": 0
+  },
+  "reviewed_decisions": [],
+  "pm_decision_log": [],
+  "excluded_decisions": [],
+  "data_integrity_note": null,
+  "root_causes": [],
+  "candidate_adjustments": []
+}

@@ -1,0 +1,14 @@
+{
+  "week_start": "2026-08-03",
+  "week_end": "2026-08-07",
+  "window_label": "2026-08-03",
+  "generated_at": "2026-08-08T09:00:01+00:00",
+  "scope": "realized + notable paper losses (conviction >= 7)",
+  "realized_loss_count_total": 0,
+  "paper_loss_count_total": 0,
+  "loss_count_analyzed": 0,
+  "max_losses": 10,
+  "losses": [],
+  "candidate_rules": [],
+  "analysis_notes": ""
+}

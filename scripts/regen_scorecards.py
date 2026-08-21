@@ -12,6 +12,7 @@ SCORECARDS_DIR = '/home/clawd/alpha-firm/state/scorecards'
 def get_all_entries(data):
     """Flatten all recommendations including session-keyed objects."""
     entries = list(data.get('recommendations', []))
+    entries.extend(data.get('outcomes', []))
     for key, val in data.items():
         if key.startswith('session_') and isinstance(val, dict):
             for agent_key, entry in val.items():

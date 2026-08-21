@@ -1,0 +1,924 @@
+{
+  "week_start": "2026-07-06",
+  "generated": "2026-07-18T10:00:01",
+  "summary": {
+    "counts": {},
+    "foregone_alpha_pct_sum": 0,
+    "decisions_logged": 13,
+    "decisions_excluded": 2
+  },
+  "reviewed_decisions": [],
+  "pm_decision_log": [
+    {
+      "date": "2026-07-06",
+      "session": "closing",
+      "decision": "pass",
+      "reasoning": "Run-2 day-3 closing -> unanimous PASS (6/6). Bull regime confirmed from actual closes (SPY 751.28 > MA50 738.23 > MA200 692.74), threshold 8.0; VIX 15.57 near 52-wk lows = peak complacency - the worst risk/reward to add beta. Post-holiday Monday tape uniformly thin (SPY 0.66x avg20, QQQ 0.54x) with zero volume-confirmed RS breakouts; the only volume-confirmed sector (XLV 1.32x) is high-volume distribution off the 52wk-high rejection. No dated catalyst in the 7/6-7/20 window offers asymmetry - Q2 banks ripped INTO their 7/14-7/16 prints today (MS +3.82%, CFG 0.5% off 52wh), near-term earnings priced at highs, no FDA binary verifiable. The two conviction-6 ideas (crypto miner recoupling, quant RS leaders) were both explicitly DEFERRED by their own agents - crypto to a BTC-pullback entry (entry edge closed: BTC +9.4%, MSTR +22.8% off lows, flow data unverifiable with WebSearch down), quant to a volume-confirmed trigger (XLI/AMD need >=1.2x avg20). Neither reaches 8.0. Sentiment's only live cluster (KMX, 19,274 deduped shares) is fundamental-fatal (ROE 3.7%, margin 0.8%, rev -1.6%, D/E 2.93, P/E 28.7) and vetoed twice. No candidate debated (all PASS). SPY sweep reconciled to 0 new shares (excess ~$559 < 1 SPY share at $751.28); existing 12-sh sweep retained. WebSearch quota down until ~7/25 across all agents - structural limitation noted.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - VIX 15.57 peak complacency = worst R/R to add beta; no verifiable dated macro catalyst this week (FOMC 7/29 3+ weeks out, WebSearch down); metals-bounce rule unfired (UUP 28.32>28.20, GDX didn't confirm gold bid); yields sticky TNX 4.48%."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS by agent - 07/02 re-engagement conditions met (BTC 64,120>61,500; MSTR 100.77>97) and miner recoupling thesis real (IREN +13.1%, CLSK +7.1%) but entry edge closed (BTC +9.4%, MSTR +22.8% off lows), VIX complacent, WebSearch blocks ETF-flow/on-chain verification for conv>=7. Deferred to pullback entry."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS by agent - all 3 7/2 triggers failed on volume (LLY -1.14% on 0.50x, XLF 0.82x RSI 75.74, AAPL didn't break 317.40); post-holiday tape thin (SPY 0.66x, QQQ 0.54x); XLV 1.32x = distribution; SPY new high on 0.66x = fakeout. XLI/AMD closest but need vol confirmation."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - only live cluster KMX (5 insiders, 19,274 deduped sh) fundamental-fatal (ROE 3.7%, margin 0.8%, rev -1.6%, D/E 2.93, P/E 28.7), vetoed twice; all other signals single-insider noise or SOFI net-seller misread; VIX 15.57 peak Greed not fear; WebSearch dark."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - VIX 15.57 at 52-wk lows = no fear to fade; momentum names bounced +6% (7/2 was profit-taking not capitulation) = chasing at premium valuations; hated names (NKE/DIS/PFE) still falling with catalysts 60-90d out. Nothing meets cheap+improving+catalyst at washout."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - no dated 7/6-7/20 catalyst clears conv-8; banks ripped INTO 7/14-7/16 prints (MS +3.82%, CFG 0.5% off 52wh); near-term earnings at highs w/ bullish consensus; no FDA binary verifiable (WebSearch down); CPI/FOMC no directional edge."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction >=6 to send to the bear). The two conviction-6 calls (crypto, quant) were explicit DEFERRALS, not tradable picks.",
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion). No active rules fired.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json and state/pm-lessons.json empty/INSUFFICIENT_SAMPLE (run-2 fresh start) - no adjustments applied.",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 15.57,
+      "spy_close": 751.28,
+      "spy_return_pct": 0.87,
+      "portfolio_pnl_pct": 0.78,
+      "alpha": -0.09,
+      "sweep": {
+        "ticker": "SPY",
+        "new_shares": 0,
+        "reason": "excess ~$559 (cash 1062.64 - 5% buffer ~$504) < 1 SPY share ($751.28); existing 12-sh sweep retained",
+        "cash_after": 1062.64,
+        "cash_pct_nav": 10.54
+      }
+    },
+    {
+      "date": "2026-07-07",
+      "session": "premarket",
+      "decision": "pass",
+      "reasoning": "Run-2 day-4 premarket -> unanimous PASS (6/6). Bull regime intact (SPY 751.28 > MA50 738.23 > MA200 692.74), threshold 8.0; VIX 15.94 near 52w low (13.38) = peak complacency, worst R/R to add beta. Post-holiday Monday premarket prints UNCHANGED from 7/6 close for every tracked instrument - no weekend catalyst moved anything (SPY flat, BTC -1.4% to 63,130 only a partial pullback). No agent produced a live ticker at conviction>=6; quant(6) and crypto(5) were explicit DEFERRALS (ticker=PASS), not tradable picks. Quant: zero volume-confirmed breakouts - the 3 ETFs with >=1.2x avg20 vol all FAILED the price test (XLV 1.35x=distribution -1.09% off 52wh rejection, XLB 1.65x=churn flat at 51.98, XLRE 1.21x=below SMA20/50); all four 7/2 forward triggers unfired on sub-1.2x volume (LLY 0.69x, XLF 0.86x RSI75.7, AAPL 0.77x, XLI 0.81x); SPY sweep already owns beta at better basis (744.78 vs 751.28). Crypto: BTC pullback only partial (-1.4% to 63,130, still $630+ above the 62.5K trigger), miners frozen premarket can't show resistance, entry edge closed (BTC +7.9% off 6/30 low), WebSearch blocks flow/on-chain verification -> defer to BTC 62-62.5K + miner-resistance. Catalyst verified the full 7/7-7/21 earnings calendar but qualitative beat-odds unverifiable (WebSearch down until 7/25); near-term names priced-in at highs, off-highs cohort may be correctly-priced deterioration. Macro/sentiment/contrarian: VIX-complacency + data blackout (insider/options/news feeds dark) = no edge. SPY sweep = CLOSING-SESSION-ONLY mechanic, no action premarket; existing 12-sh sweep retained, cash $1,062.64 (10.5% buffer).",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - VIX 15.96 peak complacency = worst R/R to add beta; no verifiable dated macro catalyst this week (FOMC 7/29 3+ wks out); metals-bounce rule unfired (UUP 28.32>28.20 trigger, GDX unconfirmed); TNX 4.48% sticky removes Fed-pivot tailwind. SPY sweep owns the trend."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) by agent - BTC only -1.4% to $63,130, still $630+ above the $62.5K pullback trigger; miners frozen premarket cannot show intraday resistance; entry edge closed (BTC +7.9% off low); WebSearch blocks ETF-flow/on-chain verification. Waits for BTC 62-62.5K + miner resistance."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) by agent - no volume-confirmed breakout: XLV 1.35x=distribution, XLB 1.65x=churn(flat), XLRE 1.21x=below MA; all 7/2 triggers unfired on sub-1.2x vol (LLY 0.69x, XLF 0.86x RSI75.7, AAPL 0.77x, XLI 0.81x). SPY sweep owns beta at better basis."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - all positioning feeds dark (insider Form-4 / options flow / AAII via Finnhub/WebSearch/EDGAR all blocked); only VIX fetchable = 15.96 peak Greed not fear (opposite of fear-extreme buy setup); KMX vetoed twice (fundamental-fatal, tracking -1.51%)."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - VIX 15.94 near 52w low = no fear to fade in a bull market; hated names (NKE/DIS/PFE/BABA) hug 52w lows with no multi-session stabilization; 'improving'/'catalyst' legs unverifiable without news access (WebSearch down); catalysts 60-90d out."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS by agent - full 7/7-7/21 earnings calendar verified (LEVI 7/8, PEP 7/9, DAL 7/10, banks 7/14, BLK/MS 7/15, UNH/NFLX/ISRG/ABT 7/16) per agent's Finnhub MCP research, but qualitative beat-odds unverifiable (WebSearch down until 7/25); near-term names priced-in at highs (sell-the-news risk), off-highs cohort may be correctly-priced deterioration not mispricing; no FDA binary in-window."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction >=6). Quant(6) and crypto(5) were explicit DEFERRALS with ticker=PASS, not tradable picks.",
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion). No active rules fired.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json and state/pm-lessons.json empty/INSUFFICIENT_SAMPLE (run-2 fresh start) - no adjustments applied.",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 15.94,
+      "spy_close": 751.28,
+      "spy_return_pct": 0.87,
+      "portfolio_pnl_pct": 0.78,
+      "alpha": -0.09,
+      "sweep": null,
+      "sweep_note": "Premarket session - SPY sweep is a CLOSING-SESSION-ONLY mechanic (orchestrator Step 10.5). No sweep action. Existing 12-sh SPY sweep retained; cash $1,062.64 (10.5% buffer)."
+    },
+    {
+      "date": "2026-07-07",
+      "session": "midday",
+      "decision": "pass",
+      "reasoning": "Run-2 day-4 midday -> unanimous PASS (6/6), 4th consecutive. Bull regime intact (SPY 748.51 midday > MA50 738.23 > MA200 692.74), threshold 8.0; VIX 15.95 near 52-wk low (13.38) = peak complacency, worst R/R to add beta. Midday is the first LIVE intraday session since premarket and it REINFORCED every agent's PASS rather than breaking it. NO agent produced a live ticker at conviction>=6; quant(6) and crypto(5) were explicit DEFERRALS (ticker=PASS), not tradable picks. (1) MACRO: intraday deterioration across every watchlist trigger - SPY 748.51 (-0.37%), QQQ 712.44 (-1.44% tech lagging), TNX 4.517% RISING (removes Fed-pivot tailwind, kills TLT long), UUP 28.37 FIRMING (metals-bounce rule 0/2, moving AWAY from <28.20 trigger), GDX -2.64% confirms metals weakness 2nd session. (2) CRYPTO: 7/6 trigger DECISIVELY CONTRADICTED - BTC flat ~$63,890 (above $62.5K zone) while EVERY miner broke down (CLSK -7.0%, IREN -6.1%, HUT -5.3%, MARA -5.0%, RIOT -4.3%, CIFR -3.3%) = exact opposite of required intraday resistance; 5d miners -10-20% (RIOT new local low); recoupling bounce fully reversed. Defer to BTC 62-62.5K + miner resistance. (3) QUANT: LIVE 5m data proves distribution-at-new-highs - FOUR names tagged fresh 52wh (LLY/XLF/XLV/DIA) and ALL reversed on sub-1.2x vol; closest RS leader XLI BREAKING DOWN -2.26%; XLB 7/6 churn failed to follow through; no momentum name clears 1.2x avg20. (4) SENTIMENT: EDGAR came back online midday - scanned ~400 Form-4s, the two biggest 'clusters' are compensation artifacts (PARR 11 = code-A director equity retainers; IVZ 4 = code-F tax withholding), NOT open-market buys; only live code-P cluster KMX fundamental-fatal + vetoed twice; VIX 15.95 = peak Greed. (5) CONTRARIAN: Finnhub REST came alive so fundamentals now VERIFIED = deterioration (NKE EPS5y -10%, PFE -3.5%, BABA -4.2%); NEW negative catalysts PFE HSBC downgrade + BABA Anthropic ban; INTC -8.65% is Samsung chip-selloff in a negative-earnings name = momentum unwind not contrarian; no fear to fade at VIX 15.95. (6) CATALYST: NEW since premarket is BEARISH - Samsung 7/7 print sparked memory/storage selloff (MU -6.5%, SNDK -9.2%, WDC -8.7%, STX -5.6%) = repricing of an already-happened event, not a long catalyst (long-only rules out shorting); LEVI (TOMORROW 7/8 BMO) priced-in at highs (unanimous raises, FIFA public, 0 sells/22); PEP +1.96% ripping INTO 7/9 reduces asymmetry; DAL mixed. No candidate debated (all PASS). SPY sweep = CLOSING-SESSION-ONLY mechanic, no midday action; existing 12-sh sweep retained. Data note: WebSearch still 429 until ~7/25 but Finnhub REST recovered midday + SEC EDGAR back online + Yahoo curl live throughout, so this PASS rests on VERIFIED live data (positive evidence), stronger than premarket's feeds-dark PASS.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - intraday tape REINFORCES premarket PASS: SPY 748.51, QQQ -1.44% (no verifiable driver), TNX 4.52% RISING (kills TLT/rate-sensitive longs), UUP 28.37 firming (metals-bounce rule 0/2, moving AWAY from trigger), GDX -2.64% unconfirmed. No verifiable dated macro catalyst this week (FOMC 7/29 3+ wks out); SPY sweep owns the trend."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) by agent - 7/6 trigger DECISIVELY CONTRADICTED: BTC flat ~$63,890 (above zone) while every miner broke down 3-7% (opposite of required resistance); 5d miners -10-20% vs BTC +2.2%; recoupling bounce reversed. WebSearch blocks flow/on-chain verification. Defer to BTC 62-62.5K + miner intraday resistance (RIOT first choice if stabilizes)."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) by agent - LIVE 5m data: FOUR fresh 52wh tags (LLY/XLF/XLV/DIA) ALL reversed on sub-1.2x vol = distribution-at-highs; RS leader XLI BREAKING DOWN -2.26%; XLB 7/6 churn failed to follow through; no momentum name clears 1.2x avg20 (only XLE 1.26x declining + XLP 1.29x defensive). SPY sweep owns beta at better basis (744.78 vs 748.60). New watch: XLV close >165.60 on >=1.2x vol."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent (UPGRADED: feeds-scanned-and-empty) - SEC EDGAR back online; scanned ~400 Form-4s, biggest 'clusters' are compensation (PARR 11 = code-A director retainers; IVZ 4 = code-F tax withholding), NOT open-market buys. No qualifying code-P cluster. VIX 15.95 = peak Greed. KMX (only live code-P cluster) fundamental-fatal, vetoed twice, tracking +2.9%."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent - Finnhub REST came alive; fundamentals now VERIFIED = deterioration across all hated names (NKE EPS5y -10%, PFE -3.5%, BABA -4.2%). NKE rolling over (failed bounce); PFE HSBC downgrade today; BABA Anthropic ban confirmed; INTC -8.65% is Samsung chip-selloff in negative-earnings name = momentum unwind not washout. VIX 15.95 = no fear to fade."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS by agent - NEW since premarket is BEARISH: Samsung 7/7 print sparked memory/storage selloff (MU -6.5%, SNDK -9.2%, WDC -8.7%, STX -5.6%) = repricing of already-happened event, not a long catalyst (long-only rules out shorting). LEVI (tomorrow 7/8) priced-in at highs; PEP +1.96% ripping into 7/9 (reduces asymmetry); DAL mixed (RJ downgrade vs MS bullish, EPS -30% YoY). 7/16-7/21 off-highs cohort unverifiable (WebSearch down 7/25). No FDA binary."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction >=6). Quant(6) and crypto(5) were explicit DEFERRALS with ticker=PASS, not tradable picks. Per skills/debate.md, no conviction>=6 live ticker => skip debate.",
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion). No active rules fired.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json empty/INSUFFICIENT_SAMPLE (run-2 fresh start) - no adjustments applied.",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 15.95,
+      "spy_close": 748.6,
+      "spy_close_note": "midday intraday mark (~12:40 ET, corroborated by macro/quant/sentiment/contrarian Yahoo-curl prints 748.51-748.70); not a session close",
+      "spy_return_pct": 0.51,
+      "portfolio_pnl_pct": 0.46,
+      "alpha": -0.05,
+      "sweep": null,
+      "sweep_note": "Midday session - SPY sweep is a CLOSING-SESSION-ONLY mechanic (orchestrator Step 10.5). No sweep action. Existing 12-sh SPY sweep retained; cash $1,062.64 (10.58% of NAV)."
+    },
+    {
+      "date": "2026-07-07",
+      "session": "closing",
+      "decision": "pass",
+      "reasoning": "Run-2 day-4 closing -> unanimous PASS (6/6), 5th consecutive. Bull regime intact (SPY 747.80 close > MA50 738.23 > MA200 692.74), threshold 8.0; VIX 16.32 ticking UP late (first crack in peak complacency but 9pts below the >25 fear-extreme buy threshold). The closing tape CONFIRMED every agent's PASS rather than broke it - the late fade hardened the bearish setups, it did not create an asymmetric long. NO agent produced a live ticker at conviction>=6; quant(6) and crypto(5) were explicit DEFERRALS (ticker=PASS), not tradable picks. (1) MACRO: every directional watchlist DETERIORATED into the close - VIX up but complacent, TNX 4.529% RISING (kills TLT -0.99%), DXY/UUP firming (metals-bounce rule now BROKEN 0/2 with GDX -3.94% confirming internal metals weakness 2nd session), QQQ -2.07% no verifiable driver; the single asymmetric move (energy USO +4.55%/XLE +3.08%) has an UNVERIFIABLE catalyst (WebSearch down 7/25) = blind-chase trap. (2) CRYPTO: agent's own 7/6 stand-down FIRED - BTC flat $63,807 (still ~$1,300 above the $62.5K entry zone) while miners ACCELERATED lower into the close (CLSK -6.96%, IREN -8.59%, MARA -6.02%, RIOT -6.38%, HUT -6.54%, CIFR -5.89%, all fresh 5d intraday lows) = active 5-session de-rating (5d miners -12 to -22% vs BTC +2%), exact OPPOSITE of the required intraday resistance; defer until BTC 62-62.5K AND miners resist. (3) QUANT: close CONFIRMED distribution-at-new-highs - FOUR names tagged fresh 52wh (LLY/XLF/XLV/DIA) and ALL closed BELOW their high on sub-1.2x avg20 vol (LLY 0.64x, XLF 0.64x RSI79.9, XLV 0.89x); RS-leader XLI -1.87% never touched the $186.45 trigger (now only +1.23% above SMA20); SPY itself -0.46% on 0.55x avg20 = low-volume red day; zero momentum names clear 1.2x. SPY sweep owns beta at better basis (744.78 vs 747.80). (4) SENTIMENT: EDGAR delta-scan at the close found ZERO qualifying code-P insider clusters - today's multi-filing 'clusters' are code-S (SONY officer sale), code-J (MIAC SPAC derivative), code-A (PARR director retainers), code-F (IVZ tax withholding), or section-16 institutional (Saba/Horizon); VIX 16.25 = greed-regime bounce off 52w lows, NOT a fear extreme; KMX (only live code-P cluster) fundamental-fatal + vetoed twice. (5) CONTRARIAN: no capitulation - INTC -10.5% close is a money-LOSING falling knife (EPS -$0.06, ROE -2.95%, NetMargin -5.9%, 5Y Rev -7.46%, +477% above 52w low) driven by Samsung sector rotation with no INTC-specific positive catalyst; every other hated name quiet (NKE -0.62%, PFE +1.6%, BABA flat); VIX 16 = no fear to fade in a bull market. (6) CATALYST: 7/8-7/28 window has NO conviction-8 event play - INTC -10% today into its 7/23 print is a bearish falling-knife/pre-announcement tell; TSLA -19% off highs is Contrarian territory with unverifiable beat-odds; LEVI (tomorrow 7/8) priced-in at highs (0 sells/22, unanimous raises); PEP ripping +1.2% into 7/9; banks at highs into 7/14-7/16; no FDA binary; CPI 7/15 no read; FOMC 7/29 outside 14d horizon. No candidate debated (all PASS). SPY sweep reconciled to 0 new shares (excess $560.83 < 1 SPY share at $747.80); existing 12-sh sweep retained. Data note: WebSearch still 429 until ~7/25 but Finnhub REST ALIVE this session (SPY quote cross-checked Finnhub+Yahoo) + SEC EDGAR live + Yahoo curl live = this PASS rests on VERIFIED live data.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - late-day tape DETERIORATED: VIX up to 16.26 (still complacent, <18 long-vol threshold), TNX 4.529% +5bps kills TLT -0.99%, DXY/UUP firming (metals-bounce rule BROKEN 0/2, GDX -3.94% 2nd session), QQQ -2.07% no verifiable driver; the single asymmetric move (USO +4.55%/XLE +3.08%) has an UNVERIFIABLE catalyst (WebSearch down 7/25) = blind-chase trap. Bull regime intact; SPY sweep owns the trend."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) - agent's own 7/6 STAND-DOWN FIRED: BTC flat $63,807 (still ~$1,300 above $62.5K entry zone, never pulled back) while miners ACCELERATED lower into close (CLSK -6.96%, IREN -8.59%, MARA -6.02%, RIOT -6.38%, HUT -6.54%, CIFR -5.89%, all fresh 5d lows) = 5th consecutive lower close, 5d -12 to -22% vs BTC +2% = active de-rating, exact opposite of required intraday resistance. Cause unverifiable without on-chain data (WebSearch 7/25). Defer until BTC 62-62.5K AND miners resist (RIOT first if stabilizes)."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) - close CONFIRMED distribution-at-new-highs: FOUR fresh 52wh tags (LLY/XLF/XLV/DIA) ALL closed BELOW their high on sub-1.2x avg20 vol (LLY 0.64x, XLF 0.64x RSI79.9, XLV 0.89x); RS-leader XLI -1.87% never touched $186.45 trigger (only +1.23% above SMA20, momentum-stack break imminent); XLB 7/6 churn failed to follow through; SPY -0.46% on 0.55x avg20 = low-volume red day; zero momentum names clear 1.2x. SPY sweep owns beta at better basis (744.78 vs 747.80). New watch: XLV retake+close >$165.605 on >=1.2x vol w/ RSI<70."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS (EDGAR delta-scanned-and-empty at close) - re-scan of today's 66 Form-4s found ZERO qualifying code-P clusters: SONY=code-S officer SALE, MIAC=code-J SPAC derivative, PARR=code-A director retainers, IVZ=code-F tax withholding, Saba/Horizon=section-16 institutional. VIX 16.25 = greed-regime bounce off 52w lows (9pts below the >25 fear-extreme buy threshold). KMX (only live code-P cluster, 5 insiders/19,274 deduped sh) fundamental-fatal + vetoed twice, tracking-only."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS - no capitulation; INTC -10.48% close is a money-LOSING falling knife (EPS -$0.06, ROE -2.95%, NetMargin -5.9%, 5Y Rev -7.46%, +477% above 52w low) driven by Samsung sector rotation with NO INTC-specific positive catalyst; every other hated name quiet (NKE -0.62%, PFE +1.6%, BABA flat, DIS flat). VIX 16.24 at 52w lows = peak complacency = no fear to fade in a bull market."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - 7/8-7/28 window has NO conviction-8 event play: INTC -10% today into 7/23 = bearish falling-knife/pre-announcement tell (cuts AGAINST a long); TSLA -19% off highs into 7/22 = Contrarian territory, beat-odds unverifiable (WebSearch 7/25); LEVI (tomorrow 7/8) priced-in (0 sells/22, unanimous raises, FIFA public); PEP +1.2% into 7/9; DAL mixed; banks at highs into 7/14-7/16; no FDA binary; CPI 7/15 no read; FOMC 7/29 outside 14d horizon."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction >=6). Quant(6) and crypto(5) were explicit DEFERRALS with ticker=PASS, not tradable picks. Per skills/debate.md, no conviction>=6 live ticker => skip debate.",
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion). No active rules fired.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json empty/INSUFFICIENT_SAMPLE (run-2 fresh start) - no adjustments applied.",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 16.32,
+      "spy_close": 747.8,
+      "spy_close_note": "closing intraday mark (~15:55 ET, ~5min pre-4pm; corroborated Finnhub c=747.80 + Yahoo 747.8, day -0.46%); official 4pm close not yet printed at fetch time",
+      "spy_return_pct": 0.41,
+      "portfolio_pnl_pct": 0.36,
+      "alpha": -0.04,
+      "sweep": {
+        "ticker": "SPY",
+        "new_shares": 0,
+        "reason": "excess $560.83 (cash 1062.64 - 5% buffer ~$501.81) < 1 SPY share ($747.80); existing 12-sh sweep retained",
+        "cash_after": 1062.64,
+        "cash_pct_nav": 10.58
+      }
+    },
+    {
+      "date": "2026-07-08",
+      "session": "premarket",
+      "decision": "pass",
+      "reasoning": "Run-2 premarket -> unanimous PASS (6/6), 6th consecutive. Bull regime intact (SPY 747.71 > MA50 739.01 > MA200 693.19), threshold 8.0; NO agent produced a live ticker at conviction>=6. The three highest-conviction calls were all explicit DEFERRALS (ticker=PASS), not tradable picks: quant(6) DEFER, crypto(5) DEFER, macro(4) PASS. Per skills/debate.md, no conviction>=6 live ticker => skip debate. Three notable OVERNIGHT DELTAS that all REDUCE the case for a new long rather than create one: (1) VIX CRACKED higher +10.7% to 18.06 (16.32->18.06) = first real move out of peak complacency; macro's VIX>18 watchlist condition now MET but SPY>MA50 so the 2-part regime-wobble trigger is only half-met, and there is no asymmetric long-only hedge anyway (no VIX ETP in universe; TLT is a falling knife with NO safety bid despite the vol spike = bond sell-off is fundamental term-premium, not positioning; long-only blocks trimming beta). (2) BTC PULLED into crypto's $62-62.5K entry-trigger zone overnight ($62,101 live CoinGecko, dispatch snapshot stale at $63.8K) for the FIRST time - but miner intraday resistance is UNVERIFIABLE premarket (Yahoo only returns 7/7 closes; equities closed until 09:30 ET; Finnhub key absent; WebSearch 429 until 7/25), and VIX is RISING into it = worst environment to pre-commit high-beta miner longs blind; crypto correctly DEFERS the catch-up entry to the midday (12:30 ET) session when 3hrs of live miner tape resolves resist-vs-cascade. (3) IRAN/OIL risk-off geopolitical shock overnight (Trump declared Iran interim accord 'over', US futures tumbling, oil climbing, dollar firming) raises the risk premium on EVERY near-term earnings print and hits DAL directly via fuel - this is a deteriorating tape, not an opportunity. Cross-agent: quant CONFIRMED distribution-at-new-highs for a 2nd session (4 fresh-52wh tags LLY/XLF/XLV/DIA all closed below on sub-1.2x avg20; RS-leader XLI inverted to negative 5d RS -1.66pt, only +1.38% above SMA20 = momentum-stack break imminent); contrarian's INTC is a 2nd-day money-losing falling knife (EPS -$0.06, ROE -2.95%, +477% above 52w low); sentiment's EDGAR delta-scan found ZERO qualifying code-P clusters (today's top multi-filers RDDT/LFST/BCDA are all code-A grants or nano-cap, post-quarter-end grant season); catalyst's 7/8-7/28 window has NO conv-8 play (LEVI today BMO priced-in 0-sells/22; banks at highs; INTC/TSLA off-highs falling knives). The SPY sweep (12 sh @ 744.78) already owns the bull trend at better basis; the macro-aligned call into a deteriorating tape is capital preservation + let the sweep ride, with crypto's developing miner setup re-checked at midday. Premarket SPY sweep = no action (closing-session-only mechanic). Data note: WebSearch still 429 until ~7/25 BUT Yahoo curl live (SPY 747.71 + ^VIX 18.06 verified) + SEC EDGAR live (insider scan) + CoinGecko live (BTC 62,101) = this PASS rests on VERIFIED live data.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - regime DETERIORATING but not BROKEN, and no asymmetric long-only expression exists today. VIX crossed 18.06 (macro's watchlist threshold, first move out of peak complacency) but SPY 747.71 still > MA50 739.01 so only 1 of 2 regime-wobble conditions met. No long-only hedge: no VIX ETP in universe; TLT falling knife (TNX 4.529% RISING, TLT near 52wL with NO safety bid despite vol spike = fundamental sell-off not positioning); XLF at 52wH into rising vol = chasing; USO/XLE driver UNVERIFIABLE; QQQ/GDX catching falling knives. Sweep owns the trend; macro escalates the VIX-leg watchlist."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED to midday) - SETUP FORMING not firing. BTC finally pulled into the $62-62.5K trigger zone ($62,101 live CoinGecko, dispatch snapshot stale at $63.8K) for the first time, so trigger HALF #1 is MET. But the decisive HALF #2 (miner intraday RESISTANCE to BTC's pullback) is UNVERIFIABLE at 07:00 ET premarket (Yahoo returns 7/7 closes only; equities closed until 09:30 ET; Finnhub key absent; WebSearch 429). Agent's own 7/6 stand-down is PAUSED not fired (BTC FALLING -1.65%, so miner weakness = normal 2-3x beta, not structural de-rating). Rising VIX 18.06 + unverifiable on-chain/flows = will not pre-commit blind; defers to midday (12:30 ET) when 3hrs of live tape resolves RIOT/CLSK resist-vs-cascade."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) - 7/7 close CONFIRMED distribution-at-new-highs 2nd session: 4 fresh-52wh tags (LLY/XLF/XLV/DIA) ALL closed BELOW on sub-1.2x avg20 vol; ZERO momentum names cleared >=1.2x (only XLE 1.24x = declining sector below SMA20, mandate-excluded). RS-leader XLI INVERTED to negative 5d RS (-1.66pt), only +1.38% above SMA20 = momentum-stack break imminent. Primary watch XLV triple-fails trigger (price 164.44<165.605, vol 1.02x<1.2x, RSI 70.2>70). VIX +10.9% spike coordinated with 52wh-rejection cluster = institutional distribution signature, not entry. SPY sweep owns beta at better basis (744.78 vs 747.71)."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (EDGAR delta-scanned-and-empty 7/7->7/8). Post-quarter-end GRANT SEASON: top 3 multi-filer clusters all fail - RDDT 6 Form-4s ALL code-A grants (directors), LFST 6 ALL code-A grants, BCDA 9 filings = $1 nano-cap out of $2B-$50B universe. ZERO qualifying code-P open-market clusters. VIX 18.13 = greed with first uptick (Iran shock), still 7pts BELOW >25 fear-extreme buy threshold; AAII/put-call unverifiable (WebSearch 7/25). KMX (only live code-P cluster) fundamental-fatal + vetoed twice, tracking-only."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS - all 5 tracked hated names fail cheap+improving+catalyst+washout. INTC $110.39 (-9.66%) = 2nd-day money-losing momentum unwind (EPS -$0.06, ROE -2.95%, NetMargin -5.9%, +477% above 52w low) in Samsung sector rotation, no name-specific positive catalyst = falling knife. NKE EPS growth 5Y -10%, catalyst 90d pre-guided DOWN. PFE just HSBC-downgraded. BABA cheap but active sanctions/Anthropic overhang. DIS CR 0.71 liquidity risk, not stabilized. VIX 18.06 still near 52wL 13.38 = peak complacency, not fear (re-entry needs VIX>25); bull-mode Step 10.5 mean-reversion trap."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (8th consecutive) - 7/8-7/28 window has NO conv-8 event play; NEW Iran/oil risk-off shock (Trump 'Iran deal over', futures tumbling, oil climbing) RAISES risk on all prints and hits DAL directly via fuel. LEVI today BMO PRICED-IN ($24.66, 3.6% off 52wh, 0 sells/22 analysts, 4 consecutive beats, FIFA public) = sell-the-news compounded by risk-off tape. DAL 7/10 hit by oil on top of EPS -30% YoY. Banks 7/14-7/16 at/near 52wh = priced-in. INTC 7/23 falling knife (-22.5% off highs, deterioration tell). TSLA/NFLX/ABT off-highs = Contrarian mandate, beat-odds unverifiable (WebSearch 7/25). No FDA binary; CPI 7/15 no read; FOMC 7/29 outside 14d horizon."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction>=6). Quant(6) and crypto(5) were explicit DEFERRALS with ticker=PASS, not tradable picks. Per skills/debate.md, no conviction>=6 live ticker => skip debate.",
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion with fresh evidence) - quant-min-conviction-8, all-no-cpi-fomc-entry, catalyst-min-conviction-8. No active rules fired.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json INSUFFICIENT_SAMPLE (n=0, run-2 fresh start); state/pm-lessons.json adjustments=[]. No adjustments applied; base_threshold 7.5 (8.0 in bull mode).",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 18.06,
+      "spy_premarket": 747.71,
+      "spy_premarket_note": "Yahoo chart API regularMarketPrice, 07:00 ET premarket; chartPrevClose 741.00; 52wH 760.4 / 52wL 618.05. Run-2 baseline 744.78. Firm-wide baseline 634.09 (close 2026-03-27).",
+      "spy_return_pct": 0.39,
+      "spy_return_firmwide_pct": 17.91,
+      "portfolio_pnl_pct": 0.35,
+      "alpha": -0.04,
+      "sweep": {
+        "ticker": "SPY",
+        "new_shares": 0,
+        "action": "none",
+        "reason": "SPY sweep is a CLOSING-session-only mechanic; no premarket action. Cash $1,062.64 (10.59% of NAV) + existing 12-sh sweep retained. At close, excess (~$560 over 5% buffer) < 1 SPY share ($747.71) => 0 new shares there too.",
+        "cash_after": 1062.64,
+        "cash_pct_nav": 10.59
+      }
+    },
+    {
+      "date": "2026-07-08",
+      "session": "midday",
+      "decision": "pass",
+      "reasoning": "Run-2 midday -> unanimous PASS (6/6), 7th consecutive. Bull regime TECHNICALLY intact (SPY 743.87 midday > SMA20 741.48 > SMA50 739.59 > SMA200 693.19), threshold 8.0, BUT the cushion is razor-thin - SPY clings to its SMA20 by just +0.20%/$1.46 (thinnest of the entire 7-PASS run) and the prior RS leader XLI CONFIRMED a momentum-stack break (live $179.80 < SMA20 $180.21). NO agent produced a live ticker at conviction>=6; quant(6)/crypto(5)/macro(4) were all explicit DEFERRALS or PASS (ticker=PASS), not tradable picks. Per skills/debate.md, no conviction>=6 live ticker => skip debate. The midday tape REINFORCED every agent's PASS rather than broke it - this is a DETERIORATING, distributing tape, not an opportunity tape. (1) MACRO: 'dash-for-cash' liquidation signature - stocks/bonds/gold/crypto ALL down, only USD/energy bid. Regime-wobble trigger NOT fired: VIX FADED from the 18.06 premarket spike back below 18 to 17.52 (VIX-leg moves AWAY from trigger) while SPY dropped 747.71->743.87 (SPY-leg moves TOWARD trigger, now only 0.46% above MA50 739.59 = closest of Run-2). Energy USO +10.1% 5d = extended chase w/ unverifiable-duration geopolitical binary (WebSearch down 7/25) = blind-chase trap; TLT/GLD/GDX falling knives (TNX 4.589% accelerating, no safety bid = fundamental term-premium sell-off not positioning); metals-bounce rule BROKEN (UUP 28.43 firming >28.20, GDX -3.9% 3rd session). (2) CRYPTO: the deferred miner setup resolved MIXED, not entry - BTC SLIPPED BELOW the $62K trigger zone to $61,838 (-3.23% 24h, only $338 above the $61.5K stand-down line, buffer halved in 5hrs); miner resistance SPLIT (3 green IREN/HUT/CIFR vs 3 cascading CLSK/MARA/RIOT); MSTR broke the $94 stand-down line ($93.81). Trigger requires BTC in zone AND unified resistance - neither cleanly met; the 5d miner de-rating (-10 to -25%) has NOT reversed, only slowed for 3 names. Premarket defer validated (avoided a blind cascading entry). Re-check at closing: BTC holds $61.5-62K + 4+ miners green = entry fires (IREN first); BTC<$61.5K or MSTR closes <$94 = stand down entirely. (3) QUANT: distribution-at-new-highs INTENSIFIED 3rd session - XLI momentum-stack break CONFIRMED live (prior RS leader rolled through its SMA20); the midday volume that appeared is SELLING volume not buying (XLF -1.63% on 1.30x proj vol after fresh-52wh tag, XLY -2.35% on 1.63x = Consumer Discretionary dumped below SMA20); all 4 fresh-52wh tags (LLY/XLF/XLV/DIA) further below rejected highs; XLV trigger triple-fails (price/vol/RSI); the only vol-up/price-up name (XLE +1.68%) is a downtrend dead-cat bounce (-12.45% from 52wh, below SMA50), mandate-excluded. SPY sweep owns beta at better basis (744.78 vs 743.87). (4) SENTIMENT: EDGAR delta-scan verified-empty and STRENGTHENED - 3 NEW midday clusters (CCBG 8, KLIC 6, LAC 5) ALL code-A grants; 2-filer clusters (VTEX/SE = code-S SALES, MOMO = code-M exercises); combined with premarket = 9 clusters/44+ filings with ZERO code-P open-market buys (post-quarter-end grant season confirmed across 6 issuers). KLIC ($5.9B, only in-universe) is the trap - 6 board-retainer grants, zero personal capital. VIX 17.52 = greed with 2nd-session uptick, 7.5pts below >25 fear-extreme buy threshold. KMX (only live code-P cluster) fundamental-fatal + vetoed twice, tracking-only. (5) CONTRARIAN: BABA +10.85% gap = momentum CHASE on ESCALATING Anthropic/Beijing overhang (7/6-7/7 headlines worsening, not resolving) - opposite of a washout entry. PYPL is the most promising new candidate in many sessions (PE 7.96x, ROE 25%, 6wk $40-46 base) but EPS QoQ YoY -6.09% fails the improving leg = tracking for Q2 (late Jul/early Aug). INTC extending falling knife (-12.7% over 2 sessions, EPS -$0.06, ROE -2.95%, +477% above 52w low). VIX 17.52 still peak complacency not fear (re-entry needs >25). (6) CATALYST: LEVI sell-the-news CONFIRMED ($24.03, -2.57% on day despite 4 consecutive beats = priced-in validation); Iran/oil shock ESCALATING (Reuters ~10:45 ET: Trump 'will probably hit them again Wednesday night') raises risk on ALL near-term prints and hits DAL (7/10) via fuel on top of EPS -30% YoY; energy tailwind unverifiable + already priced (HAL/XOM moving up, asymmetry compressing); banks 7/14-7/16 at highs = priced-in; INTC 7/23 deterioration tell; no FDA binary; CPI 7/15 no read; FOMC 7/29 outside 14d. No candidate debated (all PASS). SPY sweep = CLOSING-SESSION-ONLY, no midday action; 12-sh sweep + cash 1062.64 retained. REGIME ALERT: SPY within $1.46 of SMA20 + XLI stack break = if SPY closes <741.48 today, bull-trend-bias deserves formal re-examination at closing. Data note: WebSearch still 429 until ~7/25 BUT Yahoo curl (SPY/VIX/miners/ETFs verified) + SEC EDGAR live (44+ Form-4s) + CoinGecko live (BTC 61,838) + Finnhub REST live (contrarian/catalyst fundamentals+calendar) = this PASS rests on VERIFIED live intraday data, the strongest-evidenced PASS of the run.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - 'dash-for-cash' liquidation (stocks/bonds/gold/crypto all down, only USD/energy bid); regime-wobble trigger NOT fired (VIX faded 18.06->17.52 back below 18, SPY 743.87 >MA50 739.59 but only 0.46% buffer = closest of Run-2); energy USO +10.1% 5d = chase w/ unverifiable-duration geopolitical binary; TLT/GLD/GDX falling knives (TNX 4.589% accelerating); metals-bounce rule BROKEN (UUP 28.43>28.20). Sweep owns the trend; escalates SPY-vs-MA50 watchlist."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED resolved MIXED) - BTC slipped BELOW $62K zone to $61,838 ($338 above $61.5K stand-down, buffer halved in 5hrs); miner resistance SPLIT (3 green IREN/HUT/CIFR vs 3 cascading CLSK/MARA/RIOT); MSTR broke $94 stand-down line. Trigger requires BTC in zone AND unified resistance - neither met; 5d miner de-rating (-10 to -25%) NOT reversed. Re-check at closing; stand down if BTC<$61.5K or MSTR closes <$94."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) - distribution-at-new-highs INTENSIFIED 3rd session: XLI momentum-stack break CONFIRMED (live $179.80 < SMA20 $180.21, prior RS leader rolled through stack); midday vol = SELLING vol (XLF -1.63%/1.30x, XLY -2.35%/1.63x); all 4 fresh-52wh tags further below rejected highs; XLV trigger triple-fails; only vol-up name XLE = downtrend dead-cat bounce (excluded). SPY clings to SMA20 by $1.46. Sweep owns beta at better basis (744.78 vs 743.87)."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (EDGAR verified-empty, STRENGTHENED) - 3 NEW midday clusters (CCBG 8/KLIC 6/LAC 5) ALL code-A grants; 2-filer clusters (VTEX/SE code-S sales, MOMO code-M exercises) = 9 clusters/44+ filings ZERO code-P buys. KLIC ($5.9B, only in-universe) = 6 board-retainer grants trap. VIX 17.52 greed w/ 2nd-session uptick, 7.5pts below >25 fear threshold. KMX fundamental-fatal + vetoed twice, tracking-only."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS (12th) - BABA +10.85% gap = momentum CHASE on ESCALATING Anthropic/Beijing overhang (not resolution); PYPL most promising new candidate (PE 7.96x, ROE 25%, 6wk base) but EPS -6.09% fails improving leg = tracking for Q2; INTC extending falling knife (-12.7% over 2 sessions). VIX 17.52 peak complacency not fear (re-entry needs >25); bull-mode mean-reversion trap."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (9th) - LEVI sell-the-news CONFIRMED ($24.03, -2.57%); Iran/oil ESCALATING (Trump 'hit them again Wed night'); no conv-8 event play (DAL oil headwind + EPS -30% YoY; energy already priced; banks at highs; INTC deteriorating; no FDA binary; CPI 7/15 no read; FOMC 7/29 outside 14d)."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction>=6). Quant(6) and crypto(5) were explicit DEFERRALS with ticker=PASS, not tradable picks. Per skills/debate.md, no conviction>=6 live ticker => skip debate.",
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion with fresh evidence) - quant-min-conviction-8, all-no-cpi-fomc-entry, catalyst-min-conviction-8. No active rules fired.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json INSUFFICIENT_SAMPLE (n=0, run-2 fresh start); state/pm-lessons.json adjustments=[]. No adjustments applied; base_threshold 7.5 (8.0 in bull mode).",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 17.52,
+      "spy_close": 743.87,
+      "spy_close_note": "midday intraday mark (~12:30 ET, PM Yahoo curl 743.87 corroborated by 4 agents 742.94-743.03; VIX 17.52 corroborated 17.55-17.61); not a session close. Run-2 baseline 744.78. Firm-wide baseline 634.09 (close 2026-03-27).",
+      "spy_return_pct": -0.12,
+      "spy_return_firmwide_pct": 17.31,
+      "portfolio_pnl_pct": -0.11,
+      "alpha": 0.01,
+      "sweep": null,
+      "sweep_note": "Midday session - SPY sweep is a CLOSING-SESSION-ONLY mechanic (orchestrator Step 10.5). No sweep action. Existing 12-sh SPY sweep retained; cash $1,062.64 (10.64% of NAV).",
+      "regime_alert": "SPY within $1.46 (+0.20%) of SMA20 741.48 + XLI momentum-stack break CONFIRMED - bull-trend-bias deserves formal re-examination at closing if SPY closes <741.48."
+    },
+    {
+      "date": "2026-07-08",
+      "session": "closing",
+      "decision": "pass",
+      "reasoning": "Run-2 closing -> unanimous PASS (6/6), 8th consecutive. Bull regime SURVIVED the session intact: SPY closed 745.32 (verified Yahoo curl, ~15:45 ET; 5d 745.76/744.78/751.28/747.71/745.32) > SMA20 741.48 (+0.51%, cushion WIDENED from midday +0.20%) > SMA50 739.59 (+0.71%) > SMA200 693.19. The midday REGIME ALERT (formal re-examination of bull-trend-bias if SPY closed <741.48) DID NOT FIRE - SPY recovered +0.62% off the midday low and finished above its stack; threshold stays 8.0. VIX FADED 17.55 midday -> 16.86 close (off the 18.06 premarket spike), well below the >25 fear-extreme buy threshold = greed-with-cracks, not fear. NO agent produced a live ticker at conviction>=6; quant(6)/crypto(5)/macro(4) were all explicit PASS/DEFER/STAND-DOWN with ticker=PASS, not tradable picks. Per skills/debate.md, no conviction>=6 live ticker => skip debate. The closing tape CONFIRMED every agent's PASS rather than broke it - a distributing, dash-for-cash risk-off tape (Iran/oil shock), not an opportunity tape. (1) MACRO: regime-wobble trigger finished 0/2 at the close - VIX-leg moved AWAY (16.86 <18), SPY-leg moved AWAY (+0.71% above MA50). Dash-for-cash persists underneath (stocks/bonds/gold/crypto all red, only USD+energy bid) but did NOT deepen into a regime break. ONE new informational tick: TNX DECELERATED (+4bps close vs +6bps midday) - first hint the yield spike may be exhausting (relevant for 7/15 CPI watch). Every directional long has poor R/R: TLT falling knife near 52wL (TNX 4.569% still rising, no safety bid), GDX 3rd session of miners crash (internal metals weakness, metals-bounce rule BROKEN), USO/XLE a +9%/+4% 5d rip DECELERATING at the highs with XLE lagging 2:1 = chase trap. No asymmetric long-only macro hedge exists (no VIX ETP; TLT falling knife). (2) CRYPTO: the deferred re-check resolved to a GATE CONFLICT - FIRE condition MET (BTC bounced back into the $62-62.5K zone at $62,180 AND miners achieved UNIFIED resistance for the first time in 5 sessions: 4 of 6 green led by IREN +7.6%/HUT +9.5%) BUT the STAND-DOWN condition ALSO TRIGGERED: MSTR closed $93.77 < $94 (verified 3x), LOWER than midday. When both fire, stand-down wins as the capital-protection rule - a miner rally without the cleanest BTC-proxy (MSTR) confirming is most consistent with an oversold bounce / short-cover into tomorrow, not sustained accumulation. Honor the pre-committed gate; do not override it because miners had one green session. Reactivation is one MSTR-reclaim away (7/10 CPI is the most likely resolver). (3) QUANT: distribution-at-new-highs INTENSIFIED a 4th session - FIVE names tagged fresh 52wh (LLY/XLF/XLV/DIA/AAPL) and ALL closed BELOW on sub-1.2x avg20 vol; LLY+XLF made DOUBLE rejections (re-tested the 7/7 high, reversed harder); the ONLY >=1.2x-vol name (XLY 1.66x) was a SELLING breakdown BELOW its SMA20, not a breakout. XLI's midday momentum-stack break did NOT confirm at the close (razor +0.16% reclaim, inconclusive); XLV primary trigger triple-fails. Zero volume-confirmed breakouts; SPY sweep owns beta at basis-neutral ($744.78 vs $745.32). (4) SENTIMENT: closing EDGAR delta verified-empty and STRENGTHENED - 5 NEW multi-filer clusters (AZZ 7, Worthington 5, SHW 4, ONB 3, LAC 5) ALL code-A grants / code-F withholding / code-J derivative, ZERO code-P open-market buys. Today's cumulative across 3 sessions: 11 distinct issuers / 60+ Form-4 filings, every one code-A/F/J/M/S = conclusive post-quarter-end grant season. KMX (only live code-P cluster) fundamental-fatal + PM-vetoed twice = tracking-only. (5) CONTRARIAN: VIX fell to 16.85 (fear FADING, not capitulating - re-entry needs >25). PYPL remains the best candidate fundamentally (PE 7.96x, ROE 25%, 6wk base) but the improving leg STILL FAILS (EPS QoQ YoY -6.09%) AND collected a fresh bearish analyst initiation today; hard catalyst = Q2 earnings (late Jul/early Aug), not landed = buying now is being early. BABA gap extended to +11.55% on ESCALATING Anthropic/Beijing overhang = momentum chase, opposite of washout. INTC/NKE/PFE/DIS each fail >=1 leg. (6) CATALYST: 10th PASS - no conv-8 event play in the 7/9-7/28 window. PEP (7/9 BMO) now INSIDE the event (<12hrs, coin-flip, no setup window). Banks got HIT on the Iran macro shock (CFG -4.69%, JPM -2.50%, PNC -2.82%) = rising risk premium not improving setup. Energy caught the oil bid (HAL +3.1%) but persistence unverifiable geopolitically + already moving + macro (ETF mandate). DAL/INTC confirmed falling knives; LEVI sell-the-news confirmed; no FDA binary; CPI/FOMC no directional edge. No candidate debated (all PASS). SPY sweep reconciled to 0 new shares (excess $562.32 < 1 SPY share at $745.32); existing 12-sh sweep retained. Data note: WebSearch still 429 until ~7/25 BUT Yahoo curl (SPY 745.32, ^VIX 16.86 verified) + SEC EDGAR (60+ Form-4s) + CoinGecko (BTC 62,180) + Finnhub REST live = this PASS rests on VERIFIED live closing data.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - regime-wobble trigger finished 0/2 at the close (VIX faded to 16.86 <18; SPY +0.71% above MA50), regime alert (<SMA20 741.48) did NOT fire. Dash-for-cash persists but no regime break. NEW: TNX decelerated (+4bps close vs +6bps midday) = first hint the yield spike may exhaust (7/15 CPI watch). Every directional long poor R/R: TLT falling knife near 52wL, GDX 3rd-session miners crash (metals-bounce BROKEN), USO/XLE +9%/+4% 5d rip decelerating w/ XLE lagging 2:1 = chase trap. No asymmetric long-only hedge (no VIX ETP; TLT falling knife). Sweep owns the trend."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (STAND DOWN) - deferred re-check resolved to a GATE CONFLICT: FIRE cond MET (BTC $62,180 back in $62-62.5K zone AND miners unified green for first time in 5 sessions, IREN +7.6%/HUT +9.5%/CIFR +6.1%/RIOT +0.2%) BUT STAND-DOWN cond ALSO TRIGGERED (MSTR closed $93.77 < $94, verified 3x, lower than midday). Stand-down wins (capital-protection rule): a miner rally w/o the cleanest BTC-proxy confirming = oversold bounce / short-cover, not accumulation. Reactivation is one MSTR-reclaim away (7/10 CPI most likely resolver). IREN remains first choice if gate reopens."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) - distribution-at-new-highs INTENSIFIED 4th session: FIVE fresh-52wh tags (LLY/XLF/XLV/DIA/AAPL) ALL closed BELOW on sub-1.2x avg20 vol; LLY+XLF DOUBLE rejections (re-tested 7/7 high, reversed harder; LLY now below $1238 trigger); the ONLY >=1.2x-vol name (XLY 1.66x) = SELLING breakdown below SMA20, not breakout. XLI midday stack-break did NOT confirm (razor +0.16% reclaim, inconclusive); XLV primary trigger triple-fails. SPY held SMA20 +0.51% (regime alert did NOT fire). Zero volume-confirmed breakouts; sweep owns beta basis-neutral ($744.78 vs $745.32)."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (EDGAR closing delta verified-empty, STRENGTHENED) - 5 NEW multi-filer clusters (AZZ 7, Worthington 5, SHW 4, ONB 3, LAC 5) ALL code-A grants / code-F withholding / code-J derivative, ZERO code-P. Today cumulative 3 sessions: 11 issuers / 60+ filings, zero code-P open-market buys = conclusive post-quarter-end grant season. VIX 16.86 close = greed FADING DOWN from midday 17.55 (Iran flutter retreated), ~8pts below >25 fear-extreme threshold. AAII/put-call/CNN Fear&Greed unverifiable (WebSearch 7/25). KMX fundamental-fatal + PM-vetoed twice, tracking-only."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS (13th, 8th consecutive run-2) - fear precondition went the WRONG way: VIX FELL 17.56->16.85 = peak complacency not capitulation (re-entry needs >25). PYPL best candidate fundamentally (PE 7.96x, ROE 25%, 6wk base) but improving leg STILL FAILS (EPS QoQ YoY -6.09%) + fresh bearish analyst initiation today; hard catalyst = Q2 earnings (late Jul/early Aug), not landed. BABA gap extended +11.55% on ESCALATING Anthropic/Beijing overhang = momentum chase (opposite of washout). INTC/NKE/PFE/DIS each fail >=1 leg. Bull-mode Step 10.5 mean-reversion trap."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (10th consecutive) - no conv-8 event play in 7/9-7/28 window. PEP (7/9 BMO) now INSIDE event (<12hrs, coin-flip, beat-odds unverifiable). Banks HIT on Iran macro shock (CFG -4.69%, JPM -2.50%, PNC -2.82%) = rising risk premium not improving setup. Energy caught oil bid (HAL +3.1%) but unverifiable persistence + already moving + macro (ETF mandate). DAL/INTC confirmed falling knives; LEVI sell-the-news confirmed; no FDA binary; CPI/FOMC no directional edge. Forcing sub-8 into escalating geopolitical risk-off repeats Run-1 priced-in failure."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction>=6). Quant(6) was an explicit DEFER, crypto(5) an explicit STAND-DOWN, macro(4) a PASS, all with ticker=PASS, not tradable picks. Per skills/debate.md, no conviction>=6 live ticker => skip debate.",
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "index"
+        ],
+        "current_agent": "n/a (all PASS)",
+        "deprioritized": false,
+        "note": "Only 1 buy in the entire run-2 trade log (SPY benchmark sweep, agent=index). No analyst-agent dominance concern."
+      },
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion with fresh evidence) - quant-min-conviction-8, all-no-cpi-fomc-entry, catalyst-min-conviction-8. No active rules fired. (Note: today 7/8 is not a CPI/FOMC release day regardless - CPI is 7/15, FOMC 7/29.)",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json INSUFFICIENT_SAMPLE (n=0, run-2 fresh start); state/pm-lessons.json adjustments=[]. No adjustments applied; base_threshold 7.5 (8.0 in bull mode).",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 16.86,
+      "spy_close": 745.32,
+      "spy_close_note": "closing mark (~15:45 ET, lead Yahoo chart API regularMarketPrice, ~15min pre-4pm; chartPrevClose 746.77; corroborated by 6 agents 744.74-745.12; official 4pm close not yet printed). Run-2 baseline 744.78. Firm-wide baseline 634.09 (close 2026-03-27).",
+      "spy_return_pct": 0.07,
+      "spy_return_firmwide_pct": 17.54,
+      "portfolio_pnl_pct": 0.06,
+      "alpha": -0.01,
+      "sweep": {
+        "ticker": "SPY",
+        "new_shares": 0,
+        "reason": "excess $562.32 (cash 1062.64 - 5% buffer ~$500.32) < 1 SPY share ($745.32); existing 12-sh sweep retained",
+        "cash_after": 1062.64,
+        "cash_pct_nav": 10.62
+      },
+      "regime_alert": "RESOLVED - did NOT fire. Midday alert flagged formal re-examination of bull-trend-bias if SPY closed <SMA20 741.48; SPY closed 745.32 (+0.51% above SMA20, +0.71% above SMA50, cushion widened from midday +0.20%). Bull-trend-bias survives another session, razor-thin but intact. Re-arm if SPY closes <741.48 next session."
+    },
+    {
+      "date": "2026-07-09",
+      "session": "premarket",
+      "decision": "pass",
+      "reasoning": "Run-2 premarket -> unanimous PASS (6/6), 9th consecutive. Bull regime intact (SPY 745.40 7/8 close > SMA20 741.60 > SMA50 739.64 > SMA200 693.2), threshold 8.0; VIX 17.06 (live 7/9 premarket, UP from 16.86 7/8 close) - risk-off continuing but still <18 (complacent-with-cracks), far below >25 fear-extreme buy threshold. NO agent produced a live ticker at conviction>=6; quant(6)/crypto(5) were explicit DEFERRALS (ticker=PASS), macro(4)/catalyst(4)/sentiment(4)/contrarian(3) PASS. Per skills/debate.md, no conviction>=6 live ticker => skip debate. The premarket tape CONFIRMED every agent's PASS rather than broke it - a dash-for-cash risk-off tape (Iran/oil shock ongoing), not an opportunity tape. (1) MACRO: regime-wobble trigger 0/2 (VIX 17.06<18 rising toward it, SPY +0.78% above MA50); dash-for-cash persists (TNX 4.569% rising kills TLT falling knife, GDX 3d down, metals-bounce BROKEN UUP 28.36>28.20); energy USO +8.7%/XLE +5.3% 5d = extended chase w/ unverifiable-duration Iran/oil binary; NO asymmetric long-only hedge (no VIX ETP; TLT falling knife). Sweep owns beta. (2) CRYPTO: MSTR stand-down gate CLOSED 2nd session (7/8 close 93.87<4, 3 consecutive lower closes); BTC live 62,721 marginally ABOVE 2-62.5K trigger zone; miners 3/6 green on stale 7/8 closes (below 4+ fire threshold), intraday resistance UNVERIFIABLE premarket. Per pre-committed rule, defer high-beta miner longs blind premarket w/ MSTR below gate. Reactivate midday if MSTR reclaims >4 intraday AND BTC holds 61.5-62.5K AND 4/6 miners green (IREN first choice); 7/10 CPI tomorrow likely resolver. (3) QUANT: distribution regime EVOLVED 5th session - 7/7 tag-and-reject -> 7/8 FADE (NONE re-tested highs, all closed lower = buying exhaustion); zero volume-confirmed breakouts, only heavy-vol names SELLING (XLY 1.827x, XLB 1.089x, XLF 1.141x); XLI canary +0.10% above SMA20 (stack break imminent); SPY held SMA20 +0.51% (regime intact). Sweep owns beta basis-neutral. (4) SENTIMENT: EDGAR delta verified-empty (GIS 13 code-A grants @/bin/bash fiscal-YE; TSMC 31 tiny ESPP code-P lots mega-cap out of universe; Vipshop 2 code-S sales); zero qualifying code-P mid-cap cluster; VIX 17.10 greed; KMX fundamental-fatal+vetoed twice tracking-only @50.30 (-1.33%). (5) CONTRARIAN: VIX 17.23 peak complacency (needs >25) = no fear to fade; PYPL improving leg fails (EPS QoQ YoY -6.09) + Barclays Underweight 2 PT; BABA +11% momentum chase on escalating Anthropic/Beijing; INTC/NKE/PFE/DIS each fail >=1 leg. (6) CATALYST: no conv-8 event play 7/9-7/28; PEP prints TODAY BMO (maximally inside-event, coin-flip); banks hit on ongoing Iran shock (CFG -4.49%); energy tailwind unverifiable+already moving; DAL/INTC falling knives; no FDA binary in-window. No candidate debated (all PASS). Premarket SPY sweep = no action (closing-session-only). Data: WebSearch 429 until ~7/25 BUT Yahoo curl (SPY 745.40, VIX 17.06, miners/ETFs verified) + SEC EDGAR (Form-4s) + CoinGecko (BTC 62,721) + Finnhub REST live = PASS rests on VERIFIED live data. Mark-to-market (premarket ~07:00 ET, SPY 745.40 verified Yahoo+Finnhub): NAV 10007.44 (12x745.40 + 1062.64 cash), +0.07% vs SPY +0.08% (Run-2 baseline 744.78) = alpha -0.01% (10.62% cash drag).",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - regime-wobble 0/2 (VIX 17.06<18 rising toward it, SPY +0.78%>MA50); dash-for-cash (TNX 4.569% rising kills TLT falling knife, GDX 3d down, metals BROKEN UUP 28.36>28.20); energy USO +8.7%/XLE +5.3% 5d extended chase w/ unverifiable Iran/oil binary; NO asymmetric long-only hedge (no VIX ETP; TLT falling knife). Sweep owns beta."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (DEFER to midday) - MSTR gate CLOSED 2nd session (7/8 close 93.87<4, 3 lower closes); BTC 62,721 marginally above 2-62.5K zone; miners 3/6 green on stale 7/8 closes (below 4+ threshold), intraday resistance unverifiable premarket. Per pre-committed rule defer high-beta miners blind premarket w/ MSTR below gate. Reactivate midday if MSTR reclaims >4 intraday AND BTC holds 61.5-62.5K AND 4/6 miners green (IREN first choice); 7/10 CPI tomorrow likely resolver."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFER) - distribution EVOLVED 5th session: 7/7 tag-and-reject -> 7/8 FADE (none re-tested highs, all closed lower = buying exhaustion); zero vol-confirmed breakouts, only heavy-vol SELLING (XLY 1.827x/XLB 1.089x/XLF 1.141x); XLI canary +0.10% above SMA20 (stack break imminent); SPY held SMA20 +0.51% (regime intact, PASS pick-specific). All 5 forward triggers unfired. Sweep owns beta basis-neutral."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (EDGAR verified-empty) - GIS 13 code-A grants @/bin/bash (fiscal-YE), TSMC 31 tiny ESPP code-P lots (mega-cap out of 0B universe), Vipshop 2 code-S sales; zero qualifying code-P mid-cap cluster. VIX 17.10 greed (~8pts below >25 fear threshold; AAII/put-call unverifiable WebSearch 7/25). KMX fundamental-fatal + vetoed twice, tracking-only @50.30 (-1.33%)."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS - VIX 17.23 peak complacency (needs >25) = no fear to fade; bull-mode mean-reversion trap. PYPL improving leg fails (EPS QoQ YoY -6.09) + fresh Barclays Underweight 2 PT below 4.53; hard catalyst Q2 earnings not landed. BABA +11.05% chase on escalating Anthropic/Beijing. INTC/NKE/PFE/DIS each fail >=1 leg. Nothing meets cheap+improving+catalyst+washout."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (11th) - no conv-8 event play 7/9-7/28. PEP prints TODAY BMO (maximally inside-event, coin-flip, beat-odds unverifiable). Banks HIT on ongoing Iran shock (CFG -4.49%, PNC -2.82%, JPM -2.54%) = rising risk premium not improving setup, at/near 52wh = priced-in. Energy caught oil bid (HAL +3.49%) but unverifiable+already moving+macro. DAL/INTC falling knives (INTC new low 04.41); TSLA/7-16 cohort off-highs = Contrarian mandate. No FDA binary in-window (earliest AdCom 7/29-30); CPI 7/15 no read; FOMC 7/29 outside 14d."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction>=6). Quant(6) and crypto(5) were explicit DEFERRALS with ticker=PASS, not tradable picks. Per skills/debate.md, no conviction>=6 live ticker => skip debate.",
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "index"
+        ],
+        "current_agent": "n/a (all PASS)",
+        "deprioritized": false,
+        "note": "Only 1 buy in run-2 trade log (SPY benchmark sweep, agent=index). No analyst-agent dominance concern."
+      },
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion with fresh evidence) - quant-min-conviction-8, all-no-cpi-fomc-entry, catalyst-min-conviction-8. No active rules fired. (7/9 is not a CPI/FOMC day - CPI 7/15, FOMC 7/29.)",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json INSUFFICIENT_SAMPLE (n=0, run-2 fresh start); state/pm-lessons.json adjustments=[]. No adjustments applied; base_threshold 7.5 (8.0 in bull mode).",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 17.06,
+      "spy_close": 745.4,
+      "spy_close_note": "7/8 official close (Yahoo regularMarketPrice mktTime 2026-07-08 20:00 UTC = 4pm ET; corroborated Finnhub c=745.40). 7/9 session not yet open at premarket. Run-2 baseline 744.78. Firm-wide baseline 634.09 (close 2026-03-27).",
+      "spy_return_pct": 0.08,
+      "spy_return_firmwide_pct": 17.55,
+      "portfolio_pnl_pct": 0.07,
+      "alpha": -0.01,
+      "sweep": null,
+      "sweep_note": "Premarket session - SPY sweep is a CLOSING-SESSION-ONLY mechanic (orchestrator Step 10.5). No sweep action. Existing 12-sh SPY sweep + cash 1062.64 retained (10.62% of NAV). At close, excess (~62 over 5% buffer) < 1 SPY share (45.40) => 0 new shares there too.",
+      "outcome_evaluation": "KMX day_5 checkpoint filled (7/9 premarket): price 50.30 (7/8 close, verified Yahoo 1mo closes + Finnhub), return -1.33%. KMX chopping 50-51 since entry (7/2 50.98 -> 7/6 50.21 -> 7/7 51.05 -> 7/8 50.30), sideways-to-down; PASS holding. All 6 agent scorecards regenerated/touched (INSUFFICIENT_SAMPLE, modifier frozen 1.0x)."
+    },
+    {
+      "date": "2026-07-09",
+      "session": "midday",
+      "decision": "pass",
+      "reasoning": "Run-2 midday -> unanimous PASS (6/6), 10th consecutive. Bull regime STRENGTHENED (SPY 750.67 midday, +0.71% intraday, > SMA20 741.60 +1.22% > SMA50 739.64 +1.49% > SMA200 693.2), threshold 8.0; VIX FELL to 16.04 (DOWN from 17.06 premarket / 16.86 7/8 close) = the dash-for-cash risk-off signature of 7/7-7/8 REVERSED to broad risk-on by midday (SPY +0.69%, QQQ +1.45%, GDX +3.1% leading GLD 2.4x, TNX first down-tick 4.545%, DXY fading). NO agent produced a live ticker at conviction>=6 (quant-6 an explicit DEFER, crypto-4 a PASS despite its gate firing, macro/sentiment/contrarian/catalyst 3-4), so per skills/debate.md no conviction>=6 live ticker => skip debate. The midday tape REINFORCED every agent's PASS for a NEW reason vs 7/8: it is now a LOW-VOLUME RELIEF BOUNCE (quant: nothing >0.474x avg20, no name re-tested its 7/7 52wh for a 3rd session, XLI canary HELD +0.97%>SMA20) not accumulation - green on collapsing volume = short-cover/relief, the worst tape to chase. (1) MACRO: regime-wobble 0/2 (VIX easing AWAY from 18, SPY cushion WIDENED); metals-repair SHOWING (GDX leading GLD, DXY fading) but UUP 28.35 still >28.20 trigger (0/2) and TNX 4.545% still 14.5bps above 4.40% structural line = buying metals/TLT now front-runs macro's OWN rules; energy pullback came (USO -2.73%) but Iran/oil catalyst unverifiable (WebSearch down); TLT 84.52 still falling knife. (2) CRYPTO: the 9-session MSTR stand-down gate FIRED for the FIRST time (MSTR 94.54>94 hi 96.80, BTC 62,629 held zone lo 61,697, 5/6 miners green led MARA +11.8%) - the closest thing to a live tradable setup this run - BUT the named first-choice IREN is the SOLE red miner and DISTRIBUTING intraday (-0.98%, -6.5% from 45.54 peak while the complex rips +2-12% = RS flipped laggard, Anthropic deal unsigned), plus 7/10 CPI binary is 1 session out and WebSearch exhaustion blocks the IBIT-flow/hashrate verification crypto.md requires for conv>=7; honest 6-category conviction 7.3 < 8.0 bull threshold, so the agent correctly PASSes and defers the clean re-entry to POST-CPI (soft print + MSTR holds >94 close + IREN green = IREN conv 8+, target 49.5/+15%). Disciplined gate-adherence, not a miss. (3) QUANT: low-volume relief bounce, zero volume-confirmed breakouts; AAPL closest trigger ($2.27 below 317.40) but needs ~4x vol pickup in 2nd half = near-zero probability. (4) SENTIMENT: EDGAR delta verified-empty again (TSMC 21-filer = code-P natureOfOwnership 'By ESPP Trust' XML-confirmed ESPP, mega-cap ~$1T out of $2-50B universe; 5 two-filer clusters all S/M/F/G); VIX 16.05 greed not fear; KMX vetoed twice. (5) CONTRARIAN: VIX FELL to 16.04 (complacency intensifying, opposite of >25 need); PYPL improving leg fails (EPS QoQ YoY -6.09%) + fresh Barclays UW $42 PT; new PFE -10.89% = falling knife (EPS 5Y -3.51%, QoQ -9.77%, no catalyst). (6) CATALYST: Iran shock DE-ESCALATED intraday (risk-on closing bank discount = LESS asymmetric; energy gave back oil bid HAL -2.0%/EGY -4.55%); PEP sold off -3.16% post-print; DAL inside-event tomorrow (7/10 BMO, EPS -30% YoY, coin-flip); no conv-8 dated edge in 7/10-7/28; no FDA binary. No candidate debated (all PASS). SPY sweep = CLOSING-SESSION-ONLY, no midday action; 12-sh sweep + cash 1062.64 retained. KEY FORWARD: crypto's gate is now LIVE - a clean post-CPI resolution on 7/10 is the highest-probability first trade of run-2 (IREN first choice); macro's metals-repair + TNX-down-tick watches escalate into 7/15 CPI. Data: WebSearch 429 until ~7/25 BUT Yahoo curl (SPY 750.67 + VIX 16.04 verified) + SEC EDGAR (TSMC ESPP XML) + CoinGecko (BTC) + Finnhub REST (SPY 750.76 cross-check) live = PASS rests on VERIFIED live intraday data.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - dash-for-cash REVERSED to risk-on (SPY +0.69% 750.57, VIX fell 16.06, TNX first down-tick 4.545%, GDX +3.1% leading GLD); regime-wobble 0/2 (VIX easing, SPY cushion widened +1.38%>MA50). No candidate clears 8.0: energy pullback came (USO -2.73%) but Iran/oil catalyst unverifiable (WebSearch down); metals rule untriggered (UUP 28.35>28.20, 0/2) = front-runs own rule; TLT 84.52 still falling knife (TNX 14.5bps above 4.40% line); beta owned by sweep. Upgraded metals-repair + TNX-down-tick watches into 7/15 CPI."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (gate FIRED, defer to post-CPI) - all 3 reactivation conditions MET live (MSTR 94.54>94 hi 96.80, BTC 62,629 held zone lo 61,697, 5/6 miners green led MARA +11.8%) BUT first-choice IREN is SOLE red miner distributing -6.5% from peak (RS flipped laggard, Anthropic unsigned) + 7/10 CPI binary 1 session out + no flow verification (WebSearch dead) -> honest conv 7.3 < 8.0 bull threshold. Re-entry post-CPI: soft print + MSTR>94 close + IREN green = IREN conv 8+ target 49.5/+15%."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFER, 10th) - 7/8 fade -> 7/9 LOW-VOLUME RELIEF BOUNCE: tape up (SPY +0.68%, XLI +0.87%, XLF +1.20%, AMD +6.4%) but NOTHING >0.474x avg20; no name re-tested 7/7 52wh 3rd session; XLI canary HELD +0.97%>SMA20 (stack-break alert stands down); zero vol-confirmed breakouts. Closest trigger AAPL clean close >317.40 on >=1.2x (315.13, needs ~4x vol 2nd half = near-zero prob)."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (10th, EDGAR verified-empty) - only >=3-filer cluster TSMC (21) = code-P 'By ESPP Trust' XML-confirmed ESPP (mega-cap ~$1T out of $2-50B universe); 5 two-filer clusters all non-code-P (Velocity=S sale, First US=M/F exercise+withhold, Citizens=G gift, Vipshop=S sales). VIX 16.05 DOWN intraday = greed not fear (~9pts below >25 threshold). KMX only live code-P cluster, fundamental-fatal+vetoed twice, tracking-only."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS (15th) - VIX FELL 16.85->16.04 (19% above 52wL 13.38 = peak complacency intensifying, opposite of >25 need). PYPL closest (PE 7.71x, ROE 25.1%, 6wk base) but improving leg fails (EPS QoQ YoY -6.09%) + Barclays Underweight $42 PT below price; hard catalyst Q2 earnings not landed. NEW PFE -10.89% = falling knife (EPS 5Y -3.51%, QoQ -9.77%, no positive catalyst). BABA +14% 2d = momentum chase on escalating Anthropic/Beijing."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (12th) - Iran/oil shock DE-ESCALATED intraday (risk-on SPY +0.68% VIX 16.07): banks bounced to priced-in highs (CFG +2.2%, BLK +2.9%, MS +2.6%) = LESS asymmetric; energy gave back oil bid (HAL -2.0%, EGY -4.55%). PEP printed BMO + sold off -3.16% (slight EPS miss, post-event). DAL inside-event tomorrow (7/10 BMO, EPS -30% YoY, coin-flip). No conv-8 dated edge 7/10-7/28; no FDA binary (earliest AdCom 7/29-30); CPI/FOMC no directional edge (long-only)."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction >=6). Quant(6) was an explicit DEFER; crypto's MSTR gate FIRED but the agent returned PASS (conviction 4, honest 6-category 7.3 < 8.0) because first-choice IREN is the sole red miner distributing intraday + CPI binary 1 session out + no flow verification - a deferred post-CPI re-entry (IREN first choice), not a tradable pick. Per skills/debate.md, no conviction>=6 live ticker => skip debate.",
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "index"
+        ],
+        "current_agent": "n/a (all PASS)",
+        "deprioritized": false,
+        "note": "Only 1 buy in run-2 trade log (SPY benchmark sweep, agent=index). No analyst-agent dominance concern."
+      },
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion with fresh evidence) - quant-min-conviction-8, all-no-cpi-fomc-entry, catalyst-min-conviction-8. No active rules fired. (7/9 is not a CPI/FOMC release day - CPI 7/15, FOMC 7/29.)",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json INSUFFICIENT_SAMPLE (n=0, run-2 fresh start); state/pm-lessons.json adjustments=[]. No adjustments applied; base_threshold 7.5 (8.0 in bull mode).",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 16.04,
+      "vix_size_cap": "15-30% (VIX<=25) - not applicable (no buy)",
+      "spy_close": 750.67,
+      "spy_close_note": "midday intraday mark (~12:35 ET, lead Yahoo regularMarketPrice 750.67, corroborated Finnhub c=750.76; agents 750.48-750.57; VIX 16.04 Yahoo corroborated 16.04-16.07); not a session close. Run-2 baseline 744.78. Firm-wide baseline 634.09 (close 2026-03-27).",
+      "spy_return_pct": 0.79,
+      "spy_return_firmwide_pct": 18.38,
+      "portfolio_pnl_pct": 0.71,
+      "alpha": -0.08,
+      "sweep": null,
+      "sweep_note": "Midday session - SPY sweep is a CLOSING-SESSION-ONLY mechanic (orchestrator Step 10.5). No sweep action. Existing 12-sh SPY sweep + cash 1062.64 retained (10.55% of NAV)."
+    },
+    {
+      "date": "2026-07-10",
+      "session": "premarket",
+      "rerun": true,
+      "rerun_reason": "Genuine 2026-07-10 premarket rerun at 09:19 ET (daily-state reset to checks=0 w/ note 'Genuine 2026-07-10 premarket run (first check of the day)'). Corrects the prior 07:00 ET premarket's central factual error: it framed today as a CPI release day. PM-verified via BLS: May CPI (4.17% YoY) released 6/10; June CPI releases 7/14 8:30am ET -- there is NO CPI today. All 6 analysts independently confirmed the correction. Prior 07:00 premarket PASS verdict (12th consecutive) superseded; this is the authoritative 2026-07-10 premarket.",
+      "decision": "pass",
+      "reasoning": "Run-2 2026-07-10 premarket RERUN (09:19 ET) -> unanimous PASS (6/6), 13th consecutive. CRITICAL DATA CORRECTION: the prior 07:00 ET premarket (12th PASS) and several prior sessions framed today as a CPI day ('June CPI prints 8:30am ET today, binary ~1.5h post-check'). PM-verified via BLS (brave-search + usinflationcalculator.com): May CPI (4.17% YoY) was released 2026-06-10; the June CPI release is 2026-07-14 8:30am ET -> there is NO CPI today. All 6 analysts independently confirmed the correction and re-adjudicated their setups on the merits (crypto explicitly discarded 'defer to post-CPI' as a calendar crutch). Bull regime INDEPENDENTLY VERIFIED (SPY 751.71 premarket > SMA50 ~740.37 > SMA200 ~694.04, 1.1% below 52wH 760.4), threshold 8.0; VIX 15.76 (52wL 13.38) peak complacency (~9pts below the >25 fear-extreme buy threshold); BTC 64,135 (CoinGecko live, +2.4%). NO agent produced a LIVE ticker at conviction>=6 -- quant(6) was an explicit DEFER (ticker=PASS; AAPL $316.22 vs $317.40 needs cash-session volume), crypto(4) gate CLOSED 2/3 -- so debate is skipped per skills/debate.md. Cross-agent tape CONFIRMS every PASS on a peak-complacency bull session (NOT a CPI-eve session): MACRO metals-repair strongest of week (GDX +3.06% leading GLD ~3x) BUT both fundamental legs against it (UUP 28.36 flat = metals rule 0/2, TNX ticking UP to 4.551% >4.40% reversal line), TLT 84.49 falling knife near 52wL, energy FADING (USO -2.85%/XLE -1.40%), no asymmetric long-only hedge, sweep owns beta +0.93%; CRYPTO IREN gate re-adjudicated CPI-INDEPENDENTLY = CLOSED 2/3 (MSTR 93.89<$94 Finnhub-glitch-corrected 2nd session under; IREN red -2.99% sole laggard 3rd straight check, Anthropic tender unsigned; BTC floor leg MET at 64,135), all 5 green miners FADED from 7/9 intraday peaks -2 to -8% = distribution-into-close not accumulation, BTC direct at highs w/ no pullback entry + no flow/on-chain verification (WebSearch 429 until ~7/25); QUANT distribution-at-highs 8th session (AAPL CLOSEST trigger of entire regime $316.22 vs $317.40 52wH -0.37% but premarket vol non-meaningful, DEFER to midday; XLI canary HELD above SMA20); SENTIMENT EDGAR verified-empty (ASICO 3-filer = Schorsch single-owner REIT entity web NOT a cluster; AEO 3 = code-S insider SALES bearish; TPL 3 = 1 institutional filer Horizon Kinetics daily drip; Sonoma 6 = nano-cap; KMX vetoed twice tracking-only); CONTRARIAN VIX 15.76 peak complacency FADING (needs >25), PYPL fails ALL 4 legs (EPS QoQ YoY -6.09% + Q2 earnings 7/28 not landed + Goldman Sell / Barclays Underweight $42 PT below price + mid-base $45.32 not washout), PFE falling knife, BABA +13.4% 2d chase on escalating Anthropic/Beijing; CATALYST: DAL ALREADY BEAT BMO today ($1.56 adj EPS vs ~$1.47-1.50 est, record adj rev $17.7B, Q3 guide $2.00-2.50 vs $2.02, FY reaffirmed, absorbed at +1.96% = POST-event, drift=Quant PEAD not forward-event edge), banks/UNH bouncing +1.5-2.5% back near 52wh (Iran-shock entry CLOSING/priced-in; UNH 0.6% off 52wh +84% off collapse = beat 100% priced), no FDA binary in-window (earliest AdCom 7/29-30). Mark-to-market (premarket 09:19 ET, SPY 751.71 verified Finnhub+price-fetch): NAV 10083.16 (12x751.71+1062.64), +0.83% vs SPY +0.93% (Run-2 baseline 744.78) = alpha -0.10% (10.54% cash drag); firm-wide SPY +18.55% (baseline 634.09, close 2026-03-27). HWM unchanged 10083.16. Premarket SPY sweep = no action (CLOSING-session-only mechanic); 12-sh sweep + cash 1062.64 retained. KEY FORWARD: crypto IREN gate now CPI-DECOUPLED (fires on its own 3 conditions: MSTR reclaims >$94 closing AND IREN turns green AND BTC>61.5K; IREN first choice ~$42 target $49.5/+15%); AAPL vol-confirmed >$317.40 breakout watch re-checks at MIDDAY (12:30 ET); 7/14 June CPI + banks (JPM/CFG/PNC BMO); PYPL Q2 earnings 7/28 AMC. Data: WebSearch 429 until ~7/25 BUT Finnhub REST + price-fetch (Yahoo) + CoinGecko + SEC EDGAR all LIVE = PASS rests on VERIFIED live premarket data.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - metals-repair STRONGEST of week (GDX +3.06% leading GLD ~3x) BUT both fundamental legs AGAINST it: UUP 28.36 FLAT (metals rule UUP<28.20 x2 = 0/2, dollar leg NOT breaking down), TNX ticking UP to 4.551% (15bps ABOVE 4.40% reversal line, real yields RISING = structurally negative for gold). TLT 84.49 falling knife near 52wL. Energy FADING (USO -2.85%/XLE -1.40%). No asymmetric long-only hedge (no VIX ETP; TLT falling knife). CPI-date correction REINFORCES the PASS (catalyst was 1 session out, now 4; repair signals deteriorating not triggering). Sweep owns beta at +0.93%."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (CPI premise VOID) - re-adjudicated the IREN gate CPI-INDEPENDENTLY: CLOSED 2/3 (leg1 MSTR 93.89<$94 FAILS, Finnhub-glitch-corrected 2nd session pinned under; leg2 BTC 64,135>61.5K floor MET; leg3 IREN 41.72 RED -2.99% FAILS, sole laggard 3rd straight check, Anthropic tender unsigned). All 5 green miners FADED -2 to -8% from 7/9 intraday peaks = distribution-into-close not accumulation; BTC direct at highs w/ no pullback entry + no flow verification (WebSearch 429 until 7/25, crypto.md conv>=7 requirement). Agent explicitly discarded 'defer to post-CPI' as a calendar crutch. Gate CPI-decoupled going forward."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFER to midday) - PREMARKET VOLUME is structurally non-meaningful so the >=1.2x avg20 confirmation the mandate requires cannot be evaluated before the 9:30 ET cash open. AAPL is the CLOSEST trigger of the entire 8-session regime: $316.22 vs $317.40 52wH (Finnhub-confirmed) = -$1.18 (-0.37%), meets every structural condition (stacked-bull MAs, +6.96%>SMA20 <10% chase line, RSI 63.9<70) EXCEPT volume (0.72x, needs 1.2x ~79.9M sh) and the clean close ($1.18 short) - both unverifiable pre-open. All 5 forward triggers unfired (8th session). XLI canary HELD. Re-check AAPL >$317.40 on >=1.2x at midday. No CPI today."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (EDGAR refreshed & verified-empty) - 24 distinct issuers / 38 entries scanned; the 3 >=3-filer clusters ALL non-qualifying: ASICO 3 = Nicholas Schorsch + 5 controlled LLCs filing jointly (ONE beneficial owner, codes P/J derivative, micro-cap) NOT a cluster; AEO 3 = code-S insider SALES (bearish); TPL 3 = single institutional filer (Horizon Kinetics daily drip). Sonoma 6 = nano-cap out of universe. ZERO qualifying code-P mid-cap multi-insider cluster. VIX 15.74 = peak greed (~9pts below >25 fear-extreme buy threshold). KMX (only live code-P cluster) fundamental-fatal+vetoed twice, tracking-only."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS - fear precondition went the WRONG way: VIX FELL to 15.76 (17.6% above 52wL 13.38 = deeper peak complacency, opposite of >25 re-entry need). PYPL closest fundamentally (PE 7.86x, ROE 25%, 6wk base) but FAILS ALL 4 legs: improving broken (EPS QoQ YoY -6.09%), catalyst not landed (Q2 earnings 7/28 AMC), fresh Goldman SELL + Barclays Underweight $42 PT below price, washout absent ($45.32 mid-base, 17.8% above 52wL). PFE falling knife (EPS declining, HSBC-downgraded). BABA +13.4% 2d = momentum chase on escalating Anthropic/Beijing. Bull-mode Step 10.5 mean-reversion trap."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - corrected TWO facts: (1) June CPI is 7/14 NOT today; (2) DAL ALREADY printed BMO today and BEAT ($1.56 adj EPS vs ~$1.47-1.50 est, record adj rev $17.7B, Q3 guide $2.00-2.50 vs $2.02, FY reaffirmed, absorbed +1.96% to $89 = POST-event; drift=Quant PEAD, not forward-event edge). Banks/UNH BOUNCING +1.5-2.5% back toward 52wh (Iran-shock entry CLOSING; UNH 0.6% off 52wh +84% off collapse = beat 100% priced). INTC falling knife; TSLA/NFLX/ABT off-highs = Contrarian, beat-odds unverifiable (WebSearch 7/25). No FDA binary in-window. CPI 7/14 no long-only edge; FOMC 7/29 outside 14d."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no LIVE ticker with conviction>=6). Quant(6) was an explicit DEFER (ticker=PASS; AAPL trigger needs cash-session volume), crypto(4) gate CLOSED 2/3. Per skills/debate.md, no conviction>=6 live ticker => skip debate.",
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "index"
+        ],
+        "current_agent": "n/a (all PASS)",
+        "deprioritized": false,
+        "note": "Only 1 buy in the entire run-2 trade log (SPY benchmark sweep, agent=index). No analyst-agent dominance concern."
+      },
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion w/ fresh evidence) - quant-min-conviction-8, all-no-cpi-fomc-entry, catalyst-min-conviction-8. No active rules fired. NOTE: all-no-cpi-fomc-entry is MOOT today - June CPI is 7/14 NOT 7/10 (BLS-verified), so today is not a CPI release day regardless of the rule's status.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json INSUFFICIENT_SAMPLE (n=0, run-2 fresh start); state/pm-lessons.json adjustments=[]. No adjustments applied; base_threshold 7.5 (8.0 in bull mode).",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 15.76,
+      "spy_premarket": 751.71,
+      "spy_premarket_note": "Finnhub + price-fetch (Yahoo) 7/9 close (latest completed session; equities open 9:30 ET, this check 09:19 ET). Run-2 baseline 744.78. Firm-wide baseline 634.09 (close 2026-03-27). 52wH 760.4 / 52wL 618.05.",
+      "spy_return_pct": 0.93,
+      "spy_return_firmwide_pct": 18.55,
+      "portfolio_pnl_pct": 0.83,
+      "alpha": -0.1,
+      "sweep": null,
+      "sweep_note": "Premarket session - SPY sweep is a CLOSING-SESSION-ONLY mechanic (orchestrator Step 10.5). No sweep action. Existing 12-sh SPY sweep + cash $1,062.64 (10.54% of NAV) retained.",
+      "model_provider": "glm",
+      "model_label": "GLM (glm-5.2[1m] via z.ai)"
+    },
+    {
+      "date": "2026-07-10",
+      "session": "midday",
+      "model_provider": "glm",
+      "model_label": "GLM (glm-5.2[1m] via z.ai)",
+      "decision": "pass",
+      "reasoning": "Unanimous PASS (6/6), 14th consecutive. Every analyst conviction <=5 (quant-5 & contrarian-5 the highs), far below the 8.0 bull-mode threshold; NO live ticker produced (all ticker=PASS), so the capital-protection gate had nothing to test and debate was skipped per skills/debate.md (no conviction>=6 candidate). Bull regime independently verified from ~2yr Yahoo closes (SPY 753.55 > SMA50 741.21 > SMA200 694.47); VIX fell to 15.38 = peak complacency intensified (worst R/R to add long risk). The midday tape CONFIRMED rather than broke every premarket PASS: macro metals-repair DETERIORATED (GLD<378, GDX flat<76, both gold legs against UUP>28.20 & TNX>4.40%); crypto IREN gate CLOSED 2/3 (IREN red 4th straight, new low $39.965; MSTR intraday >$94 but fading on Strategy BTC sales, not a closing basis; 3/4 miners red reversing yesterday = distribution not accumulation); quant AAPL breakout FAILED decisively ($316.40 hi < $317.40 trigger, 0.20x vol), 9th session with zero vol-confirmed breakouts; sentiment EDGAR delta verified-empty (TruBridge=code-D, Lakeland=code-A, AEO=code-S; zero code-P); contrarian ADBE is the best new candidate in months but fails washout (+18% above 52wL) + catalyst (Q3 Sep, 45d out); catalyst's only fresh dated binary (7/23 Elevar/Hengrui PDUFA) is untradeable (Korean sponsor, no US ticker) + 2 prior CRLs. The SPY sweep already owns the bull trend at +1.18%; adding beta at VIX 15.38 with SPY -0.9% from highs into distribution-at-highs would be chasing the top, not an asymmetric bet. No sell (SPY sweep is exempt from exits and IS the benchmark). Capital preserved for a verifiable setup - crypto IREN gate could fire at closing (MSTR closes >$94 + IREN green + BTC>61.5K).",
+      "regime": "bull",
+      "regime_threshold": 8.0,
+      "vix_level": 15.38,
+      "vix_size_cap": "15-30% (VIX<=25)",
+      "debate_skipped": true,
+      "debate_skip_reason": "No candidate reached conviction>=6 (all PASS, max conv 5); per skills/debate.md debate is skipped when nothing clears the gate threshold.",
+      "debate_results": [],
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "index"
+        ],
+        "current_agent": null,
+        "deprioritized": false
+      },
+      "sector_check": {
+        "blocked": false,
+        "note": "no buy attempted (PASS)"
+      },
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS by agent - metals-repair DETERIORATED midday (GLD 377.4<378, GDX 75.79<76, spot gold -0.3%); both gold legs against (UUP 28.315>28.20 rule 0/2, TNX 4.553%>4.40%); TLT falling knife; energy fading; VIX 15.38 peak complacency; no asymmetric long-only hedge; sweep owns beta +1.18%. CPI 7/14 is the binary."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS by agent - IREN gate CLOSED 2/3: IREN red -0.17% (4th straight, new low $39.965); MSTR intraday >$94 but fading -5.3% from $100 peak on Strategy BTC sales (capital-event artifact, not closing basis); 3/4 miners red reversing yesterday = distribution not accumulation. Could fire at closing if MSTR closes >$94 + IREN green."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS by agent - AAPL breakout FAILED (intraday hi $316.40<$317.40 trigger, -0.65%, 0.20x avg20 vol); 9th session zero vol-confirmed breakouts; distribution-at-highs intensifying (LLY -2.63%, XLV -1.08%, XLE -1.25%); SPY low-vol grind 0.26x avg20. Re-check closing."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS by agent - EDGAR delta verified-empty: TruBridge 15=code-D dispositions, Lakeland 7=code-A derivative grants, AEO 3=code-S sales; ZERO qualifying code-P mid-cap cluster. VIX 15.37 greed deepening. Options-flow dark. KMX tracking-only (vetoed twice on fundamentals)."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS by agent - VIX ~15.76 peak complacency (needs >25). New candidate ADBE best in months (PE 12x, rev +12.7%, $25B buyback, HSBC Buy $308) but fails washout entry ($224=+18% above 52wL) + immediate catalyst (Q3 Sep 45d out, CEO/CFO risk, downtrend unbroken). PYPL washout worse (+19.9%)."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS by agent - new 7/23 PDUFA (Elevar/Hengrui) only fresh dated binary but UNTRADEABLE (Korean HLB sub, no US ticker) + 2 prior CRLs (odds unverifiable); INTC -8.8% falling knife; DAL post-beat=Quant PEAD; banks 2-4% off 52wh priced-in; CPI 7/14 no long-only edge."
+        }
+      },
+      "portfolio_after": {
+        "cash": 1062.64,
+        "nav": 10105.24,
+        "positions": "12 SPY @ 744.78 (sweep)",
+        "portfolio_pnl_pct": 1.05,
+        "spy_return_pct": 1.18,
+        "alpha": -0.13,
+        "spy_firmwide_return_pct": 18.84
+      }
+    },
+    {
+      "date": "2026-07-10",
+      "session": "closing",
+      "decision": "pass",
+      "model_provider": "glm",
+      "model_label": "GLM (glm-5.2[1m] via z.ai)",
+      "reasoning": "Run-2 2026-07-10 closing -> unanimous PASS (6/6), 15th consecutive. Bull regime at the week's STRONGEST + most complacent close (SPY 755.21 new week high, -0.6% below 52wH 759.57, >SMA20 743.82 +1.51% >SMA50 741.24 +1.89% >SMA200 694.48; VIX CRASHED to 15.2, 1.82pts above 52wL 13.38 = peak complacency maxed = worst add-long R/R of the trend), threshold 8.0. NO agent produced a live ticker at conviction>=6 (quant-6 was an explicit DEFER ticker=PASS - AAPL breakout FAILED 2nd session, intraday hi $316.91<$317.40 trigger on 0.332x avg20 vol; crypto-4, macro/contrarian-5, sentiment/catalyst-4 all ticker=PASS) => debate SKIPPED per skills/debate.md (no live ticker >= conv 6 => gate has nothing to test). HEADLINE = DATA-INTEGRITY CATCH: the lead's dispatch headline ('IREN gate fires on all 3 legs, closest trade of run-2') was a YAHOO price-fetch previousClose GLITCH - price-fetch returned IREN prev_close 38.82 (the actual 7/2 crash LOW, not the 7/9 close 41.72) and MSTR prev_close 100.77 (>today's own $100.12 intraday high = arithmetically impossible), mechanically turning IREN's -0.84% red close into an apparent +7.2% green. VERIFIED 3 independent ways: (1) Finnhub /quote IREN c=41.50/pc=41.72/dp=-0.53% = RED; (2) Yahoo 1mo daily closes 7/9 41.72 -> 7/10 41.37 = red 5th straight; (3) ALL 6 miners red at close (MARA -5.7%, HUT -3.8%, CIFR -4.3%, RIOT -1.9%, CLSK -0.5%, IREN -0.8%). The crypto subagent caught the glitch and refused to break its 15-PASS streak on a corrupted feed; the gate is 2/3 CLOSED (only MSTR>$94 close 94.60 and BTC>$61.5K 63,943 met; IREN green + miner breadth FAIL) = identical to midday. This validates the adversarial multi-agent design: a single-source dispatch error was neutralized by an independent subagent's primary-source verification. Cross-agent tape CONFIRMS every PASS - a peak-complacency bull close with no asymmetric long: (a) MACRO metals-repair FULLY BROKE (GLD 376.53 decisively <378 hold-line across the day, miner bounce failed to confirm a 2nd session) with both fundamental legs against (TNX TICKED UP to 4.569% +16.9bps >4.40% reversal, UUP 0/2 on <28.20); TLT 84.48 falling knife near 52wL; energy flat/fading; no asymmetric long-only hedge; sweep +1.40% (+$124.80). (b) CRYPTO gate 2/3 closed on verified data (IREN red 5th straight, 6/6 miners red, MSTR>$94 close but barely +0.7% and fading from a Strategy-BTC-sales-attributed $100.12 spike); WebSearch dead blocks flow/on-chain for conv>=7. (c) QUANT distribution-at-highs 10th session - AAPL trigger failed 2nd session, ZERO names >=1.2x avg20 near-close (highest XLV 0.701x = a SELLER), LLY -2.14% breakdown, XLI canary HELD +1.03% (regime intact, pick-specific not a regime call). (d) SENTIMENT EDGAR closing delta verified-empty - largest cluster of the run DBI 17 filers ALL code-A grants (cluster size meaningless without transaction-code verification); PERRIGO 7 code-A; CASY 3 code-S sales; zero code-P; VIX 15.21 peak greed. (e) CONTRARIAN ADBE best candidate in months (PE 12.8x, fwd 8.1x, rev +12.7%, ROE 63%, $25B buyback, HSBC Buy $308) but FAILS washout entry (+18% above 52wL 190) + no immediate catalyst (Q3 Sep ~45td out); PYPL washout moved further away (+20% above 52wL, EPS -6.2%); VIX ~15.5 no fear to fade. (f) CATALYST no conv-8 event 7/11-7/31 - INTC falling-knife CONFIRMED (-2.40%, net-unprofitable TTM, beta 2.21, declining into 7/23), banks priced-in (3rd/4th green session, Iran-shock discount closed), 7/23 PDUFA untradeable (Korean sponsor), June CPI 7/14 no long-only edge. Live-lessons: all 3 candidate (none enforced); today is NOT a CPI/FOMC day (June CPI 7/14). PM self-adjustments: none (INSUFFICIENT_SAMPLE). Mark-to-market (close ~15:55 ET, SPY 755.21 verified Finnhub c=755.21/pc=751.71 corroborated Yahoo 755.25 + 6 agents 755.05-755.23; VIX 15.2 verified Yahoo corroborated agents 15.21-15.22): NAV 10125.16 (12x755.21 + 1062.64 cash), +1.25% vs SPY +1.4% (Run-2 baseline 744.78) = alpha -0.15 (10.5% cash drag); firm-wide SPY +19.1% (baseline 634.09, close 2026-03-27). New HWM 10125.16. SPY sweep = 0 new shares (excess $556.38 < 1 SPY share @755.21); 12-sh sweep + cash 1062.64 retained. No trade, no Portclaude sync (no buy/sell this session). KEY FORWARD: crypto IREN gate CPI-DECOUPLED - fires on VERIFIED data (Finnhub /quote + Yahoo chart daily closes, NOT price-fetch prevClose which is glitched today) when MSTR closes >$94 + IREN turns genuinely green + 4-6 miners green WITH MSTR + BTC>$61.5K + (ideally) WebSearch live ~7/25 for flow verification; IREN first ~$41 target $49.5/+15%; ADBE watchlist (re-test $200-210 + Q3 Sep); June CPI 7/14 + banks; PYPL Q2 7/28 AMC. DATA NOTE: price-fetch (Yahoo) previousClose field systematically glitched today (IREN 38.82=7/2 crash low, MSTR 100.77, SPY 744.78=inception baseline all WRONG) - use Finnhub /quote + Yahoo chart daily closes for color; WebSearch 429 until ~7/25 BUT Finnhub REST + price-fetch live-price + CoinGecko + SEC EDGAR all live = PASS rests on VERIFIED live closing data.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - bull regime at week-high SPY 755.18 + VIX CRASHED to 15.22 (peak complacency maxed, worst add-long R/R of the trend); metals-repair FULLY BROKE (GLD 376.53 <378 hold-line, miner bounce failed to confirm 2nd session) with both legs against (TNX UP 4.569% +16.9bps >4.40%, UUP 0/2 on <28.20); TLT 84.48 falling knife near 52wL; energy flat/fading; no asymmetric long-only hedge; sweep +1.40% (+$124.80). July-14 CPI (2 sessions out) is the binary."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (DATA-INTEGRITY CATCH) - lead dispatch 'gate fires 3/3' was a YAHOO price-fetch prevClose GLITCH (IREN prev_close 38.82 = 7/2 crash LOW not 7/9 close 41.72; MSTR prev_close 100.77 > today's own $100.12 intraday high = impossible). VERIFIED Finnhub IREN c=41.50/pc=41.72/dp=-0.53% = RED 5th straight; all 6 miners red at close; MSTR>$94 intraday only, fading -5.4% from Strategy-BTC-sales $100.12 spike; gate 2/3 CLOSED (only MSTR>$94 + BTC>61.5K met). WebSearch dead blocks flow/on-chain for conv>=7. Honest conv 4."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS (DEFERRED) - AAPL breakout watch FAILED 2nd session: intraday hi $316.91 <$317.40 trigger ($0.49 short, never tagged) on 0.332x avg20 near-close vol (needs 1.2x). ZERO names >=1.2x avg20 near-close (highest XLV 0.701x = a SELLER -0.76%); 10th session w/ zero vol-confirmed breakouts. LLY -2.14% breakdown (-4.69% from 52wh); XLI canary HELD +1.03%>SMA20 (regime intact, pick-specific). SPY 0.527x avg20 low-vol grind; sweep owns beta basis-neutral."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (EDGAR closing delta verified-empty) - largest cluster of the run DESIGNER BRANDS (DBI) 17 filers ALL transactionCode 'A' grants (5 sampled; board+officer equity-plan grant, zero personal capital = recurring 6/22+4/14 quarterly grant season); PERRIGO 7 ALL code-A derivative grants; CASEYS 3 ALL code-S SALES. Full-text code-P sweep 7/9-7/10 = 0 hits. VIX 15.21 deepening greed, ~10pts below >25 fear threshold. KMX (only live code-P) fundamental-fatal+vetoed twice, tracking-only @ +5.3% (signal intact, overlay wins)."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (12th run-2) - ADBE best candidate in months (PE 12.79x, fwd 8.12x, rev +12.7%, EPS +7.9%, ROE 63%, $25B buyback, HSBC Buy $308) but FAILS washout entry ($223.49 = +18% above 52wL 190.12, basing not capitulating toward $200-210) + no immediate catalyst (Q3 Sep ~45td out, CEO/CFO risk, downtrend from $384 unbroken). PYPL washout moved further away ($46.25 = +20% above 52wL, EPS -6.2% improving-leg fails). VIX ~15.5 no fear to fade (needs >25); bull-mode mean-reversion trap."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (14th consecutive) - no conv-8 event play 7/11-7/31. INTC (7/23) re-verified FALLING KNIFE ($109.84 -2.40% today, -23% off 52wh, net-unprofitable TTM net margin -5.9%, op margin 0.69%, beta 2.21, fragile $0.214 EPS est declining into print = market discounting risk, Contrarian/value not event edge). Banks recovered 3rd/4th green session toward 52wh (Iran-shock discount CLOSED = priced-in into 7/14-16). 7/23 PDUFA untradeable (Elevar=HLB Co KRX-only). June CPI 7/14 no long-only directional edge (hot tail unshortable)."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction>=6). Quant(6) was an explicit DEFER with ticker=PASS (AAPL breakout failed 2nd session), not a tradable pick. Per skills/debate.md, no conviction>=6 LIVE TICKER => skip debate (gate has nothing to test).",
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "index"
+        ],
+        "current_agent": "n/a (all PASS)",
+        "deprioritized": false,
+        "note": "Only 1 buy in the entire run-2 trade log (SPY benchmark sweep 2026-07-02, agent=index). No analyst-agent dominance concern."
+      },
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion with fresh evidence) - quant-min-conviction-8, all-no-cpi-fomc-entry, catalyst-min-conviction-8. No active rules fired. (Today 7/10 is NOT a CPI/FOMC release day - June CPI is 7/14, FOMC 7/29.)",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json INSUFFICIENT_SAMPLE (n=0, run-2 fresh start); state/pm-lessons.json adjustments=[]. No adjustments applied; base_threshold 7.5 (8.0 in bull mode).",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 15.2,
+      "spy_close": 755.21,
+      "spy_close_note": "closing intraday mark (~15:55 ET, Finnhub /quote current_price 755.21 / previous_close 751.71 = real 7/9 close; corroborated Yahoo regularMarketPrice 755.25 + 6 agents 755.05-755.23; official 4pm close not yet printed). Run-2 baseline 744.78. Firm-wide baseline 634.09 (close 2026-03-27). NOTE: price-fetch (Yahoo) previousClose field glitched today (returned 744.78=inception baseline) - do not use for color.",
+      "spy_return_pct": 1.4,
+      "spy_return_firmwide_pct": 19.1,
+      "portfolio_pnl_pct": 1.25,
+      "alpha": -0.15,
+      "sweep": {
+        "ticker": "SPY",
+        "new_shares": 0,
+        "reason": "excess $556.38 (cash 1062.64 - 5% buffer $506.26) < 1 SPY share ($755.21); existing 12-sh sweep retained",
+        "cash_after": 1062.64,
+        "cash_pct_nav": 10.5
+      }
+    },
+    {
+      "date": "2026-07-10",
+      "session": "closing",
+      "rerun": true,
+      "model_provider": "claude",
+      "model_label": "Claude (Max subscription)",
+      "rerun_reason": "CLAUDE-model closing re-run (Opus 4.8, Max subscription) executed alongside the prior GLM-5.2 closing run for A/B model comparison (scripts/model-compare.sh). Full 6-analyst pipeline re-dispatched independently; not a corrective re-run. Both models converged on the same verdict.",
+      "decision": "pass",
+      "reasoning": "Run-2 2026-07-10 closing (CLAUDE re-run) -> unanimous PASS (6/6), matching the GLM run. Bull regime at the week's strongest + most complacent close (SPY 754.95 official Finnhub close +0.43%, day high 755.42 = new week high ~0.6% below 52wH 759.57, >SMA50 ~741 >SMA200 ~694; VIX ~15.0-15.2 peak complacency ~1.8pts above 52wL 13.38 = worst add-long R/R of the trend), threshold 8.0. NO agent produced a live ticker at conviction>=6 (highs were quant-5 and contrarian-5; crypto/macro/sentiment/catalyst all 4; all ticker=PASS) => debate SKIPPED per skills/debate.md (no live ticker >= conv 6 => gate has nothing to test). DATA-INTEGRITY: the crypto subagent independently RE-CAUGHT the price-fetch (Yahoo) previousClose glitch (IREN prev_close 38.82 = the 7/2 crash low; MSTR prev_close 100.77 > today's own intraday high = impossible) and verified against Finnhub /quote that IREN closed genuinely RED -1.39% ($41.14 vs prior close $41.72) with all 6 miners red -- validating the adversarial design a second time under a different model. Cross-agent tape confirms every PASS: (a) MACRO metals-repair COLLAPSED into the bell (GDX -0.33% reversing the whole 7/9 bounce, GLD 377.01 <378 hold-line, both fundamental legs against: UUP 28.39 firm 0/2 on <28.20, TNX 4.569% +17bps >4.40% reversal); TLT falling knife near 52wL; energy an un-shortable de-escalation tape; sweep +1.37% owns the beta. (b) CRYPTO IREN re-entry gate 2/3: Leg1 MSTR>$94 close MET ($94.64) but weak (faded -5.5% from $100.12 high on Strategy-BTC-sale headlines = capital-event artifact, not clean proxy); Leg2 BTC>61.5K MET ($63,983); Leg3 IREN green + 4-6 miners green FAILS decisively (IREN red 5th straight check + all 6 miners red on a green-BTC/green-MSTR day = negative divergence / distribution 3rd session); WebSearch 429 until ~7/25 blocks flow/on-chain for conv>=7. (c) QUANT AAPL breakout FAILED a 2nd session and FADED to a red close ($315.32 -0.28%, intraday hi $316.91 never tagged the $317.40 trigger, low vol); 9th session with ZERO vol-confirmed breakouts; distribution intact (LLY -2.33% breakdown, XLV -0.82%); XLI canary HELD +0.45% >SMA20 (regime intact, pick-specific not a regime call). (d) SENTIMENT EDGAR closing scan verified-empty: new ~14-filer Kilroy Realty cluster (in-universe mid-cap) ALL transactionCode A annual grants (period 7/8), zero shares/price = board equity grant not open-market buy; Monster 3-filer out of universe (~$95B); zero qualifying code-P mid-cap cluster; VIX ~15.0 peak greed falling all day (15.74->15.03), ~10pts below the >25 fear-extreme threshold; KMX not re-pitched (fundamental-fatal, vetoed twice). (e) CONTRARIAN ADBE best candidate in months (PE 12.2x, fwd ~8.5x, rev +12.7%, ROE 62.4%, D/E 0.53, $25B buyback, HSBC Buy $308) but FAILS washout entry ($223.64 = +17.6% above 52wL 190.12, basing not capitulating) + no immediate catalyst (Q3 Sep ~45td out) + sentiment WARMING (SeekingAlpha double-upgrade pushes the washout entry further away); PYPL washout receded to +20.4% above 52wL, improving-leg still fails (EPS QoQ YoY -6.09%, Q2 7/28 not landed, Goldman Sell / Barclays UW); VIX ~15.2 no fear to fade (needs >25); bull-mode mean-reversion trap. (f) CATALYST no conv-8 event 7/11-7/31: INTC re-verified FALLING KNIFE ($109.84 -2.40%, closed near session low $107.45 into 7/23 AMC, net-unprofitable TTM, beta 2.21 = market discounting a bad print, Contrarian/value not event edge, and long-only rules out shorting); DAL beat SOLD (-1.81% despite BMO beat = negative PEAD, Quant's mandate); banks/UNH priced-in near 52wh into 7/14-16 (Iran-shock discount closed); 7/23 Elevar/Hengrui rivoceranib PDUFA untradeable (HLB is KRX-only, no US ticker, 3rd resubmission after 2 CRLs); June CPI 7/14 gives no long-only directional edge (cooling already consensus, can't short a hot tail). Live-lessons: all 3 rules in lessons-learned.json are status=candidate (none enforced); today is NOT a CPI/FOMC day (June CPI 7/14, FOMC 7/29) so the candidate all-no-cpi-fomc-entry rule is moot. PM self-adjustments: none (pm.json INSUFFICIENT_SAMPLE n=0; pm-lessons.json adjustments=[]). Mark-to-market (official close, SPY 754.95 verified Finnhub current_price/previous_close 751.71, cross-checked vs 6 agents): NAV 10122.04 (12x754.95 + 1062.64 cash), +1.22% vs SPY +1.37% (Run-2 baseline 744.78) = alpha -0.15 (10.5% cash drag); firm-wide SPY +19.06% (baseline 634.09, close 2026-03-27). HWM retained 10125.16 (GLM run's 755.21 mark; NAV at official 754.95 close is $3 below, HWM never decreases). SPY sweep = 0 new shares (excess $556.54 < 1 SPY share @754.95); 12-sh sweep + cash 1062.64 retained. No trade, no Portclaude sync (no buy/sell this session). MODEL-COMPARE NOTE: GLM (spy_close 755.21, quant conv 6) and Claude (spy_close 754.95, quant conv 5) reached identical PASS verdicts via independent 6-analyst pipelines; both caught the price-fetch prevClose glitch. KEY FORWARD: crypto IREN gate fires on VERIFIED data when MSTR closes >$94 (not on Strategy sales) + IREN genuinely green + 4-6 miners green + BTC>61.5K + (ideally) WebSearch live ~7/25 for flow; ADBE re-test $200-210 / Q3 Sep; June CPI 7/14 + banks; PYPL Q2 7/28 AMC.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - metals-repair candidate (closest-to-live macro long all week) COLLAPSED into the close: GDX finished -0.33% reversing the entire 7/9 +3.06% miner bounce, GLD 377.01 <378 hold-line; both fundamental legs further against (UUP 28.39 firm = 0/2 on <28.20, TNX 4.569% +17bps >4.40% reversal). Bull regime week-strongest (SPY 754.95, VIX 15.03), sweep +1.37%. TLT falling knife into rising yields, energy un-shortable de-escalation tape, beta owned by sweep. No long-only candidate clears 8.0."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - IREN gate 2/3 on verified data. Leg1 MSTR>$94 close MET ($94.64) but faded -5.5% from $100.12 high on Strategy-BTC-sale headlines; Leg2 BTC>61.5K MET ($63,983); Leg3 FAILS - IREN closed RED -1.39% ($41.14, 5th straight red check, new low $39.965) + ALL 6 miners red (MARA -4.69%, CIFR -4.94%, HUT -3.77%, RIOT -2.53%, CLSK -0.31%) on a green-BTC/green-MSTR day = negative divergence / distribution. Independently caught & avoided the price-fetch prevClose glitch. WebSearch 429 caps conv<7."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS (DEFER) - AAPL breakout FAILED a 2nd session and FADED to a red close ($315.32 -0.28%, intraday hi $316.91 never tagged $317.40 trigger, low vol); ZERO fresh 52wh across 11 screened names (9th consecutive session with zero vol-confirmed breakouts); distribution-at-highs intact (LLY -2.33% breakdown weakest leader, XLV -0.82% sold from open); only green names are oversold laggard bounces with no breakout structure. XLI canary HELD 181.92 +0.45% >SMA20 = regime intact, PASS is pick-specific. Honored quant-min-conviction-8 candidate rule - did not inflate a marginal setup."
+        },
+        "sentiment": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS (EDGAR closing scan verified-empty) - new ~14-filer KILROY REALTY cluster (in-universe mid-cap REIT) ALL transactionCode A annual grants (period 7/8, zero shares/price = board equity grant, not open-market buy); MONSTER BEVERAGE 3-filer out of universe (~$95B) director grants; zero qualifying code-P mid-cap multi-insider cluster. VIX 15.03 peak greed, falling all session (15.74->15.03), ~10pts below the >25 fear-extreme threshold. WebSearch 429 (options-flow feeds dark). KMX not re-pitched (fundamental-fatal, vetoed twice)."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS - ADBE best candidate in months (PE 12.24x, fwd ~8.5x, 89.4% GM, 62.4% ROE, D/E 0.53, rev +12.7%, EPS +7.9% TTM, $25B buyback, HSBC Buy $308) but FAILS washout entry ($223.64 = +17.6% above 52wL 190.12, basing $220-228 not capitulating toward $200-210) + no immediate catalyst (Q3 Sep ~45td out); new SeekingAlpha double-upgrade = sentiment WARMING, pushing washout entry further away (reason to wait). PYPL washout receded to +20.4% above 52wL, EPS -6.09% improving-leg fails, Q2 7/28 not landed. VIX ~15.2 no fear to fade; bull-mode mean-reversion trap."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 4,
+          "considered": true,
+          "rejection_reason": "PASS - no dated 7/11-31 catalyst clears conv-8 long-only. INTC (7/23) FALLING KNIFE ($109.84 -2.40%, closed near session low $107.45, net-unprofitable TTM, beta 2.21 = market discounting a bad print, Contrarian/value not event edge). DAL beat SOLD (-1.81% despite BMO beat = negative PEAD, Quant's mandate). Banks/UNH priced-in near 52wh into 7/14-16 (Iran-shock discount closed). 7/23 Elevar/Hengrui rivoceranib PDUFA untradeable (HLB KRX-only, no US ticker, 3rd resubmission post 2 CRLs). June CPI 7/14 no long-only edge (hot tail unshortable)."
+        }
+      },
+      "debate_results": [],
+      "debate_note": "No candidate debated - all 6 agents recommended PASS (no live ticker with conviction>=6; highs were quant-5 and contrarian-5, both DEFER/watchlist with ticker=PASS). Per skills/debate.md, no conviction>=6 LIVE TICKER => skip debate (gate has nothing to test).",
+      "agent_dominance_check": {
+        "last_2_buys_agents": [
+          "index"
+        ],
+        "current_agent": "n/a (all PASS)",
+        "deprioritized": false,
+        "note": "Only 1 buy in the entire run-2 trade log (SPY benchmark sweep 2026-07-02, agent=index). No analyst-agent dominance concern."
+      },
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (run-2 fresh start, must re-earn promotion) - quant-min-conviction-8, all-no-cpi-fomc-entry, catalyst-min-conviction-8. No active rules fired. Today 7/10 is NOT a CPI/FOMC release day (June CPI 7/14, FOMC 7/29), so all-no-cpi-fomc-entry is moot regardless.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json INSUFFICIENT_SAMPLE (n=0, run-2 fresh start); state/pm-lessons.json adjustments=[]. No adjustments applied; base_threshold 7.5 (8.0 in bull mode).",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 15.1,
+      "spy_close": 754.95,
+      "spy_close_note": "official 4pm close (post-close fetch ~17:45 ET, Finnhub current_price 754.95 / previous_close 751.71 = real 7/9 close; day high 755.42 low 748.1). Run-2 baseline 744.78. Firm-wide baseline 634.09 (close 2026-03-27). The GLM run recorded 755.21 as a ~15:55 ET pre-close mark; 754.95 is the more final official close. Immaterial to the PASS. price-fetch (Yahoo) previousClose field glitched today - use Finnhub /quote + Yahoo chart daily closes for color.",
+      "spy_return_pct": 1.37,
+      "spy_return_firmwide_pct": 19.06,
+      "portfolio_pnl_pct": 1.22,
+      "alpha": -0.15,
+      "sweep": {
+        "ticker": "SPY",
+        "new_shares": 0,
+        "reason": "excess $556.54 (cash 1062.64 - 5% buffer $506.10) < 1 SPY share ($754.95); existing 12-sh sweep retained",
+        "cash_after": 1062.64,
+        "cash_pct_nav": 10.5
+      }
+    }
+  ],
+  "excluded_decisions": [
+    {
+      "date": "2026-07-09",
+      "session": "closing",
+      "status": "contaminated",
+      "issue": "Decision rested on a fabricated catalyst: the agents asserted 'June CPI prints 8:30am ET today'. Verified false \u2014 May CPI was released 2026-06-10 and June CPI is 2026-07-14 (BLS). At the time the firm had NO working research tools (WebSearch is unavailable on the z.ai/GLM endpoint, and the .mcp.json servers were not being injected into headless runs), so instead of standing down on an unverifiable fact the agents invented it. Several agents then deferred 'to post-CPI' on an event that did not exist.",
+      "verified_by": "2026-07-10 premarket re-run (09:19 ET) after the MCP toolchain was fixed: PM re-verified the CPI calendar via brave-search + BLS and all 6 analysts re-adjudicated on the merits."
+    },
+    {
+      "date": "2026-07-10",
+      "session": "premarket",
+      "status": "contaminated",
+      "issue": "Decision rested on a fabricated catalyst: the agents asserted 'June CPI prints 8:30am ET today'. Verified false \u2014 May CPI was released 2026-06-10 and June CPI is 2026-07-14 (BLS). At the time the firm had NO working research tools (WebSearch is unavailable on the z.ai/GLM endpoint, and the .mcp.json servers were not being injected into headless runs), so instead of standing down on an unverifiable fact the agents invented it. Several agents then deferred 'to post-CPI' on an event that did not exist.",
+      "verified_by": "2026-07-10 premarket re-run (09:19 ET) after the MCP toolchain was fixed: PM re-verified the CPI calendar via brave-search + BLS and all 6 analysts re-adjudicated on the merits."
+    }
+  ],
+  "data_integrity_note": "excluded_decisions were made on a premise verified false after the fact. They are quarantined from reviewed_decisions and pm_decision_log. Do not assign root causes or draft adjustments from them \u2014 the PM's reasoning was sound given what it believed; the defect was the input, not the judgement.",
+  "root_causes": [],
+  "candidate_adjustments": []
+}

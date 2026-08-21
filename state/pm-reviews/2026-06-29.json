@@ -1,0 +1,109 @@
+{
+  "week_start": "2026-06-29",
+  "generated": "2026-07-11T10:00:01",
+  "summary": {
+    "counts": {},
+    "foregone_alpha_pct_sum": 0,
+    "decisions_logged": 1,
+    "decisions_excluded": 0
+  },
+  "reviewed_decisions": [],
+  "pm_decision_log": [
+    {
+      "date": "2026-07-02",
+      "session": "closing",
+      "rerun": true,
+      "rerun_reason": "App-triggered FORCE RE-RUN of the completed 2026-07-02 closing session (log: 'rolled back closing \u2014 checks 1->0, pruned 0 outcome(s). Re-running now.'). Prior closing record overwritten with a fresh pipeline run; verdict unchanged.",
+      "decision": "pass",
+      "reasoning": "Run-2 day-1 closing RE-RUN -> same verdict. Bull-market regime confirmed from actual closes (SPY 744.78 > 50d SMA 737.43 > 200d SMA 692.29), threshold 8.0; VIX 16.15 (complacent). NFP prints 7/3 8:30am ET (half-day) + 7/4 holiday = worst execution window of the week. 5 of 6 analysts PASSed (macro/crypto/quant/contrarian/catalyst) \u2014 no asymmetric dated-catalyst setup into binary event risk. Sole live pick KMX (sentiment, 5-insider Form-4 cluster) scored raw 7.95; fundamental overlay 0.7x (Finnhub: P/E 32.3, op margin 1.36%, ROE 3.67%, D/E 306%, EPS -58% YoY) drove it to 5.57 \u2014 max debate boost 1.05x -> 5.85, still < 8.0, mathematically eliminated. Inline bear: serious_weakness (ONeil 4,800-sh lot duplicated in Finnhub inflates cluster ~25% to a verified ~19,274sh/$1.02M; cherry-picked top PT UBS $57 vs median ~$47-50; no dated catalyst till Sep earnings; rate-sensitive subprime-auto cyclical into NFP lose/lose). Risk Chair: PASS (0.0x). No stock buy. Sweep reconciled to 0 new shares (excess $562.64 < 1 SPY share); existing 12-sh SPY sweep retained. KMX tracked as a paper pick to grade the PASS.",
+      "agents_reviewed": {
+        "macro": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent \u2014 no asymmetric macro setup <16h before NFP into holiday illiquidity; metals-bounce watchlist (GLD/GDX) 1-session unconfirmed (UUP 28.34 > 28.20 trigger); yields rising (TNX 4.485%) undercuts gold bid. WebSearch quota down \u2014 cannot verify rotation driver."
+        },
+        "crypto": {
+          "ticker": "PASS",
+          "conviction": 5,
+          "considered": true,
+          "rejection_reason": "PASS by agent \u2014 MSTR clean long but morning entry ($93.39) now $100.77 = +7.9% chasing; miners -10 to -22%/5d on hash-rate margin compression despite BTC +2.8%; NFP <16h + thin liquidity."
+        },
+        "quant": {
+          "ticker": "PASS",
+          "conviction": 6,
+          "considered": true,
+          "rejection_reason": "PASS by agent \u2014 RS leaders LLY/JPM closed higher on DECLINING volume (0.66x/0.45x avg20 = fakeout); only volume-confirmed sectors (XLV/XLF) overbought (RSI 70.7/76.6); no setup clears 8.0."
+        },
+        "sentiment": {
+          "ticker": "KMX",
+          "conviction": 8,
+          "considered": true,
+          "raw_score": 7.95,
+          "fundamental_modifier": 0.7,
+          "post_fundamental_score": 5.57,
+          "rejection_reason": "Fundamental overlay kill (0.7x -> 5.57; max 5.85 < 8.0) + Bear serious_weakness (duplicate-filing cluster inflation ~25%, cherry-picked top PT, no dated catalyst, NFP lose/lose). Debate PASS (0.0x)."
+        },
+        "contrarian": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent \u2014 VIX 16 near 52w low = peak complacency, no fear to be contrarian against; all names fail cheap+improving+catalyst at washout entry."
+        },
+        "catalyst": {
+          "ticker": "PASS",
+          "conviction": 3,
+          "considered": true,
+          "rejection_reason": "PASS by agent \u2014 near-term earnings at 52wk highs with telegraphed consensus, ACAD catalyst 6d old +30%, no FDA binary in-window, NFP into holiday = no edge."
+        }
+      },
+      "debate_results": [
+        {
+          "ticker": "KMX",
+          "debate_decision": "pass",
+          "bear_classification": "serious_weakness",
+          "risk_flags": [
+            "already_priced_in",
+            "weak_catalyst",
+            "timing_risk",
+            "narrative_overreach",
+            "macro_conflict",
+            "valuation_mismatch",
+            "evidence_quality_low",
+            "poor_asymmetry"
+          ],
+          "bear_strength": 7,
+          "bull_spawned": false,
+          "bull_not_spawned_reason": "Pick mathematically eliminated by fundamental overlay (5.57; max achievable with 1.05x debate boost = 5.85 < 8.0). Bear attacks are SEC-record facts (duplicate ONeil 4,800-sh Form-4 lot inflating the cluster ~25%, full PT distribution UBS $57 / MS $44 / Barclays $37) not rebuttable by argument. Sentiment agent itself flagged the fundamental weakness as unrebuttable and pre-conceded the duplicate-filing dedup ambiguity. Inline bear classification only \u2014 no live decision to swing.",
+          "fatal_flaw_found": false,
+          "serious_weaknesses_rebutted": 0,
+          "modifier": 0.0,
+          "final_score": 0.0,
+          "reason": "Multiple data-verified serious weaknesses + fundamental-overlay kill. Break-the-trade test fails: stripped of the writeup, KMX is a revenue-declining, 1.4%-margin, 306%-D/E used-car retailer at P/E 32 whose insider signal the market has ignored for 10 days (-3.4% drift) \u2014 not a buy."
+        }
+      ],
+      "live_lessons_enforced": [],
+      "live_lessons_note": "All 3 rules in lessons-learned.json are status=candidate (demoted for run-2 fresh start, must re-earn promotion). No active rules fired.",
+      "pm_self_adjustments": [],
+      "pm_self_adjustments_note": "state/scorecards/pm.json and state/pm-lessons.json empty (run-2 fresh start) \u2014 INSUFFICIENT_SAMPLE, no adjustments applied.",
+      "regime": "bull",
+      "execution_threshold": 8.0,
+      "vix_level": 16.15,
+      "spy_close": 744.78,
+      "spy_return_pct": 0.0,
+      "portfolio_pnl_pct": 0.0,
+      "alpha": 0.0,
+      "sweep": {
+        "ticker": "SPY",
+        "new_shares": 0,
+        "reason": "excess $562.64 < 1 SPY share ($744.78); existing 12-sh sweep retained",
+        "cash_after": 1062.64,
+        "cash_pct_nav": 10.63
+      }
+    }
+  ],
+  "excluded_decisions": [],
+  "data_integrity_note": null,
+  "root_causes": [],
+  "candidate_adjustments": []
+}

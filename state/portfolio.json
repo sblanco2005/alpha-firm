@@ -1,16 +1,43 @@
 {
-  "cash": 10000.0,
-  "positions": [],
-  "nav": 10000.0,
+  "cash": 808.6,
+  "positions": [
+    {
+      "ticker": "SPY",
+      "asset_type": "etf",
+      "shares": 12,
+      "entry_price": 744.78,
+      "entry_date": "2026-07-02",
+      "agent": "index",
+      "role": "benchmark_sweep",
+      "mode": "simulated"
+    },
+    {
+      "ticker": "ADBE",
+      "asset_type": "stock",
+      "shares": 1,
+      "entry_price": 254.04,
+      "entry_date": "2026-08-18",
+      "agent": "contrarian",
+      "mode": "simulated",
+      "falsification_condition": "Close below $240 on rising volume, OR Q3 FY26 print (~mid-Sept) shows revenue growth <9% / FY26 guidance cut",
+      "target_return_pct": 20,
+      "target_price": 305.0,
+      "disaster_stop": 203.23,
+      "conviction": 6,
+      "final_score": 9.75
+    }
+  ],
+  "nav": 10232.02,
   "inception_date": "2026-07-02",
   "run": 2,
   "spy_inception_price": 744.78,
   "spy_inception_date": "2026-07-02",
-  "spy_closing_price": 744.78,
-  "spy_return_pct": 0.0,
-  "portfolio_pnl_pct": 0.0,
-  "alpha": 0.0,
-  "high_water_mark": 10000.0,
+  "spy_mark_price": 770.605,
+  "spy_return_pct": 3.4675,
+  "portfolio_pnl_pct": 3.2937,
+  "alpha": -0.1738,
+  "high_water_mark": 10397.2,
   "sold_positions": [],
-  "nav_note": "RUN 2 FRESH START 2026-07-02. Phase 2 rules: SPY sweep (5% cash buffer), falsification-first exits, -20% disaster stops, no stale rule, modifiers frozen at 1.0x. Run 1 archived in runs/."
+  "last_updated": "2026-08-21T11:00:02Z",
+  "nav_note": "2026-08-19 MIDDAY (model_provider=kimi, Kimi K3): PASS — all 6 agents passed conv 3-5 into the 2pm FOMC minutes. Crypto conv5 closest to firing (BTC +6.4% breakout $68.8k through 100-day EMA, MSTR +15% gate reclaim, SEC reg proposal) but dominant rate gate resolves 90 min after session; closing session owns the confirmation entry (IREN >=$43.87/$45.32 triggers). Quant: XLV tagged its 176.8 measured target intraday — move complete, no re-entry. Macro: GLD at 200-day unconfirmed, USO still <139 on UAE-Iran embargo (exhaustion). ADBE 273.51 (+7.67% vs 254.04 entry) — falsification untouched, HOLD. SPY 770.61; VIX 15.08. NAV 10329.37 = 3.2937% run-2; SPY 3.4675% (744.78) => alpha -0.1738%. Firm-wide SPY +21.53% (634.09)."
 }

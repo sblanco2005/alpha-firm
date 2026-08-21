@@ -1,0 +1,17 @@
+{
+  "week_start": "2026-06-22",
+  "generated": "2026-07-04T11:00:01",
+  "summary": {
+    "counts": {},
+    "foregone_alpha_pct_sum": 0,
+    "decisions_logged": 0
+  },
+  "reviewed_decisions": [],
+  "pm_decision_log": [],
+  "root_causes": [],
+  "candidate_adjustments": [],
+  "review_completed_at": "2026-07-04",
+  "review_outcome": "empty_no_data",
+  "review_mode": "weekly + monthly (first Saturday of July)",
+  "review_note": "0 measurable decisions this week. root_causes and candidate_adjustments are legitimately empty per the skill's honesty rule (skills/pm-review.md step 2: do not manufacture lessons from noise; here there is not even noise, there is absence of data). The target week 2026-06-22 (Mon Jun 22 - Sun Jun 28) predates Run 2's fresh-start inception on 2026-07-02 by 4 days, so no PM decisions, outcomes, trades, or completed checkpoints exist in that window. Verified against: state/trade-log.json decisions[] (1 decision total, dated 2026-07-02 = outside this week), state/outcomes.json outcomes[] (6 entries, all dated 2026-07-02 = outside this week, all checkpoints None), state/portfolio.json (inception_date 2026-07-02). The single live Run-2 decision (2026-07-02 KMX sentiment PASS, killed by fundamental overlay 0.7x -> 5.57 < 8.0 + bear serious_weakness) falls in the FOLLOWING week (2026-06-29) and is status=tracking with all checkpoints unfilled (horizon 2026-08-13) -> unmeasured; it will be reviewed in whichever week its window completes. Monthly recalibration is likewise data-starved: only 1 file exists in state/pm-reviews/ (this one), 0 scored/measured candidates in the PM-review dataset lifetime. No promotion possible (promote is a guaranteed no-op). Scorecard already refreshed by the 2026-07-04 10:00 ET cron run and remains INSUFFICIENT_SAMPLE across pass/kill/buy."
+}

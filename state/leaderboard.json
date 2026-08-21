@@ -44,8 +44,8 @@
     "reward_earned": 0.0
   },
   "contrarian": {
-    "picks": 0,
-    "picks_executed": 0,
+    "picks": 1,
+    "picks_executed": 1,
     "wins": 0,
     "losses": 0,
     "total_pnl": 0.0,
